@@ -36,10 +36,11 @@ def getWorldWideTrends():
 
 # python GetTwitterData.py today <(w)rite/(a)ppend>
 def getTimeLineListTweetDataToday(file_command):
+	csv_timeline = open("TweetsFromTimelineToday.csv", file_command)
 	while(True):
 		try:
-			csv_timeline = open("TweetsFromTimelineToday.csv", file_command)
 			utc_now = datetime.utcnow()
+			csv_timeline.truncate(0)
 			for status in tweepy.Cursor(api.list_timeline, list_id=list_id, tweet_mode="extended").items():
 				if fromToday(utc_now, status.created_at):
 					process_status = status.full_text.replace('\n','').strip('\n')
