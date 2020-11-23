@@ -1,7 +1,9 @@
 import tweepy
-import sys
 from datetime import datetime
 import time
+from queue import Queue
+from threading import Thread
+import mysql.connector
 
 # API Key
 customer_key = "i4YbObSsZEC1pvY0FZ34Z6wIM"
@@ -24,53 +26,25 @@ try:
 except:
 	print("Error during authentication")
 
-# ID of developer list
-list_id='1320842731472580608'
+db = mysql.connector.connect(
+	host="localhost",
+	user="leemg",
+	passwd="Mahl2000"
+)
 
-# Get the current trending hashtags
-# python GetTwitterData.py
-def getWorldWideTrends():
-	trends_result = api.trends_place(1)
-	for trend in trends_result[0]["trends"]:
-		print(trend["name"])
+# List of stocks to look at
+stocks = ['google', 'amazon', 'tesla', 'apple', 'microsoft']
 
-# python GetTwitterData.py today <(w)rite/(a)ppend>
-def getTimeLineListTweetDataToday(file_command):
-	csv_timeline = open("TweetsFromTimelineToday.csv", file_command)
+
+# queue <string of search words> language
+def searchTweets(out_q, word, langauge):
+	stock_name = (word.split())[0]
 	while(True):
 		try:
-			utc_now = datetime.utcnow()
-			csv_timeline.truncate(0)
-			for status in tweepy.Cursor(api.list_timeline, list_id=list_id, tweet_mode="extended").items():
-				if fromToday(utc_now, status.created_at):
-					process_status = status.full_text.replace('\n','').strip('\n')
-					process_status = process_status.replace(',', ' ')
-					process_status = process_status.encode("ascii", "ignore").decode()
-					csv_timeline.write(f"{status.user.name},{status.created_at},{process_status}\n")
-				else:
-					break
-			time.sleep(60*15)
-			print("Waiting on new tweets...")
-		except tweepy.TweepError:
-			print("Waiting on rate limit...")
-			time.sleep(60*15)
-			continue
-		except StopIteration:
-			break
-		
-	csv_timeline.close()
-
-# python GetTwitterData.py search <(w)rite/(a)ppend> <string of search words>
-# Ex: python GetTwitterData.py search w 'google stock'
-def searchTweets(word, langauge, file_command):
-	csv_tweets = open("SearchTweetsByKeywords.csv", file_command)
-	while(True):
-		try:
-			csv_tweets.truncate(0)
-			for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extended", wait_on_rate_limit_notify=True).items(1000):
+			for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extended", wait_on_rate_limit_notify=True).items(100):
 				if tweet.full_text.startswith("RT @"):
 					retweet_author = tweet.retweeted_status.author.name
-					retweet_author = retweet_author.replace('\n','').replace(',', ' ')
+					retweet_author = retweet_author.replace('\n','')
 					retweet_author = retweet_author.encode("ascii", "ignore").decode()
 					tweet_status = tweet.retweeted_status.full_text
 					retweet_author_followers = tweet.retweeted_status.author.followers_count
@@ -83,10 +57,11 @@ def searchTweets(word, langauge, file_command):
 				author_followers = tweet.user.followers_count
 				author_following = tweet.user.friends_count
 				process_status = tweet_status.replace('\n','')
-				process_status = process_status.replace(',', ' ')
 				process_status = process_status.encode("ascii", "ignore").decode()
 				user_name = tweet.user.name.encode("ascii", "ignore").decode()
-				csv_tweets.write(f"{user_name},{author_followers},{author_following},{tweet.created_at},{retweet_author},{retweet_author_followers},{retweet_author_following},{tweet.retweet_count},{tweet.favorite_count},{process_status}\n")
+				out_q.put([stock_name, user_name, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
+				#out_q.put(f"{stock_name},{user_name},{author_followers},{author_following},{tweet.created_at},{retweet_author},{retweet_author_followers},{retweet_author_following},{tweet.retweet_count},{tweet.favorite_count},{process_status}")
+				#csv_tweets.write(f"{user_name},{author_followers},{author_following},{tweet.created_at},{retweet_author},{retweet_author_followers},{retweet_author_following},{tweet.retweet_count},{tweet.favorite_count},{process_status}\n")
 				#print(f"{user_name},{tweet.created_at},{retweet_author},{tweet.retweet_count},{tweet.favorite_count},{process_status}\n")
 		except tweepy.TweepError:
 			print("Waiting on rate limit...")
@@ -94,31 +69,19 @@ def searchTweets(word, langauge, file_command):
 			continue
 		except StopIteration:
 			break
-	csv_tweets.close()
 
+def processThread(in_q):
+	while(True):
+		tweet_data = in_q.get() 
+		print(tweet_data)
 
+def spawnTreads():
+	q = Queue()
+	process_Thread = Thread(target=processThread, args=(q, ))
+	for stock in stocks:
+		created_word = stock + " stocks" 
+		thread = Thread(target=searchTweets, args=(q,created_word,'en', ))
+		thread.start()
+	process_Thread.start()
 
-def fromToday(today, statusDate):
-	if (today.date() > statusDate.date()):
-		return False
-	else:
-		return True
-
-def processCommandLine(args):
-	if (args[1] == "stock"):
-		getTweets(args[3], 'en', args[2], args[4])
-	elif (args[1] == "help"):
-		help()
-	elif (args[1] == "trends"):
-		getWorldWideTrends()
-	elif (args[1] == "timeline"):
-		getTimelineListTweetData(args[2], args[3])
-	elif (args[1] == "today"):
-		getTimeLineListTweetDataToday(args[2])
-	elif (args[1] == "search"):
-		searchTweets(args[3], 'en', args[2])
-	else:
-		print("Invalid command")
-
-processCommandLine(sys.argv)
-print("Done")
+spawnTreads()
