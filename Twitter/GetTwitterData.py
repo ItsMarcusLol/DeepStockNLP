@@ -3,7 +3,7 @@ from datetime import datetime
 import time
 from queue import Queue
 from threading import Thread
-import mysql.connector
+import MySQLdb
 
 # API Key
 customer_key = "i4YbObSsZEC1pvY0FZ34Z6wIM"
@@ -26,10 +26,11 @@ try:
 except:
 	print("Error during authentication")
 
-db = mysql.connector.connect(
+conn = MySQLdb.Connection(
 	host="localhost",
 	user="leemg",
-	passwd="Mahl2000"
+	passwd="Mahl2000",
+	db="CAP_stock2020"
 )
 
 # List of stocks to look at
