@@ -7,7 +7,7 @@ import pymysql
 
 conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 
-cursor = db.cursor()
+cursor = conn.cursor()
 
 query = "SELECT * FROM GoogleStockTweets"
 
