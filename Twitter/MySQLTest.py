@@ -1,15 +1,8 @@
 #Used to test MySQL library and functions
 
-import MySQLdb
+from MySQLdb import _mysql
 
-conn = pymysql.connect("localhost","leemg","Mahl2000","CAP_stock2020")
-
-conn = MySQLdb.Connection(
-	host="localhost",
-	user="leemg",
-	passwd="Mahl2000",
-	db="CAP_stock2020"
-)
+conn = _mysql.connect("127.0.0.1","leemg","MarLee21!","CAP_stock2020")
 
 print(conn)
 
