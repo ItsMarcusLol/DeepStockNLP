@@ -75,10 +75,8 @@ while not q.empty():
 		print(data)
 	try: 
 		print(tweet_data)
-		sql = "INSERT INTO TestTweetStockData(username, followers, following, data_tweeted, retweet_author, retweet_followers, retweet_following, retweets, favorites, status) VALUES("
-		print(sql)
+		sql = "INSERT INTO TestTweetStockData(username, followers, following, date_tweeted, retweet_author, retweet_followers, retweet_following, retweets, favorites, status) VALUES("
 		values = "\'" + tweet_data[1] + "\', " + str(tweet_data[2]) + ", " + str(tweet_data[3]) + ", " + str(tweet_data[4]) + ", \'" + tweet_data[5] +"\', " + str(tweet_data[6]) + ", " + str(tweet_data[7]) + ", " + str(tweet_data[8]) + ", " + str(tweet_data[9]) + ", \'" + str(tweet_data[10]) + "\')"
-		print(values)
 		sql += values
 		print(sql)
 		insertCursor.execute(sql)
