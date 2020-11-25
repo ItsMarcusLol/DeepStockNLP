@@ -71,6 +71,8 @@ insertCursor = conn.cursor()
 print(q.empty())
 while not q.empty():
 	tweet_data = q.get()
+	for data in tweet_data:
+			print(data)
 	try: 
 		print(tweet_data)
 		sql = "INSERT INTO TestTweetStockData(username, followers, following, data_tweeted, retweet_author, retweet_followers, retweet_following, retweets, favorites, status) VALUES("
