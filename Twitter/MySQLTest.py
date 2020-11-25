@@ -4,6 +4,7 @@ import pymysql
 import tweepy
 from queue import Queue
 import sys
+from datetime import datetime
 
 # API Key
 customer_key = "i4YbObSsZEC1pvY0FZ34Z6wIM"
@@ -84,7 +85,8 @@ while not q.empty():
 		
 		query = "INSERT INTO TestTweetStockData(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) " \
 				"VALUS(%s,%d,%d,%s,%s,%d,%d,%d,%d,%s)"
-		args = (tweet_data[1],tweet_data[2],tweet_data[3],tweet_data[4],tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10],)
+		date = tweet_data[4].strfttime('%Y-%m-%d %H:%M:%S')
+		args = (tweet_data[1],tweet_data[2],tweet_data[3],date,tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10],)
 		print(args)
 		insertCursor.execute(query, args)
 		
