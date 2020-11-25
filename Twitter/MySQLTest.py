@@ -28,7 +28,7 @@ except:
 
 
 conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
-
+'''
 cursor = conn.cursor()
 
 query = "SELECT * FROM TestTweetStockData"
@@ -38,7 +38,7 @@ results = cursor.fetchall()
 
 for row in results:
 	print(row)
-
+'''
 # Test adding a tweet to the test table
 
 q = Queue()
@@ -89,7 +89,7 @@ while not q.empty():
 				"VALUS(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 		args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10],)
 		print(args)
-		insertCursor.execute(query, args)
+		print(insertCursor.execute(query, args))
 		
 
 		conn.commit()
@@ -97,6 +97,7 @@ while not q.empty():
 		print(e)
 		conn.rollback()
 		conn.close()
+		cursor.close()
 		#sys.exit(1)
-
+cursor.close()
 conn.close()
