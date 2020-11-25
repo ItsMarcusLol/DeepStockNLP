@@ -57,8 +57,8 @@ for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extend
 	else:
 		retweet_author = None
 		tweet_status = tweet.full_text
-		retweet_author_followers = None
-		retweet_author_following = None
+		retweet_author_followers = 0
+		retweet_author_following = 0
 	author_followers = tweet.user.followers_count
 	author_following = tweet.user.friends_count
 	process_status = tweet_status.replace('\n','')
@@ -75,7 +75,7 @@ while not q.empty():
 		print(tweet_data)
 		sql = "INSERT INTO TestTweetStockData(username, followers, following, data_tweeted, retweet_author, retweet_followers, retweet_following, retweets, favorites, status) VALUES("
 		print(sql)
-		values = "\'" + tweet_data[1] + "\', " + str(tweet_data[2]) + ", " + str(tweet_data[3]) + ", " + str(tweet_data[4]) + ", \'" + tweet_data[5] +"\', \'" + str(tweet_data[6]) + "\', \'" + str(tweet_data[7]) + "\', " + str(tweet_data[8]) + ", " + str(tweet_data[9]) + ", \'" + tr(tweet_data[10]) + "\',)"
+		values = "\'" + tweet_data[1] + "\', " + str(tweet_data[2]) + ", " + str(tweet_data[3]) + ", " + str(tweet_data[4]) + ", \'" + tweet_data[5] +"\', " + str(tweet_data[6]) + ", " + str(tweet_data[7]) + ", " + str(tweet_data[8]) + ", " + str(tweet_data[9]) + ", \'" + tr(tweet_data[10]) + "\',)"
 		print(values)
 		sql += values
 		print(sql)
