@@ -1,9 +1,7 @@
 #Used to test MySQL library and functions
 
 import pymysql
-
-#conn = _mysql.connect(host='localhost',user='leemg',passwd='MarLee21!',db='CAP_stock2020')
-#conn = _mysql.connect(host='127.0.0.1',user='leemg',passwd='MarLee21!',db='CAP_stock2020',ssl_disabled='True')
+import tweepy
 
 conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 

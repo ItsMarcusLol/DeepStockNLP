@@ -3,7 +3,7 @@ from datetime import datetime
 import time
 from queue import Queue
 from threading import Thread
-import MySQLdb
+import pymysql
 
 # API Key
 customer_key = "i4YbObSsZEC1pvY0FZ34Z6wIM"
@@ -26,12 +26,7 @@ try:
 except:
 	print("Error during authentication")
 
-conn = MySQLdb.Connection(
-	host="localhost",
-	user="leemg",
-	passwd="Mahl2000",
-	db="CAP_stock2020"
-)
+conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 
 # List of stocks to look at
 stocks = ['google', 'amazon', 'tesla', 'apple', 'microsoft']
@@ -65,16 +60,27 @@ def searchTweets(out_q, word, langauge):
 				#csv_tweets.write(f"{user_name},{author_followers},{author_following},{tweet.created_at},{retweet_author},{retweet_author_followers},{retweet_author_following},{tweet.retweet_count},{tweet.favorite_count},{process_status}\n")
 				#print(f"{user_name},{tweet.created_at},{retweet_author},{tweet.retweet_count},{tweet.favorite_count},{process_status}\n")
 		except tweepy.TweepError:
-			print("Waiting on rate limit...")
+			#print("Waiting on rate limit...")
 			time.sleep(60*15)
 			continue
 		except StopIteration:
 			break
 
 def processThread(in_q):
+	cursor = conn.cursor()
 	while(True):
-		tweet_data = in_q.get() 
-		print(tweet_data)
+		tweet_data = in_q.get()
+		try: 
+			sql = "INSERT INTO TestTweetStockData(username, followers, following, data_tweeted, retweet_author, retweet_followers, retweet_following, retweets, favorites, status) VALUES("
+			values = "\'" + tweet_data[1] + "\', " + str(tweet_data[2]) + ", " + str(tweet_data[3]) + ", " + str(tweet_data[4]) + ", \'" + tweet_data[5] +"\', \'" + str(tweet_data[6]) + "\', \'" + str(tweet_data[7]) + "\', " + str(tweet_data[8]) + ", " + str(tweet_data[9]) + ", \'" + tr(tweet_data[10]) + "\',)"
+			sql += values
+			print(sql)
+			#print(tweet_data)
+			cursor.execute(sql)
+			conn.commit()
+		except:
+			conn.rollback()
+			conn.close()
 
 def spawnTreads():
 	q = Queue()
