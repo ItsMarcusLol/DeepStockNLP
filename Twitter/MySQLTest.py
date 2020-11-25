@@ -81,9 +81,12 @@ while not q.empty():
 		print(sql)
 		insertCursor.execute(sql)
 		'''
-		
+		'''
 		query = "INSERT INTO TestTweetStockData(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) " \
 				"VALUS(%s,%d,%d,%s,%s,%d,%d,%d,%d,%s)"
+		'''
+		query = "INSERT INTO TestTweetStockData(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) " \
+				"VALUS(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 		args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10],)
 		print(args)
 		insertCursor.execute(query, args)
