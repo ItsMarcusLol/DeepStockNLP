@@ -65,7 +65,6 @@ for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extend
 	process_status = process_status.encode("ascii", "ignore").decode()
 	user_name = tweet.user.name.encode("ascii", "ignore").decode()
 	stock_name = "123"
-	print([stock_name, user_name, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
 	q.put([stock_name, user_name, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
 
 insertCursor = conn.cursor()
@@ -75,7 +74,9 @@ while not q.empty():
 	try: 
 		print(tweet_data)
 		sql = "INSERT INTO TestTweetStockData(username, followers, following, data_tweeted, retweet_author, retweet_followers, retweet_following, retweets, favorites, status) VALUES("
+		print(sql)
 		values = "\'" + tweet_data[1] + "\', " + str(tweet_data[2]) + ", " + str(tweet_data[3]) + ", " + str(tweet_data[4]) + ", \'" + tweet_data[5] +"\', \'" + str(tweet_data[6]) + "\', \'" + str(tweet_data[7]) + "\', " + str(tweet_data[8]) + ", " + str(tweet_data[9]) + ", \'" + tr(tweet_data[10]) + "\',)"
+		print(values)
 		sql += values
 		print(sql)
 		insertCursor.execute(sql)
@@ -83,6 +84,6 @@ while not q.empty():
 	except:
 		conn.rollback()
 		conn.close()
-		sys.exit(1)
+		#sys.exit(1)
 
 conn.close()
