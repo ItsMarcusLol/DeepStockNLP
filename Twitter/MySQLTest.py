@@ -67,10 +67,10 @@ for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extend
 	stock_name = "123"
 	q.put([stock_name, user_name, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
 
-insertCursor = conn.cursor()
 print(q.empty())
 while not q.empty():
 	tweet_data = q.get()
+	insertCursor = conn.cursor()
 	for data in tweet_data:
 		print(data)
 	try: 
