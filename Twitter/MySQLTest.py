@@ -67,27 +67,27 @@ for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extend
 	stock_name = "123"
 	q.put([stock_name, user_name, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
 
-print(q.empty())
+insertCursor = conn.cursor()
 while not q.empty():
 	tweet_data = q.get()
-	insertCursor = conn.cursor()
 	for data in tweet_data:
 		print(data)
 	try: 
 		print(tweet_data)
-		
+		'''
 		sql = "INSERT INTO TestTweetStockData(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) VALUES("
-		values = "\'" + tweet_data[1] + "\'," + str(tweet_data[2]) + "," + str(tweet_data[3]) + "," + str(tweet_data[4]) + ",\'" + tweet_data[5] +"\'," + str(tweet_data[6]) + "," + str(tweet_data[7]) + "," + str(tweet_data[8]) + "," + str(tweet_data[9]) + ",\'" + str(tweet_data[10]) + "\')"
+		values = "\'" + tweet_data[1] + "\'," + str(tweet_data[2]) + "," + str(tweet_data[3]) + ",\'" + str(tweet_data[4]) + "\',\'" + tweet_data[5] +"\'," + str(tweet_data[6]) + "," + str(tweet_data[7]) + "," + str(tweet_data[8]) + "," + str(tweet_data[9]) + ",\'" + str(tweet_data[10]) + "\')"
 		sql += values
 		print(sql)
 		insertCursor.execute(sql)
+		'''
 		
-		'''
 		query = "INSERT INTO TestTweetStockData(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) " \
-				"VALUS(%s)"
-		args = ()
+				"VALUS(%s,%d,%d,%s,%s,%d,%d,%d,%d,%s)"
+		args = (tweet_data[1],tweet_data[2],tweet_data[3],tweet_data[4],tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10],)
 		insertCursor.execute(query args)
-		'''
+		
+
 		conn.commit()
 	except Exception as e:
 		print(e)
