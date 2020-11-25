@@ -47,10 +47,10 @@ def searchTweets(out_q, word, langauge):
 					retweet_author_followers = tweet.retweeted_status.author.followers_count
 					retweet_author_following = tweet.retweeted_status.author.friends_count
 				else:
-					retweet_author = None
+					retweet_author = "None"
 					tweet_status = tweet.full_text
-					retweet_author_followers = None
-					retweet_author_following = None
+					retweet_author_followers = 0
+					retweet_author_following = 0
 				author_followers = tweet.user.followers_count
 				author_following = tweet.user.friends_count
 				process_status = tweet_status.replace('\n','')

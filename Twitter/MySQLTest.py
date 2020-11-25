@@ -55,7 +55,7 @@ for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extend
 		retweet_author_followers = tweet.retweeted_status.author.followers_count
 		retweet_author_following = tweet.retweeted_status.author.friends_count
 	else:
-		retweet_author = None
+		retweet_author = "None"
 		tweet_status = tweet.full_text
 		retweet_author_followers = 0
 		retweet_author_following = 0
