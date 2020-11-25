@@ -48,22 +48,22 @@ langauge = 'en'
 
 for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extended", wait_on_rate_limit_notify=True).items(5):
 	if tweet.full_text.startswith("RT @"):
-		retweet_author = tweet.retweeted_status.author.name
-		retweet_author = retweet_author.replace('\n','')
+		retweet_author = tweet.retweeted_status.author.name.replace(',', ' ')
+		retweet_author = retweet_author.replace('\n',' ')
 		retweet_author = retweet_author.encode("ascii", "ignore").decode()
-		tweet_status = tweet.retweeted_status.full_text
+		tweet_status = tweet.retweeted_status.full_text.replace(',', ' ')
 		retweet_author_followers = tweet.retweeted_status.author.followers_count
 		retweet_author_following = tweet.retweeted_status.author.friends_count
 	else:
 		retweet_author = "None"
-		tweet_status = tweet.full_text
+		tweet_status = tweet.full_text.replace(',', ' ')
 		retweet_author_followers = 0
 		retweet_author_following = 0
 	author_followers = tweet.user.followers_count
 	author_following = tweet.user.friends_count
-	process_status = tweet_status.replace('\n','')
+	process_status = tweet_status.replace('\n',' ').replace(',', ' ')
 	process_status = process_status.encode("ascii", "ignore").decode()
-	user_name = tweet.user.name.encode("ascii", "ignore").decode()
+	user_name = tweet.user.name.replace(',', ' ').encode("ascii", "ignore").decode()
 	stock_name = "123"
 	q.put([stock_name, user_name, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
 
