@@ -89,7 +89,7 @@ while not q.empty():
 		insertCursor.execute(query args)
 		'''
 		conn.commit()
-	except Exception,e:
+	except Exception as e:
 		print(e)
 		conn.rollback()
 		conn.close()
