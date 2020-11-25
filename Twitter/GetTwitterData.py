@@ -4,6 +4,7 @@ import time
 from queue import Queue
 from threading import Thread
 import pymysql
+import os
 
 # API Key
 customer_key = "i4YbObSsZEC1pvY0FZ34Z6wIM"
@@ -81,6 +82,7 @@ def processThread(in_q):
 		except:
 			conn.rollback()
 			conn.close()
+			os.exit(1)
 
 def spawnTreads():
 	q = Queue()
