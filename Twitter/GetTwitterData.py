@@ -117,7 +117,7 @@ def spawnTreads():
 		thread.start()
 	process_Thread.start()
 	while(True):
-		if (raw_input() == 'exit'):
+		if (input() == 'exit'):
 			exit()
 			break
 
