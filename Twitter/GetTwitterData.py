@@ -78,8 +78,7 @@ def processThread(in_q):
 		stock_name = tweet_data[0]
 		stock_table_name = stock_tables[stock_name]
 		try: 
-			query = "INSERT INTO %s(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) " \
-				"VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+			query = "INSERT INTO %s(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 			args = (stock_table_name,tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10],)
 			cursor.execute(query, args)
 			conn.commit()
@@ -126,5 +125,6 @@ def exit():
 	conn.close()
 	global stop_threads 
 	stop_threads = True
+	print("Exiting...")	
 
 spawnTreads()
