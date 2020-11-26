@@ -12,13 +12,11 @@ cursor = conn.cursor()
 query = "SELECT * FROM " + table_name
 try:
 	msg = cursor.execute(query)
-	print(msg)
+	print("Stock already added")
+
 except pymysql.err.ProgrammingError as e:
 	code, msg = e.args
-	if code == 1050:
-		print("Stock already added")
-		conn.rollback()
-	elif code == 1146:
+	if code == 1146:
 		insert = "INSERT INTO ListOfStocks(name,tablename) " \
 				"VALUES(%s,%s)"
 		args = (stock_name, table_name)
