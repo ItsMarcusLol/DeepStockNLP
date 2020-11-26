@@ -89,6 +89,8 @@ def processThread(in_q):
 	while(True):
 		tweet_data = in_q.get()
 		print(tweet_data)
+		if (len(tweet_data[10]) > 800):
+			continue
 		if tweetAlreadySeen(tweet_data, cursor):
 			continue
 		stock_name = tweet_data[0]
