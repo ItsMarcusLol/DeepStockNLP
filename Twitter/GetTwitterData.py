@@ -75,6 +75,7 @@ def processThread(in_q):
 	global stock_tables
 	while(True):
 		tweet_data = in_q.get()
+		print(tweet_data)
 		stock_name = tweet_data[0]
 		stock_table_name = stock_tables[stock_name]
 		try: 
@@ -116,16 +117,6 @@ def spawnTreads():
 		thread = Thread(target=searchTweets, args=(q,created_word,'en', ))
 		thread.start()
 	process_Thread.start()
-	while(True):
-		if (input() == 'exit'):
-			exit()
-			break
-
-def exit():
-	conn.rollback()
-	conn.close()
-	global stop_threads 
-	stop_threads = True
-	print("Exiting...")	
+	print("Threads started...")
 
 spawnTreads()
