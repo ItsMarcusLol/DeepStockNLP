@@ -13,7 +13,6 @@ query = "SELECT * FROM " + table_name
 try:
 	msg = cursor.execute(query)
 	print("Stock already added")
-
 except pymysql.err.ProgrammingError as e:
 	code, msg = e.args
 	if code == 1146:
