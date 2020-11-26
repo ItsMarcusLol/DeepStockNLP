@@ -89,7 +89,7 @@ def processThread(in_q):
 	while(True):
 		tweet_data = in_q.get()
 		print(tweet_data)
-		if tweetAlreadySeen(tweetAlreadySeen(tweet_data, cursor)):
+		if tweetAlreadySeen(tweet_data, cursor):
 			continue
 		stock_name = tweet_data[0]
 		stock_table_name = stock_tables[stock_name]
