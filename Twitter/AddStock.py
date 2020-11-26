@@ -17,7 +17,7 @@ except pymysql.err.ProgrammingError as e:
 	if code == 1050:
 		print("Stock already added")
 		conn.rollback()
-	if else code == 1146:
+	elif code == 1146:
 		insert = "INSERT INTO ListOfStocks(name,tablename) " \
 				"VALUES(%s,%s)"
 		ags = (stock_name, table_name)
