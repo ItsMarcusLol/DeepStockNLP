@@ -23,7 +23,7 @@ finally:
 	for stock in stock_tables:
 		stock_table_name = stock_tables[stock]
 		query = "INSERT INTO %s(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-		args = (stock_table_name,"username",1,1,"date","retweet_author",1,1,1,1,"status",)
+		args = (stock_table_name,"username",1,1,"date","retweet_author",1,1,1,1,"status")
 		print(query, args)	
 	conn.close()
 	cursor.close()
