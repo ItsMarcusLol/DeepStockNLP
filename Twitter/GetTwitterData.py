@@ -32,6 +32,8 @@ conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 # List of stocks to look at
 stocks = ['google', 'amazon', 'tesla', 'apple', 'microsoft']
 
+stock_tables = {}
+
 
 # queue <string of search words> language
 def searchTweets(out_q, word, langauge):
@@ -53,7 +55,7 @@ def searchTweets(out_q, word, langauge):
 					retweet_author_following = 0
 				author_followers = tweet.user.followers_count
 				author_following = tweet.user.friends_count
-				process_status = tweet_status.replace('\n',' ').replace(',', ' ')
+				process_status = tweet_status.replace('\n',' ').replace('\"', ' ')
 				process_status = process_status.encode("ascii", "ignore").decode()
 				user_name = tweet.user.name.replace(',', ' ').encode("ascii", "ignore").decode()
 				out_q.put([stock_name, user_name, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
@@ -71,18 +73,21 @@ def processThread(in_q):
 	cursor = conn.cursor()
 	while(True):
 		tweet_data = in_q.get()
+		stock_name = tweet_data[0]
 		try: 
-			sql = "INSERT INTO TestTweetStockData(username, followers, following, date_tweeted, retweet_author, retweet_followers, retweet_following, retweets, favorites, status) VALUES("
-			values = "\'" + tweet_data[1] + "\', " + str(tweet_data[2]) + ", " + str(tweet_data[3]) + ", " + str(tweet_data[4]) + ", \'" + tweet_data[5] +"\', " + str(tweet_data[6]) + ", " + str(tweet_data[7]) + ", " + str(tweet_data[8]) + ", " + str(tweet_data[9]) + ", \'" + str(tweet_data[10]) + "\')"
-			sql += values
-			print(sql)
-			#print(tweet_data)
-			cursor.execute(sql)
+			query = "INSERT INTO TestTweetStockData(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) " \
+				"VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+			args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10],)
+			insertCursor.execute(query, args)
 			conn.commit()
 		except:
 			conn.rollback()
 			conn.close()
+			cursor.close()
 			os.exit(1)
+
+def getStockNames():
+	return
 
 def spawnTreads():
 	q = Queue()

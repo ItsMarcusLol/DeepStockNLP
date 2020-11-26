@@ -71,23 +71,10 @@ insertCursor = conn.cursor()
 while not q.empty():
 	tweet_data = q.get()
 	try: 
-		print(tweet_data)
-		'''
-		sql = "INSERT INTO TestTweetStockData(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) VALUES("
-		values = "\'" + tweet_data[1] + "\'," + str(tweet_data[2]) + "," + str(tweet_data[3]) + ",\'" + str(tweet_data[4]) + "\',\'" + tweet_data[5] +"\'," + str(tweet_data[6]) + "," + str(tweet_data[7]) + "," + str(tweet_data[8]) + "," + str(tweet_data[9]) + ",\'" + str(tweet_data[10]) + "\')"
-		sql += values
-		print(sql)
-		insertCursor.execute(sql)
-		'''
-		'''
-		query = "INSERT INTO TestTweetStockData(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) " \
-				"VALUS(%s,%d,%d,%s,%s,%d,%d,%d,%d,%s)"
-		'''
 		query = "INSERT INTO TestTweetStockData(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) " \
 				"VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 		args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10],)
-		print(args)
-		print(insertCursor.execute(query, args))
+		insertCursor.execute(query, args)
 		
 
 		conn.commit()
@@ -96,6 +83,6 @@ while not q.empty():
 		conn.rollback()
 		conn.close()
 		insertCursor.close()
-		#sys.exit(1)
+		sys.exit(1)
 insertCursor.close()
 conn.close()
