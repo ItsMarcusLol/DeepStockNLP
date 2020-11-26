@@ -40,7 +40,7 @@ query = "SELECT * FROM "+stock_table_name+" WHERE username=%s AND followers=%s A
 args = ('Jacob',tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
 cursor.execute(query, args)
 result = cursor.fetchone()
-row_count = cursor.row_count
+row_count = cursor.rowcount
 if row_count == 1:
 	print("Found!")
 else:
