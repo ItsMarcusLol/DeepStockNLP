@@ -11,7 +11,8 @@ cursor = conn.cursor()
 
 query = "SELECT * FROM " + table_name
 try:
-	cursor.execute(query)
+	msg = cursor.execute(query)
+	print(msg)
 except pymysql.err.ProgrammingError as e:
 	code, msg = e.args
 	if code == 1050:
