@@ -74,7 +74,7 @@ while not q.empty():
 		query = "INSERT INTO TestTweetStockData(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) " \
 				"VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 		args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10],)
-		insertCursor.execute(query, args)
+		insertCursor.execute(query % args)
 		
 
 		conn.commit()
