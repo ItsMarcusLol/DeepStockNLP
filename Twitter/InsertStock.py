@@ -26,12 +26,26 @@ time = datetime.datetime(2020, 11, 26, 19, 29, 13)
 print(time)
 tweet_data = ['tesla', 'Ant', 359, 456, time, 'None', 0, 0, 0, 0, 'Told my mom how I made $800+ just from Tesla and stocks in the past week using Robinhood and she said it was a scam']
 
-query = "INSERT INTO "+stock_table_name+"(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+query = "SELECT * FROM "+stock_table_name+" WHERE username=%s AND followers=%s AND following=%s AND date_tweeted=%s AND retweet_author=%s AND retweet_followers=%s AND retweet_following=%s AND retweets=%s AND favorites=%s AND status=%s"
 args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
 cursor.execute(query, args)
-conn.commit()
-print(cursor._last_executed)
-print("Tweet added")
+result = cursor.fetchone()
+row_count = cursor.row_count
+if row_count == 1:
+	print("Found!")
+else:
+	print("Not Found!")
+
+query = "SELECT * FROM "+stock_table_name+" WHERE username=%s AND followers=%s AND following=%s AND date_tweeted=%s AND retweet_author=%s AND retweet_followers=%s AND retweet_following=%s AND retweets=%s AND favorites=%s AND status=%s"
+args = ('Jacob',tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
+cursor.execute(query, args)
+result = cursor.fetchone()
+row_count = cursor.row_count
+if row_count == 1:
+	print("Found!")
+else:
+	print("Not Found!")
+
 
 cursor.close()
 conn.close()

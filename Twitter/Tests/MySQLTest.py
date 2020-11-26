@@ -46,7 +46,7 @@ q = Queue()
 word = 'google stock'
 langauge = 'en'
 
-for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extended", wait_on_rate_limit_notify=True).items(5):
+for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extended", wait_on_rate_limit_notify=True).items(100):
 	if tweet.full_text.startswith("RT @"):
 		retweet_author = tweet.retweeted_status.author.name.replace(',', ' ')
 		retweet_author = retweet_author.replace('\n',' ')
