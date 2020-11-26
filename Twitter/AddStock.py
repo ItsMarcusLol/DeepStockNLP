@@ -12,11 +12,9 @@ table_name = sys.argv[2]
 
 cursor = conn.cursor()
 
-query = "SELECT * FROM %s"
-
-args = (table_name)
+query = "SELECT * FROM " + table_name
  
-msg = cursor.execute(query, args)
+msg = cursor.execute(query)
 conn.commit()
 
 print(msg)
