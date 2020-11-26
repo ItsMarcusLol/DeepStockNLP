@@ -1,5 +1,5 @@
 import pymysql
-from datetime import datetime
+import datetime
 import time
 
 
