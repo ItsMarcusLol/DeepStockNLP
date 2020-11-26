@@ -4,20 +4,28 @@ import pymysql
 
 conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 
-for arg in sys.argv:
-	print(arg)
-
 stock_name = sys.argv[1]
 table_name = sys.argv[2]
 
 cursor = conn.cursor()
 
 query = "SELECT * FROM " + table_name
- 
-msg = cursor.execute(query)
-conn.commit()
+try:
+	cursor.execute(query)
+	conn.commit()
 
-print(msg)
+	query = "INSERT INTO ListOfStocks(name,tablename) " \
+				"VALUES(%s,%s)"
+	ags = (stock_name, table_name)
 
-cursor.close()
-conn.close()
+	print("Stock added")
+except pymysql.err.ProgrammingError as e:
+	code, msg = e.args
+	if code == 1050:
+		print("Stock already added")
+	else:
+		print(e)
+finally:
+	conn.rollback()
+	conn.close()
+	cursor.close()
