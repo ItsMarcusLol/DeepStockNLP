@@ -100,11 +100,11 @@ def getStockNames():
 			stock = row[0]
 			table_name = row[1]
 			stock_tables[stock] = table_name
-		except:
-   			print ("Error: unable to fetch data")
-   			sys.exit(1)
-		finally:
-			cursor.close()
+	except:
+   		print ("Error: unable to fetch data")
+   		sys.exit(1)
+	finally:
+		cursor.close()
 
 def spawnTreads():
 	getStockNames()
