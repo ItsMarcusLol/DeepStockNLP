@@ -65,6 +65,7 @@ def searchTweets(out_q, word, langauge):
 				print([stock_name, user_name, author_followers, author_following, tweet.created_at])
 				out_q.put([stock_name, user_name, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
 		except tweepy.TweepError:
+			print("Waiting on rate...")
 			time.sleep(60*15)
 			continue
 		except StopIteration:
