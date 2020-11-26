@@ -16,7 +16,7 @@ try:
       stock = row[0]
       table_name = row[1]
       stock_tables[stock] = table_name
-    print(stock_tables)
+      print(stock_tables)
 except:
    print ("Error: unable to fetch data")
 finally:
