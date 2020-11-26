@@ -24,12 +24,11 @@ except:
 stock_table_name = stock_tables['tesla']
 time = datetime.datetime(2020, 11, 26, 19, 29, 13)
 print(time)
-time = datetime.datetime(2020, 11, 26, 0, 0, 0)
-print(time)
+
 tweet_data = ['tesla', 'Ant', 359, 456, time, 'None', 0, 0, 0, 0, 'Told my mom how I made $800+ just from Tesla and stocks in the past week using Robinhood and she said it was a scam']
 
 query = "SELECT * FROM "+stock_table_name+" WHERE username=%s AND followers=%s AND following=%s AND date_tweeted=%s AND retweet_author=%s AND retweet_followers=%s AND retweet_following=%s AND retweets=%s AND favorites=%s AND status=%s"
-args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
+args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4].replace(hour=0,minute=0, second=0)),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
 cursor.execute(query, args)
 result = cursor.fetchone()
 row_count = cursor.rowcount
