@@ -20,7 +20,7 @@ except pymysql.err.ProgrammingError as e:
 	elif code == 1146:
 		insert = "INSERT INTO ListOfStocks(name,tablename) " \
 				"VALUES(%s,%s)"
-		ags = (stock_name, table_name)
+		args = (stock_name, table_name)
 		cursor.execute(insert, args)
 		table = "CREATE TABLE "+table_name+" (username VARCHAR(50),followers INT,following INT,date_tweeted DATE,retweet_author VARCHAR(50),retweet_followers INT,retweet_following INT,retweets INT,favorites INT,status VARCHAR(350))"
 		cursor.execute(table)
