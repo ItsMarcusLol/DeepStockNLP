@@ -12,11 +12,17 @@ cursor = conn.cursor()
 query = "SELECT * FROM " + table_name
 try:
 	cursor.execute(query)
-	conn.commit()
 
-	query = "INSERT INTO ListOfStocks(name,tablename) " \
+	insert = "INSERT INTO ListOfStocks(name,tablename) " \
 				"VALUES(%s,%s)"
 	ags = (stock_name, table_name)
+
+	cursor.execute(insert, args)
+
+	table = "CREATE TABLE "+table_name+" (username VARCHAR(50),followers INT,following INT,date_tweeted DATE,retweet_author VARCHAR(50),retweet_followers INT,retweet_following INT,retweets INT,favorites INT,status VARCHAR(350))"
+
+	cursor.execute(table)
+	conn.commit()
 
 	print("Stock added")
 except pymysql.err.ProgrammingError as e:
