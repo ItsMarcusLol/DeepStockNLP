@@ -44,7 +44,7 @@ def searchTweets(out_q, word, langauge):
 			global stop_threads
 			if (stop_threads):
 				break
-			for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extended", wait_on_rate_limit_notify=True).items(100):
+			for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extended", wait_on_rate_limit_notify=True).items(1):
 				if tweet.full_text.startswith("RT @"):
 					retweet_author = tweet.retweeted_status.author.name.replace(',', ' ')
 					retweet_author = retweet_author.replace('\n',' ').replace('\'', ' ').replace('\"', ' ')
