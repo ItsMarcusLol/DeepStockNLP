@@ -16,7 +16,7 @@ try:
 except pymysql.err.ProgrammingError as e:
 	code, msg = e.args
 	if code == 1146:
-		insert = "INSERT INTO List_Of_Stocks(name,tablename) " \
+		insert = "INSERT INTO List_Of_Small_Stocks(name,tablename) " \
 				"VALUES(%s,%s)"
 		args = (stock_name, table_name)
 		cursor.execute(insert, args)

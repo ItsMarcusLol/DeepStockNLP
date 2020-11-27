@@ -112,7 +112,7 @@ def processThread(in_q):
 
 def getStockNames():
 	cursor = conn.cursor()
-	query = "SELECT * FROM ListOfStocks"
+	query = "SELECT * FROM List_Of_Stocks"
 	global stock_tables
 	try:
 		cursor.execute(query)
