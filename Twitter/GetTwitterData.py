@@ -5,6 +5,7 @@ from queue import Queue
 from threading import Thread
 import pymysql
 import os
+import sys
 
 # API Key
 customer_key = "i4YbObSsZEC1pvY0FZ34Z6wIM"
@@ -32,16 +33,21 @@ conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 # List of stocks to look at
 stocks = ['google', 'amazon', 'tesla', 'apple', 'microsoft']
 
+stock_tables = {}
+stop_threads = False
 
 # queue <string of search words> language
 def searchTweets(out_q, word, langauge):
 	stock_name = (word.split())[0]
 	while(True):
 		try:
-			for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extended", wait_on_rate_limit_notify=True).items(100):
+			global stop_threads
+			if (stop_threads):
+				break
+			for tweet in tweepy.Cursor(api.search, q=word, lang=langauge, tweet_mode="extended", wait_on_rate_limit_notify=True).items(200):
 				if tweet.full_text.startswith("RT @"):
 					retweet_author = tweet.retweeted_status.author.name.replace(',', ' ')
-					retweet_author = retweet_author.replace('\n',' ')
+					retweet_author = retweet_author.replace('\n',' ').replace('\'', ' ').replace('\"', ' ')
 					retweet_author = retweet_author.encode("ascii", "ignore").decode()
 					tweet_status = tweet.retweeted_status.full_text.replace(',', ' ')
 					retweet_author_followers = tweet.retweeted_status.author.followers_count
@@ -53,44 +59,84 @@ def searchTweets(out_q, word, langauge):
 					retweet_author_following = 0
 				author_followers = tweet.user.followers_count
 				author_following = tweet.user.friends_count
-				process_status = tweet_status.replace('\n',' ').replace(',', ' ')
+				process_status = tweet_status.replace('\n',' ').replace('\"', ' ').replace('\'', ' ')
 				process_status = process_status.encode("ascii", "ignore").decode()
-				user_name = tweet.user.name.replace(',', ' ').encode("ascii", "ignore").decode()
+				user_name = tweet.user.name.replace(',', ' ').replace('\'', ' ').replace('\"', ' ').encode("ascii", "ignore").decode()
 				out_q.put([stock_name, user_name, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
-				#out_q.put(f"{stock_name},{user_name},{author_followers},{author_following},{tweet.created_at},{retweet_author},{retweet_author_followers},{retweet_author_following},{tweet.retweet_count},{tweet.favorite_count},{process_status}")
-				#csv_tweets.write(f"{user_name},{author_followers},{author_following},{tweet.created_at},{retweet_author},{retweet_author_followers},{retweet_author_following},{tweet.retweet_count},{tweet.favorite_count},{process_status}\n")
-				#print(f"{user_name},{tweet.created_at},{retweet_author},{tweet.retweet_count},{tweet.favorite_count},{process_status}\n")
-		except tweepy.TweepError:
-			#print("Waiting on rate limit...")
+		except tweepy.TweepError as error:
 			time.sleep(60*15)
 			continue
 		except StopIteration:
+			exit()
 			break
+
+def tweetAlreadySeen(tweet_data, cursor):
+	stock_table_name = stock_tables[tweet_data[0]]
+	query = "SELECT * FROM "+stock_table_name+" WHERE username=%s AND followers=%s AND following=%s AND date_tweeted=%s AND retweet_author=%s AND retweet_followers=%s AND retweet_following=%s AND retweets=%s AND favorites=%s AND status=%s"
+	args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4].replace(hour=0,minute=0, second=0)),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
+	cursor.execute(query, args)
+	result = cursor.fetchone()
+	row_count = cursor.rowcount
+	if row_count == 1:
+		return True
+	else:
+		return False
 
 def processThread(in_q):
 	cursor = conn.cursor()
+	global stock_tables
 	while(True):
 		tweet_data = in_q.get()
+		print(tweet_data)
+		if (len(tweet_data[10]) > 800):
+			continue
+		if tweetAlreadySeen(tweet_data, cursor):
+			print("TWEET ALREADY SEEN")
+			continue
+		stock_name = tweet_data[0]
+		stock_table_name = stock_tables[stock_name]
 		try: 
-			sql = "INSERT INTO TestTweetStockData(username, followers, following, date_tweeted, retweet_author, retweet_followers, retweet_following, retweets, favorites, status) VALUES("
-			values = "\'" + tweet_data[1] + "\', " + str(tweet_data[2]) + ", " + str(tweet_data[3]) + ", " + str(tweet_data[4]) + ", \'" + tweet_data[5] +"\', " + str(tweet_data[6]) + ", " + str(tweet_data[7]) + ", " + str(tweet_data[8]) + ", " + str(tweet_data[9]) + ", \'" + str(tweet_data[10]) + "\')"
-			sql += values
-			print(sql)
-			#print(tweet_data)
-			cursor.execute(sql)
+			query = "INSERT INTO "+stock_table_name+"(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+			args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
+			cursor.execute(query, args)
 			conn.commit()
+			print(cursor._last_executed)
+			print("Tweet added")
 		except:
+			print(sys.exc_info()[0])
+			print("Stopping process thread")
 			conn.rollback()
 			conn.close()
-			os.exit(1)
+			cursor.close()
+			sys.exit(1)
+
+def getStockNames():
+	cursor = conn.cursor()
+	query = "SELECT * FROM List_Of_Stocks"
+	global stock_tables
+	try:
+		cursor.execute(query)
+		results = cursor.fetchall()
+		for row in results:
+			stock = row[0]
+			table_name = row[1]
+			stock_tables[stock] = table_name
+	except:
+   		print ("Error: unable to fetch data")
+   		sys.exit(1)
+	finally:
+		cursor.close()
 
 def spawnTreads():
+	getStockNames()
 	q = Queue()
 	process_Thread = Thread(target=processThread, args=(q, ))
-	for stock in stocks:
+	global stock_tables
+	for stock in stock_tables:
 		created_word = stock + " stocks" 
 		thread = Thread(target=searchTweets, args=(q,created_word,'en', ))
 		thread.start()
 	process_Thread.start()
+	print("Threads started...")
 
 spawnTreads()
