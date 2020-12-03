@@ -87,11 +87,11 @@ def processThread(in_q):
 	global stock_tables
 	while(True):
 		tweet_data = in_q.get()
-		print(tweet_data)
+		#print(tweet_data)
 		if (len(tweet_data[10]) > 800):
 			continue
 		if tweetAlreadySeen(tweet_data, cursor):
-			print("TWEET ALREADY SEEN")
+			#print("TWEET ALREADY SEEN")
 			continue
 		stock_name = tweet_data[0]
 		stock_table_name = stock_tables[stock_name]
@@ -100,8 +100,8 @@ def processThread(in_q):
 			args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
 			cursor.execute(query, args)
 			conn.commit()
-			print(cursor._last_executed)
-			print("Tweet added")
+			#print(cursor._last_executed)
+			#print("Tweet added")
 		except:
 			print(sys.exc_info()[0])
 			print("Stopping process thread")
