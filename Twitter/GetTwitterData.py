@@ -33,6 +33,9 @@ conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 # List of stocks to look at
 stocks = ['google', 'amazon', 'tesla', 'apple', 'microsoft']
 
+# ID of developer list
+list_id='1320842731472580608'
+
 stock_tables = {}
 stop_threads = False
 
@@ -68,6 +71,31 @@ def searchTweets(out_q, word, langauge):
 			continue
 		except StopIteration:
 			exit()
+			break
+
+def fromToday(today, statusDate):
+	if (today.date() > statusDate.date()):
+		return False
+	else:
+		return True
+
+def getTimeLineListTweetDataToday(queue):
+	while(True):
+		try:
+			utc_now = datetime.utcnow()
+			for status in tweepy.Cursor(api.list_timeline, list_id=list_id, tweet_mode="extended").items():
+				if fromToday(utc_now, status.created_at):
+					process_status = status.full_text.replace('\n','').strip('\n')
+					process_status = process_status.encode("ascii", "ignore").decode()
+					csv_timeline.write(f"{status.user.name},{status.created_at},{process_status}\n")
+					queue.put(["headlines",status.user.name,status.user.followers_count,status.user.friends_count,status.created_at,"None",0,0,0,0,process_status])
+				else:
+					break
+			time.sleep(60*10)
+		except tweepy.TweepError:
+			time.sleep(60*15)
+			continue
+		except StopIteration:
 			break
 
 def tweetAlreadySeen(tweet_data, cursor):
