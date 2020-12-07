@@ -87,7 +87,7 @@ def getTimeLineListTweetDataToday(queue):
 				if fromToday(utc_now, status.created_at):
 					process_status = status.full_text.replace('\n','').strip('\n')
 					process_status = process_status.encode("ascii", "ignore").decode()
-					csv_timeline.write(f"{status.user.name},{status.created_at},{process_status}\n")
+					
 					queue.put(["headlines",status.user.name,status.user.followers_count,status.user.friends_count,status.created_at,"None",0,0,0,0,process_status])
 				else:
 					break
