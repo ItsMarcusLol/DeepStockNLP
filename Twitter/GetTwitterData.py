@@ -90,10 +90,10 @@ def getTimeLineListTweetDataToday(out_q):
 
 					out_q.put(["headlines",status.user.name,status.user.followers_count,status.user.friends_count,status.created_at,"None",0,0,0,0,process_status])
 				else:
+					time.sleep(60*15)
 					break
-			time.sleep(60*10)
 		except tweepy.TweepError:
-			time.sleep(60*15)
+			time.sleep(60*5)
 			continue
 		except StopIteration:
 			break
