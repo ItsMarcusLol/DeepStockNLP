@@ -33,9 +33,6 @@ conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 # List of stocks to look at
 stocks = ['google', 'amazon', 'tesla', 'apple', 'microsoft']
 
-# ID of developer list
-list_id='1320842731472580608'
-
 stock_tables = {}
 stop_threads = False
 
@@ -72,37 +69,9 @@ def searchTweets(out_q, word, langauge):
 		except StopIteration:
 			exit()
 			break
-'''
-def fromToday(today, statusDate):
-	if (today.date() > statusDate.date()):
-		return False
-	else:
-		return True
-
-def getTimeLineListTweetDataToday(out_q):
-	while(True):
-		try:
-			utc_now = datetime.utcnow()
-			for status in tweepy.Cursor(api.list_timeline, list_id=list_id, tweet_mode="extended").items():
-				if fromToday(utc_now, status.created_at):
-					process_status = status.full_text.replace('\n','').strip('\n')
-					process_status = process_status.encode("ascii", "ignore").decode()
-
-					out_q.put(["headlines",status.user.name,status.user.followers_count,status.user.friends_count,status.created_at,"None",0,0,0,0,process_status])
-				else:
-					time.sleep(60*15)
-					break
-		except tweepy.TweepError:
-			time.sleep(60*5)
-			continue
-		except StopIteration:
-			break
 
 def tweetAlreadySeen(tweet_data, cursor):
-	if (tweet_data[0] == "headlines"):
-		stock_table_name = "headlines"
-	else:
-		stock_table_name = stock_tables[tweet_data[0]]
+	stock_table_name = stock_tables[tweet_data[0]]
 	query = "SELECT * FROM "+stock_table_name+" WHERE username=%s AND followers=%s AND following=%s AND date_tweeted=%s AND retweet_author=%s AND retweet_followers=%s AND retweet_following=%s AND retweets=%s AND favorites=%s AND status=%s"
 	args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4].replace(hour=0,minute=0, second=0)),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
 	cursor.execute(query, args)
@@ -112,31 +81,29 @@ def tweetAlreadySeen(tweet_data, cursor):
 		return True
 	else:
 		return False
-'''
+
 def processThread(in_q):
 	cursor = conn.cursor()
 	global stock_tables
 	while(True):
 		tweet_data = in_q.get()
-		print(tweet_data)
+		#print(tweet_data)
 		if (len(tweet_data[10]) > 800):
 			continue
 		if tweetAlreadySeen(tweet_data, cursor):
-			print("TWEET ALREADY SEEN")
+			#print("TWEET ALREADY SEEN")
 			continue
 		stock_name = tweet_data[0]
 		stock_table_name = stock_tables[stock_name]
-
 		try: 
 			query = "INSERT INTO "+stock_table_name+"(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 			args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
 			cursor.execute(query, args)
 			conn.commit()
 			#print(cursor._last_executed)
-			print("Tweet added")
+			#print("Tweet added")
 		except:
 			print(sys.exc_info()[0])
-			print(tweet_data)
 			print("Stopping process thread")
 			conn.rollback()
 			conn.close()
