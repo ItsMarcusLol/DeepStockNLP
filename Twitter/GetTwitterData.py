@@ -79,7 +79,7 @@ def fromToday(today, statusDate):
 	else:
 		return True
 
-def getTimeLineListTweetDataToday(queue):
+def getTimeLineListTweetDataToday(out_q):
 	while(True):
 		try:
 			utc_now = datetime.utcnow()
@@ -88,7 +88,7 @@ def getTimeLineListTweetDataToday(queue):
 					process_status = status.full_text.replace('\n','').strip('\n')
 					process_status = process_status.encode("ascii", "ignore").decode()
 
-					queue.put(["headlines",status.user.name,status.user.followers_count,status.user.friends_count,status.created_at,"None",0,0,0,0,process_status])
+					out_q.put(["headlines",status.user.name,status.user.followers_count,status.user.friends_count,status.created_at,"None",0,0,0,0,process_status])
 				else:
 					break
 			time.sleep(60*10)
@@ -167,12 +167,12 @@ def spawnTreads():
 	q = Queue()
 	process_Thread = Thread(target=processThread, args=(q, ))
 	headlines_Thread = Thread(target=getTimeLineListTweetDataToday, args=(q, ))
-	headlines_Thread.start()
 	global stock_tables
 	for stock in stock_tables:
 		created_word = stock + " stocks" 
 		thread = Thread(target=searchTweets, args=(q,created_word,'en', ))
 		thread.start()
+	headlines_Thread.start()
 	process_Thread.start()
 	print("Threads started...")
 
