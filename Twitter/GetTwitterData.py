@@ -100,7 +100,7 @@ def getTimeLineListTweetDataToday(queue):
 
 def tweetAlreadySeen(tweet_data, cursor):
 	if (tweet_data[0] == "headlines"):
-		stock_table_name = headlines
+		stock_table_name = "headlines"
 	else:
 		stock_table_name = stock_tables[tweet_data[0]]
 	query = "SELECT * FROM "+stock_table_name+" WHERE username=%s AND followers=%s AND following=%s AND date_tweeted=%s AND retweet_author=%s AND retweet_followers=%s AND retweet_following=%s AND retweets=%s AND favorites=%s AND status=%s"
