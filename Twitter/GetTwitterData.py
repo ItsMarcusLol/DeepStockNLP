@@ -72,7 +72,7 @@ def searchTweets(out_q, word, langauge):
 		except StopIteration:
 			exit()
 			break
-
+'''
 def fromToday(today, statusDate):
 	if (today.date() > statusDate.date()):
 		return False
@@ -112,7 +112,7 @@ def tweetAlreadySeen(tweet_data, cursor):
 		return True
 	else:
 		return False
-
+'''
 def processThread(in_q):
 	cursor = conn.cursor()
 	global stock_tables
@@ -125,10 +125,7 @@ def processThread(in_q):
 			print("TWEET ALREADY SEEN")
 			continue
 		stock_name = tweet_data[0]
-		if stock_name == "headlines":
-			stock_table_name = "headlines"
-		else:
-			stock_table_name = stock_tables[stock_name]
+		stock_table_name = stock_tables[stock_name]
 
 		try: 
 			query = "INSERT INTO "+stock_table_name+"(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
@@ -167,13 +164,11 @@ def spawnTreads():
 	getStockNames()
 	q = Queue()
 	process_Thread = Thread(target=processThread, args=(q, ))
-	headlines_Thread = Thread(target=getTimeLineListTweetDataToday, args=(q, ))
 	global stock_tables
 	for stock in stock_tables:
 		created_word = stock + " stocks" 
 		thread = Thread(target=searchTweets, args=(q,created_word,'en', ))
 		thread.start()
-	headlines_Thread.start()
 	process_Thread.start()
 	print("Threads started...")
 
