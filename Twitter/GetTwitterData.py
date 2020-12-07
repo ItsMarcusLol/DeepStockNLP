@@ -87,7 +87,7 @@ def getTimeLineListTweetDataToday(queue):
 				if fromToday(utc_now, status.created_at):
 					process_status = status.full_text.replace('\n','').strip('\n')
 					process_status = process_status.encode("ascii", "ignore").decode()
-					
+
 					queue.put(["headlines",status.user.name,status.user.followers_count,status.user.friends_count,status.created_at,"None",0,0,0,0,process_status])
 				else:
 					break
@@ -99,7 +99,10 @@ def getTimeLineListTweetDataToday(queue):
 			break
 
 def tweetAlreadySeen(tweet_data, cursor):
-	stock_table_name = stock_tables[tweet_data[0]]
+	if (tweet_data[0] == "headlines"):
+		stock_table_name = headlines
+	else:
+		stock_table_name = stock_tables[tweet_data[0]]
 	query = "SELECT * FROM "+stock_table_name+" WHERE username=%s AND followers=%s AND following=%s AND date_tweeted=%s AND retweet_author=%s AND retweet_followers=%s AND retweet_following=%s AND retweets=%s AND favorites=%s AND status=%s"
 	args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4].replace(hour=0,minute=0, second=0)),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
 	cursor.execute(query, args)
