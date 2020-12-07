@@ -104,6 +104,7 @@ def processThread(in_q):
 			#print("Tweet added")
 		except:
 			print(sys.exc_info()[0])
+			print(tweet_data)
 			print("Stopping process thread")
 			conn.rollback()
 			conn.close()
