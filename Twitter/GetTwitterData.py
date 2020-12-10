@@ -31,6 +31,11 @@ except:
 conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 
 
+# List of stocks to look at
+stocks = ['google', 'amazon', 'tesla', 'apple', 'microsoft']
+
+# ID of developer list
+list_id='1320842731472580608'
 
 stock_tables = {}
 stop_threads = False
