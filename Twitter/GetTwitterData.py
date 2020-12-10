@@ -63,6 +63,7 @@ def searchTweets(out_q, word, langauge):
 				user_name = tweet.user.name.replace(',', ' ').replace('\'', ' ').replace('\"', ' ').encode("ascii", "ignore").decode()
 				out_q.put([stock_name, user_name, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
 		except tweepy.TweepError as error:
+			print("waiting on rate limit...")
 			time.sleep(60*15)
 			continue
 		except StopIteration:
@@ -85,6 +86,7 @@ def processThread(in_q):
 	cursor = conn.cursor()
 	global stock_tables
 	while(True):
+		print("Getting tweet data")
 		tweet_data = in_q.get()
 		print(tweet_data)
 		if (len(tweet_data[10]) > 800):
