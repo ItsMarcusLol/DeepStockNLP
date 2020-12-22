@@ -22,6 +22,7 @@ def tweetsToCsv(table_name, cursor, conn):
 
 def createThreads():
 	q = Queue()
+	conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 	query = "SELECT * FROM List_Of_Stocks"
 	cursor = conn.cursor()
 	stock_tables = {}
@@ -31,7 +32,8 @@ def createThreads():
 		stock = row[0]
 		table_name = row[1]
 		stock_tables[stock] = table_name
-
+	cursor.close()
+	conn.close()
 	for stock in stock_tables:
 		conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 		cursor = conn.cursor()
