@@ -33,7 +33,7 @@ def createThreads():
 		stock_tables[stock] = table_name
 	cursor.close()
 	for stock in stock_tables:
-		thread = Thread(target=tweetsToCsv, args=(stock_tables[stock_tables]), )
+		thread = Thread(target=tweetsToCsv, args=(stock_tables[stock]), )
 		thread.start()
 	print("Threads Started...")
 
