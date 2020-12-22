@@ -17,7 +17,9 @@ def tweetsToCsv(table_name):
 	cursor.execute(query)
 	results = cursor.fetchall()
 	for row in results:
-		print(row)
+		line = ""
+		for element in row:
+			line = line + " " + str(element)
 	print(sys.exc_info()[0])
 	print("ERROR")
 
@@ -37,6 +39,5 @@ def createThreads():
 		table_name = stock_tables[stock]
 		thread = Thread(target=tweetsToCsv, args=(table_name, ))
 		thread.start()
-	print("Threads Started...")
 
 createThreads()
