@@ -13,15 +13,15 @@ def tweetsToCsv(table_name):
 	#file.write("Woops! I have deleted the content!")
 	#file.close()
 	query = "SELECT * FROM " + table_name
-	cursor = conn.cursor()
-	cursor.execute(query)
-	results = cursor.fetchall()
+	cur = conn.cursor()
+	cur.execute(query)
+	results = cur.fetchall()
 	for row in results:
 		line = ""
 		for element in row:
 			line = line + " " + str(element)
-	print(sys.exc_info()[0])
-	print("ERROR")
+	cur.close()
+	print("Done")
 
 def createThreads():
 	q = Queue()
