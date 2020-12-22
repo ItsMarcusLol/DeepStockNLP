@@ -26,26 +26,32 @@ except:
 
 def tweetsToCsv(table_name, cursor, conn):
 	print(table_name)
-	#filename = table_name+".csv"
-	#file = open(filename, "w")
+	filename = table_name+".csv"
+	file = open(filename, "w")
 	#file.write("Woops! I have deleted the content!")
-	#file.close()
-	connection = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
-	cur = connection.cursor()
+	'''connection = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
+	cur = connection.cursor()'''
 	query = "SELECT * FROM " + table_name
 	cursor.execute(query)
 	results = cursor.fetchall()
 	for row in results:
-		user = api.get_user(row[0])
+		line = ""
+		for element in row:
+			line += str(element) + ","
+		line += "\n"
+		print(line)
+		#file.write(line)
+		'''user = api.get_user(row[0])
 		user_id = user.id_str
 		update_query = "UPDATE %s SET id=%s WHERE username=%s"
 		args=(table_name,user_id,row[0])
-		print(user_id)
+		print(user_id)'''
 		#cur.execute(update_query, args)
-	cur.close()
-	connection.close()
+	#cur.close()
+	#connection.close()
 	cursor.close()
 	conn.close()
+	file.close()
 	print("Done")
 
 def createThreads():
