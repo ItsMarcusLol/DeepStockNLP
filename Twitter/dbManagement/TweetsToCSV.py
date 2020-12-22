@@ -7,6 +7,7 @@ from queue import Queue
 conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 
 def tweetsToCsv(table_name):
+	print(table_name)
 	#filename = table_name+".csv"
 	#file = open(filename, "w")
 	#file.write("Woops! I have deleted the content!")
@@ -33,10 +34,8 @@ def createThreads():
 		stock_tables[stock] = table_name
 	cursor.close()
 	for stock in stock_tables:
-		#thread = Thread(target=tweetsToCsv, args=(stock_tables[stock]), )
-		#thread.start()
-		print(stock)
-		print(stock_tables[stock])
+		thread = Thread(target=tweetsToCsv, args=(stock_tables[stock]), )
+		thread.start()
 	print("Threads Started...")
 
 createThreads()
