@@ -39,4 +39,5 @@ def createThreads():
 		cursor = conn.cursor()
 		table_name = stock_tables[stock]
 		thread = Thread(target=tweetsToCsv, args=(table_name, cursor, conn, ))
+		thread.start()
 createThreads()
