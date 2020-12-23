@@ -28,6 +28,15 @@ class TwitterUser:
         self._ratio_follower_following = 0.0
         self._count_http = 0
         self._count_at = 0
+        self._bot_word_percentage = 0
+
+    @property
+    def bot_word_percentage(self):
+        return self._bot_word_percentage
+
+    @bot_word_percentage.setter
+    def bot_word_percentage(self, value):
+        self._bot_word_percentage = value 
 
     @property
     def user_id(self):
