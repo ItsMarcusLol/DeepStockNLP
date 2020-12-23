@@ -66,19 +66,22 @@ def searchTweets(out_q, word, langauge):
 				process_status = tweet_status.replace('\n',' ').replace('\"', ' ').replace('\'', ' ')
 				process_status = process_status.encode("ascii", "ignore").decode()
 				user_name = tweet.user.name.replace(',', ' ').replace('\'', ' ').replace('\"', ' ').encode("ascii", "ignore").decode()
-				out_q.put([stock_name, user_name, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
+				user_id = tweet.user.id_str
+				out_q.put([stock_name, user_name, user_id, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
 		except tweepy.TweepError as error:
 			#print("waiting on rate limit...")
 			time.sleep(60*15)
 			continue
 		except StopIteration:
+			print("Error in iteration...")
+			print([stock_name, user_name, user_id, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
 			exit()
 			break
 
 def tweetAlreadySeen(tweet_data, cursor):
 	stock_table_name = stock_tables[tweet_data[0]]
-	query = "SELECT * FROM "+stock_table_name+" WHERE username=%s AND followers=%s AND following=%s AND date_tweeted=%s AND retweet_author=%s AND retweet_followers=%s AND retweet_following=%s AND retweets=%s AND favorites=%s AND status=%s"
-	args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4].replace(hour=0,minute=0, second=0)),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
+	query = "SELECT * FROM "+stock_table_name+" WHERE username=%s AND id=%s AND followers=%s AND following=%s AND date_tweeted=%s AND retweet_author=%s AND retweet_followers=%s AND retweet_following=%s AND retweets=%s AND favorites=%s AND status=%s"
+	args = (tweet_data[1],str(tweet_data[2]),tweet_data[3],tweet_data[4],str(tweet_data[5].replace(hour=0,minute=0, second=0)),tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10],tweet_data[11])
 	cursor.execute(query, args)
 	result = cursor.fetchone()
 	row_count = cursor.rowcount
@@ -101,8 +104,8 @@ def processThread(in_q):
 		stock_name = tweet_data[0]
 		stock_table_name = stock_tables[stock_name]
 		try: 
-			query = "INSERT INTO "+stock_table_name+"(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-			args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
+			query = "INSERT INTO "+stock_table_name+"(username,id,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+			args = (tweet_data[1],tweet_data[2],tweet_data[3],tweet_data[4],str(tweet_data[5]),tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10],tweet_data[11])
 			cursor.execute(query, args)
 			conn.commit()
 			#print(cursor._last_executed)

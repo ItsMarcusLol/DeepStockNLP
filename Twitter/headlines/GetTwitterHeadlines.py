@@ -1,5 +1,5 @@
 import tweepy
-#import pymysql
+import pymysql
 from datetime import datetime
 from queue import Queue
 from threading import Thread
@@ -30,6 +30,8 @@ list_id = '1336889993894084608'
 
 #api.add_list_member(list_id=list_id, screen_name='HarvardBiz')
 #print(len(api.list_members(list_id=list_id)))
+
+conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 
 def fromToday(today, statusDate):
 	if (today.date() > statusDate.date()):
@@ -73,7 +75,7 @@ def processThread(in_q):
 		tweet_data = in_q.get()
 		if (len(tweet_data[9]) > 800):
 			continue
-		if (tweetAlreadySeen(tweet_data, cursor))
+		if (tweetAlreadySeen(tweet_data, cursor)):
 			continue
 		try:
 			query = "INSERT INTO headlines(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
