@@ -74,6 +74,7 @@ def processThread(in_q):
 	cursor = conn.cursor()
 	while(True):
 		tweet_data = in_q.get()
+		print(tweet_data)
 		if (len(tweet_data[9]) > 800):
 			continue
 		if (tweetAlreadySeen(tweet_data, cursor)):
