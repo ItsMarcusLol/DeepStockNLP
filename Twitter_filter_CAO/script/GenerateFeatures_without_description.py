@@ -10,7 +10,7 @@
 #           training_labels.dat, training_features_matrix.dat, testing_labels.dat, testing_features_matrix.dat
 # Developed by: Dr. Renzhi Cao
 # Developed on: 12/22/2020
-# Modified by: Dr. Cao at 12/22/2020, a new feature using bot words for tweet filtering is added
+# Modified by:
 # Change log:
 # Reference: https://github.com/ayush0824/Classifier-Approach-Towards-Twitter-Spam-Detection
 #######################################################################################################
@@ -111,9 +111,7 @@ def build_feature_matrix(twitter_users):
     features_matrix = []
 
     for user in twitter_users:
-        features_matrix.append([user.bot_word_percentage, user.name_length, user.description_length, user.count_http,user.count_at, user.ratio_follower_following, user.tfidf]) # let's try this idea without the length
-        #features_matrix.append([user.name_length, user.description_length, user.count_http,
-        #                        user.count_at, user.ratio_follower_following, user.tfidf])
+        features_matrix.append([user.bot_word_percentage, user.name_length,  user.count_http, user.count_at, user.ratio_follower_following, user.tfidf]) # let's try this idea without the length
 
     features_matrix_np = np.array(features_matrix)
     features_matrix_normalized = features_matrix_np / features_matrix_np.max(axis=0)
@@ -135,7 +133,7 @@ def appendToUsers(predictThis):
 #---------------------------------------------------------------#
 def printExample():
     print("\nHere is one example you can run this program: ")
-    print("python "+sys.argv[0] + " --spm ../data/Training_data/spammers.txt --spmTW ../data/Training_data/spammers_tweets.txt --leg ../data/Training_data/legitimate_users.txt --legTW ../data/Training_data/legitimate_users_tweets.txt --testspm ../data/Testing_data/spammers1.txt --testspmTW ../data/Testing_data/spammers_tweets.txt --testleg ../data/Testing_data/legitimate_users1.txt --testlegTW ../data/Testing_data/legitimate_users_tweets.txt --out ../data/Features")
+    print("python "+sys.argv[0] + " --spm ../data/Training_data/spammers.txt --spmTW ../data/Training_data/spammers_tweets.txt --leg ../data/Training_data/legitimate_users.txt --legTW ../data/Training_data/legitimate_users_tweets.txt --testspm ../data/Testing_data/spammers1.txt --testspmTW ../data/Testing_data/spammers_tweets.txt --testleg ../data/Testing_data/legitimate_users1.txt --testlegTW ../data/Testing_data/legitimate_users_tweets.txt --out ../data/Features_without_description")
 
 #------------------------arguments------------------------------#
 #Shows help to the users                                        #
