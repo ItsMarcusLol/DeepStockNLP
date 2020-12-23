@@ -1,9 +1,10 @@
 import tweepy
-#import pymysql
+import pymysql
 from datetime import datetime
 from queue import Queue
 from threading import Thread
 import time
+import sys
 
 # API Key
 customer_key = "kT4Mr92rV0NoWjq1AEH9fIzsv"
@@ -30,6 +31,8 @@ list_id = '1336889993894084608'
 
 #api.add_list_member(list_id=list_id, screen_name='HarvardBiz')
 #print(len(api.list_members(list_id=list_id)))
+
+conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 
 def fromToday(today, statusDate):
 	if (today.date() > statusDate.date()):
@@ -71,15 +74,18 @@ def processThread(in_q):
 	cursor = conn.cursor()
 	while(True):
 		tweet_data = in_q.get()
+		print(tweet_data)
 		if (len(tweet_data[9]) > 800):
 			continue
-		if (tweetAlreadySeen(tweet_data, cursor))
+		if (tweetAlreadySeen(tweet_data, cursor)):
+			print("Already Seen")
 			continue
 		try:
 			query = "INSERT INTO headlines(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-			args = (tweet_data[1],tweet_data[2],tweet_data[3],str(tweet_data[4]),tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9],tweet_data[10])
+			args = (tweet_data[0],tweet_data[1],tweet_data[2],str(tweet_data[3]),tweet_data[4],tweet_data[5],tweet_data[6],tweet_data[7],tweet_data[8],tweet_data[9])
 			cursor.execute(query, args)
 			conn.commit()
+			print("Tweet Added")
 		except:
 			print(sys.exc_info()[0])
 			print("Stopping process thread")
