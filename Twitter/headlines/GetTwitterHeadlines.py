@@ -73,7 +73,7 @@ def processThread(in_q):
 		tweet_data = in_q.get()
 		if (len(tweet_data[9]) > 800):
 			continue
-		if (tweetAlreadySeen(tweet_data, cursor))
+		if (tweetAlreadySeen(tweet_data, cursor)):
 			continue
 		try:
 			query = "INSERT INTO headlines(username,followers,following,date_tweeted,retweet_author,retweet_followers,retweet_following,retweets,favorites,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
