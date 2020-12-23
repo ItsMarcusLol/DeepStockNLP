@@ -102,7 +102,7 @@ def processThread(in_q):
 		print(tweetAlreadySeen(tweet_data,cursor))
 		if True:
 			continue
-		if (len(tweet_data[10]) > 800):
+		if (len(tweet_data[12]) > 800):
 			continue
 		if tweetAlreadySeen(tweet_data, cursor):
 			#print("TWEET ALREADY SEEN")
