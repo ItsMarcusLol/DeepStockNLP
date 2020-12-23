@@ -99,13 +99,12 @@ def processThread(in_q):
 	while(True):
 		tweet_data = in_q.get()
 		print(tweet_data)
-		print(tweetAlreadySeen(tweet_data,cursor))
 		if True:
 			continue
 		if (len(tweet_data[12]) > 800):
 			continue
 		if tweetAlreadySeen(tweet_data, cursor):
-			#print("TWEET ALREADY SEEN")
+			print("TWEET ALREADY SEEN")
 			continue
 		stock_name = tweet_data[0]
 		stock_table_name = stock_tables[stock_name]
