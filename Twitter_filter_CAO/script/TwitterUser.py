@@ -13,7 +13,7 @@
 class TwitterUser:
 
     def __init__(self, idd = 0, created = "0000-00-00", collected="0000-00-00", followings = 0,
-                 followers = 0, tweets_num = 0, length_name = 0, length_description = None):
+                 followers = 0, tweets_num = 0, length_name = 0, length_description = None, user_name = None):
         self._user_id = idd
         self._created_at = created
         self._collected_at = collected
@@ -23,6 +23,7 @@ class TwitterUser:
         self._name_length = length_name
         self._description_length = length_description
         self._tweets = []
+        self._user_name = user_name 
 
         self._tfidf = []
         self._ratio_follower_following = 0.0
@@ -30,13 +31,22 @@ class TwitterUser:
         self._count_at = 0
         self._bot_word_percentage = 0
 
+
+    @property
+    def user_name(self):
+        return self._user_name
+
+    @user_name.setter
+    def user_name(self, value):
+        self._user_name = value
+
     @property
     def bot_word_percentage(self):
         return self._bot_word_percentage
 
     @bot_word_percentage.setter
     def bot_word_percentage(self, value):
-        self._bot_word_percentage = value 
+        self._bot_word_percentage = value
 
     @property
     def user_id(self):
