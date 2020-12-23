@@ -31,6 +31,8 @@ list_id = '1336889993894084608'
 #api.add_list_member(list_id=list_id, screen_name='HarvardBiz')
 #print(len(api.list_members(list_id=list_id)))
 
+conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
+
 def fromToday(today, statusDate):
 	if (today.date() > statusDate.date()):
 		return False
