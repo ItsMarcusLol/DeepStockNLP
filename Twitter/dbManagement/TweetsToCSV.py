@@ -16,7 +16,6 @@ def tweetsToCsv(table_name, cursor, conn):
 			line += str(element) + ","
 		line += "\n"
 		file.write(line)
-		print(line)
 	cursor.close()
 	conn.close()
 	file.close()
