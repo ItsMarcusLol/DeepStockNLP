@@ -8,7 +8,8 @@ https://github.com/yumoxu/stocknet-dataset
 
 
 ### About the Project:
-    For our capstone project we are creating a stock prediction tool website. On the website, a user will the current prices of stocks, our prediction for the day of the stock. We also, will have a chat feature where users can chat about their own predictions or thoughts, this is for the users benefeit and ours, because we can also use this information for our model. We are predicting whether a stock price will go up or down based off of headlines and the last ten days of prices from that stock. We are doing this with headlines from the NYTimes archived headlines, and from Twitter we are collecting tweets from users that have tweeted about stocks. Also from twitter we are collecting headlines, from the more news networks that are more business or finacially driven headlines. 
+For our capstone project we are creating a stock prediction tool website. On the website, a user will the current prices of stocks, our prediction for the day of the stock. We also, will have a chat feature where users can chat about their own predictions or thoughts, this is for the users benefeit and ours, because we can also use this information for our model. We are predicting whether a stock price will go up or down based off of headlines and the last ten days of prices from that stock. We are doing this with headlines from the NYTimes archived headlines, and from Twitter we are collecting tweets from users that have tweeted about stocks. Also from twitter we are collecting headlines, from the more news networks that are more business or finacially driven headlines. 
+
 
 
 ### Built With:
