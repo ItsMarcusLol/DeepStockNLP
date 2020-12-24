@@ -101,6 +101,8 @@ def processThread(in_q):
 		print(tweet_data)
 		if (len(tweet_data[12]) > 800):
 			continue
+		if (len(tweet_data[3]) > 250):
+			continue
 		if tweetAlreadySeen(tweet_data, cursor):
 			print("TWEET ALREADY SEEN")
 			continue
@@ -115,6 +117,7 @@ def processThread(in_q):
 			#print("Tweet added")
 		except:
 			print(sys.exc_info()[0])
+			print(len(tweet_data[2]))
 			print("Stopping process thread")
 			conn.rollback()
 			conn.close()
