@@ -10,7 +10,7 @@
 #           training_labels.dat, training_features_matrix.dat, testing_labels.dat, testing_features_matrix.dat
 # Developed by: Dr. Renzhi Cao
 # Developed on: 12/22/2020
-# Modified by:
+# Modified by: Dr. Cao at 12/22/2020, a new feature using bot words for tweet filtering is added
 # Change log:
 # Reference: https://github.com/ayush0824/Classifier-Approach-Towards-Twitter-Spam-Detection
 #######################################################################################################
@@ -90,6 +90,18 @@ def calculate_features(twitter_users):
         user.count_at = at_count
         user.count_http = http_count
 
+        # new feature, check percent of bot words. Reference: https://github.com/jubins/MachineLearning-Detecting-Twitter-Bots/blob/master/FinalProjectAndCode/BotDetection.py
+
+        bag_of_words_bot = "bot|b0t|cannabis|tweet me|mishear|follow me|updates every|gorilla|yes_ofc|forget|expos|kill|clit|bbb|butt|fuck|XXX|sex|truthe|fake|anony|free|virus|funky|RNA|kuck|jargon|nerd|swag|jack|bang|bonsai|chick|prison|paper|pokem|xx|freak|ffd|dunia|clone|genie|bbb|ffd|onlyman|emoji|joke|troll|droop|free|every|wow|cheese|yeah|bio|magic|wizard|face".split('|')
+        countBotWords = 0
+        for k in bag_of_words_bot:
+            for tweet in user.tweets:
+                if k in tweet:
+                    countBotWords=countBotWords+1
+        if countBotWords > len(bag_of_words_bot):
+            user.bot_word_percentage = 1
+        else:
+            user.bot_word_percentage = countBotWords / len(bag_of_words_bot)
 ####################################################################
 #
 # Converts the features into numpy arrray / matrix and normalizes it
@@ -99,8 +111,9 @@ def build_feature_matrix(twitter_users):
     features_matrix = []
 
     for user in twitter_users:
-        features_matrix.append([user.name_length, user.description_length, user.count_http,
-                                user.count_at, user.ratio_follower_following, user.tfidf])
+        features_matrix.append([user.bot_word_percentage, user.name_length, user.description_length, user.count_http,user.count_at, user.ratio_follower_following, user.tfidf]) # let's try this idea without the length
+        #features_matrix.append([user.name_length, user.description_length, user.count_http,
+        #                        user.count_at, user.ratio_follower_following, user.tfidf])
 
     features_matrix_np = np.array(features_matrix)
     features_matrix_normalized = features_matrix_np / features_matrix_np.max(axis=0)
@@ -116,7 +129,7 @@ predictUsers = []
 def appendToUsers(predictThis):
     for i in predictThis:
         predictUsers.append(i.user_id)
-        
+
 #------------------------arguments------------------------------#
 #Shows one example to user                                      #
 #---------------------------------------------------------------#

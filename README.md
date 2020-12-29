@@ -33,6 +33,12 @@ Twitter API
      - Get the YFinace Prices:
      
      - Get Twitter Data: 
+      - Set up a MySQL database to store the tweets
+      - In GetTwitterData.py set the Twitter API keys to the proper credentials as well as the database connection
+      - Do the same in AddStock.py
+      - Create a table in the database List_Of_Stocks with fields of name and tablename
+      - To add a stock to look at do 'python AddStock.py {stock name} {preferred name of table}'
+      - Now run GetTwitterData and the tweets will continuously be added to the database and corresponding table
 
 3. Clean Data: 
    - Prices_csv- this takes the csv and gets the last 10 days of prices for each date, and the open and close price
