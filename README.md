@@ -1,8 +1,12 @@
 # DeepStockNLP
----------------------------------------
-### Abstract:
-We are using AI to predict how the stock market will change. Right now we're focusing on using XGBoost as our model and testing the model with archived news headlines from NYT and prices we got from Yahoo Finance. We tried weighing the model more towards dates that had more headlines and our most recent resutls were around 0.61. Recently we were looking to integrate Twitter headlines as well as headlines we got from twitter to try to test a different model and Dr. Cao helped us with that using Naive Bayes with results around 0.7.
 
+### About the Project:
+For our capstone project we are creating a stock prediction tool website. On the website, a user will the current prices of stocks, our prediction for the day of the stock. We also, will have a chat feature where users can chat about their own predictions or thoughts, this is for the users benefeit and ours, because we can also use this information for our model. We are predicting whether a stock price will go up or down based off of headlines and the last ten days of prices from that stock. We are doing this with headlines from the NYTimes archived headlines, and from Twitter we are collecting tweets from users that have tweeted about stocks. Also from twitter we are collecting headlines, from the more news networks that are more business or finacially driven headlines. 
+
+### Current Progress and Results:
+Right now we're focusing on using XGBoost as our model and testing the model with archived news headlines from NYT and prices we got from Yahoo Finance. We tried weighing the model more towards dates that had more headlines and our most recent resutls were around 0.61. Recently we were looking to integrate Twitter headlines as well as headlines we got from twitter to try to test a different model and Dr. Cao helped us with that using Naive Bayes with results around 0.7.
+
+___
 ### Other sources:
 <p>Explore few other github for your reference:<br>
 https://github.com/achillesrasquinha/bulbea<br>
@@ -10,8 +14,7 @@ https://github.com/shirosaidev/stocksight<br>
 https://github.com/happynoom/DeepTrade<br>
 https://github.com/yumoxu/stocknet-dataset</p>
 
-### About the Project:
-For our capstone project we are creating a stock prediction tool website. On the website, a user will the current prices of stocks, our prediction for the day of the stock. We also, will have a chat feature where users can chat about their own predictions or thoughts, this is for the users benefeit and ours, because we can also use this information for our model. We are predicting whether a stock price will go up or down based off of headlines and the last ten days of prices from that stock. We are doing this with headlines from the NYTimes archived headlines, and from Twitter we are collecting tweets from users that have tweeted about stocks. Also from twitter we are collecting headlines, from the more news networks that are more business or finacially driven headlines. 
+___
 
 ### Project Built With:
 #### Models:
@@ -21,6 +24,8 @@ For our capstone project we are creating a stock prediction tool website. On the
 #### Data: 
 - NYTimes API
 - Twitter API
+
+___
 
 ### Setup:
 **Install [Anaconda](https://docs.anaconda.com/anaconda/install/)** - this will help so that you don't have to install other packages. You will also need to install:
