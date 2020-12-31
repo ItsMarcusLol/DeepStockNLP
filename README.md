@@ -1,10 +1,14 @@
 # DeepStockNLP
 
-<p>Explore few other github for your reference: </p>
-https://github.com/achillesrasquinha/bulbea
-https://github.com/shirosaidev/stocksight
-https://github.com/happynoom/DeepTrade
-https://github.com/yumoxu/stocknet-dataset
+### Abstract:
+We are using AI to predict how the stock market will change. Right now we're focusing on using XGBoost as our model and testing the model with archived news headlines from NYT and prices we got from Yahoo Finance. We tried weighing the model more towards dates that had more headlines and our most recent resutls were around 0.61. Recently we were looking to integrate Twitter headlines as well as headlines we got from twitter to try to test a different model and Dr. Cao helped us with that using Naive Bayes with results around 0.7.
+
+### Other sources:
+<p>Explore few other github for your reference:
+https://github.com/achillesrasquinha/bulbea<br>
+https://github.com/shirosaidev/stocksight<br>
+https://github.com/happynoom/DeepTrade<br>
+https://github.com/yumoxu/stocknet-dataset</p>
 
 
 ### About the Project:
@@ -14,6 +18,7 @@ For our capstone project we are creating a stock prediction tool website. On the
 
 ### Built With:
 XGBoost\
+Random Forest\
 NYTimes API\
 Twitter API
 
@@ -64,8 +69,8 @@ Twitter API
      - Run, this ouputs a csv with ( date, (close - open), (last ten days of (close - open), ( column for each headline for that date ))  
 
 4. **Run The Model**
-   - Put the path to the clean csv in the "news" varible in Model-RFC-XGB-Specific.ipynb 
-   - Run all cells -  The accuracies of the models will be printed out at the bottom of the code
+   - Put the path to the clean csv or the data csv you want to use for the model into the "news" varible in Model-RFC-XGB-Specific.ipynb 
+   - Run all cells - The accuracies of the models will be printed out at the bottom of the code
 
  
 
