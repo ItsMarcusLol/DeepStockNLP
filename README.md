@@ -1,5 +1,5 @@
 # DeepStockNLP
-
+---------------------------------------
 ### Abstract:
 We are using AI to predict how the stock market will change. Right now we're focusing on using XGBoost as our model and testing the model with archived news headlines from NYT and prices we got from Yahoo Finance. We tried weighing the model more towards dates that had more headlines and our most recent resutls were around 0.61. Recently we were looking to integrate Twitter headlines as well as headlines we got from twitter to try to test a different model and Dr. Cao helped us with that using Naive Bayes with results around 0.7.
 
@@ -15,11 +15,12 @@ For our capstone project we are creating a stock prediction tool website. On the
 
 ### Project Built With:
 #### Models:
-XGBoost\
-Random Forest
+- XGBoost
+- Random Forest
+- Naive Bayes
 #### Data: 
-NYTimes API\
-Twitter API
+- NYTimes API
+- Twitter API
 
 ### Setup:
 **Install [Anaconda](https://docs.anaconda.com/anaconda/install/)** - this will help so that you don't have to install other packages. You will also need to install:
@@ -69,6 +70,6 @@ Before you can run the model, you will need to get the data (you can skip this a
      - Run, this ouputs a csv with ( date, (close - open), (last ten days of (close - open), ( column for each headline for that date ))  
 
 ### Running The Model
-   - Put the path to the clean csv or the data csv you want to use for the model into the "news" varible in Model-RFC-XGB-Specific.ipynb 
-   - Run all cells - The accuracies of the models will be printed out at the bottom of the code
-
+   - In the folder "model-w-input" there are two models. One with multiple models that we were testing to find the best one titled "All_Main_Model" and the other with our models with the best output titled "Model-RFC-XGB-Specific" this model would be better to run.
+   - Put the path to the clean csv or the data csv you want to use for the model into the "news" varible in "Model-RFC-XGB-Specific"
+   - Run all cells - The accuracies of the models will be printed out at the bottom of the code labeled with the model and its corresponding accuracy.
