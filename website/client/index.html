@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Game Client</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+
+        <div id="main-container">
+            <div id="board-container">
+                <h1>Connect Six</h1>
+                <canvas id="game-canvas" width="600" height="600"></canvas>
+
+            </div>
+
+            <div id="controls-container">
+                <h4>Controls</h4>
+                <p>To start a game, create an account and login. Then create a game with another user.</p>
+                <p>Click "Refresh games" and enter the id of the game you would like to play in the "Select game" field, and press "Select  game". You can then click an intersection on the board to place your piece.</p>
+                <p>One piece is played on the first turn, then each player plays two pieces a turn. After you have placed your two pieces, your turn is over. The first player to get six pieces in a row, in any direction, wins.</p>
+
+                <button onclick="document.getElementById('createModal').style.display='block'">Create Account</button>
+
+                <div id="createModal" class="modal">
+                    <span onclick="document.getElementById('createModal').style.display='none'" class="close" title="Close">&times;</span>
+                    <form class="modal-content" onsubmit="return signupClick()">
+                        <div class="container">
+                            <h1>Create account</h1>
+                            <hr>
+                            <label for="username"><b>Username</b></label>
+                            <input id="createUsername" type="text" placeholder="Enter a username" name="username" required>
+
+                            <label for="password"><b>Password</b></label>
+                            <input id="createPassword" type="password" placeholder="Enter password" name="password" required>
+
+                            <label for="password-repeat"><b>Repeat Password</b></label>
+                            <input type="password" placeholder="Repeat password" name="password-repeat" required>
+
+                            <div class="clearfix">
+                                <button type="button" onclick="document.getElementById('createModal').style.display='none'" class="cancelbtn">Cancel</button>
+                                <button type="submit" class="signupbtn">Create Account</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <br>
+                <button onclick="document.getElementById('loginModal').style.display='block'">Login</button>
+
+                <div id="loginModal" class="modal">
+                    <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close">&times;</span>
+                    <form class="modal-content" onsubmit="return loginClick()">
+                        <div class="container">
+                            <h1>Login</h1>
+                            <hr>
+                            <label for="username"><b>Username</b></label>
+                            <input id="loginUsername" type="text" placeholder="Enter a username" name="username" required>
+
+                            <label for="password"><b>Password</b></label>
+                            <input id="loginPassword" type="password" placeholder="Enter password" name="password" required>
+
+                            <div class="clearfix">
+                                <button type="button" onclick="document.getElementById('loginModal').style.display='none'" class="cancelbtn">Cancel</button>
+                                <button type="submit" class="signupbtn">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <br>
+                <button onclick="document.getElementById('gameModal').style.display='block'">Create game</button>
+
+                <div id="gameModal" class="modal">
+                    <span onclick="document.getElementById('gameModal').style.display='none'" class="close" title="Close">&times;</span>
+                    <form class="modal-content" onsubmit="return createGameClick()">
+                        <div class="container">
+                            <h1>Create game</h1>
+                            <hr>
+                            <label for="player1"><b>Player 1</b></label>
+                            <input id="player1" type="text" placeholder="Enter a username" name="player1" required>
+
+                            <label for="player2"><b>Player 2</b></label>
+                            <input id="player2" type="text" placeholder="Enter a username" name="player2" required>
+
+                            <div class="clearfix">
+                                <button type="button" onclick="document.getElementById('gameModal').style.display='none'" class="cancelbtn">Cancel</button>
+                                <button type="submit" class="signupbtn">Create game</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <input id="gameId">
+                <input type="submit" value="Select game" onclick="getGame()">
+                <br><br>
+
+                <div id="currentgames-container">
+                    <h4>Current games</h4>
+                    <p id="games"></p>
+
+                </div>
+                <input type="submit" value="Refresh games" onclick="refreshGamesClick()">
+
+            </div>
+
+            <div id="leaderboard-container">
+                <h4>Leaderboard</h4>
+                <p id="leaders"></p>
+
+                <br>
+                <input type="submit" value="Refresh leaderboard" onclick="refreshLeaderboard()">
+            </div>
+
+            <script>
+                fetch('http://35.212.254.221:5001/gogame/leaderboard/seed', {method : 'DELETE'})
+                    .then(response => {
+                        if(response.status === 200) {
+                            return response.json();
+                        } else {
+                            console.log("Error: " + response.status);
+                        }
+                });
+            </script>
+
+        </div>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>

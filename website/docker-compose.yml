@@ -1,0 +1,10 @@
+version: '3.8'
+services: 
+  account-service:
+    build: 
+      context: .
+      dockerfile: ./src/docker/account/Dockerfile.dockerfile
+    volumes:
+      - ./src/resources:/code
+    ports:
+      - 5002:80
