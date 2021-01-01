@@ -6,5 +6,6 @@ services:
       dockerfile: ./src/docker/account/Dockerfile.dockerfile
     volumes:
       - ./src/resources:/code
+      - ./src/account:/code/account
     ports:
       - 5002:80
