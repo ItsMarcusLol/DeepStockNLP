@@ -9,3 +9,13 @@ services:
       - ./src/account:/code/account
     ports:
       - 5002:80
+  
+  forum-service:
+    build:
+      context: .
+      dockerfile: ./src/docker/forum/Dockerfile.dockerfile
+    volumes:
+      - ./src/resources:/code
+      - ./src/forum:/code/forum
+    ports:
+      - 5003:80
