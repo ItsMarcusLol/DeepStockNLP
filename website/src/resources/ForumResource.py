@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Api
+from forum.ForumController import conversation
 
 app = Flask(__name__)
 api = Api(app)
