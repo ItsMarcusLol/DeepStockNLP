@@ -70,7 +70,7 @@ def searchTweets(out_q, word, langauge):
 				bio = tweet.user.description.replace('\n',' ').replace(',', ' ').replace('\'', ' ').replace('\"', ' ').encode("ascii", "ignore").decode()
 				out_q.put([stock_name, user_name, user_id, bio, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
 		except tweepy.TweepError as error:
-			#print("waiting on rate limit...") # Test print
+			print("waiting on rate limit...") # Test print
 			time.sleep(60*15)
 			continue
 		except StopIteration:
