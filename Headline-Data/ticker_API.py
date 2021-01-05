@@ -28,7 +28,7 @@ def main():
         if not recordAlreadySeen(record, cursor):
             try:
                 query = "INSERT INTO headline_table (ticker,date_of,headline) VALUES(%s,%s,%s)"
-                args = (record[0], str(tweet_data[1]), tweet_data[2])
+                args = (record[0], str(record[1]), record[2])
                 cursor.execute(query, args)
                 conn.commit()
             except:
@@ -42,7 +42,7 @@ def main():
 
 def recordAlreadySeen(record, cursor):
     query = "SELECT * FROM headline_table WHERE ticker=%s AND date_of=%s AND headline=%s"
-    args = (record[0], str(tweet_data[1]), tweet_data[2])
+    args = (record[0], str(record[1]), record[2])
     cursor.execute(query, args)
     result = cursor.fetchone()
     row_count = cursor.rowcount
