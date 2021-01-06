@@ -11,4 +11,3 @@ class Login(Resource):
         fields = json_data['fields']
         values = json_data['values']
 		dbManager.fetch(table_name, fields, values)
-		
