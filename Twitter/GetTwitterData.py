@@ -70,7 +70,7 @@ def searchTweets(out_q, word, langauge):
 				bio = tweet.user.description.replace('\n',' ').replace(',', ' ').replace('\'', ' ').replace('\"', ' ').encode("ascii", "ignore").decode()
 				out_q.put([stock_name, user_name, user_id, bio, author_followers, author_following, tweet.created_at, retweet_author, retweet_author_followers, retweet_author_following, tweet.retweet_count, tweet.favorite_count, process_status])
 		except tweepy.TweepError as error:
-			print("waiting on rate limit...") # Test print
+			#print("waiting on rate limit...") # Test print
 			time.sleep(60*15)
 			continue
 		except StopIteration:
@@ -98,13 +98,13 @@ def processThread(in_q):
 	global stock_tables
 	while(True):
 		tweet_data = in_q.get()
-		print(tweet_data)# Test print
+		#print(tweet_data)# Test print
 		if (len(tweet_data[12]) > 800):
 			continue
 		if (len(tweet_data[3]) > 250):
 			continue
 		if tweetAlreadySeen(tweet_data, cursor):
-			print("TWEET ALREADY SEEN")# Test print
+			#print("TWEET ALREADY SEEN")# Test print
 			continue
 		stock_name = tweet_data[0]
 		stock_table_name = stock_tables[stock_name]
@@ -114,7 +114,7 @@ def processThread(in_q):
 			cursor.execute(query, args)
 			conn.commit()
 			#print(cursor._last_executed)
-			print("Tweet added")# Test print
+			#print("Tweet added")# Test print
 		except:
 			print(sys.exc_info()[0])
 			print(len(tweet_data[2]))
