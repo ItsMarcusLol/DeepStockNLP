@@ -16,7 +16,7 @@ conn = pymysql.connect('localhost', 'leemg', 'MarLee21!', 'CAP_stock2020')
 
 def main():
     key = "f0448bd30a7028e245052fcf3caa0837"
-    url = ("https://financialmodelingprep.com/api/v3/stock_news?tickers=GOOG,AAPL,AMZN,MSFT,TSLA,TGT,WMN,DELL,F,BOE&apikey=" + key)
+    url = ("https://financialmodelingprep.com/api/v3/stock_news?tickers=GOOGL,AAPL,AMZN,MSFT,TSLA,TGT,WMT,DELL,F,BA&apikey=" + key)
     data = get_jsonparsed_data(url)
 
     output = parse_data(data)
