@@ -4,4 +4,4 @@ WORKDIR /code/
 RUN pip install -r requirements.txt
 COPY /src/resources/ForumResource.py /code/
 COPY /src/forum /code/forum
-CMD python ForumResource.py.py
+CMD python ForumResource.py
