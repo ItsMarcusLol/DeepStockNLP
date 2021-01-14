@@ -5,6 +5,8 @@ import Header from './components/layout/Header';
 import About from './components/pages/About';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
+import FetchStockPrices from './components/layout/FetchStockPrices';
+import MaterialTable from './components/layout/MaterialTable';
 
 class App extends Component {
   state = {
@@ -27,9 +29,8 @@ class App extends Component {
             <Header />
             <Route exact path="/" render={props => (
               <React.Fragment>
-                <div>
-                  home page
-                </div>
+                <FetchStockPrices />
+                <MaterialTable /> 
               </React.Fragment>
             )} />
             <Route path="/about" component={About} />
