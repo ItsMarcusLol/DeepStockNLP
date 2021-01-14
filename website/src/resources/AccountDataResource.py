@@ -10,4 +10,4 @@ api.add_resource(Login, '/login')
 api.add_resource(Account, '/account')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(host='0.0.0.0', port=5002, debug=True)
