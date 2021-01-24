@@ -1,28 +1,18 @@
 import React from 'react';
 import MaterialTable from "material-table";
-import { forwardRef } from 'react';
-
 import AddBox from '@material-ui/icons/AddBox';
-import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import Clear from '@material-ui/icons/Clear';
-import DeleteOutline from '@material-ui/icons/DeleteOutline';
-import Edit from '@material-ui/icons/Edit';
 import FilterListIcon from '@material-ui/icons/FilterList';
-// import FilterList from '@material-ui/icons/FilterList';
 import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-// import ResetSearch from '@material-ui/icons/ResetSearch';
-// import { SvgIconProps } from '@material-ui/core/SvgIcon';
-// import SortArrow from '@material-ui/icons/Sort';
-// import HistoricalTable from './HistoricalTable';
-
+import HistoricalTable from './HistoricalTable';
 
 
 
@@ -31,7 +21,6 @@ export default class PriceTable extends React.Component {
   state = {
       loading: true, 
       prices: null,
-      // tableIcons: null
   };
 
   async componentDidMount() {
@@ -60,10 +49,6 @@ export default class PriceTable extends React.Component {
   }
   
 
-  handleClick() {
-    console.log('click');
-  }
-
   render() {
       if (this.state.loading){
           return <div>loading...</div>
@@ -75,7 +60,7 @@ export default class PriceTable extends React.Component {
       
       return (
        
-       <div style={{"font-size" : "12px", "height" : "90px", "width" : "50%"}}>
+       <div style={{"font-size" : "12px", "height" : "90px", "width" : "100%"}}>
         <MaterialTable
         icons={{
           Check: () => <Check />,
@@ -102,10 +87,10 @@ export default class PriceTable extends React.Component {
       ]}
       
       data = {this.state.prices}
-      options={{ search: true, paging: false, exportButton: false }}
+      options={{ search: true, paging: false, exportButton: false}}
       detailPanel={[
         {
-          tooltip: 'Show Name',
+          tooltip: 'Prediction',
           render: rowData => {
             return (
               <div
@@ -116,7 +101,8 @@ export default class PriceTable extends React.Component {
                   backgroundColor: '#43A047',
                 }}
               >
-                {rowData.symbol}
+                
+                 {"Predictions Coming Soon"}
               </div>
             )
           },
@@ -128,22 +114,18 @@ export default class PriceTable extends React.Component {
             return (
               <div>
               
-              {/* {<HistoricalTable />} */}
+              <HistoricalTable symb ={rowData.symbol} />
+            
                 
-              </div>
+               </div>
 
-                // <IconButton aria-label="User" onClick={(event, rowData)=>{
-                //     setRows(rowData);
-                //      setOpen(true);} }>
-                // {<HistoricalTable />}
-                // </IconButton>
             )
           },
         },
         {
           icon: ViewColumn,
           openIcon: Remove,
-          tooltip: 'More',
+          tooltip: 'Headlines',
           render: rowData => {
             return (
               <div
@@ -154,7 +136,7 @@ export default class PriceTable extends React.Component {
                   backgroundColor: '#FDD835',
                 }}
               >
-                {rowData.name} {rowData.volume}
+                {rowData.name} {"Headlines Coming Soon"}
               </div>
             )
           },
