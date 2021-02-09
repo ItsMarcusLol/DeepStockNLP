@@ -10,16 +10,25 @@ import React from 'react'
 import Ticker from 'react-ticker'
 // import PageVisibility from 'react-page-visibility'
 
+// import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
+import LoadingSymbol from './LoadingSymbol';
+  
 
 
     export default class FetchStockPrices extends React.Component {
+        
         state = {
             loading: true, 
             prices: null
         };
     
         async componentDidMount() {
+            
+
             const url = "https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=f0448bd30a7028e245052fcf3caa0837";
             const response = await fetch(url);
             const data = await response.json();
@@ -28,10 +37,11 @@ import Ticker from 'react-ticker'
 
         }
 
+
         constructor(props){
             super(props)
             this.state={
-                fontSize:40
+                fontSize:35
             }
          }
          changeSize(event){
@@ -39,19 +49,35 @@ import Ticker from 'react-ticker'
               fontSize:event.target.value
           });
         }
+
             
-    
+        // useS = makeStyles((theme) => ({
+        //     root: {
+        //       width: '100%',
+        //       '& > * + *': {
+        //         marginTop: theme.spacing(2),
+        //       },
+        //     },
+        //   }));
+
+        // classes = useStyles();
     
         render() {
+            
             if (this.state.loading){
-                return <div>loading...</div>
+                // return <div>loading...</div>
+                return <LoadingSymbol />
+            //    return <div >
+            //      <LinearProgress />
+            //      <LinearProgress color="secondary" />
+            //     </div>
                 
             }
     
             if (!this.state.prices){
                 return <div>Can't get prices, right now. Check in later!</div>
+                  
             }
-            
             
             return (
                <Ticker>

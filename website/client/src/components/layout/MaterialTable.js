@@ -13,7 +13,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import HistoricalTable from './HistoricalTable';
-
+import LoadingSymbol from './LoadingSymbol';
 
 
 
@@ -51,7 +51,8 @@ export default class PriceTable extends React.Component {
 
   render() {
       if (this.state.loading){
-          return <div>loading...</div>
+          // return <div>loading...</div>
+          return <LoadingSymbol />
       }
 
       if (!this.state.prices){
@@ -60,8 +61,9 @@ export default class PriceTable extends React.Component {
       
       return (
        
-       <div style={{"font-size" : "12px", "height" : "90px", "width" : "100%"}}>
-        <MaterialTable
+       <div style={{"font-size" : "12px", "height" : "90px", "width" : "100%", "left":"left"}}>
+        
+        <MaterialTable style={{ width: '100%' }}
         icons={{
           Check: () => <Check />,
           Export: () => <SaveAlt />,
@@ -87,7 +89,7 @@ export default class PriceTable extends React.Component {
       ]}
       
       data = {this.state.prices}
-      options={{ search: true, paging: false, exportButton: false}}
+      options={{ search: true, doubleHorizontalScroll: true, paging: false, exportButton: false}}
       detailPanel={[
         {
           tooltip: 'Prediction',
