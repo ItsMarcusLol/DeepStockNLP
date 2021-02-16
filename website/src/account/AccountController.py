@@ -17,9 +17,9 @@ class Account(Resource):
         id = json_data['id']
         id_type = json_data['type']
         if (id_type=='name'):
-            return jsonify(accountManager.getAccountName(id))
+            return jsonify(accountManager.get_account_name(id))
         elif (id_type=='id'):
-            return jsonify(accountManager.getAccountId(id))
+            return jsonify(accountManager.get_account_id(id))
         else:
             return jsonify(success=False)
     
@@ -27,4 +27,4 @@ class Account(Resource):
         json_data = request.get_json(force=True)
         username = json_data['username']
         password = json_data['password']
-        return jsonify(accountManager.createAccount(username, password))
+        return jsonify(accountManager.create_account(username, password))
