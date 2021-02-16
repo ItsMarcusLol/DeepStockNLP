@@ -12,8 +12,9 @@ import HTable from './components/layout/HTable';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-
-
+import Chat from './components/layout/Chat';
+import Search from './components/layout/Search';
+import RadioB from './components/layout/RadioB';
 
 
 class App extends Component {
@@ -29,46 +30,43 @@ class App extends Component {
     this.setState({ username: username, password: password, userId: 123, authenticated: true });
   }
 
-
-
   render() {
     console.log(this.state);
     return (
       <Router>
         <div className="App">
           <div className="container">
-          {/* <Grid container spacing={2}>
-          <Grid item xs={12}> */}
-            {/* <Paper >xs=12</Paper> */}
             <Header />
-          {/* </Grid> */}
             <Route exact path="/" render={props => (
               <React.Fragment>
                 <Grid container spacing={2}>
                 <Grid item xs={12}>
-                   {/* <Paper >xs=12</Paper> */}
                    <FetchStockPrices />
-                </Grid>
-                <Grid item xs={3}>
-                   {/* <Paper >xs=3</Paper> */}
-                   <DayPriceGraph />
-                </Grid>
-                <Grid item xs={3.2}>
-                   {/* <Paper >xs=3</Paper> */}
-                   <DayPriceGraph />
                 </Grid>
                 
                 <Grid item xs={6}>
-                   {/* <Paper >xs=6</Paper> */}
+                   <Search />
+                </Grid>
+                
+                <Grid item xs={6}>
+                   {/* <DayPriceGraph /> */}
+                   <RadioB />
+                </Grid>
+                
+                <Grid item xs={6}>
                    <MaterialTable /> 
                 </Grid>
 
                 <Grid item xs={6}>
-                   {/* <Paper >xs=6</Paper> */}
                    <HTable /> 
                 </Grid>
+
+                <Grid item xs={6}>
+                    <Chat />
+                </Grid>
+
                </Grid>
-                
+               
               </React.Fragment>
             )} />
             <Route path="/about" component={About} />
