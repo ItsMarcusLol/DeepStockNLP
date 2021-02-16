@@ -90,9 +90,35 @@ const data = [
 
 export default class Example extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/xqjtetw0/';
+  state = {
+    loading: true, 
+    prices: null,
+    symbol: null
+};
+
+async componentDidMount() {
+  
+  
+    const symbol = this.props.symb;
+    console.log(symbol);
+    // const key = "f0448bd30a7028e245052fcf3caa0837";
+    const key = "insert key"
+  
+    var url = "https://financialmodelingprep.com/api/v3/historical-price-full/"+symbol+"?timeseries=30&apikey=" + key;
+    var response = await fetch(url);
+    var data = await response.json();
+   
+    data = data['historical']
+
+    console.log("here "+symbol);
+    console.log(this.state.symbol)
+    this.setState({ prices:data, symbol:symbol, loading: false});
+}
 
   render() {
     return (
+      <div> 
+      <h1> {this.state.symbol} :</h1>
       <LineChart
         width={500}
         height={300}
@@ -109,6 +135,7 @@ export default class Example extends PureComponent {
         <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
         <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
       </LineChart>
+      </div> 
     );
   }
 }
