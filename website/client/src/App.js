@@ -7,6 +7,15 @@ import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
 import FetchStockPrices from './components/layout/FetchStockPrices';
 import MaterialTable from './components/layout/MaterialTable';
+import DayPriceGraph from './components/layout/DayPriceGraph';
+import HTable from './components/layout/HTable';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Chat from './components/layout/Chat';
+import Search from './components/layout/Search';
+import RadioB from './components/layout/RadioB';
+
 
 class App extends Component {
   state = {
@@ -15,6 +24,7 @@ class App extends Component {
     userId: '',
     authenticated: false
   }
+
 
   login = (username, password) => {
     this.setState({ username: username, password: password, userId: 123, authenticated: true });
@@ -29,8 +39,34 @@ class App extends Component {
             <Header />
             <Route exact path="/" render={props => (
               <React.Fragment>
-                <FetchStockPrices />
-                <MaterialTable /> 
+                <Grid container spacing={2}>
+                <Grid item xs={12}>
+                   <FetchStockPrices />
+                </Grid>
+                
+                <Grid item xs={6}>
+                   <Search />
+                </Grid>
+                
+                <Grid item xs={6}>
+                   {/* <DayPriceGraph /> */}
+                   <RadioB />
+                </Grid>
+                
+                <Grid item xs={6}>
+                   <MaterialTable /> 
+                </Grid>
+
+                <Grid item xs={6}>
+                   <HTable /> 
+                </Grid>
+
+                <Grid item xs={6}>
+                    <Chat />
+                </Grid>
+
+               </Grid>
+               
               </React.Fragment>
             )} />
             <Route path="/about" component={About} />
