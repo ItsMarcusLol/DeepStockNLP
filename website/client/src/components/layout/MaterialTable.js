@@ -25,15 +25,24 @@ export default class PriceTable extends React.Component {
 
   async componentDidMount() {
     
-      const key = "f0448bd30a7028e245052fcf3caa0837";
-     
+      //const key = "f0448bd30a7028e245052fcf3caa0837";
+     const key = "Insert Key Here";
       const stocks = ["BA", "WMT",  "AMZN", "TSLA", "MSFT", "F", "DELL", "TGT" ];
     
-      var url = "https://financialmodelingprep.com/api/v3/quote-short/GOOGL?apikey=f0448bd30a7028e245052fcf3caa0837";
+      var url = "https://financialmodelingprep.com/api/v3/quote-short/GOOGL?apikey=" + key;
       var response = await fetch(url);
       var data = await response.json();
+      console.log(typeof(data))
+
+      if (typeof(data) != JSON ){
+          data = null
+      }
+
+      else{
+      
       data = JSON.stringify(data)
       data = JSON.parse(data)
+      
       
        
       var i = 0;
@@ -45,19 +54,23 @@ export default class PriceTable extends React.Component {
         var d1 = data1.substring(1,data1.length- 1);
         data.push(JSON.parse(d1))
       }
+      }
+
+    console.log(data)
       this.setState({ prices:data, loading: false});
   }
   
+     
 
   render() {
       if (this.state.loading){
-          // return <div>loading...</div>
           return <LoadingSymbol />
       }
 
-      if (!this.state.prices){
-          return <div>Can't get table, right now. Check in later!</div>
-      }
+      // if (!this.state.prices){
+      //     return <div>Can't get table, right now. Check in later!</div>
+          
+      // }
       
       return (
        
@@ -88,8 +101,20 @@ export default class PriceTable extends React.Component {
         
       ]}
       
-      data = {this.state.prices}
-      options={{ search: true, doubleHorizontalScroll: true, paging: false, exportButton: false}}
+      // data = {this.state.prices}
+      data={[
+        { symbol: 'GOOGL', price: '1234', volume: '2313' },
+        { symbol: 'APPL', price: '5678', volume: '1957' },
+        { symbol: 'BA', price: '1231', volume: '19217' },
+        { symbol: 'WMT', price: '1111', volume: '198347'},
+        { symbol: 'AMZN', price: '2222', volume: '3287'},
+        { symbol: 'TSLA', price: '3434', volume: '4537' },
+        { symbol: 'MSFT', price: '5432', volume: '1212' },
+        { symbol: 'F', price: '2314', volume: '2321' },
+        { symbol: 'DELL', price: '4521', volume: '2321'},
+        { symbol: 'TGT', price: '1232', volume: '7391'},
+      ]}
+      options={{ search: true, doubleHorizontalScroll: true, paging: true, exportButton: false}}
       detailPanel={[
         {
           tooltip: 'Prediction',
