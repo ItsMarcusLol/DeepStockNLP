@@ -66,25 +66,25 @@ import {
 
 const data = [
   {
-    name: '5:00', uv: 1125, pv: 2400, amt: 2400,
+    name: '7:00', Low: 1125, High: 2400, Volume: 2400,
   },
   {
-    name: '6:00', uv: 1400, pv: 1398, amt: 2210,
+    name: '8:00', Low: 1400, High: 1398, Volume: 2210,
   },
   {
-    name: '7:00', uv: 1342, pv: 9800, amt: 2290,
+    name: '9:00', Low: 1342, High: 9800, Volume: 2290,
   },
   {
-    name: '8:00', uv: 1123, pv: 3908, amt: 2000,
+    name: '10:00', Low: 1123, High: 3908, Volume: 2000,
   },
   {
-    name: '9:00', uv: 989, pv: 4800, amt: 2181,
+    name: '11:00', Low: 989, High: 4800, Volume: 2181,
   },
   {
-    name: '10:00', uv: 1005, pv: 3800, amt: 2500,
+    name: '12:00', Low: 1005, High: 3800, Volume: 2500,
   },
   {
-    name: '11:00', uv: 1234, pv: 4300, amt: 2100,
+    name: '1:00', Low: 1234, High: 4300, Volume: 2100,
   },
 ];
 
@@ -132,8 +132,9 @@ async componentDidMount() {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="High" stroke="#82ca9d" activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="Low" stroke="red" />
+        <Line type="monotone" dataKey="Volume" stroke="#8884d8" />
       </LineChart>
       </div> 
     );
