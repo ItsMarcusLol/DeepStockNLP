@@ -85,17 +85,18 @@ export default class HistoricalTable extends React.Component {
         { title: 'High', field: 'high', type: 'numeric' },
         { title: 'Low', field: 'low', type: 'numeric' },
         { title: 'Close', field: 'close', type: 'numeric' },
+        { title: 'Volume', field: 'volume', type: 'numeric'}
         
       ]}
       
       // data = {this.state.prices}
       // fake data
       data={[
-        { date: '2-12-2021', open: '1234', close: '2313', high: '100', low: '0' },
-        { date: '2-11-2021', open: '1234', close: '2313', high: '100', low: '0' },
-        { date: '2-10-2021', open: '1234', close: '2313', high: '100', low: '0' },
-        { date: '2-9-2021', open: '1234', close: '2313', high: '100', low: '0' },
-        { date: '2-8-2021', open: '1234', close: '2313', high: '100', low: '0' },
+        { date: '2-12-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+        { date: '2-11-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+        { date: '2-10-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+        { date: '2-9-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+        { date: '2-8-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
        
       ]}
       options={{ search: false, paging: true, pageSize: 5, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}

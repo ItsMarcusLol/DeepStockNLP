@@ -16,30 +16,27 @@ const GreenRadio = withStyles({
   checked: {},
 })((props) => <Radio color="default" {...props} />);
 
-
 export default function RadioButtons() {
-  
   const [selectedValue, setSelectedValue] = React.useState('a');
-
-  var stock = selectedValue;
+  var symbol = selectedValue;
 
   
-  console.log("1" + selectedValue)
-  console.log("2 " + stock)
+  // console.log("1" + selectedValue)
+  // console.log("2 " + stock)
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
-    stock = event.target.name;
+    symbol = event.target.name;
   };
  
   return (
-   
     <div>
+        <DayPriceGraph  symb ={symbol}/>
         <div>
-          {console.log("here in  " + stock)}
+          {/* {console.log("here in  " + stock)} */}
           
-        <DayPriceGraph  symb ={stock}/>
-        {console.log("here in 2  " + stock)}
+        {/* <DayPriceGraph  symb ={selectedValue}/> */}
+        {/* {console.log("here in 2  " + stock)} */}
         </div>
         <div>
       <Radio
@@ -48,83 +45,82 @@ export default function RadioButtons() {
         value="a"
         name="GOOGL"
         inputProps={{ 'aria-label': 'A' }}
-        size="small"
       />
       <Radio
         checked={selectedValue === 'b'}
         onChange={handleChange}
         value="b"
-        name="BA"
+        name="APPL"
         inputProps={{ 'aria-label': 'B' }}
-        size="small"
+        
       />
-      <GreenRadio
+      <GreenRadio 
         checked={selectedValue === 'c'}
         onChange={handleChange}
         value="c"
-        name="WMT"
+        name="BA"
         inputProps={{ 'aria-label': 'C' }}
-        size="small"
+        
       />
       <Radio
         checked={selectedValue === 'd'}
         onChange={handleChange}
         value="d"
         color="default"
-        name="AMZN"
+        name="WMT"
         inputProps={{ 'aria-label': 'D' }}
-        size="small"
+        
       />
       <Radio
         checked={selectedValue === 'e'}
         onChange={handleChange}
         value="e"
         color="default"
-        name="TSLA"
+        name="AMZN"
         inputProps={{ 'aria-label': 'E' }}
-        size="small"
+        
       />
        <Radio
         checked={selectedValue === 'f'}
         onChange={handleChange}
         value="f"
-        name="MSFT"
+        name="TSLA"
         inputProps={{ 'aria-label': 'F' }}
-        size="small"
+        
       />
       <Radio
         checked={selectedValue === 'g'}
         onChange={handleChange}
         value="g"
-        name="F"
+        name="MSFT"
         inputProps={{ 'aria-label': 'G' }}
-        size="small"
+        
       />
       <GreenRadio
         checked={selectedValue === 'h'}
         onChange={handleChange}
         value="h"
-        name="DELL"
+        name="F"
         inputProps={{ 'aria-label': 'H' }}
-        size="small"
+        
       />
       <Radio
         checked={selectedValue === 'i'}
         onChange={handleChange}
         value="i"
         color="default"
-        name="TGT"
+        name="DELL"
         inputProps={{ 'aria-label': 'I' }}
-        size="small"
+        
       />
       <Radio
         checked={selectedValue === 'j'}
         onChange={handleChange}
         value="j"
         color="default"
-        name="APPL"
+        name="TGT"
         inputProps={{ 'aria-label': 'J' }}
-        size="small"
+        
       />
       </div>
     </div>
