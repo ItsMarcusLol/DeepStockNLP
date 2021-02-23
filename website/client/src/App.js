@@ -13,9 +13,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Chat from './components/layout/Chat';
-import Search from './components/layout/Search';
+import SearchTextBox from './components/layout/SearchTextBox';
 import RadioB from './components/layout/RadioB';
-
+import Search from './components/layout/Search';
 
 class App extends Component {
   state = {
@@ -45,6 +45,7 @@ class App extends Component {
                 </Grid>
                 
                 <Grid item xs={6}>
+                   {/* <SearchTextBox /> */}
                    <Search />
                 </Grid>
                 
