@@ -16,6 +16,7 @@ import Chat from './components/layout/Chat';
 // import SearchTextBox from './components/layout/SearchTextBox';
 import RadioB from './components/layout/RadioB';
 import Search from './components/layout/Search';
+import ChatList from './components/layout/ChatList';
 
 class App extends Component {
   state = {
@@ -58,6 +59,10 @@ class App extends Component {
                    <MaterialTable /> 
                 </Grid>
 
+
+                {/* <Grid item xs={6}>
+                    <ChatList />
+                </Grid> */}
 
                 <Grid item xs={6}>
                     <Chat />
