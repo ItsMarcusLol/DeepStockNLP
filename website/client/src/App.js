@@ -37,48 +37,50 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="container">
-            <Header />
-            <Route exact path="/" render={props => (
-              <React.Fragment>
-                <Grid container spacing={2}>
-                <Grid item xs={12}>
-                   <FetchStockPrices />
+            {/* <div style={{padding: 0}}> */}
+            {/* <div className={useStyles.root}> */}
+              <Header />
+              <Route exact path="/" render={props => (
+                <React.Fragment>
+                  <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <FetchStockPrices />
+                  </Grid>
+
+                  <Grid item xs={6} spacing={5}>
+                    {/* <SearchTextBox /> */}
+                    <Search />
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    {/* <DayPriceGraph /> */}
+                    <RadioB />
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <MaterialTable /> 
+                  </Grid>
+
+                  {/* <Grid item xs={6}>
+                      <ChatList />
+                   </Grid> */}
+
+                  <Grid item xs={6}>
+                      <Chat />
+                  </Grid>
+
                 </Grid>
                 
-                <Grid item xs={6}>
-                   {/* <SearchTextBox /> */}
-                   <Search />
-                </Grid>
-                
-                <Grid item xs={6}>
-                   {/* <DayPriceGraph /> */}
-                   <RadioB />
-                </Grid>
-                
-                <Grid item xs={6}>
-                   <MaterialTable /> 
-                </Grid>
-
-
-                {/* <Grid item xs={6}>
-                    <ChatList />
-                </Grid> */}
-
-                <Grid item xs={6}>
-                    <Chat />
-                </Grid>
-
-               </Grid>
-               
-              </React.Fragment>
-            )} />
-            <Route path="/about" component={About} />
-            <Route path="/login">
-              <Login login={this.login} />
-            </Route>
-            <Route path="/signup">
-              <SignUp login={this.login} />
-            </Route>
+                </React.Fragment>
+              )} />
+              <Route path="/about" component={About} />
+              <Route path="/login">
+                <Login login={this.login} />
+              </Route>
+              <Route path="/signup">
+                <SignUp login={this.login} />
+              </Route>
+              {/* </div> */}
           </div>
         </div>
       </Router>

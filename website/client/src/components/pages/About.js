@@ -35,11 +35,12 @@ function About() {
                 whether or not the headline data we had were positive or negative. 
             </p>
             <h2>
-                Ethics
+                Disclaimer
             </h2>
             <p>
-                The accuracy of the predictions of the stock prices are based on our own model and data. We attained the data in a safe and legal way.
-                More to come....
+                Our predictions are not 100% accurate and we are not responsible for the results of your portfolio and whether it improves or goes down. We try to make our predictions as accurate 
+                as possible, but as of right now our accuracy is only at a 63% and users are free to use our predictions as they best see fit. We hold no responsibilities with how our predictions 
+                affect the users and their choice to invest in the stocks we predict. 
             </p>
         </div>
     );
