@@ -74,7 +74,7 @@ export default class PriceTable extends React.Component {
       
       return (
        
-       <div style={{"font-size" : "12px", "height" : "90px", "width" : "100%", "left":"left"}}>
+       <div style={{fontSize: "12px", height : "90px", width : "100%", left:"left"}}>
         
         <MaterialTable style={{ width: '100%' }}
         icons={{
@@ -115,7 +115,7 @@ export default class PriceTable extends React.Component {
         { symbol: 'DELL', companyName: 'Dell', price: '4521', volume: '2321'},
         { symbol: 'TGT', companyName: 'Target', price: '1232', volume: '7391'},
       ]}
-      options={{ search: true, doubleHorizontalScroll: true, paging: true, exportButton: false}}
+      options={{ search: true, doubleHorizontalScroll: true, paging: true, exportButton: false, pageSize:10}}
       detailPanel={[
         {
           tooltip: 'Prediction',
