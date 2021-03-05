@@ -7,18 +7,18 @@ import { FormControl, FormControlLabel, RadioGroup } from '@material-ui/core';
 import FormLabel from '@material-ui/core/FormLabel';
 
 
-// const GreenRadio = withStyles({
-//   root: {
-//     color: green[400],
-//     '&$checked': {
-//       color: green[600],
-//     },
-//   },
-//   checked: {},
-// })((props) => <Radio color="default" {...props} />);
+const BlueRadio = withStyles({
+  root: {
+    color: "blue",
+    '&$checked': {
+      color: "blue",
+    },
+  },
+  checked: {},
+})((props) => <Radio color="default" {...props} />);
 
 export default function RadioButtons() {
-  const [selectedValue, setSelectedValue] = React.useState('Apple');
+  const [selectedValue, setSelectedValue] = React.useState('Ford');
   var symbol = selectedValue;
 
   
@@ -56,91 +56,91 @@ export default function RadioButtons() {
           <FormControlLabel value="APPL" control={<Radio />} label="Apple" name="APPL" />
         </RadioGroup>
       </FormControl> */}
-      <Radio
+      <BlueRadio
         checked={selectedValue === 'Google'}
         onChange={handleChange}
         value="Google"
         name="GOOGL"
-        color="default"
+        // color="blue"
         inputProps={{ 'aria-label': 'A' }}
       />
-      <Radio
+      <BlueRadio
         checked={selectedValue === 'Apple'}
         onChange={handleChange}
         value="Apple"
         name="APPL"
-        color="default"
+        // color="blue"
         inputProps={{ 'aria-label': 'B' }}
         
       />
-      <Radio 
+      <BlueRadio
         checked={selectedValue === 'Boeing'}
         onChange={handleChange}
         value="Boeing"
         name="BA"
-        color="default"
+        // color="default"
         inputProps={{ 'aria-label': 'C' }}
         
       />
-      <Radio
+      <BlueRadio
         checked={selectedValue === 'Walmart'}
         onChange={handleChange}
         value="Walmart"
-        color="default"
+        // color="default"
         name="WMT"
         inputProps={{ 'aria-label': 'D' }}
         
       />
-      <Radio
+      <BlueRadio
         checked={selectedValue === 'Amazon'}
         onChange={handleChange}
         value="Amazon"
-        color="default"
+        // color="default"
         name="AMZN"
         inputProps={{ 'aria-label': 'E' }}
         
       />
-       <Radio
+       <BlueRadio
         checked={selectedValue === 'Tesla'}
         onChange={handleChange}
         value="Tesla"
         name="TSLA"
-        color="default"
+        // color="default"
         inputProps={{ 'aria-label': 'F' }}
         
       />
-      <Radio
+      <BlueRadio
         checked={selectedValue === 'Microsoft'}
         onChange={handleChange}
         value="Microsoft"
         name="MSFT"
-        color="default"
+        // color="default"
         inputProps={{ 'aria-label': 'G' }}
         
       />
-      <Radio
+      <BlueRadio
         checked={selectedValue === 'Ford'}
         onChange={handleChange}
         value="Ford"
         name="F"
-        color="default"
+        // color="default"
         inputProps={{ 'aria-label': 'H' }}
         
       />
-      <Radio
+      <BlueRadio
         checked={selectedValue === 'Dell'}
         onChange={handleChange}
         value="Dell"
-        color="default"
+        // color="default"
         name="DELL"
         inputProps={{ 'aria-label': 'I' }}
         
       />
-      <Radio
+      <BlueRadio
         checked={selectedValue === 'Target'}
         onChange={handleChange}
         value="Target"
-        color="default"
+        // color="default"
         name="TGT"
         inputProps={{ 'aria-label': 'J' }}
         
