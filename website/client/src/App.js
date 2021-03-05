@@ -47,7 +47,7 @@ class App extends Component {
                     <FetchStockPrices />
                   </Grid>
 
-                  <Grid item xs={6} spacing={5}>
+                  <Grid item xs={6}>
                     {/* <SearchTextBox /> */}
                     <Search />
                   </Grid>
