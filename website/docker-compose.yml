@@ -21,12 +21,10 @@ services:
     #volumes:
       #- ./src/resources:/code
       #- ./src/account:/code/account
-    #ports:
-    #  - 5002:5002
-    expose:
-      - 80
-    environment: 
-      DB_UPSTREAM: http://172.17.0.1:3306
+    ports:
+      - 5002:5002
+    #expose:
+    #  - 80
   
   forum-service:
     container_name: forum-service
