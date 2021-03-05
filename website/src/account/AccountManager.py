@@ -6,7 +6,8 @@ try:
         user="root",
         password="MarLee21!",
         host="192.0.2.1",
-        database="account"
+        port=3306,
+        database="accounts"
     )
 except mariadb.Error as e:
     print(f"Error connecting to MariaDB: {e}")
