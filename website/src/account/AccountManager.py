@@ -5,7 +5,7 @@ try:
     conn = mariadb.connect(
         user="root",
         password="MarLee21!",
-        host="",
+        host="172.17.0.1",
         port=3306,
         database="accounts"
     )
