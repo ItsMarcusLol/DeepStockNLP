@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
           style={{ margin: 8 }}
           placeholder="Search"
           helperText="Stock Search"
-          fullWidth
+          fullWidth="true"
           margin="normal"
           type="search"
           InputLabelProps={{
