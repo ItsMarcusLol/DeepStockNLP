@@ -1,4 +1,15 @@
+import mariadb
+import sys
 
+try:
+    conn = mariadb.connect(
+        user="root",
+        password="MarLee21!",
+        host="192.0.2.1",
+        database="account"
+    )
+except mariadb.Error as e:
+    print(f"Error connecting to MariaDB: {e}")
 
 class AccountManager():
     def login(self, username, password):
