@@ -8,14 +8,15 @@ import SignUp from './components/pages/SignUp';
 import FetchStockPrices from './components/layout/FetchStockPrices';
 import MaterialTable from './components/layout/MaterialTable';
 import DayPriceGraph from './components/layout/DayPriceGraph';
-import HTable from './components/layout/HTable';
+// import HTable from './components/layout/HTable';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Chat from './components/layout/Chat';
-import Search from './components/layout/Search';
+// import SearchTextBox from './components/layout/SearchTextBox';
 import RadioB from './components/layout/RadioB';
-
+import Search from './components/layout/Search';
+import ChatList from './components/layout/ChatList';
 
 class App extends Component {
   state = {
@@ -36,46 +37,50 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="container">
-            <Header />
-            <Route exact path="/" render={props => (
-              <React.Fragment>
-                <Grid container spacing={2}>
-                <Grid item xs={12}>
-                   <FetchStockPrices />
+            {/* <div style={{padding: 0}}> */}
+            {/* <div className={useStyles.root}> */}
+              <Header />
+              <Route exact path="/" render={props => (
+                <React.Fragment>
+                  <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <FetchStockPrices />
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    {/* <SearchTextBox /> */}
+                    <Search />
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    {/* <DayPriceGraph /> */}
+                    <RadioB />
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <MaterialTable /> 
+                  </Grid>
+
+                  {/* <Grid item xs={6}>
+                      <ChatList />
+                   </Grid> */}
+
+                  <Grid item xs={6}>
+                      <Chat />
+                  </Grid>
+
                 </Grid>
                 
-                <Grid item xs={6}>
-                   <Search />
-                </Grid>
-                
-                <Grid item xs={6}>
-                   {/* <DayPriceGraph /> */}
-                   <RadioB />
-                </Grid>
-                
-                <Grid item xs={6}>
-                   <MaterialTable /> 
-                </Grid>
-
-                <Grid item xs={6}>
-                   <HTable /> 
-                </Grid>
-
-                <Grid item xs={6}>
-                    <Chat />
-                </Grid>
-
-               </Grid>
-               
-              </React.Fragment>
-            )} />
-            <Route path="/about" component={About} />
-            <Route path="/login">
-              <Login login={this.login} />
-            </Route>
-            <Route path="/signup">
-              <SignUp login={this.login} />
-            </Route>
+                </React.Fragment>
+              )} />
+              <Route path="/about" component={About} />
+              <Route path="/login">
+                <Login login={this.login} />
+              </Route>
+              <Route path="/signup">
+                <SignUp login={this.login} />
+              </Route>
+              {/* </div> */}
           </div>
         </div>
       </Router>

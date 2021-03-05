@@ -75,7 +75,7 @@ import LoadingSymbol from './LoadingSymbol';
             }
     
             if (!this.state.prices){
-                return <div>Can't get prices, right now. Check in later!</div>
+                return <div style={{fontSize:"35px"}}>Can't get prices, right now. Check in later!</div>
                   
             }
             
@@ -85,13 +85,17 @@ import LoadingSymbol from './LoadingSymbol';
                    <>
                        {/* <h1>This is the Headline of element #{index}!</h1> */}
                        {/* <h1><h1> {this.state.prices[index].symbol}:{this.state.prices[index].price }, </h1></h1> */}
-                         <h2 className="tryout" style={{fontSize:this.state.fontSize+'px'}}> {this.state.prices[index].symbol}:{this.state.prices[index].price }<span> &nbsp; </span></h2>
+
+                       {/* What if we make the prices alternate color (green/red) as to reflect the market */}
+                         <h2 className="tryout" style={{fontSize:this.state.fontSize+'px', color:"green", color:"red"}}> 
+                            {this.state.prices[index].symbol}:{this.state.prices[index].price}<span> &nbsp; </span>
+                         </h2>
                          {/* <input value={this.state.fontSize} onChange={this.changeSize.bind(this)} /> */}
                       
                        <img src="www.my-image-source.com/" alt=""/>
                    </>
                )}
-           </Ticker>
+            </Ticker>
            
             );
                }

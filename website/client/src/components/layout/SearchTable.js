@@ -18,8 +18,8 @@ import LoadingSymbol from './LoadingSymbol';
 
 
 // export default class HTable extends React.Component {
-function HT() {
-  
+function HT(props) {
+  const symbol = props.symb
  
   return (
     <MaterialTable
@@ -37,7 +37,7 @@ function HT() {
     DetailPanel: () => <ChevronRight />,
     ResetSearch: () => <Clear />
   }}
-      title="New York Stock Exchange"
+      title={symbol}
       columns={[
         { title: 'Name', field: 'name' },
         { title: 'Surname', field: 'surname' },

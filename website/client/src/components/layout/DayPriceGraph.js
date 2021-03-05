@@ -66,27 +66,135 @@ import {
 
 const data = [
   {
-    name: '5:00', uv: 1125, pv: 2400, amt: 2400,
+    name: '6:30', Low: 1125, High: 2400, Volume: 2400,
   },
   {
-    name: '6:00', uv: 1400, pv: 1398, amt: 2210,
+    name: '7:00', Low: 1929, High: 3848, Volume: 2939,
   },
   {
-    name: '7:00', uv: 1342, pv: 9800, amt: 2290,
+    name: '7:30', Low: 1400, High: 1398, Volume: 2210,
   },
   {
-    name: '8:00', uv: 1123, pv: 3908, amt: 2000,
+    name: '8:00', Low: 2939, High: 3949, Volume: 2838,
   },
   {
-    name: '9:00', uv: 989, pv: 4800, amt: 2181,
+    name: '8:30', Low: 1342, High: 9800, Volume: 2290,
   },
   {
-    name: '10:00', uv: 1005, pv: 3800, amt: 2500,
+    name: '9:00', Low: 2883, High: 9393, Volume: 2949,
   },
   {
-    name: '11:00', uv: 1234, pv: 4300, amt: 2100,
+    name: '9:30', Low: 1123, High: 3908, Volume: 2000,
+  },
+  {
+    name: '10:00', Low: 1929, High: 3483, Volume: 3929,
+  },
+  {
+    name: '10:30', Low: 989, High: 4800, Volume: 2181,
+  },
+  {
+    name: '11:00', Low: 1929, High: 4959, Volume: 3848
+  },
+  {
+    name: '11:30', Low: 1005, High: 3800, Volume: 2500,
+  },
+  {
+    name: '12:00', Low: 848, High: 4858, Volume: 2394,
+  },
+  {
+    name: '12:30', Low: 1234, High: 4300, Volume: 2100,
+  },
+  {
+    name: '1:00', Low: 1394, High: 2939, Volume: 3949,
   },
 ];
+
+// const data = [
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '6:30', dailyPrice: '1293'
+//   },
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '7:00', dailyPrice: '1545'
+//   },
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '7:30', dailyPrice: '1859'
+//   },
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '8:00', dailyPrice: '1355'
+//   },
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '8:30', dailyPrice: '4632'
+//   },
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '9:00', dailyPrice: '3634'
+//   },
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '9:30', dailyPrice: '1235'
+//   },
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '10:00', dailyPrice: '4564'
+//   },
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '10:30', dailyPrice: '5674'
+//   },
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '11:00', dailyPrice: '6342'
+//   },
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '11:30', dailyPrice: '7453'
+//   },
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '12:00', dailyPrice: '2435'
+//   },
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '12:30', dailyPrice: '2343'
+//   },
+//   {
+//     name: 'GOOGL', value: 'Google', axisX: '1:00', dailyPrice: '4522'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '6:30', dailyPrice: '2343'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '7:00', dailyPrice: '2352'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '7:30', dailyPrice: '6453'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '8:00', dailyPrice: '7532'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '8:30', dailyPrice: '6432'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '9:00', dailyPrice: '8653'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '9:30', dailyPrice: '2411'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '10:00', dailyPrice: '7532'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '10:30', dailyPrice: '8532'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '11:00', dailyPrice: '8753'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '11:30', dailyPrice: '1296'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '12:00', dailyPrice: '8482'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '12:30', dailyPrice: '4929'
+//   },
+//   {
+//     name: 'APPL', value: 'Apple', axisX: '1:00', dailyPrice: '6942'
+//   }
+// ];
 
 export default class Example extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/xqjtetw0/';
@@ -120,8 +228,8 @@ async componentDidMount() {
       <div> 
       <h1> {this.state.symbol} :</h1>
       <LineChart
-        width={500}
-        height={300}
+        width={800}
+        height={500}
         data={data}
         margin={{
           top: 5, right: 30, left: 20, bottom: 5,
@@ -131,9 +239,10 @@ async componentDidMount() {
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        {/* <Legend /> */}
+        <Line type="monotone" dataKey="Volume" stroke="#82ca9d" activeDot={{ r: 8 }} />
+        {/* <Line type="monotone" dataKey="Low" stroke="red" />
+        <Line type="monotone" dataKey="Volume" stroke="#8884d8" /> */}
       </LineChart>
       </div> 
     );
