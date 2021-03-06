@@ -12,6 +12,8 @@ services:
       - ./src/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 80:80
+    extra_hosts: 
+      - "dockerhost:<10.138.0.2>"
 
   account-service:
     container_name: account-service
@@ -25,8 +27,6 @@ services:
     #  - 5002:5002
     expose:
       - 80
-    environment: 
-      DB_UPSTREAM: http://172.17.0.1:3306
   
   forum-service:
     container_name: forum-service
