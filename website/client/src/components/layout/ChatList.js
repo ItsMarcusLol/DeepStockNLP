@@ -10,11 +10,11 @@ import { shadows } from '@material-ui/system';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    maxWidth: 500,
+    maxWidth: 800,
     backgroundColor: theme.palette.background.paper,
     position: 'relative',
     overflow: 'auto',
-    maxHeight: 300,
+    maxHeight: 500,
     
   },
   listSection: {

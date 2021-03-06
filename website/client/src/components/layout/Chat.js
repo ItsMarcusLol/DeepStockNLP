@@ -158,6 +158,22 @@ class Chat extends React.Component {
  
         </div>
     );
+   
+    //   <TextField id="outlined-basic" label="Outlined"  multiline rows = {5} variant="outlined"/>
+    //   <Button
+    //       variant="contained"
+    //       color="primary"
+    //     //   className={classes.button}
+    //       endIcon={<Icon>send</Icon>}
+          
+          
+    //     >
+    //       Send
+    //     </Button>
+    // </form>
+    // </div>
+  // );
+// }
   }
 }
 

@@ -75,7 +75,9 @@ export default class PriceTable extends React.Component {
       return (
        
       //  <div style={{"font-size" : "12px", "height" : "90px", "width" : "100%"}}>
-        <div>
+      // <div>
+       <div style={{fontSize: "12px", height : "90px", width : "100%", left:"left"}}> 
+        
         <MaterialTable style={{ width: '100%' }}
             icons={{
               Check: () => <Check />,
@@ -91,6 +93,7 @@ export default class PriceTable extends React.Component {
               DetailPanel: () => <ChevronRight />,
               ResetSearch: () => <Clear />
             }}
+
           title="Our Stocks"
         
           columns={[
@@ -99,75 +102,78 @@ export default class PriceTable extends React.Component {
             { title: 'Company Name', field: 'companyName'},
             { title: 'Price', field: 'price' },
             { title: 'Volume', field: 'volume', type: 'numeric' },
-            
           ]}
-          
-          // data = {this.state.prices}
-          data={[
-            { symbol: 'GOOGL', companyName: 'Google', price: '1234', volume: '2313' },
-            { symbol: 'APPL', companyName: 'Apple', price: '5678', volume: '1957' },
-            { symbol: 'BA', companyName: 'Boeing', price: '1231', volume: '19217' },
-            { symbol: 'WMT', companyName: 'Walmart', price: '1111', volume: '198347'},
-            { symbol: 'AMZN', companyName: 'Amazon', price: '2222', volume: '3287'},
-            { symbol: 'TSLA', companyName: 'Tesla', price: '3434', volume: '4537' },
-            { symbol: 'MSFT', companyName: 'Microsoft', price: '5432', volume: '1212' },
-            { symbol: 'F', companyName: 'Ford', price: '2314', volume: '2321' },
-            { symbol: 'DELL', companyName: 'Dell', price: '4521', volume: '2321'},
-            { symbol: 'TGT', companyName: 'Target', price: '1232', volume: '7391'},
-          ]}
-          options={{ search: true, doubleHorizontalScroll: true, paging: true, exportButton: false}}
-          detailPanel={[
-            {
-              tooltip: 'Prediction',
-              render: rowData => {
-                return (
-                  <div
-                    style={{
-                      fontSize: 100,
-                      textAlign: 'center',
-                      color: 'white',
-                      backgroundColor: '#43A047',
-                    }}
-                  >
-                    
-                    {"Predictions Coming Soon"}
-                  </div>
-                )
-              },
-            },
-            {
-              icon: AddBox,
-              tooltip: 'Historical Prices',
-              render: rowData => {
-                return (
-                  <div>  
-                  <HistoricalTable symb ={rowData.symbol} />
+      
+        // data = {this.state.prices}
+        data={[
+          { symbol: 'GOOGL', companyName: 'Google', price: '1234', volume: '2313' },
+          { symbol: 'APPL', companyName: 'Apple', price: '5678', volume: '1957' },
+          { symbol: 'BA', companyName: 'Boeing', price: '1231', volume: '19217' },
+          { symbol: 'WMT', companyName: 'Walmart', price: '1111', volume: '198347'},
+          { symbol: 'AMZN', companyName: 'Amazon', price: '2222', volume: '3287'},
+          { symbol: 'TSLA', companyName: 'Tesla', price: '3434', volume: '4537' },
+          { symbol: 'MSFT', companyName: 'Microsoft', price: '5432', volume: '1212' },
+          { symbol: 'F', companyName: 'Ford', price: '2314', volume: '2321' },
+          { symbol: 'DELL', companyName: 'Dell', price: '4521', volume: '2321'},
+          { symbol: 'TGT', companyName: 'Target', price: '1232', volume: '7391'},
+        ]}
+        options={{ search: true, doubleHorizontalScroll: true, paging: true, exportButton: false, pageSize:10}}
+        detailPanel={[
+          {
+            tooltip: 'Prediction',
+            render: rowData => {
+              return (
+                <div
+                  style={{
+                    fontSize: 100,
+                    textAlign: 'center',
+                    color: 'white',
+                    backgroundColor: '#43A047',
+                  }}
+                >
+                  
+                  {"Predictions Coming Soon"}
                 </div>
+              )
+            },
+          },
+          {
+            icon: AddBox,
+            tooltip: 'Historical Prices',
+            render: rowData => {
+              return (
+                <div>
+                
+                <HistoricalTable symb ={rowData.symbol} />
+                
+                </div>
+              )
+            },
 
-                )
-              },
             },
-            {
-              icon: ViewColumn,
-              openIcon: Remove,
-              tooltip: 'Headlines',
-              render: rowData => {
-                return (
-                  <div
-                    style={{
-                      fontSize: 100,
-                      textAlign: 'center',
-                      color: 'white',
-                      backgroundColor: '#FDD835',
-                    }}
-                  >
-                    {rowData.name} {"Headlines Coming Soon"}
-                  </div>
-                )
+            
+           
+              {
+                icon: ViewColumn,
+                openIcon: Remove,
+                tooltip: 'Headlines',
+                render: rowData => {
+                  return (
+                    <div
+                      style={{
+                        fontSize: 100,
+                        textAlign: 'center',
+                        color: 'white',
+                        backgroundColor: '#FDD835',
+                      }}
+                    >
+                      {rowData.name} {"Headlines Coming Soon"}
+                    </div>
+                  )
+                },
               },
-            },
-          ]}
-       />
+            ]}
+        />
       </div>
   
     );
