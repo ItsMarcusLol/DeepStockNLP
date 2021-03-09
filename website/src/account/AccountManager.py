@@ -5,7 +5,7 @@ try:
     conn = mariadb.connect(
         user="root",
         password="MarLee21!",
-        host="host.docker.internal",
+        host="34.82.243.213",
         port=3306,
         database="accounts"
     )
