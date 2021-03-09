@@ -5,7 +5,7 @@ import SearchTable from './SearchTable';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-
+import Grid from '@material-ui/core/Grid';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -70,16 +70,22 @@ const useStyles = makeStyles((theme) => ({
   return (
     <div>
       
-      
+      <Grid container spacing={1}>
+          <Grid item xs={9}
+           container
+           direction="row"
+           justify="center"
+           alignItems="center"
+           >
       <TextField
           onChange={(e) => {
             setTitle(e.target.value) 
             setText(e.target.value)}}
           id="standard-search"
           label="Search"
-          style={{ margin: 8 }}
+          style={{ margin: 4 }}
           placeholder="Search"
-          helperText="Stock Search"
+          // helperText="Stock Search"
           fullWidth="true"
           margin="normal"
           type="search"
@@ -89,8 +95,12 @@ const useStyles = makeStyles((theme) => ({
           variant="outlined"
           value = {text}
         />
-
-       
+        </Grid>
+       <Grid xs = {2} sm = {3}
+       container
+       direction="row"
+       justify="center"
+       alignItems="center">
       <Button type="button" 
       onClick={() => {
         handleOpen() 
@@ -103,6 +113,8 @@ const useStyles = makeStyles((theme) => ({
       >
         Search
       </Button>
+      </Grid>
+      </Grid>
       <Modal
         open={open}
         onClose={handleClose}
@@ -111,6 +123,7 @@ const useStyles = makeStyles((theme) => ({
       >
         {body}
       </Modal>
+   
     </div>
   );
 }
