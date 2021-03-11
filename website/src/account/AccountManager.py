@@ -1,17 +1,3 @@
-import mariadb
-import sys
-
-try:
-    conn = mariadb.connect(
-        user="root",
-        password="MarLee21!",
-        host="10.138.0.2",
-        port=3306,
-        database="accounts"
-    )
-except mariadb.Error as e:
-    print(f"Error connecting to MariaDB: {e}")
-
 class AccountManager():
     def login(self, username, password):
         return True
