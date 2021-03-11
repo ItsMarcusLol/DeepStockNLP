@@ -68,5 +68,5 @@ services:
     expose: 
       - 80
 
-volume:
+volumes:
   mysql-data
