@@ -1,3 +1,7 @@
+import mysql.connector
+
+conn = mysql.connector.connect(user='root', password='MarLee21!', host='mysql', database='accounts')
+
 class AccountManager():
     def login(self, username, password):
         return True
