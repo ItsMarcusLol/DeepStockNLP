@@ -1,6 +1,6 @@
 import mysql.connector
 
-conn = mysql.connector.connect(user='root', password='MarLee21!', host='mysql', database='accounts')
+conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', database='accounts')
 
 class AccountManager():
     def login(self, username, password):
