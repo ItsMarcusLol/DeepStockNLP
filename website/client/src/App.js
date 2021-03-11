@@ -75,7 +75,12 @@ class App extends Component {
               )} />
               <Route path="/about" component={About} />
               <Route path="/login">
-                <Login login={this.login} />
+                <Login login={this.login}  accounts ={[
+      { username: 'user123', password: 'password123', post: 'It gonna go up' },
+      { username: 'Wolff', password: 'Wolffman', post: 'It gonna go doen' },
+      { username: 'Blaha', password: 'fireplace', post: 'It gonna' },
+      
+    ]}/>
               </Route>
               <Route path="/signup">
                 <SignUp login={this.login} />
