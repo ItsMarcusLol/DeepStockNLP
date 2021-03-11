@@ -1,16 +1,6 @@
-import mariadb
-import sys
+import mysql.connector
 
-try:
-    conn = mariadb.connect(
-        user="root",
-        password="MarLee21!",
-        host="host.docker.internal",
-        port=3306,
-        database="accounts"
-    )
-except mariadb.Error as e:
-    print(f"Error connecting to MariaDB: {e}")
+conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', database='accounts')
 
 class AccountManager():
     def login(self, username, password):
