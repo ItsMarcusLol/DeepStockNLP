@@ -1,7 +1,3 @@
-
-
-
-
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import ChatList from './ChatList';
@@ -13,6 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 
 
 
@@ -22,7 +19,7 @@ const styles = (theme) => ({
 
   },
   formControl: {
-    margin: theme.spacing(0),
+    margin: theme.spacing(2),
     minWidth: 90,
     
   },
@@ -32,17 +29,19 @@ const styles = (theme) => ({
   textF: {
     '& .MuiTextField-root': {
       margin: theme.spacing(0),
+      // marginLeft: 20,
       width: '30ch',
+      // minwidth: '35ch'
     },
   },
   button: {
     '& > *': {
       
-    width:125,
+    width:225,
     height: 40,
-    marginLeft:20,
-    marginRight:25,
-    margin: theme.spacing(4),
+    // marginLeft:10,
+    // marginRight:10,
+    margin: theme.spacing(2),
     },
   },
 });
@@ -56,18 +55,39 @@ class Chat extends React.Component {
       numberOfGuests: 2,
       stock: '',
       post: false,
+      text : '',
       // searchNodes: ""
 
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.buttonChange = this.buttonChange.bind(this);
   }
 
+  buttonChange(event){
+    console.log(event.target.name)
+    console.log(this.state.stock)
+    console.log(this.state.text)
+    this.setState({
+        stock: '',
+        text: '',
+    });
+  }
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    
+    console.log(name)
+    console.log(target)
+    if (name == 'post'){
+      console.log("button click")
+      this.setState({
+        stock : '',
+        text: '',
+        post: false
+      });
+    }
+    else{
     console.log(value)
     console.log(name)
 
@@ -75,42 +95,67 @@ class Chat extends React.Component {
       [name]: value
     });
   }
+  }
 
   render() {
     const {classes} = this.props;
     
     return (  
-       <div>
+      //  <div>
+         <Paper>
     
-      <Grid container spacing={2} container
-  direction="row"
-  justify="space-evenly"
-  alignItems="center">
+      <Grid container spacing={2} 
+        direction="row"
+        justify="space-evenly"
+         alignItems="center"
+         
+         >
+
         <Grid item xs = {12}
-         container
-         direction="row"
-         justify="center"
-         alignItems="center">
+        //  container
+        //  direction="row"
+        //  justify="center"
+        //  alignItems="center"
+        >
+          <div>
           <ChatList/>
+          </div>
         </Grid>
         
-
-          <Grid item xs = {4}
-           container
-           direction="row"
-           justify="center"
-           alignItems="center">
+        
+          <Grid item xs = {12} sm = {12} md = {6}
+          //  container
+          //  direction="row"
+          //  justify="center"
+          //  alignItems="center"
+          >
+            <div> 
+            {/* <Paper> */}
             <form className={classes.textF} noValidate autoComplete="off">
-              <TextField id="outlined-basic" label="Outlined"  multiline rows = {5} variant="outlined"/>
+              <TextField id="outlined-basic" 
+              name = 'text'
+              value = {this.state.text}
+              label="Post your prediction"  
+              multiline rows = {5} 
+              variant="outlined"
+              onChange = {this.handleInputChange}
+              />
             </form>
+            
+            {/* </Paper> */}
+            </div>
           </Grid>
+        
 
         
-          <Grid item xs = {2}
-         container
-         direction="row"
-         justify="center"
-         alignItems="center">
+          <Grid item xs = {6} sm = {6} md = {3}
+        //  container
+        //  direction="row"
+        //  justify="center"
+        //  alignItems="center"
+        >
+           <div>
+           {/* <Paper>  */}
             <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel id="demo-simple-select-outlined-label">Stock</InputLabel>
               <Select
@@ -130,21 +175,31 @@ class Chat extends React.Component {
                 <MenuItem value={'WMT'}>Walmart</MenuItem>
               </Select>
             </FormControl>
+            {/* </Paper>  */}
+            </div>
           </Grid>
+          
 
+        {/* <div> */}
+          <Grid item xs = {6} sm = {6} md = {2}
+          // container
+          // direction="row"
+          // justify="center"
+          // alignItems="center"
 
-          <Grid item xs = {3} 
-          container
-          direction="row"
-          justify="center"
-          alignItems="center">
+          //value = {this.state.post}
+         >
             {/* <form className={classes.button} noValidate autoComplete="off"> */}
+            <div>
+            {/* <Paper>  */}
               <Button
               name = "post"
+              type = "submit"
+              // value = {this.state.post}
               classes = {classes.button}
                onClick= {
-                 this.handleInputChange
-
+                 this.buttonChange
+              
                 }
                 variant="contained"
                 color="primary"
@@ -152,28 +207,18 @@ class Chat extends React.Component {
                 >
                 Post
               </Button>
+              
+              {/* </Paper>  */}
+              </div>
           {/* </form> */}
           </Grid> 
+          {/* </div> */}
         </Grid>
+        </Paper>
  
-        </div>
+        // </div>
     );
    
-    //   <TextField id="outlined-basic" label="Outlined"  multiline rows = {5} variant="outlined"/>
-    //   <Button
-    //       variant="contained"
-    //       color="primary"
-    //     //   className={classes.button}
-    //       endIcon={<Icon>send</Icon>}
-          
-          
-    //     >
-    //       Send
-    //     </Button>
-    // </form>
-    // </div>
-  // );
-// }
   }
 }
 
