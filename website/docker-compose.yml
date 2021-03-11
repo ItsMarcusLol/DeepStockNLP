@@ -24,7 +24,7 @@ services:
     expose: 
       - 3306
     volumes:
-      - /user/bin/mysql:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
     restart: always
 
   account-service:
@@ -67,3 +67,6 @@ services:
     #  - 5004:5004
     expose: 
       - 80
+
+volume:
+  mysql-data
