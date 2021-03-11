@@ -69,4 +69,4 @@ services:
       - 80
 
 volumes:
-  mysql-data
+  mysql-data:
