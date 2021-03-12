@@ -15,12 +15,13 @@ class AccountManager():
         }
 
     def get_account_name(self, username):
-        return {
-            'account': [
-                'marcus',
-                '1/1/1950',
-                123456]        
-        }
+        cursor = conn.cursor()
+        query = "SELECT * FROM account_data WHERE username=%s;"
+        args = (username)
+        cursor.execute(query, args)
+        result = cursor.fetchone()
+        cursor.close()
+        return result
 
     def account_exists(self, username):
         return False
