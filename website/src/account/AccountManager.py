@@ -15,11 +15,15 @@ class AccountManager():
         }
 
     def get_account_name(self, username):
+        print(username)
         cursor = conn.cursor()
+        print(username)
         query = "SELECT * FROM account_data WHERE username=%s;"
         args = (username)
         cursor.execute(query, args)
+        print(username)
         result = cursor.fetchone()
+        print(result)
         cursor.close()
         return result
 
