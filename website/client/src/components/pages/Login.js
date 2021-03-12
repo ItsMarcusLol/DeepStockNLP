@@ -47,7 +47,7 @@ class Login extends React.Component{
         redirect : false,
     };
 
-      
+      console.log(this.state.accounts);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.onChange = this.onChange.bind(this);
     }
@@ -55,9 +55,6 @@ class Login extends React.Component{
   
 
       validateForm() {
-        
-        console.log("user: " , this.state.username.length)
-        console.log("pass: " , this.state.password.length)
         return this.state.username.length > 0 && this.state.password.length > 0;
       }
 
@@ -143,7 +140,7 @@ class Login extends React.Component{
               variant="contained"
               color="primary"
               className={classes.submit}
-              disabled={!this.validateForm}
+              disabled={!this.validateForm()}
               // onSubmit = {(event) => handleSubmit(event)}
             >
               Sign In
