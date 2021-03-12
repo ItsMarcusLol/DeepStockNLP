@@ -16,7 +16,7 @@ class AccountManager():
 
     def get_account_name(self, username):
         cursor = conn.cursor()
-        query = "SELECT * FROM account_data WHERE username=" + username
+        query = "SELECT * FROM account_data WHERE username=\"" + username + "\""
         cursor.execute(query)
         result = cursor.fetchone()
         cursor.close()
