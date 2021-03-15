@@ -6,7 +6,7 @@ conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', dat
 class AccountManager():
     def login(self, username, password):
         cursor = conn.cursor()
-        
+
         cursor.close()
         return True
     
@@ -36,7 +36,6 @@ class AccountManager():
             cursor = conn.cursor()
             query = "INSERT INTO account_data(username, user_id) VALUES(" + username +","+userId+")" 
             cursor.execute(query)
-            result = cursor.fetchone()
             cursor.close()
             return True
 
