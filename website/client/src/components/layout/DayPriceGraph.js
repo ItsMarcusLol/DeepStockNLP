@@ -59,9 +59,12 @@
 // // export default DayPriceGraph;
 // // © 2021 GitHub, Inc.
 
+// import React from 'react';
+import { ThemeProvider } from '@material-ui/styles';
 import React, { PureComponent } from 'react';
+import { useTheme } from '@material-ui/core/styles';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  LineChart, Line, XAxis, YAxis, Label, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from 'recharts';
 
 const data = [
@@ -109,99 +112,12 @@ const data = [
   },
 ];
 
-// const data = [
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '6:30', dailyPrice: '1293'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '7:00', dailyPrice: '1545'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '7:30', dailyPrice: '1859'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '8:00', dailyPrice: '1355'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '8:30', dailyPrice: '4632'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '9:00', dailyPrice: '3634'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '9:30', dailyPrice: '1235'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '10:00', dailyPrice: '4564'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '10:30', dailyPrice: '5674'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '11:00', dailyPrice: '6342'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '11:30', dailyPrice: '7453'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '12:00', dailyPrice: '2435'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '12:30', dailyPrice: '2343'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '1:00', dailyPrice: '4522'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '6:30', dailyPrice: '2343'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '7:00', dailyPrice: '2352'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '7:30', dailyPrice: '6453'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '8:00', dailyPrice: '7532'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '8:30', dailyPrice: '6432'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '9:00', dailyPrice: '8653'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '9:30', dailyPrice: '2411'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '10:00', dailyPrice: '7532'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '10:30', dailyPrice: '8532'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '11:00', dailyPrice: '8753'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '11:30', dailyPrice: '1296'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '12:00', dailyPrice: '8482'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '12:30', dailyPrice: '4929'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '1:00', dailyPrice: '6942'
-//   }
-// ];
-
 export default class Example extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/xqjtetw0/';
   state = {
     loading: true, 
     prices: null,
-    symbol: null
+    symbol: null,
 };
 
 async componentDidMount() {
@@ -225,26 +141,41 @@ async componentDidMount() {
 
   render() {
     return (
+      // <React.Fragment>
       <div> 
-      <h1> {this.state.symbol} :</h1>
-      <LineChart
-        width={800}
-        height={500}
-        data={data}
-        margin={{
-          top: 5, right: 30, left: 20, bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        {/* <Legend /> */}
-        <Line type="monotone" dataKey="Volume" stroke="#82ca9d" activeDot={{ r: 8 }} />
-        {/* <Line type="monotone" dataKey="Low" stroke="red" />
-        <Line type="monotone" dataKey="Volume" stroke="#8884d8" /> */}
-      </LineChart>
+        <h1> {this.state.symbol} :</h1>
+        {/* <ResponsiveContainer> */}
+        <LineChart
+          width={800}
+          height={500}
+          data={data}
+          margin={{
+            top: 5, 
+            right: 20, 
+            left: 20, 
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis>
+            <Label
+              angle={270}
+              position="left"
+              style={{ textAnchor: 'middle', fontFamily:'initial', fontSize: 20 }}
+            >
+              Prices ($)
+            </Label>
+          </YAxis>
+          <Tooltip />
+          {/* <Legend /> */}
+          <Line type="monotone" dataKey="Volume" stroke="#82ca9d" activeDot={{ r: 8 }} />
+          {/* <Line type="monotone" dataKey="Low" stroke="red" />
+          <Line type="monotone" dataKey="Volume" stroke="#8884d8" /> */}
+        </LineChart>
+        {/* </ResponsiveContainer> */}
       </div> 
+      // </React.Fragment>
     );
   }
 }
