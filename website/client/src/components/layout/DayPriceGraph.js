@@ -1,71 +1,10 @@
-// import React from 'react';
-// import { useTheme } from '@material-ui/core/styles';
-// import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
-// // import Title from './Title';
-
-// // Generate Sales Data
-// function createData(time, amount) {
-//   return { time, amount };
-// }
-
-// const data = [
-//   createData('00:00', 0),
-//   createData('03:00', 300),
-//   createData('06:00', 600),
-//   createData('09:00', 800),
-//   createData('12:00', 1500),
-//   createData('15:00', 2000),
-//   createData('18:00', 2400),
-//   createData('21:00', 2400),
-//   createData('24:00', undefined),
-// ];
-
-
-// export default function DayPriceGraph() {
-//   const theme = useTheme();
-
-//   return (
-//     // <React.Fragment>
-//       //{/* <Title>Today</Title> */}
-      
-//      // {/* <ResponsiveContainer> */}
-//         <LineChart
-//           data={data}
-//           margin={{
-//             top: 16,
-//             right: 16,
-//             bottom: 0,
-//             left: 24,
-//           }}
-//         >
-//           <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
-//           <YAxis stroke={theme.palette.text.secondary}>
-//             <Label
-//               angle={270}
-//               position="left"
-//               style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
-//             >
-//               Sales ($)
-//             </Label>
-//           </YAxis>
-//           <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
-//         </LineChart>
-//       //{/* </ResponsiveContainer> */}
-//     //{/* </React.Fragment> */}
-    
-//   );
-// }
-
-// // export default DayPriceGraph;
-// // © 2021 GitHub, Inc.
-
-// import React from 'react';
 import { ThemeProvider } from '@material-ui/styles';
 import React, { PureComponent } from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import {
   LineChart, Line, XAxis, YAxis, Label, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from 'recharts';
+// import Title from './Title';
 
 const data = [
   {
@@ -141,41 +80,41 @@ async componentDidMount() {
 
   render() {
     return (
-      // <React.Fragment>
+      <React.Fragment>
       <div> 
         <h1> {this.state.symbol} :</h1>
         {/* <ResponsiveContainer> */}
-        <LineChart
-          width={800}
-          height={500}
-          data={data}
-          margin={{
-            top: 5, 
-            right: 20, 
-            left: 20, 
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis>
-            <Label
-              angle={270}
-              position="left"
-              style={{ textAnchor: 'middle', fontFamily:'initial', fontSize: 20 }}
-            >
-              Prices ($)
-            </Label>
-          </YAxis>
-          <Tooltip />
-          {/* <Legend /> */}
-          <Line type="monotone" dataKey="Volume" stroke="#82ca9d" activeDot={{ r: 8 }} />
-          {/* <Line type="monotone" dataKey="Low" stroke="red" />
-          <Line type="monotone" dataKey="Volume" stroke="#8884d8" /> */}
-        </LineChart>
+          <LineChart
+            width={800}
+            height={500}
+            data={data}
+            margin={{
+              top: 5, 
+              right: 20, 
+              left: 20, 
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis>
+              <Label
+                angle={270}
+                position="left"
+                style={{ textAnchor: 'middle', fontFamily:'initial', fontSize: 20 }}
+              >
+                Prices ($)
+              </Label>
+            </YAxis>
+            {/* <Tooltip /> */}
+            {/* <Legend /> */}
+            <Line type="monotone" dataKey="Volume" stroke="#82ca9d" activeDot={{ r: 8 }} />
+            {/* <Line type="monotone" dataKey="Low" stroke="red" />
+            <Line type="monotone" dataKey="Volume" stroke="#8884d8" /> */}
+          </LineChart>
         {/* </ResponsiveContainer> */}
       </div> 
-      // </React.Fragment>
+      </React.Fragment>
     );
   }
 }
