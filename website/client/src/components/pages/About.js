@@ -45,9 +45,14 @@ function About() {
                 Disclaimer
             </h1>
             <p style={paragraphStyle}>
-                Our predictions are not 100% accurate and we are not responsible for the results of your portfolio and whether it improves or goes down. We try to make our predictions as accurate 
+                Our predictions are not 100% accurate and we are not responsible for the results of your portfolio and whether it improves or plummets. We try to make our predictions as accurate 
                 as possible, but as of right now our accuracy is only at a 63% and users are free to use our predictions as they best see fit. We hold no responsibilities with how our predictions 
-                affect the users and their choice to invest in the stocks we predict. 
+                affect the users and their choice to invest in the stocks we predict.
+                <br/>
+                <br/>
+                We also have no connection or affiliation with any of the company's stocks that we chose to predict. We chose those stocks at random and because they seemed like the most relevant companies during the time
+                of our project. We do our best to predict each stock but we have no insider trading going on with any of the companies. Our predicitons are honest and true and, although not 100% accurate, it's
+                as accurate as we can get it at the moment. It's not skewed or bias towards any one company.
                 <br/>
                 <br/>
                 We acknowledge and give all the rights to the creaters of XG Boost and Sentiment Analysis. We are very grateful we get to use
