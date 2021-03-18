@@ -1,68 +1,161 @@
-// import React from 'react';
-// import { useTheme } from '@material-ui/core/styles';
-// import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
-// // import Title from './Title';
-
-// // Generate Sales Data
-// function createData(time, amount) {
-//   return { time, amount };
-// }
-
-// const data = [
-//   createData('00:00', 0),
-//   createData('03:00', 300),
-//   createData('06:00', 600),
-//   createData('09:00', 800),
-//   createData('12:00', 1500),
-//   createData('15:00', 2000),
-//   createData('18:00', 2400),
-//   createData('21:00', 2400),
-//   createData('24:00', undefined),
-// ];
-
-
-// export default function DayPriceGraph() {
-//   const theme = useTheme();
-
-//   return (
-//     // <React.Fragment>
-//       //{/* <Title>Today</Title> */}
-      
-//      // {/* <ResponsiveContainer> */}
-//         <LineChart
-//           data={data}
-//           margin={{
-//             top: 16,
-//             right: 16,
-//             bottom: 0,
-//             left: 24,
-//           }}
-//         >
-//           <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
-//           <YAxis stroke={theme.palette.text.secondary}>
-//             <Label
-//               angle={270}
-//               position="left"
-//               style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
-//             >
-//               Sales ($)
-//             </Label>
-//           </YAxis>
-//           <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
-//         </LineChart>
-//       //{/* </ResponsiveContainer> */}
-//     //{/* </React.Fragment> */}
-    
-//   );
-// }
-
-// // export default DayPriceGraph;
-// // © 2021 GitHub, Inc.
-
+import { ThemeProvider } from '@material-ui/styles';
 import React, { PureComponent } from 'react';
+import { useTheme } from '@material-ui/core/styles';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  Line, LineChart, XAxis, YAxis, Label, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from 'recharts';
+// import Title from './Title';
+// import { Line } from 'react-chartjs-2';
+import { render } from 'react-dom';
+
+// let lineData;
+
+// lineData = {
+//   labels: ['6:30', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '1:00',],
+//   dataets: [
+//     {
+//       label: 'Google',
+//       fill: false,
+//       backgroundColor: 'green',
+//       borderColor: 'green',
+//       borderCapStyle: 'butt',
+//       borderDash: [],
+//       borderDashOffSet: 0.0,
+//       borderJoinStyle: 'miter',
+//       pointBorderColor: 'rgba(75,192,192,1)',
+//       pointBackgroundColor: '#fff',
+//       pointBorderWidth: 1,
+//       pointHoverRadius: 5,
+//       pointHoverBackgroundColor: 'green',
+//       pointHoverBorderColor: 'rgba(220,220,220,1)',
+//       pointHoverBorderWidth: 2,
+//       pointRadius: 1,
+//       pointHitRadius: 10,
+//       data: [1232, 1425, 6432, 7543, 6422, 6432, 1241, 6432]
+//     }
+//   ]
+// };
+
+// const lineDataApple = {
+//   labels: ['6:30', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '1:00',],
+//   dataets: [
+//     {
+//       label: 'Google',
+//       fill: false,
+//       backgroundColor: 'green',
+//       borderColor: 'green',
+//       borderCapStyle: 'butt',
+//       borderDash: [],
+//       borderDashOffSet: 0.0,
+//       borderJoinStyle: 'miter',
+//       pointBorderColor: 'rgba(75,192,192,1)',
+//       pointBackgroundColor: '#fff',
+//       pointBorderWidth: 1,
+//       pointHoverRadius: 5,
+//       pointHoverBackgroundColor: 'green',
+//       pointHoverBorderColor: 'rgba(220,220,220,1)',
+//       pointHoverBorderWidth: 2,
+//       pointRadius: 1,
+//       pointHitRadius: 10,
+//       data: [1232, 1425, 6432, 7543, 6422, 6432, 1241, 6432]
+//     }
+//   ]
+// };
+
+// class DayPriceGraph extends Component {
+
+//   constructor(props) {
+//     super(props);
+//     this.changeMetric = this.changeMetric.bind(this);
+
+//     this.state = {
+//       selectedMetric: 'Spend'
+//     };
+//   }
+
+//   changeMetric(event) {
+//     this.setState({
+//       selectedMetric: event.target.value
+//     });
+
+//     switch (event.target.value) {
+//       case 'Google':
+//         lineData = lineData;
+//         break;
+//       case 'Apple':
+//         lineData = lineDataApple;
+//         break;
+//       default:
+//     }
+//   }
+
+//   render() {
+//     const lineOptions = {
+//       title: {
+//         display: true,
+//         text: 'Stocks'
+//       },
+//       tooltips: {
+//         enabled: true,
+//         callbacks: {
+//           label: function(value, data) {
+//             console.log('data', data)
+//             const currentLabel = data.datasets[value.datasetIndex].label;
+//             return currentLabel + ': ' + '$' + value.yLabel;
+//           }
+//         }
+//       },
+//       legend: {
+//         display: true
+//       },
+//       maintainAspectRadio: true,
+//       scales: {
+//         yAxes: [{
+//           ticks: {
+//             callback: function(value) {
+//               return '$' + parseFloat(value.toFixed(2));
+//             }
+//           },
+//           stacked:false,
+//           gridLines: {
+//             display: true,
+//             color: "rgba(255,99,132,0.2"
+//           }
+//         }],
+//         xAxes: [{
+//           gridlines: {
+//             display:false
+//           }
+//         }]
+//       }
+//     };
+
+//     return (
+//       <div>
+//         <select onChange={this.changeMetric} value={this.state.selectedMetric}>
+//           <option value="Google">Google</option>
+//           <option value="Apple">Apple</option>
+//         </select>
+//         <div className="row">
+//           <div className="col-xl-10">
+//             <div className="card">
+//               <div className="card-header">
+//                 <i className="fa fa-align-justify" />
+//               </div>
+//               <div className="card-block">
+//                 <Line data={lineData} options={lineOptions} />
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     )
+//   }
+// }
+
+// render(<DayPriceGraph />, document.body);
+
+// export{DayPriceGraph};
 
 const data = [
   {
@@ -108,93 +201,6 @@ const data = [
     name: '1:00', Low: 1394, High: 2939, Volume: 3949,
   },
 ];
-
-// const data = [
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '6:30', dailyPrice: '1293'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '7:00', dailyPrice: '1545'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '7:30', dailyPrice: '1859'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '8:00', dailyPrice: '1355'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '8:30', dailyPrice: '4632'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '9:00', dailyPrice: '3634'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '9:30', dailyPrice: '1235'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '10:00', dailyPrice: '4564'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '10:30', dailyPrice: '5674'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '11:00', dailyPrice: '6342'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '11:30', dailyPrice: '7453'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '12:00', dailyPrice: '2435'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '12:30', dailyPrice: '2343'
-//   },
-//   {
-//     name: 'GOOGL', value: 'Google', axisX: '1:00', dailyPrice: '4522'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '6:30', dailyPrice: '2343'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '7:00', dailyPrice: '2352'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '7:30', dailyPrice: '6453'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '8:00', dailyPrice: '7532'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '8:30', dailyPrice: '6432'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '9:00', dailyPrice: '8653'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '9:30', dailyPrice: '2411'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '10:00', dailyPrice: '7532'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '10:30', dailyPrice: '8532'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '11:00', dailyPrice: '8753'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '11:30', dailyPrice: '1296'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '12:00', dailyPrice: '8482'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '12:30', dailyPrice: '4929'
-//   },
-//   {
-//     name: 'APPL', value: 'Apple', axisX: '1:00', dailyPrice: '6942'
-//   }
-// ];
 
 export default class Example extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/xqjtetw0/';
@@ -251,3 +257,174 @@ export default class Example extends PureComponent {
     );
   }
 }
+
+//   render() {
+//     return (
+//       <div>
+//         <LineChart data={this.state.lineChartData} />
+//         <button onClick={this.change0}> Google </button>
+//       </div>
+//     )
+//   }
+// }
+
+
+// import React,{Component} from 'react';
+// //Make sure not to forget toimport Bar from the package (This is important it won't work without this step)
+// import {Bar} from 'react-chartjs-2';
+
+// class BarChart extends Component
+// {
+//   constructor() {
+//     super();
+//     this.state = {
+//       barChartData: []
+//     }
+
+//     this.change0 = this.change0.bind(this);
+//     this.change1 = this.change1.bind(this);
+//     this.change2 = this.change2.bind(this);
+//     // this.change3 = this.change3.bind(this);
+//     // this.change4 = this.change4.bind(this);
+//     // this.change5 = this.change5.bind(this);
+//     // this.change6 = this.change6.bind(this);
+//     // this.change7 = this.change7.bind(this);
+//     // this.change8 = this.change8.bind(this);
+//   }
+
+//   componentDidMount() {
+//     this.change0();
+//     }
+
+  // change0(){
+  //   this.setState({
+  //     barChartData:{
+  //       labels: ['January', 'February', 'March',],
+  //       datasets: [
+  //         {
+  //           label: '3 Months',
+  //           backgroundColor: 'rgba(255,99,132,0.2)',
+  //           borderColor: 'rgba(255,99,132,1)',
+  //           borderWidth: 1,
+  //           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+  //           hoverBorderColor: 'rgba(255,99,132,1)',
+  //           data: [65, 59, 80]
+  //         }
+  //       ]
+  //     }
+  //   })
+  // }
+
+//   //OUR TWO NEW METHODS FOR  UPDATING THE STATE barChartData BASED ON EVENTS ON CLICK 
+  // change1(){
+  //   this.setState({
+  //     barChartData:{
+  //       labels: ['January', 'February', 'March','April','May','June'],
+  //       datasets: [
+  //         {
+  //           label: '6 Months',
+  //           backgroundColor: 'rgba(255,99,132,0.2)',
+  //           borderColor: 'rgba(255,99,132,1)',
+  //           borderWidth: 1,
+  //           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+  //           hoverBorderColor: 'rgba(255,99,132,1)',
+  //           data: [49, 22, 23,65,43,21]
+  //         }
+  //       ]
+  //     }
+  //   })
+  // }
+
+//   change2(){
+//     this.setState({
+//       barChartData:{
+//         labels: ['January', 'February', 'March','April','May','June', 'July', 'Aug', 'Sept','Oct', 'Nov', 'Dec'],
+//         datasets: [
+//           {
+//             label: 'One Year',
+//             backgroundColor: 'rgba(255,99,132,0.2)',
+//             borderColor: 'rgba(255,99,132,1)',
+//             borderWidth: 1,
+//             hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+//             hoverBorderColor: 'rgba(255,99,132,1)',
+//             data: [49, 22, 23,65,43,21,56,57, 100,23,43,21,]
+//           }
+//         ]
+//       }
+//     })
+//   }
+
+//   render() {
+//     return (
+//         <div>
+//           <Bar data={this.state.barChartData}  />
+//           //OUR ON CLICK EVENTS ARE DEFINED HERE - ALLOWING THE USER TO SWITCH BETWEEN VIEWS AND UPDATE THE STATE OF BarChartData on the fly
+//           <button onClick={this.change0}>Change to 3 months</button>
+//           <button onClick={this.change1}>Change to 6 months</button>
+//           <button onClick={this.change2}>Change to 1 year</button>
+//           {/*<button onClick={this.change2}></button>*/}
+//         </div>
+//   )
+//   }
+// }
+
+// export default (BarChart) ;
+
+// constructor() {
+//   super();
+//   this.state = {
+//     lineChartData: []
+//   }
+
+//   this.change0 = this.change0.bind(this);
+//   this.change1 = this.change1.bind(this);
+//   // this.change2 = this.change2.bind(this);
+//   // this.change3 = this.change3.bind(this);
+//   // this.change4 = this.change4.bind(this);
+//   // this.change5 = this.change5.bind(this);
+//   // this.change6 = this.change6.bind(this);
+//   // this.change7 = this.change7.bind(this);
+//   // this.change8 = this.change8.bind(this);
+// }
+
+// componentDidMount() {
+//   this.change0();
+// }
+
+// change0(){
+//   this.setState({
+//     lineChartData:{
+//       labels: ['6:30', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '1:00',],
+//       datasets: [
+//         {
+//           label: 'Google',
+//           backgroundColor: 'rgba(255,99,132,0.2)',
+//           borderColor: 'rgba(255,99,132,1)',
+//           borderWidth: 1,
+//           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+//           hoverBorderColor: 'rgba(255,99,132,1)',
+//           data: [1232, 1425, 6432, 7543, 6422, 6432, 1241, 6432]
+//         }
+//       ]
+//     }
+//   })
+// }
+
+// change1(){
+//   this.setState({
+//     lineChartData:{
+//       labels: ['6:30', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '1:00',],
+//       datasets: [
+//         {
+//           label: 'Apple',
+//           backgroundColor: 'rgba(255,99,132,0.2)',
+//           borderColor: 'rgba(255,99,132,1)',
+//           borderWidth: 1,
+//           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+//           hoverBorderColor: 'rgba(255,99,132,1)',
+//           data: [1232, 1425, 6432, 7543, 6422, 6432, 1241, 6432]
+//         }
+//       ]
+//     }
+//   })
+// }

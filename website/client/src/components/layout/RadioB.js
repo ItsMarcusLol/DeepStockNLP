@@ -207,7 +207,7 @@ const GreenRadio = withStyles({
       color: green[600],
     },
   },
-  checked: {},
+  // checked: {},
 })((props) => <Radio color="default" {...props} />);
 
 export default class RadioButtons extends React.Component {
