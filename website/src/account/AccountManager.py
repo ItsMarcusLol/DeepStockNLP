@@ -1,4 +1,5 @@
 import mysql.connector
+import bcrypt
 from random import randint
 
 conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', database='accounts')
@@ -6,9 +7,17 @@ conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', dat
 class AccountManager():
     def login(self, username, password):
         cursor = conn.cursor()
-
-        cursor.close()
-        return True
+        pw = password.encode("utf-8")
+        query = "SELECT * FROM account_data WHERE username=\"" + username + "\""
+        cursor.execute(query)
+        result = cursor.fetchone()
+        hashed_inDB = result["password"]
+        if bcrypt.checkpw(pw, hashed_inDB): 
+            cursor.close()
+            return True
+        else:
+            cursor.close()
+            return False
     
     def get_account_id(self, userId):
         cursor = conn.cursor()
@@ -34,7 +43,9 @@ class AccountManager():
         else:
             userId = self.genUserId()
             cursor = conn.cursor()
-            query = "INSERT INTO account_data(username, user_id) VALUES(" + username +","+userId+")" 
+            pw = password.encode("utf-8")
+            pw_hashed = bcrypt.hashpw(pw, bcrypt.gensalt(rounds=15))
+            query = "INSERT INTO account_data(username, user_id, password) VALUES(" + username +","+userId+","+pw_hashed+")" 
             cursor.execute(query)
             cursor.close()
             return True
