@@ -71,7 +71,7 @@ class AccountManager():
         cursor = conn.cursor()
         while(True):
             userId = randint(1, 2147483647)
-            query = "SELECT * FROM account_data WHERE user_id=" + userId
+            query = "SELECT * FROM account_data WHERE user_id=" + str(userId)
             cursor.execute(query)
             msg = cursor.fetchone()
             if not msg:
