@@ -41,7 +41,10 @@ class AccountManager():
         elif self.account_exists(username):
             return False
         else:
-            userId = self.genUserId()
+            try:
+                userId = self.genUserId()
+            except:
+                return False
             cursor = conn.cursor()
             pw = password.encode("utf-8")
             pw_hashed = bcrypt.hashpw(pw, bcrypt.gensalt(rounds=15))
@@ -49,7 +52,8 @@ class AccountManager():
                 query = "INSERT INTO account_data(username, user_id, password) VALUES(\"" + username +"\","+userId+",\""+pw_hashed+"\")" 
                 cursor.execute(query)
             except:
-                print("query failed: ", query)
+                error = "query failed: " + query
+                print(error)
                 cursor.close()
                 return False
             cursor.close()
@@ -67,9 +71,9 @@ class AccountManager():
             return False
     
     def genUserId(self):
+        cursor = conn.cursor()
         while(True):
             userId = randint(1000000000, 9999999999)
-            cursor = conn.cursor()
             query = "SELECT * FROM account_data WHERE user_id=" + userId
             cursor.execute(query)
             result = cursor.fetchone()
