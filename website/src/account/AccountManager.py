@@ -52,7 +52,7 @@ class AccountManager():
                 print("Query failed")
                 print(query)
                 cursor.close()
-                return False
+                return -1
             cursor.close()
             return True
 
