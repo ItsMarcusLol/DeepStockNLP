@@ -41,10 +41,7 @@ class AccountManager():
         elif self.account_exists(username):
             return False
         else:
-            try:
-                userId = self.genUserId()
-            except:
-                return False
+            userId = self.genUserId()
             cursor = conn.cursor()
             pw = password.encode("utf-8")
             pw_hashed = bcrypt.hashpw(pw, bcrypt.gensalt(rounds=15))
@@ -73,7 +70,10 @@ class AccountManager():
     def genUserId(self):
         cursor = conn.cursor()
         while(True):
-            userId = randint(1000000000, 9999999999)
+            try:
+                userId = randint(1000000000, 9999999999)
+            except:
+                userId = 100
             query = "SELECT * FROM account_data WHERE user_id=" + userId
             cursor.execute(query)
             result = cursor.fetchone()
