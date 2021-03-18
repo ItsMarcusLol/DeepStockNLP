@@ -7,12 +7,13 @@ conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', dat
 class AccountManager():
     def login(self, username, password):
         cursor = conn.cursor()
-        pw = password.encode("utf-8")
+        pw = password.encode()
         query = "SELECT * FROM account_data WHERE username=\"" + username + "\""
         cursor.execute(query)
         result = cursor.fetchone()
         hashed_inDB = result["password"]
-        if bcrypt.checkpw(pw, hashed_inDB): 
+        hashed_str = hashed_inDB.encode()
+        if bcrypt.checkpw(pw, hashed_str): 
             cursor.close()
             return True
         else:
@@ -43,9 +44,10 @@ class AccountManager():
         else:
             userId = self.genUserId()
             cursor = conn.cursor()
-            pw = password.encode("utf-8")
+            pw = password.encode()
             pw_hashed = bcrypt.hashpw(pw, bcrypt.gensalt(rounds=15))
-            query = "INSERT INTO account_data(username, user_id, password) VALUES(\"" + username +"\","+str(userId)+",\""+str(pw_hashed)+"\")"
+            pw_hashed_str = pw_hashed.decode()
+            query = "INSERT INTO account_data(username, user_id, password) VALUES(\"" + username +"\","+str(userId)+",\""+pw_hashed_str+"\")"
             try: 
                 cursor.execute(query)
             except:
