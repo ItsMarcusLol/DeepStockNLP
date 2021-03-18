@@ -198,35 +198,38 @@ const data = [
 
 export default class Example extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/xqjtetw0/';
+
+  
   state = {
-    loading: true, 
-    prices: null,
-    symbol: null
+    //loading: true, 
+    //prices: null,
+    symbol:  this.props.symb,
 };
 
-async componentDidMount() {
+// async componentDidMount() {
   
   
-    const symbol = this.props.symb;
-    console.log(symbol);
-    // const key = "f0448bd30a7028e245052fcf3caa0837";
-    const key = "insert key"
+    
   
-    var url = "https://financialmodelingprep.com/api/v3/historical-price-full/"+symbol+"?timeseries=30&apikey=" + key;
-    var response = await fetch(url);
-    var data = await response.json();
+//     // const key = "f0448bd30a7028e245052fcf3caa0837";
+//     const key = "insert key"
+//     const sym = this.state.symbol
+//     var url = "https://financialmodelingprep.com/api/v3/historical-price-full/"+sym+"?timeseries=30&apikey=" + key;
+//     var response = await fetch(url);
+//     var data = await response.json();
    
-    data = data['historical']
+//     data = data['historical']
 
-    console.log("here "+symbol);
-    console.log(this.state.symbol)
-    this.setState({ prices:data, symbol:symbol, loading: false});
-}
+//    // console.log("here "+symbol);
+//     console.log(this.state.symbol)
+//     this.setState({ prices:data,  loading: false});
+// }
 
   render() {
+    console.log("Day Price Graph: " ,this.props.symb)
     return (
       <div> 
-      <h1> {this.state.symbol} :</h1>
+      <h1> {this.props.symb} :</h1>
       <LineChart
         width={800}
         height={500}
