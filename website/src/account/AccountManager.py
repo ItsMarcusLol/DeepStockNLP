@@ -70,7 +70,7 @@ class AccountManager():
     def genUserId(self):
         cursor = conn.cursor()
         while(True):
-            userId = randint(1000000000, 4294967295)
+            userId = randint(1, 2147483647)
             query = "SELECT * FROM account_data WHERE user_id=" + userId
             cursor.execute(query)
             msg = cursor.fetchone()
