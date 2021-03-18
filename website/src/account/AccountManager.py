@@ -70,13 +70,14 @@ class AccountManager():
     def genUserId(self):
         cursor = conn.cursor()
         while(True):
-            try:
-                userId = randint(1000000000, 4294967295)
-            except:
-                userId = 100
+            userId = randint(1000000000, 4294967295)
             query = "SELECT * FROM account_data WHERE user_id=" + userId
             cursor.execute(query)
-            result = cursor.fetchone()
-            if (result is None):
+            msg = cursor.fetchone()
+            if not msg:
                 cursor.close()
                 return userId
+            '''result = cursor.fetchone()
+            if (result is None):
+                cursor.close()
+                return userId'''
