@@ -49,8 +49,8 @@ class AccountManager():
             try: 
                 cursor.execute(query)
             except:
-                error = "query failed: " + query
-                print(error)
+                print("Query failed")
+                print(query)
                 cursor.close()
                 return False
             cursor.close()
