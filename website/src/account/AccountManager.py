@@ -71,7 +71,7 @@ class AccountManager():
         cursor = conn.cursor()
         while(True):
             try:
-                userId = randint(1000000000, 9999999999)
+                userId = randint(1000000000, 4294967295)
             except:
                 userId = 100
             query = "SELECT * FROM account_data WHERE user_id=" + userId
