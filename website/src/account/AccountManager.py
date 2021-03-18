@@ -11,7 +11,7 @@ class AccountManager():
         query = "SELECT * FROM account_data WHERE username=\"" + username + "\""
         cursor.execute(query)
         result = cursor.fetchone()
-        hashed_inDB = result[3]
+        hashed_inDB = result[2]
         hashed_str = hashed_inDB.encode()
         if bcrypt.checkpw(pw, hashed_str): 
             cursor.close()
