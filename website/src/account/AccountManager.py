@@ -45,8 +45,13 @@ class AccountManager():
             cursor = conn.cursor()
             pw = password.encode("utf-8")
             pw_hashed = bcrypt.hashpw(pw, bcrypt.gensalt(rounds=15))
-            query = "INSERT INTO account_data(username, user_id, password) VALUES(\"" + username +"\","+userId+",\""+pw_hashed+"\")" 
-            cursor.execute(query)
+            try:
+                query = "INSERT INTO account_data(username, user_id, password) VALUES(\"" + username +"\","+userId+",\""+pw_hashed+"\")" 
+                cursor.execute(query)
+            except:
+                print("query failed: ", query)
+                cursor.close()
+                return False
             cursor.close()
             return True
 
