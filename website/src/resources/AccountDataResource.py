@@ -16,6 +16,7 @@ class Login(Resource):
         return jsonify(success=accountManager.login(username, password))
 
 class Account(Resource):
+    # TODO make sure to not return password in tuple
     def get(self):
         json_data = request.get_json(force=True)
         id = json_data['id']
@@ -27,6 +28,7 @@ class Account(Resource):
         else:
             return jsonify(success=False)
     
+    # TODO add error handling to check to see if json is right. Return proper error code
     def post(self):
         json_data = request.get_json(force=True)
         username = json_data['username']
