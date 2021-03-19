@@ -1,5 +1,5 @@
 import React from 'react';
-import MaterialTable from "material-table";
+import MaterialTable, { MTableToolbar } from "material-table";
 import Check from '@material-ui/icons/Check';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
@@ -12,6 +12,21 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import LoadingSymbol from './LoadingSymbol';
+import { FormatAlignCenter } from '@material-ui/icons';
+import Typography from "@material-ui/core/Typography";
+
+const MyNewTitle = ({ text, variant }) => (
+    <Typography
+      variant={variant}
+    //   style={{
+    //     // whiteSpace: "break-spaces",
+    //     overflow: "visible",
+    //     textOverflow: "inherit"
+    //   }}
+    >
+      {text}
+    </Typography>
+  );
 
 export default class HeadlineTable extends React.Component {
   state = {
@@ -53,6 +68,10 @@ export default class HeadlineTable extends React.Component {
       return (
        
         <MaterialTable
+        // options={{
+        //     headerStyle: { position: 'sticky', fontSize: 24, align:"center"},
+        //     // maxBodyHeight: 500,
+        // }}
         icons={{
           Check: () => <Check />,
           Export: () => <SaveAlt />,
@@ -67,8 +86,34 @@ export default class HeadlineTable extends React.Component {
           DetailPanel: () => <ChevronRight />,
           ResetSearch: () => <Clear />
         }}
-      title="Headlines"
-     
+      title= {
+          <div 
+            style={{
+                fontSize: 33,
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex"
+            }}>
+                Headlines
+            </div>
+      }
+    
+    // title={
+    // components={{
+    //   Toolbar: (props) => (
+    //     <div
+    //       style={{
+    //         alignItems: "center",
+    //         justifyContent: "center",
+    //         display: "inherit"
+    //       }}
+    //     >
+    //       <MTableToolbar {...props} />
+    //       Headlines
+    //     </div>
+    //   )
+    // }}
+
       columns={[
         { title: 'Title', field: 'title' },
         { title: 'Author', field: 'author'},
