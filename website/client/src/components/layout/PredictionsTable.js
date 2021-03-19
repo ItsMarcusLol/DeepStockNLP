@@ -1,17 +1,10 @@
 import React from 'react';
-import MaterialTable from "material-table";
-// import { forwardRef } from 'react';
-
-// import AddBox from '@material-ui/icons/AddBox';
-// import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import MaterialTable, { MTableToolbar } from "material-table";
 import Check from '@material-ui/icons/Check';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import Clear from '@material-ui/icons/Clear';
-// import DeleteOutline from '@material-ui/icons/DeleteOutline';
-// import Edit from '@material-ui/icons/Edit';
 import FilterListIcon from '@material-ui/icons/FilterList';
-// import FilterList from '@material-ui/icons/FilterList';
 import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
@@ -19,14 +12,25 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import LoadingSymbol from './LoadingSymbol';
+import Typography from "@material-ui/core/Typography";
 
+const MyNewTitle = ({ text, variant }) => (
+    <Typography
+      variant={variant}
+      style={{
+        whiteSpace: "break-spaces",
+        // overflow: "hidden",
+        // textOverflow: "ellipsis"
+      }}
+    >
+      {text}
+    </Typography>
+  );
 
-
-
-export default class HistoricalTable extends React.Component {
+export default class PredictionsTable extends React.Component {
   state = {
       loading: true, 
-      prices: null,
+      predictions: null,
       symbol: null
   };
 
@@ -77,9 +81,33 @@ export default class HistoricalTable extends React.Component {
           DetailPanel: () => <ChevronRight />,
           ResetSearch: () => <Clear />
         }}
-      // title="Historical Prices"
-      title = ""
-     
+        title= {
+            <div 
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                fontSize: 33
+              }}>
+                  Our Predictions
+              </div>
+        }  
+
+        // title={<MyNewTitle variant="h4" text="Predictions" />}
+        // components={{
+        //   Toolbar: (props) => (
+        //     <div
+        //       style={{
+        //         alignItems: "center",
+        //         justifyContent: "center",
+        //         display: "flex"
+        //       }}
+        //     >
+        //       <MTableToolbar {...props} />
+        //     </div>
+        //   )
+        // }}
+
       columns={[
         { title: 'Date', field: 'date' },
         { title: 'Open', field: 'open', type: 'numeric' },
@@ -93,11 +121,11 @@ export default class HistoricalTable extends React.Component {
       // data = {this.state.prices}
       // fake data
       data={[
-        { date: '2-12-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-        { date: '2-11-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-        { date: '2-10-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-        { date: '2-9-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-        { date: '2-8-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+        { date: '3-24-2021', open: '1234', close: '2313', high: '9393', low: '102', volume: '300' },
+        { date: '3-23-2021', open: '1234', close: '2313', high: '5840', low: '302', volume: '300' },
+        { date: '3-22-2021', open: '1234', close: '2313', high: '5943', low: '583', volume: '300' },
+        { date: '3-21-2021', open: '1234', close: '2313', high: '8382', low: '452', volume: '300' },
+        { date: '3-20-2021', open: '1234', close: '2313', high: '2048', low: '852', volume: '300' },
        
       ]}
       options={{ search: false, paging: true, pageSize: 5, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}

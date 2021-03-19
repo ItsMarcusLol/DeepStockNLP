@@ -1,12 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
 import Radio from '@material-ui/core/Radio';
 import DayPriceGraph from './DayPriceGraph';
-import { FormControl, FormControlLabel, RadioGroup } from '@material-ui/core';
-import FormLabel from '@material-ui/core/FormLabel';
-import { ThreeSixty } from '@material-ui/icons';
-
 
 const BlueRadio = withStyles({
   root: {
@@ -15,125 +10,108 @@ const BlueRadio = withStyles({
       color: "blue",
     },
   },
-  // checked: {},
+  checked: {},
 })((props) => <Radio color="default" {...props} />);
 
-export default function RadioButtons() {
-  const [selectedValue, setSelectedValue] = React.useState('Google');
-  // const [selectedStock, setSelectedStock] = React.useState('Apple');
-  var symbol = selectedValue;
+export default class RadioButtons extends React.Component {
+ // const [selectedValue, setSelectedValue] = React.useState('a');
 
-  const handleChange = event => {
-    setSelectedValue(event.target.value);
-    symbol = event.target.name;
-  }
 
-  // const handleClick = (event) => {
-  //   setSelectedValue(event.target.value);
-  //   symbol = event.target.name;
-  // };
 
-  // const handleChange = changeEvent => {
-  //   this.setState({
-  //     setSelectedValue: changeEvent.target.value,
-  //     // symbol: changeEvent.target.name
-  //   });
-  //   // symbol = changeEvent.target.name;
-  // };
- 
+ constructor(props) {
+  super(props);
+  this.state = {
+   selectedValue: 'Google'
+
+  };
+
+  this.handleChange = this.handleChange.bind(this);
+  // this.buttonChange = this.buttonChange.bind(this);
+}
+
+   handleChange = (event) => {
+    //setSelectedValue(event.target.value);
+    this.setState({selectedValue: event.target.value})
+    console.log(this.state.selectedValue)
+  };
+
+  render(){
   return (
     <div>
-        <DayPriceGraph symb={symbol}/>
-        <div>
-      {/* <FormControl component="fieldset">
-        <FormLabel component="legend">Daily Prices</FormLabel>
-        <RadioGroup aria-label="Daily Prices" name="dailyPricesG" valeu={selectedValue} onChange={handleChange}>
-          <FormControlLabel value="GOOGL" control={<Radio />} label="Google" name="GOOGL"/>
-          <FormControlLabel value="APPL" control={<Radio />} label="Apple" name="APPL" />
-        </RadioGroup>
-      </FormControl> */}
+
+      <DayPriceGraph symb={this.state.selectedValue}/>
+
       <BlueRadio
-        checked={selectedValue === 'Google'}
-        onChange={handleChange}
+        checked={this.state.selectedValue === 'Google'}
+        onChange={(e) => this.handleChange(e) }
         value="Google"
-        name="GOOGL"
-        onClick={() => setSelectedValue({ selectedValue:'Google'})}
+        name="radio-button-demo"
         inputProps={{ 'aria-label': 'A' }}
       />
       <BlueRadio
-        checked={selectedValue === 'Apple'}
-        onChange={handleChange}
+        checked={this.state.selectedValue === 'Apple'}
+        onChange={(e) =>this.handleChange(e) }
         value="Apple"
-        name="APPL"
-        onClick={() => setSelectedValue({ selectedValue: 'Boeing'})}
+        name="radio-button-demo"
         inputProps={{ 'aria-label': 'B' }}
       />
       <BlueRadio
-        checked={selectedValue === 'Boeing'}
-        onChange={handleChange}
+        checked={this.state.selectedValue === 'Boeing'}
+        onChange={(e) =>this.handleChange(e) }
         value="Boeing"
-        name="BA"
-        onClick={() => setSelectedValue({ selectedValue: 'Boeing'})}
-        inputProps={{ 'aria-label': 'C' }}
+        name="radio-button-demo"
+        inputProps={{ 'aria-label': 'B' }}
       />
       <BlueRadio
-        checked={selectedValue === 'Walmart'}
-        onChange={handleChange}
+        checked={this.state.selectedValue === 'Walmart'}
+        onChange={(e) =>this.handleChange(e) }
         value="Walmart"
-        name="WMT"
-        onClick={() => setSelectedValue({ selectedValue: 'Walmart'})}
-        inputProps={{ 'aria-label': 'D' }}
+        name="radio-button-demo"
+        inputProps={{ 'aria-label': 'B' }}
       />
       <BlueRadio
-        checked={selectedValue === 'Amazon'}
-        onChange={handleChange}
+        checked={this.state.selectedValue === 'Amazon'}
+        onChange={(e) =>this.handleChange(e) }
         value="Amazon"
-        name="AMZN"
-        onClick={() => setSelectedValue({ selectedValue: 'Amazon'})}
-        inputProps={{ 'aria-label': 'E' }}
-      />
-       <BlueRadio
-        checked={selectedValue === 'Tesla'}
-        onChange={handleChange}
+        name="radio-button-demo"
+        inputProps={{ 'aria-label': 'B' }}
+      />    
+      <BlueRadio
+        checked={this.state.selectedValue === 'Tesla'}
+        onChange={(e) =>this.handleChange(e) }
         value="Tesla"
-        name="TSLA"
-        onClick={() => setSelectedValue({ selectedValue: 'Tesla'})}
-        inputProps={{ 'aria-label': 'F' }}
-      />
+        name="radio-button-demo"
+        inputProps={{ 'aria-label': 'B' }}
+      />  
       <BlueRadio
-        checked={selectedValue === 'Microsoft'}
-        onChange={handleChange}
+        checked={this.state.selectedValue === 'Microsoft'}
+        onChange={(e) =>this.handleChange(e) }
         value="Microsoft"
-        name="MSFT"
-        onClick={() => setSelectedValue({ selectedValue: 'Microsoft'})}
-        inputProps={{ 'aria-label': 'G' }}
+        name="radio-button-demo"
+        inputProps={{ 'aria-label': 'B' }}
       />
       <BlueRadio
-        checked={selectedValue === 'Ford'}
-        onChange={handleChange}
+        checked={this.state.selectedValue === 'Ford'}
+        onChange={(e) =>this.handleChange(e) }
         value="Ford"
-        name="F"
-        onClick={() => setSelectedValue({ selectedValue: 'Ford'})}
-        inputProps={{ 'aria-label': 'H' }}
+        name="radio-button-demo"
+        inputProps={{ 'aria-label': 'B' }}
       />
       <BlueRadio
-        checked={selectedValue === 'Dell'}
-        onChange={handleChange}
+        checked={this.state.selectedValue === 'Dell'}
+        onChange={(e) =>this.handleChange(e) }
         value="Dell"
-        name="DELL"
-        onClick={() => setSelectedValue({ selectedValue: 'Dell'})}
-        inputProps={{ 'aria-label': 'I' }}
+        name="radio-button-demo"
+        inputProps={{ 'aria-label': 'B' }}
       />
       <BlueRadio
-        checked={selectedValue === 'Target'}
-        onChange={handleChange}
+        checked={this.state.selectedValue === 'Target'}
+        onChange={(e) =>this.handleChange(e) }
         value="Target"
-        name="TGT"
-        onClick={() => setSelectedValue({ selectedValue: 'Target'})}
-        inputProps={{ 'aria-label': 'J' }}
+        name="radio-button-demo"
+        inputProps={{ 'aria-label': 'B' }}
       />
-      </div>
     </div>
-  );
-};
-
+  )
+  };
+}

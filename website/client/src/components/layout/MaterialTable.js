@@ -14,8 +14,11 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import HistoricalTable from './HistoricalTable';
 import LoadingSymbol from './LoadingSymbol';
-
-
+import HeadlineTable from './HeadlineTable';
+import PredictionsTable from './PredictionsTable';
+// import DayPriceGraph from './DayPriceGraph';
+import HistoricalGraph from './HistoricalGraph';
+import Title from './Title';
 
 export default class PriceTable extends React.Component {
   state = {
@@ -99,7 +102,7 @@ export default class PriceTable extends React.Component {
           columns={[
             // { title: 'Name', field: 'name' },
             { title: 'Symbol', field: 'symbol' },
-            { title: 'Company Name', field: 'companyName'},
+            { title: 'Company', field: 'companyName'},
             { title: 'Price', field: 'price' },
             { title: 'Volume', field: 'volume', type: 'numeric' },
           ]}
@@ -124,15 +127,17 @@ export default class PriceTable extends React.Component {
             render: rowData => {
               return (
                 <div
-                  style={{
-                    fontSize: 100,
-                    textAlign: 'center',
-                    color: 'white',
-                    backgroundColor: '#43A047',
-                  }}
+                  // style={{
+                  //   fontSize: 14,
+                  //   textAlign: 'center',
+                  //   color: 'white',
+                  //   backgroundColor: '#43A047',
+                  // }}
                 >
-                  
-                  {"Predictions Coming Soon"}
+
+                  {/* <Title>Our Predictions</Title> */}
+
+                  <PredictionsTable />
                 </div>
               )
             },
@@ -144,6 +149,10 @@ export default class PriceTable extends React.Component {
               return (
                 <div>
                 
+                <Title>Historical Prices</Title>
+                  
+                <HistoricalGraph />
+
                 <HistoricalTable symb ={rowData.symbol} />
                 
                 </div>
@@ -160,14 +169,16 @@ export default class PriceTable extends React.Component {
                 render: rowData => {
                   return (
                     <div
-                      style={{
-                        fontSize: 100,
-                        textAlign: 'center',
-                        color: 'white',
-                        backgroundColor: '#FDD835',
-                      }}
+                      // style={{
+                      //   fontSize: 100,
+                      //   textAlign: 'center',
+                      //   color: 'white',
+                      //   backgroundColor: '#FDD835',
+                      // }}
                     >
-                      {rowData.name} {"Headlines Coming Soon"}
+                      {/* <Title>Headlines</Title> */}
+
+                      <HeadlineTable />
                     </div>
                   )
                 },
