@@ -14,8 +14,8 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import HistoricalTable from './HistoricalTable';
 import LoadingSymbol from './LoadingSymbol';
-
-
+import HeadlineTable from './HeadlineTable';
+import PredictionsTable from './PredictionsTable';
 
 export default class PriceTable extends React.Component {
   state = {
@@ -124,15 +124,14 @@ export default class PriceTable extends React.Component {
             render: rowData => {
               return (
                 <div
-                  style={{
-                    fontSize: 100,
-                    textAlign: 'center',
-                    color: 'white',
-                    backgroundColor: '#43A047',
-                  }}
+                  // style={{
+                  //   fontSize: 100,
+                  //   textAlign: 'center',
+                  //   color: 'white',
+                  //   backgroundColor: '#43A047',
+                  // }}
                 >
-                  
-                  {"Predictions Coming Soon"}
+                  <PredictionsTable />
                 </div>
               )
             },
@@ -143,7 +142,7 @@ export default class PriceTable extends React.Component {
             render: rowData => {
               return (
                 <div>
-                
+
                 <HistoricalTable symb ={rowData.symbol} />
                 
                 </div>
@@ -160,14 +159,14 @@ export default class PriceTable extends React.Component {
                 render: rowData => {
                   return (
                     <div
-                      style={{
-                        fontSize: 100,
-                        textAlign: 'center',
-                        color: 'white',
-                        backgroundColor: '#FDD835',
-                      }}
+                      // style={{
+                      //   fontSize: 100,
+                      //   textAlign: 'center',
+                      //   color: 'white',
+                      //   backgroundColor: '#FDD835',
+                      // }}
                     >
-                      {rowData.name} {"Headlines Coming Soon"}
+                      <HeadlineTable />
                     </div>
                   )
                 },
