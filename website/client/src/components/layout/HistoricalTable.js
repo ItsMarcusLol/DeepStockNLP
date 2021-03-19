@@ -77,7 +77,8 @@ export default class HistoricalTable extends React.Component {
           DetailPanel: () => <ChevronRight />,
           ResetSearch: () => <Clear />
         }}
-      title="Historical Prices"
+      // title="Historical Prices"
+      title = ""
      
       columns={[
         { title: 'Date', field: 'date' },
