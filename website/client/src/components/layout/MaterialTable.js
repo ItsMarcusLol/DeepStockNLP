@@ -16,6 +16,9 @@ import HistoricalTable from './HistoricalTable';
 import LoadingSymbol from './LoadingSymbol';
 import HeadlineTable from './HeadlineTable';
 import PredictionsTable from './PredictionsTable';
+// import DayPriceGraph from './DayPriceGraph';
+import HistoricalGraph from './HistoricalGraph';
+import Title from './Title';
 
 export default class PriceTable extends React.Component {
   state = {
@@ -125,12 +128,15 @@ export default class PriceTable extends React.Component {
               return (
                 <div
                   // style={{
-                  //   fontSize: 100,
+                  //   fontSize: 14,
                   //   textAlign: 'center',
                   //   color: 'white',
                   //   backgroundColor: '#43A047',
                   // }}
                 >
+
+                  {/* <Title>Our Predictions</Title> */}
+
                   <PredictionsTable />
                 </div>
               )
@@ -142,6 +148,10 @@ export default class PriceTable extends React.Component {
             render: rowData => {
               return (
                 <div>
+                
+                <Title>Historical Prices</Title>
+                  
+                <HistoricalGraph />
 
                 <HistoricalTable symb ={rowData.symbol} />
                 
@@ -166,6 +176,8 @@ export default class PriceTable extends React.Component {
                       //   backgroundColor: '#FDD835',
                       // }}
                     >
+                      {/* <Title>Headlines</Title> */}
+
                       <HeadlineTable />
                     </div>
                   )
