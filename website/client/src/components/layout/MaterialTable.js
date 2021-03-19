@@ -99,7 +99,7 @@ export default class PriceTable extends React.Component {
           columns={[
             // { title: 'Name', field: 'name' },
             { title: 'Symbol', field: 'symbol' },
-            { title: 'Company Name', field: 'companyName'},
+            { title: 'Company', field: 'companyName'},
             { title: 'Price', field: 'price' },
             { title: 'Volume', field: 'volume', type: 'numeric' },
           ]}
