@@ -1,5 +1,5 @@
 import React from 'react';
-import MaterialTable from "material-table";
+import MaterialTable, { MTableToolbar } from "material-table";
 import Check from '@material-ui/icons/Check';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
@@ -12,6 +12,20 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import LoadingSymbol from './LoadingSymbol';
+import Typography from "@material-ui/core/Typography";
+
+const MyNewTitle = ({ text, variant }) => (
+    <Typography
+      variant={variant}
+      style={{
+        whiteSpace: "break-spaces",
+        // overflow: "hidden",
+        // textOverflow: "ellipsis"
+      }}
+    >
+      {text}
+    </Typography>
+  );
 
 export default class PredictionsTable extends React.Component {
   state = {
@@ -67,8 +81,33 @@ export default class PredictionsTable extends React.Component {
           DetailPanel: () => <ChevronRight />,
           ResetSearch: () => <Clear />
         }}
-      title="Our Predictions"
-     
+        title= {
+            <div 
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                fontSize: 33
+              }}>
+                  Our Predictions
+              </div>
+        }  
+
+        // title={<MyNewTitle variant="h4" text="Predictions" />}
+        // components={{
+        //   Toolbar: (props) => (
+        //     <div
+        //       style={{
+        //         alignItems: "center",
+        //         justifyContent: "center",
+        //         display: "flex"
+        //       }}
+        //     >
+        //       <MTableToolbar {...props} />
+        //     </div>
+        //   )
+        // }}
+
       columns={[
         { title: 'Date', field: 'date' },
         { title: 'Open', field: 'open', type: 'numeric' },
