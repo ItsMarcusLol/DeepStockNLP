@@ -12,7 +12,10 @@ function Header() {
 }
 
 const headerStyle = {
-    background: '#8ED1FC',
+    // background: '#8ED1FC',
+    // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    // background: 'linear-gradient(45deg, #64654F 30%,   #C5BC99 90%)',
+    background: 'linear-gradient(45deg, #000023 30%,   #000053 90%)',
     textAlign: 'center',
     padding: '10px',
     color: '#fff',

@@ -1,36 +1,71 @@
-import React from 'react'
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom';
 
 function About() {
     return (
-        <div>
-            <h1 style={headerStyle}>
+        // <div>
+        <Paper>
+            <Grid container spacing = {2}
+            direction="row"
+            justify="space-evenly"
+            alignItems="center">
+
+            <Grid item = {12} sm={12} md={6}>
+            </Grid>
+
+            <Grid item xs={12}>
+            <h2 style={headerStyle}>
                 About
-            </h1>
+            </h2>
             <p style={paragraphStyle}>
                 DeepStockNLP is a capstone project that was created by four seniors from Pacific Lutheran University with the help of a faculty advisor. 
                 We use natural language processing techniques to try to make as accurate predictions as we can on the 9 stocks we
                 chose. We are doing this by using headlines from the New York Times as well as tweets from Twitter 
                 to train our model to make the predictions better and more accurate. We are also getting headlines
                 from Twitter that are more business or financially driven headlines. The model we decided to use for
-                this project was XG Boost with Sentiment Analysis. Right now we are testing our model with archived 
+                this project was XG Boost with Sentiment Analysis (which will be credited to the rightful owners and explained below). Right now we are testing our model with archived 
                 news headlines from New York Times and prices we got from Yahoo Finance. Our current accuracy results
                 for predictions were around a 63%. We haven't added in the tweets we got from Twitter yet. In the future 
                 we are working towards adding the tweets to our model to try to get a more accurate result.
                 <br/> 
                 <br/>
                 Our website was designed using React and on our website we plan to have many features that we think will prove useful to our users. We will work hard 
-                to implement as many features as we can in the time that we have to work on this project to try to make it the best it can be.
+                to implement as many features as we can in the time that we have to work on this project to try to make it the best it can be. Some features will only be 
+                accessible to users with an account. To get started please  
+                <Link to="/signup" style={{color: 'blue'}}>
+                  {" create an account "}
+                </Link>
+                or 
+                <Link to="/login" style={{color: 'blue'}}>
+                    {" login "}
+                </Link>
+                to access more features.
             </p>
+            </Grid>
 
-            <h1 style={headerStyle}>
+            <Grid item = {12} sm={12} md={6}>
+            </Grid>
+
+            <Grid item = {12} sm={12}>
+                <h2 style={headerStyle2}>
+                    Tools Used In Our Model:
+                </h2>
+            </Grid>
+
+            <Grid item xs ={6}>
+            <h2 style={headerStyle}>
                 XG Boost
-            </h1>
+            </h2>
             <p style={paragraphStyle}>
                 <a href="https://xgboost.readthedocs.io/en/latest/" style={{color:'blue', fontStyle:"italic"}}>XG Boost</a> is an open-source software that uses a gradient boosting library that's meant to be highly efficient, flexible, and portable.
                 It implements machine learning algorithms from the Gradient Boosting framework and provides a parallel tree 
                 boosting that can solve many data science problems in a fast and accurate way. 
             </p>
+            </Grid>
 
+            <Grid item xs={6}>
             <h1 style={headerStyle}>
                 Sentiment Analysis
             </h1>
@@ -40,7 +75,13 @@ function About() {
                 and analyze whether customer feedback was positive or negative. In our project we used sentiment analysis to see
                 whether or not the headline data we had were positive or negative. 
             </p>
+            </Grid>
 
+            <Grid item = {12} sm={12} md={6}>
+                <br/>
+            </Grid>
+
+            <Grid item={12}>
             <h1 style={headerStyle}>
                 Disclaimer
             </h1>
@@ -58,7 +99,13 @@ function About() {
                 We acknowledge and give all the rights to the creaters of XG Boost and Sentiment Analysis. We are very grateful we get to use
                 these features in our project to help us and make our project better. We own no rights to either of the tools listed above.
             </p>
-        </div>
+            </Grid>
+
+            <br/>
+
+        {/* // </div> */}
+        </Grid>
+        </Paper>
     );
 }
 
@@ -66,12 +113,20 @@ const headerStyle = {
     color: 'black',
     fontFamily: '-moz-initial',
     textAlign: 'center',
-    fontSize: '35px'
+    fontSize: '37px'
+}
+
+const headerStyle2 = {
+    color: 'black',
+    fontFamily: '-moz-initial',
+    textAlign: 'center',
+    fontSize: '33px',
+    textDecorationLine: 'underline'
 }
 
 const paragraphStyle = {
     fontFamily: 'inherit',
-    fontSize: '18px'
+    fontSize: '20px'
 }
 
 
