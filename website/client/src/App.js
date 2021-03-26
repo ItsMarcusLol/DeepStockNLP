@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.css';
-import Header from './components/layout/Header';
+import Header from './components/layout/Header2';
 import About from './components/pages/About';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
@@ -34,9 +34,10 @@ class App extends Component {
   render() {
     console.log(this.state);
     return (
-      <Router>
-        <div className="App">
-          <div className="container">
+      <div className="App">
+      <Router >
+      
+          <div className="container" >
             {/* <div style={{padding: 0}}> */}
             {/* <div className={useStyles.root}> */}
               <Header />
@@ -87,8 +88,9 @@ class App extends Component {
               </Route>
               {/* </div> */}
           </div>
-        </div>
+     
       </Router>
+      </div>
     );
   }
 }
