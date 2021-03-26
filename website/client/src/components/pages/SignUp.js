@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -13,6 +14,18 @@ import { withStyles } from '@material-ui/core/styles';
 
 
 
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const styles = (theme) => ({
   paper: {
@@ -159,9 +172,9 @@ class SignUp extends React.Component{
             </Grid>
           </form>
         </div>
-        {/* <Box mt={8}>
+        <Box mt={8}>
           <Copyright />
-        </Box> */}
+        </Box>
       </Container>
     );
             }
