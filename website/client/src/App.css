@@ -4,9 +4,22 @@
   padding: 0;
 }
 
+.App {
+  /* background-color:#000000; */
+  /* background-color:#42424460; */
+  /* background-image: linear-gradient(to bottom right, red , blue);  */
+  
+   /* background-image: linear-gradient(to bottom right, rgb(0, 0, 0) , rgb(44, 6, 105));  */
+   background-image: linear-gradient(180deg, rgb(4, 30, 117), rgb(0, 255, 234));
+ 
+  /* background-image: linear-gradient(to right, rgba(55, 0, 255, 0.082), rgb(21, 8, 133)); */
+
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
+  background-color: 'linear-gradient(45deg, #000023 30%,   #000053 90%)',
 }
 
 a {
@@ -16,7 +29,9 @@ a {
 
 .container {
   padding: 0 1rem;
+  
 }
+
 
 .loginBtn {
   display: inline-block;
@@ -43,3 +58,19 @@ a {
 .signUpBtn:hover {
   background: #666;
 }
+
+.Title {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: "center";
+  align-items: baseline;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: 'linear-gradient(45deg, #000023 30%,   #000053 90%)';
+  /* color: #fff; */
+}
+
+
+
+
