@@ -86,8 +86,8 @@ export default class Example extends PureComponent {
       <div> 
       <h1> {this.props.symb}:</h1>
       <LineChart
-        width={800}
-        height={500}
+        width={650}
+        height={300}
         data={data}
         margin={{
           top: 5, right: 30, left: 20, bottom: 5,
