@@ -4,6 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -11,6 +12,8 @@ import Container from '@material-ui/core/Container';
 import React from "react";
 import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
+
+import { positions } from '@material-ui/system';
 
 
 const styles = (theme) => ({
@@ -33,7 +36,18 @@ const styles = (theme) => ({
       },
     });
 
-
+    function Copyright() {
+      return (
+        <Typography variant="body2" color="textSecondary" align="center">
+          {'Copyright © '}
+          <Link color="inherit" href="https://material-ui.com/">
+            Your Website
+          </Link>{' '}
+          {new Date().getFullYear()}
+          {'.'}
+        </Typography>
+      );
+    }
 
 class Login extends React.Component{
  
@@ -94,6 +108,7 @@ class Login extends React.Component{
                     return <Redirect to={"/"} />
                 }
     return (
+      // <div>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -160,10 +175,22 @@ class Login extends React.Component{
             </Grid>
           </form>
         </div>
-        {/* <Box mt={8}>
+        <Box 
+        mt={15}  
+        // position="absolute"
+        // top={}
+        
+        
+        // position='absolute'
+        left='0'
+        bottom='0'
+        right='0'
+        // bgcolor="background.paper"
+        >
           <Copyright />
-        </Box> */}
+        </Box>
       </Container>
+      /* </div> */
     );
             }
 
