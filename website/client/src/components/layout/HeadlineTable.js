@@ -59,19 +59,9 @@ export default class HeadlineTable extends React.Component {
       if (this.state.loading){
          return <LoadingSymbol />
       }
-
-      // if (!this.state.prices){
-      //     return <div>Can't get table, right now. Check in later!</div>
-      // }
-      
-
       return (
        
         <MaterialTable
-        // options={{
-        //     headerStyle: { position: 'sticky', fontSize: 24, align:"center"},
-        //     // maxBodyHeight: 500,
-        // }}
         icons={{
           Check: () => <Check />,
           Export: () => <SaveAlt />,
@@ -97,31 +87,11 @@ export default class HeadlineTable extends React.Component {
                 Headlines
             </div>
       }
-    
-    // title={
-    // components={{
-    //   Toolbar: (props) => (
-    //     <div
-    //       style={{
-    //         alignItems: "center",
-    //         justifyContent: "center",
-    //         display: "inherit"
-    //       }}
-    //     >
-    //       <MTableToolbar {...props} />
-    //       Headlines
-    //     </div>
-    //   )
-    // }}
-
       columns={[
         { title: 'Title', field: 'title' },
         { title: 'Author', field: 'author'},
         { title: 'Date', field: 'date'},
         { title: 'Link', field: 'link' }
-        // { title: 'Close', field: 'close', type: 'numeric' },
-        // { title: 'Volume', field: 'volume', type: 'numeric'}
-        
       ]}
       
       // data = {this.state.prices}
