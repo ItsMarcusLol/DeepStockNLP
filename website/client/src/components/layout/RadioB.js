@@ -60,56 +60,56 @@ export default class RadioButtons extends React.Component {
         onChange={(e) =>this.handleChange(e) }
         value="Boeing"
         name="radio-button-demo"
-        inputProps={{ 'aria-label': 'B' }}
+        inputProps={{ 'aria-label': 'C' }}
       />
       <BlueRadio
         checked={this.state.selectedValue === 'Walmart'}
         onChange={(e) =>this.handleChange(e) }
         value="Walmart"
         name="radio-button-demo"
-        inputProps={{ 'aria-label': 'B' }}
+        inputProps={{ 'aria-label': 'D' }}
       />
       <BlueRadio
         checked={this.state.selectedValue === 'Amazon'}
         onChange={(e) =>this.handleChange(e) }
         value="Amazon"
         name="radio-button-demo"
-        inputProps={{ 'aria-label': 'B' }}
+        inputProps={{ 'aria-label': 'E' }}
       />    
       <BlueRadio
         checked={this.state.selectedValue === 'Tesla'}
         onChange={(e) =>this.handleChange(e) }
         value="Tesla"
         name="radio-button-demo"
-        inputProps={{ 'aria-label': 'B' }}
+        inputProps={{ 'aria-label': 'F' }}
       />  
       <BlueRadio
         checked={this.state.selectedValue === 'Microsoft'}
         onChange={(e) =>this.handleChange(e) }
         value="Microsoft"
         name="radio-button-demo"
-        inputProps={{ 'aria-label': 'B' }}
+        inputProps={{ 'aria-label': 'G' }}
       />
       <BlueRadio
         checked={this.state.selectedValue === 'Ford'}
         onChange={(e) =>this.handleChange(e) }
         value="Ford"
         name="radio-button-demo"
-        inputProps={{ 'aria-label': 'B' }}
+        inputProps={{ 'aria-label': 'H' }}
       />
       <BlueRadio
         checked={this.state.selectedValue === 'Dell'}
         onChange={(e) =>this.handleChange(e) }
         value="Dell"
         name="radio-button-demo"
-        inputProps={{ 'aria-label': 'B' }}
+        inputProps={{ 'aria-label': 'I' }}
       />
       <BlueRadio
         checked={this.state.selectedValue === 'Target'}
         onChange={(e) =>this.handleChange(e) }
         value="Target"
         name="radio-button-demo"
-        inputProps={{ 'aria-label': 'B' }}
+        inputProps={{ 'aria-label': 'J' }}
       />
     </div>
   )
