@@ -166,8 +166,7 @@ class SignUp extends React.Component{
         </Box>
       </Container>
     );
-            }
-
+  }
 }
 
 export default withStyles(styles, )(SignUp);
