@@ -1,5 +1,5 @@
 import React from 'react';
-import MaterialTable, { MTableToolbar } from "material-table";
+import MaterialTable from "material-table";
 import Check from '@material-ui/icons/Check';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
@@ -12,21 +12,6 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import LoadingSymbol from './LoadingSymbol';
-import { FormatAlignCenter } from '@material-ui/icons';
-import Typography from "@material-ui/core/Typography";
-
-const MyNewTitle = ({ text, variant }) => (
-    <Typography
-      variant={variant}
-    //   style={{
-    //     // whiteSpace: "break-spaces",
-    //     overflow: "visible",
-    //     textOverflow: "inherit"
-    //   }}
-    >
-      {text}
-    </Typography>
-  );
 
 export default class HeadlineTable extends React.Component {
   state = {
@@ -97,11 +82,11 @@ export default class HeadlineTable extends React.Component {
       // data = {this.state.prices}
       // fake data
       data={[
-        { title: 'Google is Splitting?', author: 'Jane Doe', date: '3-17-2021', link: <a href="http://google.com/" target="_blank" style={{color:'blue'}}>http://google.com/</a> },
-        { title: 'Worker says Amazon hung anti-union signs in bathroom stalls', author: 'Joseph Pisani', date: '3-17-2021', link: <a href="https://www.marketbeat.com/articles/worker-says-amazon-hung-anti-union-signs-in-bathroom-stalls-2021-03-17/?1" target="_blank" style={{color:'blue'}}>https://www.marketbeat.com/</a> },
-        { title: 'Forget Tesla, Ford Motor May be the Best Auto Play', author: 'Marketbeat Staff', date: '3-16-2021', link: <a href="https://www.marketbeat.com/originals/forgot-tesla-ford-motor-may-be-the-best-auto-play/" target="_blank" style={{color:'blue'}}>https://www.marketbeat.com/</a> },
-        { title: 'How Tesla Is Taking Over', author: 'Bob Ross', date: '3-15-2021', link: <a href="http://tesla.com/" target="_blank" style={{color:'blue'}}>http://tesla.com/</a>},
-        { title: 'Will Target Take Over Walmart?', author: 'Alice Tran', date: '3-15-2021', link: <a href="http://target.com/" target="_blank" style={{color:'blue'}}>http://target.com/</a> }
+        { title: 'Google is Splitting?', author: 'Jane Doe', date: '3-17-2021', link: <a href="http://google.com/" target="_blank" rel="noreferrer" style={{color:'blue'}}>http://google.com/</a> },
+        { title: 'Worker says Amazon hung anti-union signs in bathroom stalls', author: 'Joseph Pisani', date: '3-17-2021', link: <a href="https://www.marketbeat.com/articles/worker-says-amazon-hung-anti-union-signs-in-bathroom-stalls-2021-03-17/?1" target="_blank" rel="noreferrer" style={{color:'blue'}}>https://www.marketbeat.com/</a> },
+        { title: 'Forget Tesla, Ford Motor May be the Best Auto Play', author: 'Marketbeat Staff', date: '3-16-2021', link: <a href="https://www.marketbeat.com/originals/forgot-tesla-ford-motor-may-be-the-best-auto-play/" target="_blank" rel="noreferrer" style={{color:'blue'}}>https://www.marketbeat.com/</a> },
+        { title: 'How Tesla Is Taking Over', author: 'Bob Ross', date: '3-15-2021', link: <a href="http://tesla.com/" target="_blank" rel="noreferrer" style={{color:'blue'}}>http://tesla.com/</a>},
+        { title: 'Will Target Take Over Walmart?', author: 'Alice Tran', date: '3-15-2021', link: <a href="http://target.com/" target="_blank" rel="noreferrer" style={{color:'blue'}}>http://target.com/</a> }
         
         
       ]}
