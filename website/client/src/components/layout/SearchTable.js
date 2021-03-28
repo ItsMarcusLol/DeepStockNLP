@@ -1,6 +1,5 @@
 import React from 'react';
 import MaterialTable from "material-table";
-import AddBox from '@material-ui/icons/AddBox';
 import Check from '@material-ui/icons/Check';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
@@ -12,10 +11,6 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import HistoricalTable from './HistoricalTable';
-import LoadingSymbol from './LoadingSymbol';
-
-
 
 // export default class HTable extends React.Component {
 function HT(props) {

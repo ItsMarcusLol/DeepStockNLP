@@ -16,7 +16,6 @@ import HistoricalTable from './HistoricalTable';
 import LoadingSymbol from './LoadingSymbol';
 import HeadlineTable from './HeadlineTable';
 import PredictionsTable from './PredictionsTable';
-// import DayPriceGraph from './DayPriceGraph';
 import HistoricalGraph from './HistoricalGraph';
 import Title from './Title';
 

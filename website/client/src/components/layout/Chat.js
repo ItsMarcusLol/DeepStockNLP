@@ -11,8 +11,6 @@ import FormControl from '@material-ui/core/FormControl';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
-
-
 const styles = (theme) => ({
   fC:{
     width: 1000,
@@ -29,18 +27,13 @@ const styles = (theme) => ({
   textF: {
     '& .MuiTextField-root': {
       margin: theme.spacing(0),
-      // marginLeft: 20,
       width: '30ch',
-      // minwidth: '35ch'
     },
   },
   button: {
     '& > *': {
-      
     width:225,
     height: 40,
-    // marginLeft:10,
-    // marginRight:10,
     margin: theme.spacing(2),
     },
   },
@@ -56,8 +49,6 @@ class Chat extends React.Component {
       stock: '',
       post: false,
       text : '',
-      // searchNodes: ""
-
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -73,13 +64,14 @@ class Chat extends React.Component {
         text: '',
     });
   }
+
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
     console.log(name)
     console.log(target)
-    if (name == 'post'){
+    if (name === 'post'){
       console.log("button click")
       this.setState({
         stock : '',
@@ -101,7 +93,6 @@ class Chat extends React.Component {
     const {classes} = this.props;
     
     return (  
-      //  <div>
          <Paper>
     
       <Grid container spacing={2} 
@@ -111,26 +102,14 @@ class Chat extends React.Component {
          
          >
 
-        <Grid item xs = {12}
-        //  container
-        //  direction="row"
-        //  justify="center"
-        //  alignItems="center"
-        >
+        <Grid item xs = {12}>
           <div>
           <ChatList/>
           </div>
         </Grid>
         
-        
-          <Grid item xs = {12} sm = {12} md = {6}
-          //  container
-          //  direction="row"
-          //  justify="center"
-          //  alignItems="center"
-          >
+          <Grid item xs = {12} sm = {12} md = {6}>
             <div> 
-            {/* <Paper> */}
             <form className={classes.textF} noValidate autoComplete="off">
               <TextField id="outlined-basic" 
               name = 'text'
@@ -141,21 +120,11 @@ class Chat extends React.Component {
               onChange = {this.handleInputChange}
               />
             </form>
-            
-            {/* </Paper> */}
             </div>
           </Grid>
-        
 
-        
-          <Grid item xs = {6} sm = {6} md = {3}
-        //  container
-        //  direction="row"
-        //  justify="center"
-        //  alignItems="center"
-        >
+          <Grid item xs = {6} sm = {6} md = {3}>
            <div>
-           {/* <Paper>  */}
             <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel id="demo-simple-select-outlined-label">Stock</InputLabel>
               <Select
@@ -175,31 +144,17 @@ class Chat extends React.Component {
                 <MenuItem value={'WMT'}>Walmart</MenuItem>
               </Select>
             </FormControl>
-            {/* </Paper>  */}
             </div>
           </Grid>
           
-
-        {/* <div> */}
-          <Grid item xs = {6} sm = {6} md = {2}
-          // container
-          // direction="row"
-          // justify="center"
-          // alignItems="center"
-
-          //value = {this.state.post}
-         >
-            {/* <form className={classes.button} noValidate autoComplete="off"> */}
+          <Grid item xs = {6} sm = {6} md = {2}>
             <div>
-            {/* <Paper>  */}
               <Button
               name = "post"
               type = "submit"
-              // value = {this.state.post}
               classes = {classes.button}
                onClick= {
                  this.buttonChange
-              
                 }
                 variant="contained"
                 color="primary"
@@ -207,16 +162,10 @@ class Chat extends React.Component {
                 >
                 Post
               </Button>
-              
-              {/* </Paper>  */}
               </div>
-          {/* </form> */}
           </Grid> 
-          {/* </div> */}
         </Grid>
         </Paper>
- 
-        // </div>
     );
    
   }

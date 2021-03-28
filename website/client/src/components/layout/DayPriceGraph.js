@@ -1,10 +1,7 @@
-import { ThemeProvider } from '@material-ui/styles';
 import React, { PureComponent } from 'react';
-import { useTheme } from '@material-ui/core/styles';
 import {
-  Line, LineChart, XAxis, YAxis, Label, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  Line, LineChart, XAxis, YAxis, Label, CartesianGrid, Tooltip
 } from 'recharts';
-import { render } from 'react-dom';
 
 const data = [
   {
