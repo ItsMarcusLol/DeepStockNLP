@@ -24,7 +24,7 @@ import Button from '@material-ui/core/Button';
 
 
 import { Link } from 'react-router-dom';
-import 'C:/Users/dcard/Cap-Repo/DeepStockNLP/website/client/src/App.css';
+// import 'C:/Users/dcard/Cap-Repo/DeepStockNLP/website/client/src/App.css';
 
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
