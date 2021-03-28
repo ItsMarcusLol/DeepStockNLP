@@ -12,8 +12,6 @@ import Container from '@material-ui/core/Container';
 import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
-
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -47,11 +45,8 @@ const styles = (theme) => ({
       },
     });
 
-
-
 class SignUp extends React.Component{
  
-
     constructor(props) {
       super(props);
       this.state = {
@@ -75,17 +70,11 @@ class SignUp extends React.Component{
   
 
       validateForm() {
-        return this.state.username.length > 0 && this.state.password.length > 0 && this.state.rePassword.length > 0;
+        return this.state.username.length > 0 && this.state.password.length >= 8 && this.state.rePassword.length >= 8;
       }
-
-     
-
 
       onChange = (e) =>   this.setState({ 
         [e.target.name]: e.target.value});
-
-      
-        
         
     render(){
       const {classes} = this.props;

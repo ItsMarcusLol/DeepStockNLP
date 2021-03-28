@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 
 function About() {
     return (
-        // <div>
-        // <Paper>
             <Grid container spacing = {2}
             direction="row"
             justify="space-evenly"
@@ -102,10 +100,7 @@ function About() {
             </Grid>
 
             <br/>
-
-        {/* // </div> */}
         </Grid>
-        // </Paper>
     );
 }
 

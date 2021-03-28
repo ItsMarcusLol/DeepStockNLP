@@ -13,9 +13,6 @@ import React from "react";
 import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
-import { positions } from '@material-ui/system';
-
-
 const styles = (theme) => ({
   paper: {
         marginTop: theme.spacing(8),
