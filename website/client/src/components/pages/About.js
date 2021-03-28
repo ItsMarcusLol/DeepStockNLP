@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function About() {
     return (
         // <div>
-        <Paper>
+        // <Paper>
             <Grid container spacing = {2}
             direction="row"
             justify="space-evenly"
@@ -105,19 +105,19 @@ function About() {
 
         {/* // </div> */}
         </Grid>
-        </Paper>
+        // </Paper>
     );
 }
 
 const headerStyle = {
-    color: 'black',
+    color: 'white',
     fontFamily: '-moz-initial',
     textAlign: 'center',
     fontSize: '37px'
 }
 
 const headerStyle2 = {
-    color: 'black',
+    color: 'white',
     fontFamily: '-moz-initial',
     textAlign: 'center',
     fontSize: '33px',
@@ -125,6 +125,7 @@ const headerStyle2 = {
 }
 
 const paragraphStyle = {
+    color: 'white',
     fontFamily: 'inherit',
     fontSize: '20px'
 }
