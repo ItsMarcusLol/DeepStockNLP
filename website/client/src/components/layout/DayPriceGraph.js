@@ -84,7 +84,7 @@ export default class Example extends PureComponent {
     console.log("Day Price Graph: " ,this.props.symb)
     return (
       <div> 
-      <h1> {this.props.symb}:</h1>
+      <h1 style={{color:'white'}}> {this.props.symb}:</h1>
       <LineChart
         width={650}
         height={300}
@@ -94,8 +94,20 @@ export default class Example extends PureComponent {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
+        <XAxis dataKey="name" stroke="#FFF"/>
+        <YAxis
+          stroke="#FFF">
+            <Label
+                angle={270}
+                position="left"
+                sylte={{ textAnchor: 'middle'}} 
+                stroke="#FFFFFF"
+                fontSize="17"
+                fontFamily="normal"
+                >
+                    Prices ($)
+                </Label>
+        </YAxis>
         <Tooltip />
         {/* <Legend /> */}
         <Line type="monotone" dataKey="Volume" stroke="#82ca9d" activeDot={{ r: 8 }} />
