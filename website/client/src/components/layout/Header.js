@@ -60,7 +60,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Link } from 'react-router-dom';
-import 'C:/Users/dcard/Cap-Repo/DeepStockNLP/website/client/src/App.css';
+// import 'C:/Users/dcard/Cap-Repo/DeepStockNLP/website/client/src/App.css';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
