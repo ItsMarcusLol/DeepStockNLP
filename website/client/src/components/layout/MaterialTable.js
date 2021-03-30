@@ -78,7 +78,7 @@ export default class PriceTable extends React.Component {
        
       //  <div style={{"font-size" : "12px", "height" : "90px", "width" : "100%"}}>
       // <div>
-       <div style={{fontSize: "12px", height : "90px", width : "100%", left:"left"}}> 
+       <div style={{fontSize: "12px", width : "100%", left:"left"}}> 
         
         <MaterialTable style={{ width: '100%' }}
             icons={{
