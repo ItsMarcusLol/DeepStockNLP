@@ -7,7 +7,7 @@ app = Flask(__name__)
 api = Api(app)
 
 forumManager = ForumManager()
-messageManager = MessageManager()
+#messageManager = MessageManager()
 
 class Conversation(Resource):
     def get(self):
