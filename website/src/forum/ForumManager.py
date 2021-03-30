@@ -2,7 +2,7 @@ from random import randint
 import mysql.connector
 import datetime
 
-conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', database='forum')
+conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', database='accounts')
 
 class ForumManager():
     def getConversation(self, id):
