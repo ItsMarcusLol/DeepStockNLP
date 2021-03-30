@@ -5,9 +5,9 @@ import DayPriceGraph from './DayPriceGraph';
 
 const BlueRadio = withStyles({
   root: {
-    color: "blue",
+    color: "#1CE",
     '&$checked': {
-      color: "blue",
+      color: "#1CE",
     },
   },
   checked: {},
