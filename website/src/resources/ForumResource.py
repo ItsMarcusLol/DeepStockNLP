@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_restful import Api, Resource
-from forum.ForumManager import ForumManager
-from forum.MessageManager import MessageManager
+from forum.ForumManager import ForumManager, MessageManager
 
 app = Flask(__name__)
 api = Api(app)
