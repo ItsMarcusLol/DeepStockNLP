@@ -70,7 +70,7 @@ class SignUp extends React.Component{
   
 
       validateForm() {
-        return this.state.username.length > 0 && this.state.password.length >= 8 && this.state.rePassword.length >= 8;
+        return this.state.username.length > 0 && this.state.password.length > 0 && this.state.rePassword.length > 0;
       }
 
       onChange = (e) =>   this.setState({ 
