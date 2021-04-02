@@ -1,10 +1,8 @@
-
 import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -12,17 +10,6 @@ import Container from '@material-ui/core/Container';
 import React from "react";
 import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-
-import { positions } from '@material-ui/system';
-
-// import Footer from 'C:/Users\dcard/Cap-Repo/DeepStockNLP/website/client/src/components/layout/Footer';
-
-const divStyle = {
-  // width: '88%',
-  height: '900px',
-  // backgroundImage: `url(${imgMyimageexample})`,
-  backgroundSize: 'cover'  
-};
 
 const styles = (theme) => ({
   paper: {
@@ -34,6 +21,12 @@ const styles = (theme) => ({
       avatar: {
         margin: theme.spacing(1),
         backgroundColor: "#F05"
+      },
+      div:{
+        // width: '88%',
+        height: '900px',
+        // backgroundImage: `url(${imgMyimageexample})`,
+        backgroundSize: 'cover'  
       },
       form: {
         width: '100%', // Fix IE 11 issue.
@@ -53,21 +46,8 @@ const styles = (theme) => ({
 
     });
 
-    function Copyright() {
-      return (
-        <Typography variant="body2" color="textSecondary" align="center">
-          {'Copyright © '}
-          <Link color="inherit" href="https://material-ui.com/">
-            Your Website
-          </Link>{' '}
-          {new Date().getFullYear()}
-          {'.'}
-        </Typography>
-      );
-    }
 
 class Login extends React.Component{
- 
 
     constructor(props) {
       super(props);
@@ -82,8 +62,6 @@ class Login extends React.Component{
       this.handleSubmit = this.handleSubmit.bind(this);
       this.onChange = this.onChange.bind(this);
     }
-   
-  
 
       validateForm() {
         return this.state.username.length > 0 && this.state.password.length > 0;
@@ -114,10 +92,7 @@ class Login extends React.Component{
 
       onChange = (e) =>   this.setState({ 
         [e.target.name]: e.target.value});
-
-      
-        
-        
+  
     render(){
       const {classes} = this.props;
 
@@ -162,10 +137,7 @@ class Login extends React.Component{
               value = {this.state.password}
               onChange = {(e) => { this.onChange(e)}} 
             />
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
+           
             <Button
               type="submit"
               fullWidth
@@ -173,47 +145,23 @@ class Login extends React.Component{
               color="primary"
               className={classes.submit}
               disabled={!this.validateForm()}
-              // onSubmit = {(event) => handleSubmit(event)}
             >
               Sign In
             </Button>
             <Grid container>
-              {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid> */}
               <Grid item>
-                {/* <Link href="#" variant="body2"> */}
                 <Link to="/signup" style={{color: 'blue'}}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
           </form>
-        </div>
-        {/* <Box 
-        mt={15}  
-        // position="absolute"
-        // top={}
-        
-        
-        // position='absolute'
-        left='0'
-        bottom='0'
-        right='0'
-        // bgcolor="background.paper"
-        >
-          <Copyright />
-        </Box> */}
-
-        
+        </div> 
       </Container>
 
      </div>
     );
-            }
-
+  }
 }
 
 export default withStyles(styles, )(Login);
