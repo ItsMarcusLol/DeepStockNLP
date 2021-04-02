@@ -5,7 +5,7 @@ import Header from './components/layout/Header2';
 import About from './components/pages/About';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
-import FetchStockPrices from './components/layout/FetchStockPrices';
+import PriceTicker from './components/layout/PriceTicker';
 import MaterialTable from './components/layout/MaterialTable';
 import Grid from '@material-ui/core/Grid';
 import Chat from './components/layout/Chat';
@@ -39,7 +39,7 @@ class App extends Component {
                 <React.Fragment>
                   <Grid container spacing={3}>
                   <Grid item xs={12}>
-                    <FetchStockPrices />
+                    <PriceTicker />
                   </Grid>
 
                   <Grid item xs={6}>
