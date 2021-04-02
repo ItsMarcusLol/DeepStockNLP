@@ -13,9 +13,6 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import LoadingSymbol from './LoadingSymbol';
 
-
-
-
 export default class HistoricalTable extends React.Component {
   state = {
       loading: true, 

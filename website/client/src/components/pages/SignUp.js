@@ -11,8 +11,6 @@ import Container from '@material-ui/core/Container';
 import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
-
-
 const styles = (theme) => ({
   paper: {
         marginTop: theme.spacing(8),
