@@ -15,6 +15,14 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { positions } from '@material-ui/system';
 
+// import Footer from 'C:/Users\dcard/Cap-Repo/DeepStockNLP/website/client/src/components/layout/Footer';
+
+const divStyle = {
+  // width: '88%',
+  height: '900px',
+  // backgroundImage: `url(${imgMyimageexample})`,
+  backgroundSize: 'cover'  
+};
 
 const styles = (theme) => ({
   paper: {
@@ -34,6 +42,15 @@ const styles = (theme) => ({
       submit: {
         margin: theme.spacing(3, 0, 2),
       },
+      container: {
+        backgroundImage:  'linear-gradient(180deg, rgb(4, 30, 117), rgb(0, 255, 234))',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        width: '100vw',
+        height: '100vh'
+    }
+
     });
 
     function Copyright() {
@@ -108,8 +125,8 @@ class Login extends React.Component{
                     return <Redirect to={"/"} />
                 }
     return (
-      // <div>
-      <Container component="main" maxWidth="xs">
+      <div style={divStyle}>
+       <Container component="main" maxWidth="xs" minHeight= '100%' >
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -175,7 +192,7 @@ class Login extends React.Component{
             </Grid>
           </form>
         </div>
-        <Box 
+        {/* <Box 
         mt={15}  
         // position="absolute"
         // top={}
@@ -188,9 +205,12 @@ class Login extends React.Component{
         // bgcolor="background.paper"
         >
           <Copyright />
-        </Box>
+        </Box> */}
+
+        
       </Container>
-      /* </div> */
+
+     </div>
     );
             }
 

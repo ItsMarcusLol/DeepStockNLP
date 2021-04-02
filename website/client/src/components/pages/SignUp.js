@@ -12,7 +12,12 @@ import Container from '@material-ui/core/Container';
 import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
-
+const divStyle = {
+  // width: '88%',
+  height: '900px',
+  // backgroundImage: `url(${imgMyimageexample})`,
+  backgroundSize: 'cover'  
+};
 
 function Copyright() {
   return (
@@ -94,6 +99,7 @@ class SignUp extends React.Component{
                     return <Redirect to={"/"} />
                 }
     return (
+      <div style={divStyle}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -172,10 +178,11 @@ class SignUp extends React.Component{
             </Grid>
           </form>
         </div>
-        <Box mt={8}>
+        {/* <Box mt={8}>
           <Copyright />
-        </Box>
+        </Box> */}
       </Container>
+      </div>
     );
             }
 
