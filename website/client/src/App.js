@@ -7,16 +7,10 @@ import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
 import FetchStockPrices from './components/layout/FetchStockPrices';
 import MaterialTable from './components/layout/MaterialTable';
-import DayPriceGraph from './components/layout/DayPriceGraph';
-// import HTable from './components/layout/HTable';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Chat from './components/layout/Chat';
-// import SearchTextBox from './components/layout/SearchTextBox';
 import RadioB from './components/layout/RadioB';
 import Search from './components/layout/Search';
-import ChatList from './components/layout/ChatList';
 
 class App extends Component {
   state = {

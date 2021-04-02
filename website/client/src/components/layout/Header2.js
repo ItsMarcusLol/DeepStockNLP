@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -24,7 +23,7 @@ import Button from '@material-ui/core/Button';
 
 
 import { Link } from 'react-router-dom';
-import 'C:/Users/dcard/Cap-Repo/DeepStockNLP/website/client/src/App.css';
+// import 'C:/Users/dcard/Cap-Repo/DeepStockNLP/website/client/src/App.css';
 
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -189,7 +188,7 @@ return (
             </IconButton>
             </div>
             <div   style = {titleStyle}> 
-            <Typography   variant="h6" noWrap  style = {titleStyle}>
+            <Typography   variant="h6" noWrap  style = {titleStyle} component={Link} to="/">
               DeepStockNLP
             </Typography>
 

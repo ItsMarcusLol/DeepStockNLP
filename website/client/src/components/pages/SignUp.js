@@ -52,11 +52,8 @@ const styles = (theme) => ({
       },
     });
 
-
-
 class SignUp extends React.Component{
  
-
     constructor(props) {
       super(props);
       this.state = {
@@ -83,14 +80,8 @@ class SignUp extends React.Component{
         return this.state.username.length > 0 && this.state.password.length > 0 && this.state.rePassword.length > 0;
       }
 
-     
-
-
       onChange = (e) =>   this.setState({ 
         [e.target.name]: e.target.value});
-
-      
-        
         
     render(){
       const {classes} = this.props;
@@ -171,8 +162,8 @@ class SignUp extends React.Component{
               </Grid> */}
               <Grid item>
                 {/* <Link href="#" variant="body2"> */}
-                <Link to="/signup" style={{color: 'blue'}}>
-                  {"Don't have an account? Sign Up"}
+                <Link to="/login" style={{color: 'blue'}}>
+                  {"Already have an account? Sign In"}
                 </Link>
               </Grid>
             </Grid>
@@ -184,8 +175,7 @@ class SignUp extends React.Component{
       </Container>
       </div>
     );
-            }
-
+  }
 }
 
 export default withStyles(styles, )(SignUp);

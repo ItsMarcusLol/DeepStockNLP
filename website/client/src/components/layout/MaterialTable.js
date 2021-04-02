@@ -16,7 +16,6 @@ import HistoricalTable from './HistoricalTable';
 import LoadingSymbol from './LoadingSymbol';
 import HeadlineTable from './HeadlineTable';
 import PredictionsTable from './PredictionsTable';
-// import DayPriceGraph from './DayPriceGraph';
 import HistoricalGraph from './HistoricalGraph';
 import Title from './Title';
 
@@ -79,7 +78,7 @@ export default class PriceTable extends React.Component {
        
       //  <div style={{"font-size" : "12px", "height" : "90px", "width" : "100%"}}>
       // <div>
-       <div style={{fontSize: "12px", height : "90px", width : "100%", left:"left"}}> 
+       <div style={{fontSize: "12px", width : "100%", left:"left"}}> 
         
         <MaterialTable style={{ width: '100%' }}
             icons={{

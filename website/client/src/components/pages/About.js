@@ -1,12 +1,9 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 
 function About() {
     return (
-        // <div>
-        <Paper>
             <Grid container spacing = {2}
             direction="row"
             justify="space-evenly"
@@ -102,22 +99,19 @@ function About() {
             </Grid>
 
             <br/>
-
-        {/* // </div> */}
         </Grid>
-        </Paper>
     );
 }
 
 const headerStyle = {
-    color: 'black',
+    color: 'white',
     fontFamily: '-moz-initial',
     textAlign: 'center',
     fontSize: '37px'
 }
 
 const headerStyle2 = {
-    color: 'black',
+    color: 'white',
     fontFamily: '-moz-initial',
     textAlign: 'center',
     fontSize: '33px',
@@ -125,6 +119,7 @@ const headerStyle2 = {
 }
 
 const paragraphStyle = {
+    color: 'white',
     fontFamily: 'inherit',
     fontSize: '20px'
 }

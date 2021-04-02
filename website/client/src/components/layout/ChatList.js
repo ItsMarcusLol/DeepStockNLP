@@ -5,7 +5,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Divider from '@material-ui/core/Divider';
-import { shadows } from '@material-ui/system';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,8 +13,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     position: 'relative',
     overflow: 'auto',
-    maxHeight: 500,
-    
+    maxHeight: 538,
   },
   listSection: {
     backgroundColor: 'inherit',
