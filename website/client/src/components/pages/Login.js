@@ -100,7 +100,7 @@ class Login extends React.Component{
                     return <Redirect to={"/"} />
                 }
     return (
-      <div style={divStyle}>
+      <div className = {classes.div}>
        <Container component="main" maxWidth="xs" minHeight= '100%' >
         <CssBaseline />
         <div className={classes.paper}>

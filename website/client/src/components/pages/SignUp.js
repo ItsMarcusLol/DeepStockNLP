@@ -11,12 +11,6 @@ import Container from '@material-ui/core/Container';
 import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
-const divStyle = {
-  // width: '88%',
-  height: '900px',
-  // backgroundImage: `url(${imgMyimageexample})`,
-  backgroundSize: 'cover'  
-};
 
 
 const styles = (theme) => ({
@@ -29,6 +23,12 @@ const styles = (theme) => ({
       avatar: {
         margin: theme.spacing(1),
         backgroundColor: "#F05"
+      },
+      div:{
+        // width: '88%',
+        height: '900px',
+        // backgroundImage: `url(${imgMyimageexample})`,
+        backgroundSize: 'cover' 
       },
       form: {
         width: '100%', // Fix IE 11 issue.
@@ -77,7 +77,7 @@ class SignUp extends React.Component{
                     return <Redirect to={"/"} />
                 }
     return (
-      <div style={divStyle}>
+      <div className = {classes.div}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
