@@ -7,13 +7,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
+
 
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+    const top = 60;
+    const left = 60;
 
   return {
     top: `${top}%`,
@@ -43,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState("");
   const [text, setText] = React.useState("");
-  {console.log(title)}
+ 
     
   
 
