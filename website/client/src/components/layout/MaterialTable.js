@@ -148,9 +148,9 @@ export default class PriceTable extends React.Component {
               return (
                 <div>
                 
-                <Title>Historical Prices</Title>
+                {/* <Title>Historical Prices</Title> */}
                   
-                <HistoricalGraph />
+                {/* <HistoricalGraph /> */}
 
                 <HistoricalTable symb ={rowData.symbol} />
                 
