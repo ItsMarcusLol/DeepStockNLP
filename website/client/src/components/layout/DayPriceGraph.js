@@ -82,6 +82,7 @@ export default class Example extends PureComponent {
     return (
       <div> 
       <h1 style={{color:'white'}}> {this.props.symb}:</h1>
+      <ResponsiveContainer width='100%'  aspect={4.0/2.0}>
       <LineChart
         width={650}
         height={300}
@@ -110,7 +111,9 @@ export default class Example extends PureComponent {
         <Line type="monotone" dataKey="Volume" stroke="#82ca9d" activeDot={{ r: 8 }} />
         {/* <Line type="monotone" dataKey="Low" stroke="red" />
         <Line type="monotone" dataKey="Volume" stroke="#8884d8" /> */}
+       
       </LineChart>
+      </ResponsiveContainer>
       </div> 
     );
   }
