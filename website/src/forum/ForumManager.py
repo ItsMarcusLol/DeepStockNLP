@@ -2,6 +2,7 @@ from random import randint
 import mysql.connector
 import datetime
 
+# TODO test if valid user ID
 conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', database='forum')
 
 class ForumManager():
@@ -17,7 +18,7 @@ class ForumManager():
             cursor.close()
             return msg
     
-    # TODO check to see if user_id is valid and if message length is adequate
+    # TODO check to see if user_id is valid and if message length is adequate (250 chars)
     def create_conversation(self, user_id, message):
         id = self.create_conversation_id()
         cursor = conn.cursor() 
