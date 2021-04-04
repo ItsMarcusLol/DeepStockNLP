@@ -5,18 +5,15 @@ import DayPriceGraph from './DayPriceGraph';
 
 const BlueRadio = withStyles({
   root: {
-    color: "blue",
+    color: "#1CE",
     '&$checked': {
-      color: "blue",
+      color: "#1CE",
     },
   },
   checked: {},
 })((props) => <Radio color="default" {...props} />);
 
 export default class RadioButtons extends React.Component {
- // const [selectedValue, setSelectedValue] = React.useState('a');
-
-
 
  constructor(props) {
   super(props);
@@ -26,11 +23,9 @@ export default class RadioButtons extends React.Component {
   };
 
   this.handleChange = this.handleChange.bind(this);
-  // this.buttonChange = this.buttonChange.bind(this);
 }
 
    handleChange = (event) => {
-    //setSelectedValue(event.target.value);
     this.setState({selectedValue: event.target.value})
     console.log(this.state.selectedValue)
   };

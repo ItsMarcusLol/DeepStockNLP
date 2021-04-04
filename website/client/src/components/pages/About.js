@@ -124,5 +124,4 @@ const paragraphStyle = {
     fontSize: '20px'
 }
 
-
 export default About;

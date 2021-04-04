@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -11,19 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const styles = (theme) => ({
   paper: {
@@ -35,6 +21,12 @@ const styles = (theme) => ({
       avatar: {
         margin: theme.spacing(1),
         backgroundColor: "#F05"
+      },
+      div:{
+        // width: '88%',
+        height: '900px',
+        // backgroundImage: `url(${imgMyimageexample})`,
+        backgroundSize: 'cover' 
       },
       form: {
         width: '100%', // Fix IE 11 issue.
@@ -83,6 +75,7 @@ class SignUp extends React.Component{
                     return <Redirect to={"/"} />
                 }
     return (
+      <div className = {classes.div}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -131,10 +124,7 @@ class SignUp extends React.Component{
                 value= {this.state.rePassword}
                 onChange = {(e) => {this.onChange(e)}}
               />
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
+           
             <Button
               type="submit"
               fullWidth
@@ -142,16 +132,11 @@ class SignUp extends React.Component{
               color="primary"
               className={classes.submit}
               disabled={!this.validateForm()}
-              // onSubmit = {(event) => handleSubmit(event)}
+             
             >
               Sign In
             </Button>
             <Grid container>
-              {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid> */}
               <Grid item>
                 {/* <Link href="#" variant="body2"> */}
                 <Link to="/login" style={{color: 'blue'}}>
@@ -161,10 +146,8 @@ class SignUp extends React.Component{
             </Grid>
           </form>
         </div>
-        <Box mt={8}>
-          <Copyright />
-        </Box>
       </Container>
+      </div>
     );
   }
 }

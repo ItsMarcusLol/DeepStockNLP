@@ -12,20 +12,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-
-
-
 import Button from '@material-ui/core/Button';
-
-
 import { Link } from 'react-router-dom';
-// import 'C:/Users/dcard/Cap-Repo/DeepStockNLP/website/client/src/App.css';
-
-
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -161,9 +150,7 @@ export default function PersistentDrawerLeft() {
 return (
 
   <div className={classes.grow}>
-         {/* <div className={classes.root}>  */}
-       {/* <CssBaseline />*/}
-    
+      
     <AppBar
          position="fixed"
          style = {headerStyle}
@@ -172,7 +159,6 @@ return (
            [classes.appBarShift]: open,
          })}
        >
-      {/* <AppBar position="static" style = {headerStyle}>  */}
   
       <Toolbar> 
           <div style = {titleStyle} > 
@@ -208,14 +194,6 @@ return (
                 >
                 <AccountCircle />
                </IconButton>
-              
-              
-                 {/* <Typography style ={usernameStyle} variant="caption" noWrap> */}
-               {/* <Typography  variant="caption"   noWrap>
-                     Username
-                </Typography> */}
-
-         
 
           <Button
           ref={anchorRef}
@@ -235,8 +213,6 @@ return (
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
@@ -268,12 +244,6 @@ return (
         </div>
         <Divider />
         <List>
-          {/* {['Home', 'About', 'Login', 'SignUp'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))} */}
            <ListItem button key={"Home"} component={Link} to="/">
             <ListItemText primary= "Home"/>
             </ListItem>
@@ -291,14 +261,7 @@ return (
           </ListItem>
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        
       </Drawer>
 
       <main
@@ -307,9 +270,6 @@ return (
           })}
         >
         </main>
-        {/* <Toolbar>
-     ...toolbar content... */}
-  {/* <Toolbar/> */}
   <div style = {{marginBottom : "20px"}}>.....</div>
  
   </div>

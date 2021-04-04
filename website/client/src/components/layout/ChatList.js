@@ -9,26 +9,22 @@ import Divider from '@material-ui/core/Divider';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    maxWidth: 800,
+    // maxWidth: 800,
     backgroundColor: theme.palette.background.paper,
     position: 'relative',
     overflow: 'auto',
-    maxHeight: 500,
-    
+    maxHeight: 538,
   },
   listSection: {
     backgroundColor: 'inherit',
     fontSize: 60,
-    
   },
   listSubH: {
     backgroundColor: 'inherit',
-    
   },
   ul: {
     backgroundColor: 'inherit',
-    padding: 0,
-    
+    padding: 0, 
   },
   listSubHeaderRoot: {
     backgroundColor: 'lightgray',
@@ -52,20 +48,16 @@ acctPts.set('jimfod', {stock: "Google", post: ["I think Google stock will go dow
 // acctPts..get('Jessie') // {phone: "213-555-1234", address: "123 N 1st Ave"}
 // acctPts..delete('Raymond') // false
 
-console.log(acctPts.get("Jessie123"))
-console.log(acctPts.get("Jessie123").post)
+
 
 export default function PinnedSubheaderList() {
   const classes = useStyles();
 
-//   const keys = acctPts.keys();
   let keys = Array.from( acctPts.keys() );
 
   const a = [1,2,4];
 
-  console.log(a)
-
-  console.log(acctPts.keys())
+  
 
   return (
     <List className={classes.root} subheader={<li />}>

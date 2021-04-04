@@ -80,9 +80,6 @@ class Chat extends React.Component {
       });
     }
     else{
-    console.log(value)
-    console.log(name)
-
     this.setState({
       [name]: value
     });
@@ -142,6 +139,7 @@ class Chat extends React.Component {
                 <MenuItem value={'AMZN'}>Amazon</MenuItem>
                 <MenuItem value={'F'}>Ford</MenuItem>
                 <MenuItem value={'WMT'}>Walmart</MenuItem>
+                
               </Select>
             </FormControl>
             </div>
