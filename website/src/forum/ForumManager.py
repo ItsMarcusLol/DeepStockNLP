@@ -56,6 +56,7 @@ class MessageManager():
         cursor = conn.cursor()
         query = "SELECT * FROM forum_data WHERE conversation_id=" + str(conversation_id)
         cursor.execute(query)
+        cursor.fetchall()
         rows = cursor.rowcount
         if (rows == 0):
             cursor.close()
