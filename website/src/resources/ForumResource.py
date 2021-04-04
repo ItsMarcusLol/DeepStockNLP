@@ -12,7 +12,7 @@ class Conversation(Resource):
     def get(self):
         json_data = request.get_json(force=True)
         conversation_id = json_data['conversation_id']
-        return forumManager.getConversation(conversation_id)
+        return jsonify(forumManager.getConversation(conversation_id))
     
     # TODO start a message thread
     def post(self):
@@ -27,7 +27,7 @@ class Message(Resource):
         conversation_id = json_data['conversation_id']
         user_id = json_data['user_id']
         count = json_data['count']
-        return messageManager.getMessage(conversation_id, user_id, count)
+        return jsonify(messageManager.getMessage(conversation_id, user_id, count))
 
     # Adds message to a thread
     def post(self):
