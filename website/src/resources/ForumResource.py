@@ -18,14 +18,16 @@ class Conversation(Resource):
     def post(self):
         json_data = request.get_json(force=True)
         user_id = json_data['user_id']
-        return forumManager.create_conversation(user_id)
+        message = json_data['message']
+        return forumManager.create_conversation(user_id, message)
 
 class Message(Resource):
     def get(self):
         json_data = request.get_json(force=True)
         conversation_id = json_data['conversation_id']
         user_id = json_data['user_id']
-        return messageManager.getMessage(conversation_id, user_id)
+        count = json_data['count']
+        return messageManager.getMessage(conversation_id, user_id, count)
 
     # Adds message to a thread
     def post(self):

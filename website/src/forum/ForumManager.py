@@ -6,7 +6,15 @@ conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', dat
 
 class ForumManager():
     def getConversation(self, id):
-        return None
+        cursor = conn.cursor()
+        query = "SELECT * FROM forum_data WHERE conversation_id=" + str(id)
+        cursor.execute(query)
+        msg = cursor.fetchone()
+        cursor.close()
+        if (not msg):
+            return None
+        else:
+            return msg
     
     # TODO check to see if user_id is valid and if message length is adequate
     def create_conversation(self, user_id, message):
