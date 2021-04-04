@@ -61,7 +61,7 @@ class MessageManager():
             return False
         else:
             utc = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
-            query = "INSERT INTO forum_data(conversation_id, user_id, date_time, count, text) VALUES(" + str(conversation_id) +","+str(user_id)+","+str(utc)+","+str(rows)+",\"" + message +"\")"
+            query = "INSERT INTO forum_data(conversation_id, user_id, date_time, count, text) VALUES(%s,%s,\"%s\",%s,\"%s\")" % (str(id),str(user_id),str(utc),str(rows),message)
             cursor.execute(query)
             conn.commit()
             cursor.close()
