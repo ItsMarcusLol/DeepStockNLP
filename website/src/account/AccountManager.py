@@ -39,8 +39,10 @@ class AccountManager():
     def create_account(self, username, password):
         if len(username) > 20 or str.isspace(username):
             return -1
-        elif self.account_exists(username):
+        elif self.validPassword(password):
             return -2
+        elif self.account_exists(username):
+            return -3
         else:
             userId = self.genUserId()
             cursor = conn.cursor()
@@ -69,6 +71,10 @@ class AccountManager():
             return True
         else:
             return False
+    
+    # TODO fill function
+    def validPassword(self, password):
+        return False
     
     def genUserId(self):
         cursor = conn.cursor()
