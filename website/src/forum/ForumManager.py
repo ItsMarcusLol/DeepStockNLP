@@ -54,9 +54,10 @@ class MessageManager():
     # TODO check to see if user_id is valid and if message length is adequate
     def create_messsage(self, conversation_id, user_id, message):
         cursor = conn.cursor()
-        query = "SELECT COUNT(*) FROM forum_data WHERE conversation_id=" + str(conversation_id)
-        rows = cursor.execute(query)
-        if (int(rows) == 0):
+        query = "SELECT * FROM forum_data WHERE conversation_id=" + str(conversation_id)
+        cursor.execute(query)
+        rows = cursor.rowcount
+        if (rows == 0):
             cursor.close()
             return False
         else:
