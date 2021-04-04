@@ -21,7 +21,8 @@ class ForumManager():
         id = self.create_conversation_id()
         cursor = conn.cursor() 
         utc = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
-        query = "INSERT INTO forum_data(conversation_id, user_id, date_time, count, text) VALUES(" + str(id) +","+str(user_id)+","+str(utc)+","+str(0)+",\"" + message +"\")"
+        #query = "INSERT INTO forum_data(conversation_id, user_id, date_time, count, text) VALUES(" + str(id) +","+str(user_id)+","+str(utc)+","+str(0)+",\"" + message +"\")"
+        query = "INSERT INTO forum_data(conversation_id, user_id, date_time, count, text) VALUES(%s,%s,%s,%s,'%s')" % (str(id),str(user_id),str(utc),str(0),message)
         cursor.execute(query)
         conn.commit()
         cursor.close()
