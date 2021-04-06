@@ -22,14 +22,8 @@ class Account(Resource):
         id = json_data['id']
         id_type = json_data['type']
         if (id_type=='name'):
-            '''account_json = jsonify(accountManager.get_account_name(id))
-            id_json = account_json['id']
-            username_json = account_json['username']'''
             return jsonify(accountManager.get_account_name(id))
         elif (id_type=='id'):
-            '''account_json = jsonify(accountManager.get_account_id(id))
-            id_json = account_json['id']
-            username_json = account_json['username']'''
             return jsonify(accountManager.get_account_id(id))
         else:
             return jsonify(success=False)
