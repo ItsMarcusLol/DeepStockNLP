@@ -22,7 +22,7 @@ class AccountManager():
     
     def get_account_id(self, userId):
         cursor = conn.cursor()
-        query = "SELECT * FROM account_data WHERE user_id=" + userId
+        query = "SELECT username,user_id FROM account_data WHERE user_id=" + userId
         cursor.execute(query)
         result = cursor.fetchone()
         cursor.close()
@@ -30,7 +30,7 @@ class AccountManager():
 
     def get_account_name(self, username):
         cursor = conn.cursor()
-        query = "SELECT * FROM account_data WHERE username=\"" + username + "\""
+        query = "SELECT username,user_id FROM account_data WHERE username=\"" + username + "\""
         cursor.execute(query)
         result = cursor.fetchone()
         cursor.close()
