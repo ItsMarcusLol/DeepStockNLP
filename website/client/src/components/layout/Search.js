@@ -7,8 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 
-
-
 function getModalStyle() {
     const top = 60;
     const left = 60;

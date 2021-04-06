@@ -11,8 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import Chat from './components/layout/Chat';
 import RadioB from './components/layout/RadioB';
 import Search from './components/layout/Search';
-
-
+s
 class App extends Component {
   
   state = {
@@ -21,8 +20,6 @@ class App extends Component {
     userId: '',
     authenticated: false
   };
-
-
 
   login = (username, password) => {
     this.setState({ username: username, password: password, userId: 123, authenticated: true });

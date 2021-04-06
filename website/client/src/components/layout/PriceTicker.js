@@ -64,16 +64,8 @@ import LoadingSymbol from './LoadingSymbol';
                   </PageVisibility>
                   </div>
             );
-               }
+          }
                
-    
 }
 
-
 export default PriceTicker;
-
-
-
-
-
-

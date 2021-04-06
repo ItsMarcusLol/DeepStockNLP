@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
-  Line, LineChart, XAxis, YAxis, Label, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  Line, LineChart, XAxis, YAxis, Label, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
 
 const data = [
@@ -109,8 +109,6 @@ export default class Example extends PureComponent {
         <Tooltip />
         {/* <Legend /> */}
         <Line type="monotone" dataKey="Volume" stroke="#82ca9d" activeDot={{ r: 8 }} />
-        {/* <Line type="monotone" dataKey="Low" stroke="red" />
-        <Line type="monotone" dataKey="Volume" stroke="#8884d8" /> */}
        
       </LineChart>
       </ResponsiveContainer>

@@ -74,8 +74,6 @@ export default class Example extends PureComponent {
         <Tooltip />
         {/* <Legend /> */}
         <Line type="monotone" dataKey="amount" stroke="#82ca9d" activeDot={{ r: 8 }} />
-        {/* <Line type="monotone" dataKey="Low" stroke="red" />
-        <Line type="monotone" dataKey="Volume" stroke="#8884d8" /> */}
       </LineChart>
       </div> 
     );
