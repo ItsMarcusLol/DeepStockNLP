@@ -33,7 +33,7 @@ class Account(Resource):
         json_data = request.get_json(force=True)
         username = json_data['username']
         password = json_data['password']
-        return jsonify(accountManager.create_account(username, password))
+        return accountManager.create_account(username, password)
 
 api.add_resource(Login, '/login')
 api.add_resource(Account, '/account')
