@@ -58,6 +58,18 @@ class SignUp extends React.Component{
         if (this.state.password === this.state.rePassword) {
             this.setState({ username: '', password: '',rePassword: '', redirect: true });
         }
+        fetch('http://104.196.230.228:80/account', {method: "POST", body: JSON.stringify({username: this.state.username, password: this.state.password})})
+          .then( (response) => {
+            if ( response.status !== 200) {
+              console.log("Error: " + response.status);
+            } else {
+              console.log(response.status);
+              return response.text();
+            }
+          })
+          .then( (text) => {
+            console.log(text);
+          });
        } 
   
 

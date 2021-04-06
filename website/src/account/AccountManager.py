@@ -1,3 +1,4 @@
+from flask import Flask, jsonify, make_response
 import mysql.connector
 import bcrypt
 from random import randint
@@ -38,11 +39,11 @@ class AccountManager():
     
     def create_account(self, username, password):
         if len(username) > 20 or str.isspace(username):
-            return -1
+            return make_response(jsonify({"message": "Username too long or blank"}), 400)
         elif self.validPassword(password):
-            return -2
+            return make_response(jsonify({"message": "Invalid password"}), 400)
         elif self.account_exists(username):
-            return -3
+            return make_response(jsonify({"message": "Username already exists"}), 400)
         else:
             userId = self.genUserId()
             cursor = conn.cursor()
@@ -59,7 +60,7 @@ class AccountManager():
                 cursor.close()
                 return -1'''
             cursor.close()
-            return 1
+            return make_response(jsonify({"message": "Account created successfully"}), 200)
 
     def account_exists(self, username):
         cursor = conn.cursor()
