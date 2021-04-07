@@ -13,7 +13,7 @@ class Login(Resource):
         json_data = request.get_json(force=True)
         username = json_data['username']
         password = json_data['password']
-        return jsonify(success=accountManager.login(username, password))
+        return accountManager.login(username, password)
 
 class Account(Resource):
     # TODO make sure to not return password in tuple

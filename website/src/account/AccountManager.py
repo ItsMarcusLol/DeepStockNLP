@@ -16,10 +16,10 @@ class AccountManager():
         hashed_str = hashed_inDB.encode()
         if bcrypt.checkpw(pw, hashed_str): 
             cursor.close()
-            return True
+            return make_response(jsonify({"message": "Login successful"}), 200)
         else:
             cursor.close()
-            return False
+            return make_response(jsonify({"message": "Login failed"}), 400)
     
     def get_account_id(self, userId):
         cursor = conn.cursor()

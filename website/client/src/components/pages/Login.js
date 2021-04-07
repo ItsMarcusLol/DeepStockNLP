@@ -87,6 +87,19 @@ class Login extends React.Component{
           else{
                console.log("Wrong password")
           }
+
+          fetch('http://104.196.230.228:80/login', {method: "POST", body: JSON.stringify({username: this.state.username, password: this.state.password})})
+          .then( (response) => {
+            if ( response.status !== 200) {
+              console.log("Error: " + response.status);
+            } else {
+              console.log(response.status);
+              return response.text();
+            }
+          })
+          .then( (text) => {
+            console.log(text);
+          });
       }
 
 
