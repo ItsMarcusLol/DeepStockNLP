@@ -9,19 +9,10 @@ services:
       - forum-service
       - homepage-service
       - db
-      - react
     volumes:
       - ./src/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 80:80
-
-  react:
-    container_name: react-client
-    build:
-      context: .
-      dockerfile: Dockerfile.dockerfile
-    ports:
-      - 5000:5000
     
   db:
     image: mysql:5.7
