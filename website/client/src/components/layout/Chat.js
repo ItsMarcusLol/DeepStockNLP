@@ -1,15 +1,15 @@
-import Select from '@material-ui/core/Select';
+// import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import ChatList from './ChatList';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Icon from '@material-ui/icons/Send';
 import React from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import {
+ ResponsiveContainer,
+} from 'recharts';
 
 const styles = (theme) => ({
   fC:{
@@ -18,7 +18,8 @@ const styles = (theme) => ({
   },
   formControl: {
     margin: theme.spacing(2),
-    minWidth: 90,
+    minWidth: 200,
+    
     
   },
   selectEmpty: {
@@ -26,8 +27,10 @@ const styles = (theme) => ({
   },
   textF: {
     '& .MuiTextField-root': {
-      margin: theme.spacing(0),
-      width: '30ch',
+      margin: theme.spacing(2),
+      // width: '50ch',
+       minWidth: 400,
+    // wifth: '25ch'
     },
   },
   button: {
@@ -46,21 +49,27 @@ class Chat extends React.Component {
     this.state = {
       isGoing: true,
       numberOfGuests: 2,
-      stock: '',
       post: false,
       text : '',
+      username:''
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.buttonChange = this.buttonChange.bind(this);
   }
+  
+ 
+    
+    
+    componentDidMount() {
+      const u1 = localStorage.getItem('user');
+    
+    console.log(u1)
+    this.setState({ username:u1 });
+    };
 
   buttonChange(event){
-    console.log(event.target.name)
-    console.log(this.state.stock)
-    console.log(this.state.text)
     this.setState({
-        stock: '',
         text: '',
     });
   }
@@ -74,7 +83,6 @@ class Chat extends React.Component {
     if (name === 'post'){
       console.log("button click")
       this.setState({
-        stock : '',
         text: '',
         post: false
       });
@@ -105,22 +113,25 @@ class Chat extends React.Component {
           </div>
         </Grid>
         
-          <Grid item xs = {12} sm = {12} md = {6}>
+          <Grid item xs = {12} sm = {12} md = {9}>
+          <ResponsiveContainer width='100%'  aspect={4.0/2.0}>
             <div> 
             <form className={classes.textF} noValidate autoComplete="off">
               <TextField id="outlined-basic" 
               name = 'text'
               value = {this.state.text}
               label="Post your prediction"  
-              multiline rows = {5} 
+              multiline rows = {3} 
               variant="outlined"
+              size = 'medium'
               onChange = {this.handleInputChange}
               />
             </form>
             </div>
+            </ResponsiveContainer>
           </Grid>
 
-          <Grid item xs = {6} sm = {6} md = {3}>
+          {/* <Grid item xs = {6} sm = {6} md = {3}>
            <div>
             <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel id="demo-simple-select-outlined-label">Stock</InputLabel>
@@ -143,14 +154,13 @@ class Chat extends React.Component {
               </Select>
             </FormControl>
             </div>
-          </Grid>
+          </Grid> */}
           
-          <Grid item xs = {6} sm = {6} md = {2}>
-            <div>
+          <Grid item xs = {12} sm = {12} md = {3}>
+           <div>
               <Button
               name = "post"
               type = "submit"
-              classes = {classes.button}
                onClick= {
                  this.buttonChange
                 }
@@ -160,8 +170,9 @@ class Chat extends React.Component {
                 >
                 Post
               </Button>
-              </div>
+              </div> 
           </Grid> 
+          
         </Grid>
         </Paper>
     );
