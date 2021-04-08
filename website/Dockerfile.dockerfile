@@ -1,7 +1,7 @@
 FROM node
-CMD npm install -g serve
+RUN npm install -g serve
 WORKDIR /usr/src/app
 COPY ./client ./
 WORKDIR /usr/src/app/client
-CMD npm run build
-CMD serve -s build
+RUN npm run build
+RUN serve -s build
