@@ -1,7 +1,5 @@
 FROM node
-RUN  yarn global add serve
+CMD npm install -g serve
 WORKDIR /usr/src/app
-COPY ./client ./
-RUN yarn
-RUN yarn build
+COPY ./client/build ./
 CMD serve -s build
