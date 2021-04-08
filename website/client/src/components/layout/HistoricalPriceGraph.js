@@ -101,10 +101,10 @@ it has to be in the format of [timestamp, price] for this to work. Feel free to 
 guys would like and go back to the day price graph.
 */
 
-import React, { Component } from 'react'
-import ReactHighcharts from 'react-highcharts/ReactHighstock.src'
-import priceData from './historicalPriceData.json'
-import moment from 'moment'
+import React, { Component } from 'react';
+import ReactHighcharts from 'react-highcharts/ReactHighstock.src';
+import priceData from './historicalPriceData.json';
+import moment from 'moment';
 
 export default class Example extends Component {
   render() {
@@ -201,7 +201,7 @@ export default class Example extends Component {
     };
     return (
       <div>
-        <ReactHighcharts config = {configPrice}></ReactHighcharts>
+          <ReactHighcharts config = {configPrice}></ReactHighcharts>
       </div>
     )
   }
