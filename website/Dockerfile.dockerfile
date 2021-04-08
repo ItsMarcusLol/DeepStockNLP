@@ -1,10 +1,9 @@
-FROM node
-#RUN npm install -g serve
-RUN yarn global add serve
+FROM node:15.14.0-alpine3.10
+
+RUN npm install -g serve
 WORKDIR /usr/src/app
 COPY ./client ./
-RUN yarn
 WORKDIR /usr/src/app/
-RUN yarn build
-#RUN npm run build
+
+RUN npm run build
 CMD serve -s build
