@@ -20,8 +20,8 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile.dockerfile
-    expose: 
-      - 5000
+    ports:
+      - 5000:5000
     
   db:
     image: mysql:5.7
