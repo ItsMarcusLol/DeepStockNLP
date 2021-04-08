@@ -16,7 +16,6 @@ import HistoricalTable from './HistoricalTable';
 import LoadingSymbol from './LoadingSymbol';
 import HeadlineTable from './HeadlineTable';
 import PredictionsTable from './PredictionsTable';
-import Title from './Title';
 
 export default class PriceTable extends React.Component {
   state = {
