@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.css';
-import Header from './components/layout/Header2';
+import Header from './components/layout/Header';
 import About from './components/pages/About';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
@@ -12,18 +13,24 @@ import Chat from './components/layout/Chat';
 import RadioB from './components/layout/RadioB';
 import Search from './components/layout/Search';
 
+
+
+
+
 class App extends Component {
-  
+ 
   state = {
     username: '',
     password: '',
     userId: '',
+
     authenticated: false
   };
 
   login = (username, password) => {
     this.setState({ username: username, password: password, userId: 123, authenticated: true });
   }
+
 
   render() {
     
