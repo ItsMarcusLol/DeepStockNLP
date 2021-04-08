@@ -1,4 +1,4 @@
-FROM node:lastest-alpine
+FROM alpine:3.7
 RUN npm install -g serve
 WORKDIR /usr/src/app
 COPY ./client ./
