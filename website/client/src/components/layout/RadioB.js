@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
-import DayPriceGraph from './DayPriceGraph';
+import HistoricalPriceGraph from './HistoricalPriceGraph';
 
 const BlueRadio = withStyles({
   root: {
@@ -34,7 +34,7 @@ export default class RadioButtons extends React.Component {
   return (
     <div>
 
-      <DayPriceGraph symb={this.state.selectedValue}/>
+      <HistoricalPriceGraph symb={this.state.selectedValue}/>
 
       <div
    style={{
