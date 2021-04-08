@@ -6,5 +6,7 @@ WORKDIR /usr/src/app
 COPY ./client ./
 WORKDIR /usr/src/app/client
 
+RUN npm install
+
 RUN npm run build
 CMD serve -s build
