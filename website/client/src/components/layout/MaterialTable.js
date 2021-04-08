@@ -16,7 +16,6 @@ import HistoricalTable from './HistoricalTable';
 import LoadingSymbol from './LoadingSymbol';
 import HeadlineTable from './HeadlineTable';
 import PredictionsTable from './PredictionsTable';
-import HistoricalGraph from './HistoricalGraph';
 import Title from './Title';
 
 export default class PriceTable extends React.Component {
@@ -149,8 +148,6 @@ export default class PriceTable extends React.Component {
                 <div>
                 
                 {/* <Title>Historical Prices</Title> */}
-                  
-                {/* <HistoricalGraph /> */}
 
                 <HistoricalTable symb ={rowData.symbol} />
                 
