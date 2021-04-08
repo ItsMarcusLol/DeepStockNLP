@@ -233,15 +233,7 @@ return (
                {/* <div className={classes.sectionDesktop}> */}
                <div style={titleStyle} >
            
-                 <IconButton
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-haspopup="true"
-                  // onClick={handleProfileMenuOpen}
-                  color="inherit"
-                >
-                <AccountCircle />
-               </IconButton>
+               
 
           <Button
           ref={this.anchorRef}
@@ -268,6 +260,16 @@ return (
             </Grow>
           )}
         </Popper>
+
+        <IconButton
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-haspopup="true"
+                  // onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                <AccountCircle />
+               </IconButton>
         </div>
 
 
