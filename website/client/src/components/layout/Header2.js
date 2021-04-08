@@ -1,4 +1,5 @@
-import React from 'react';
+// import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -22,6 +23,7 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
+// import { useEffect } from 'react';
 
 const drawerWidth = 240;
 
@@ -117,7 +119,27 @@ export default function PersistentDrawerLeft() {
   const anchorRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
   const [openU, setOpenU] = React.useState(false);
+  const [username, setUsername] = React.useState("");
 
+
+  useEffect(() => {
+    // document.title = `You clicked ${count} times`;
+    const u1 = localStorage.getItem('user');
+    console.log(u1)
+    // if(u1 === ""){
+    //   setUsername("Not Logged in");
+    // }
+    // setUsername({ u1 });
+    // else{
+    setUsername(u1);
+    // }
+  });
+
+  
+  const handleLogout=()=> {
+    localStorage.setItem('user',"");
+    window.location.reload(false);
+  }
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -144,7 +166,7 @@ export default function PersistentDrawerLeft() {
       setOpen(false);
     }
   }
-
+  
 
       
 return (
@@ -202,7 +224,7 @@ return (
           onClick={handleToggle}
           color="inherit"
           >
-            Username
+            {username}
          </Button> 
         <Popper open={openU} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
@@ -213,7 +235,7 @@ return (
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
