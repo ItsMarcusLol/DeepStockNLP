@@ -1,7 +1,10 @@
-FROM alpine:3.7
-RUN npm install -g serve
+FROM node
+#RUN npm install -g serve
+RUN yarn global add serve
 WORKDIR /usr/src/app
 COPY ./client ./
-WORKDIR /usr/src/app/client
-RUN npm run build
+RUN yarn
+WORKDIR /usr/src/app/
+RUN yarn build
+#RUN npm run build
 CMD serve -s build
