@@ -1,4 +1,5 @@
-FROM node:15.14.0-alpine3.10
+#FROM node:15.14.0-alpine3.10
+FROM node:latest
 
 RUN npm install -g serve
 WORKDIR /usr/src/app
