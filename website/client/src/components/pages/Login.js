@@ -11,6 +11,8 @@ import React from "react";
 import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
+
+
 const styles = (theme) => ({
   paper: {
         marginTop: theme.spacing(8),
@@ -23,9 +25,7 @@ const styles = (theme) => ({
         backgroundColor: "#F05"
       },
       div:{
-        // width: '88%',
         height: '900px',
-        // backgroundImage: `url(${imgMyimageexample})`,
         backgroundSize: 'cover'  
       },
       form: {
@@ -54,11 +54,8 @@ class Login extends React.Component{
       this.state = {
         username: "", 
         password: "",
-        accounts: this.props.accounts,
         redirect : false,
     };
-
-      console.log(this.state.accounts);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.onChange = this.onChange.bind(this);
     }
@@ -71,30 +68,21 @@ class Login extends React.Component{
        
         event.preventDefault();
         
-        const user = this.state.username;
-        const pass = this.state.password;
-    
-        const ac = this.state.accounts.find(
-          function(acct){ return (acct.username === user && acct.password === pass )} );
-
-        if (ac==null){
-          console.log("Wrong password")
-        }
-          else if (ac.username === this.state.username && ac.password === this.state.password){
-            this.setState({username: "", password: "", redirect: true});
-          }
-                
-          else{
-               console.log("Wrong password")
-          }
-
           fetch('http://104.196.230.228:80/login', {method: "POST", body: JSON.stringify({username: this.state.username, password: this.state.password})})
           .then( (response) => {
             if ( response.status !== 200) {
               console.log("Error: " + response.status);
+              this.setState({username: "", password: "", redirect: false});
             } else {
               console.log(response.status);
+              
+              const user = this.state.username;
+              localStorage.setItem('user', user);
+              const u1 = localStorage.getItem('user')
+              console.log(u1)
+              this.setState({username: "", password: "", redirect: true});
               return response.text();
+              
             }
           })
           .then( (text) => {
@@ -107,7 +95,7 @@ class Login extends React.Component{
         [e.target.name]: e.target.value});
   
     render(){
-      const {classes} = this.props;
+     const {classes} = this.props;
 
       if (this.state.redirect) {
                     return <Redirect to={"/"} />

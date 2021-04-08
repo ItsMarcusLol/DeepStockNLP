@@ -36,6 +36,12 @@ export default class RadioButtons extends React.Component {
 
       <DayPriceGraph symb={this.state.selectedValue}/>
 
+      <div
+   style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}}>
       <BlueRadio
         checked={this.state.selectedValue === 'Google'}
         onChange={(e) => this.handleChange(e) }
@@ -106,6 +112,7 @@ export default class RadioButtons extends React.Component {
         name="radio-button-demo"
         inputProps={{ 'aria-label': 'J' }}
       />
+      </div>
     </div>
   )
   };
