@@ -7,11 +7,11 @@ api = Api(app)
 
 homepageManager = HomepageManager()
 
-class HomepageController(Resource):
+class Homepage(Resource):
     def get(self):
         return homepageManager.get_homepage()
 
-api.add_resource(HomepageController, '/homepage')
+api.add_resource(Homepage, '/homepage')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
