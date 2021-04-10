@@ -46,7 +46,7 @@ export default class HeadlineTable extends React.Component {
          return <LoadingSymbol />
       }
 
-      var headlinesData = JSON.parse(this.state.headlines);
+      var headlinesData = this.state.headlines;
 
       return (
        
