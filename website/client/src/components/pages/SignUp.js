@@ -146,7 +146,7 @@ class SignUp extends React.Component{
               disabled={!this.validateForm()}
              
             >
-              Sign In
+              Sign Up
             </Button>
             <Grid container>
               <Grid item>
