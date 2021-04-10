@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, make_response
 from urllib.request import urlopen
 import json
+import time
 
 class HomepageManager():
     def get_headlines(self, symbol):
