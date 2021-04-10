@@ -31,12 +31,11 @@ export default class HeadlineTable extends React.Component {
             } else {
               console.log(response.status);
               
-              this.setState({loading: false, headlines: response.json(), symbol: symbol});
-              return response.text();
+              return response.json();
             }
           })
-          .then( (text) => {
-            console.log(text);
+          .then( (obj) => {
+            this.setState({loading: false, headlines: obj, symbol: symbol});
           });
   }
   
@@ -89,7 +88,7 @@ export default class HeadlineTable extends React.Component {
         { title: headlinesData[2].title, date: headlinesData[2].publishedDate, link: headlinesData[2].url},
         { title: headlinesData[3].title, date: headlinesData[3].publishedDate, link: headlinesData[3].url}
       ]}
-      
+
       /** fake data 
       data={[
         { title: 'Google is Splitting?', author: 'Jane Doe', date: '3-17-2021', link: <a href="http://google.com/" target="_blank" rel="noreferrer" style={{color:'blue'}}>http://google.com/</a> },
