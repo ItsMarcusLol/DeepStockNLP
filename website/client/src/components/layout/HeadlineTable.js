@@ -24,18 +24,20 @@ export default class HeadlineTable extends React.Component {
     
       const symbol = this.props.symb;
       console.log(symbol);
-      // const key = "f0448bd30a7028e245052fcf3caa0837";
-      const key = "insert key"
-    
-      var url = "https://financialmodelingprep.com/api/v3/historical-price-full/"+symbol+"?timeseries=30&apikey=" + key;
-      var response = await fetch(url);
-      var data = await response.json();
-     
-      data = data['historical']
-
-      console.log("here "+symbol);
-      console.log(data)
-      this.setState({ prices:data, symbol:symbol, loading: false});
+      fetch('http://104.196.230.228:80/homepage/headlines?symbol='+symbol, {method: "GET"})
+          .then( (response) => {
+            if ( response.status !== 200) {
+              console.log("Error: " + response.status);
+            } else {
+              console.log(response.status);
+              
+              this.setState({loading: false, headlines: response.json(), symbol: symbol});
+              return response.text();
+            }
+          })
+          .then( (text) => {
+            console.log(text);
+          });
   }
   
  
@@ -44,6 +46,9 @@ export default class HeadlineTable extends React.Component {
       if (this.state.loading){
          return <LoadingSymbol />
       }
+
+      var headlinesData = JSON.parse(this.state.headlines);
+
       return (
        
         <MaterialTable
@@ -74,22 +79,27 @@ export default class HeadlineTable extends React.Component {
       }
       columns={[
         { title: 'Title', field: 'title' },
-        { title: 'Author', field: 'author'},
         { title: 'Date', field: 'date'},
         { title: 'Link', field: 'link' }
       ]}
       
-      // data = {this.state.prices}
-      // fake data
+      data={[
+        { title: headlinesData[0].title, date: headlinesData[0].publishedDate, link: headlinesData[0].url},
+        { title: headlinesData[1].title, date: headlinesData[1].publishedDate, link: headlinesData[1].url},
+        { title: headlinesData[2].title, date: headlinesData[2].publishedDate, link: headlinesData[2].url},
+        { title: headlinesData[3].title, date: headlinesData[3].publishedDate, link: headlinesData[3].url}
+      ]}
+      
+      /** fake data 
       data={[
         { title: 'Google is Splitting?', author: 'Jane Doe', date: '3-17-2021', link: <a href="http://google.com/" target="_blank" rel="noreferrer" style={{color:'blue'}}>http://google.com/</a> },
         { title: 'Worker says Amazon hung anti-union signs in bathroom stalls', author: 'Joseph Pisani', date: '3-17-2021', link: <a href="https://www.marketbeat.com/articles/worker-says-amazon-hung-anti-union-signs-in-bathroom-stalls-2021-03-17/?1" target="_blank" rel="noreferrer" style={{color:'blue'}}>https://www.marketbeat.com/</a> },
         { title: 'Forget Tesla, Ford Motor May be the Best Auto Play', author: 'Marketbeat Staff', date: '3-16-2021', link: <a href="https://www.marketbeat.com/originals/forgot-tesla-ford-motor-may-be-the-best-auto-play/" target="_blank" rel="noreferrer" style={{color:'blue'}}>https://www.marketbeat.com/</a> },
         { title: 'How Tesla Is Taking Over', author: 'Bob Ross', date: '3-15-2021', link: <a href="http://tesla.com/" target="_blank" rel="noreferrer" style={{color:'blue'}}>http://tesla.com/</a>},
         { title: 'Will Target Take Over Walmart?', author: 'Alice Tran', date: '3-15-2021', link: <a href="http://target.com/" target="_blank" rel="noreferrer" style={{color:'blue'}}>http://target.com/</a> }
-        
-        
-      ]}
+
+      ]}*/
+
       options={{ search: false, paging: true, pageSize: 5, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}
     
     />
