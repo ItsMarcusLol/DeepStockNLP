@@ -173,7 +173,7 @@ export default class PriceTable extends React.Component {
                     >
                       {/* <Title>Headlines</Title> */}
 
-                      <HeadlineTable />
+                      <HeadlineTable symb ={rowData.symbol} />
                     </div>
                   )
                 },
