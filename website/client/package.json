@@ -8,6 +8,8 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
+    "igniteui-react-charts": "^16.13.1",
+    "igniteui-react-core": "^16.13.1",
     "material-table": "^1.69.2",
     "npm-check": "^5.9.2",
     "react": "^17.0.1",
