@@ -17,7 +17,7 @@ class HomepageMessages(Resource):
         return homepageManager.get_messages()
 
 api.add_resource(Homepage, '/homepage/headlines')
-api.add_resource(Homepage, '/homepage/messages')
+api.add_resource(HomepageMessages, '/homepage/messages')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
