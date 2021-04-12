@@ -78,6 +78,8 @@ services:
     #  - 5004:5004
     expose: 
       - 80
+    depends_on: 
+      - db
 
 volumes:
   mysql-data:
