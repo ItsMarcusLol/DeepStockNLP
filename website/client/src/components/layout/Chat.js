@@ -69,6 +69,23 @@ class Chat extends React.Component {
     };
 
   buttonChange(event){
+    fetch('http://104.196.230.228:80/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
+      .then( (response) => {
+        if ( response.status !== 200) {
+          console.log("Error: " + response.status);
+        } else {
+          console.log(response.status);
+          return response.text();
+        }
+      })
+      .then( (text) => {
+        console.log(text);
+      });
+    
+    ChatList.newMessage();
+
+    this.render();
+
     this.setState({
         text: '',
     });

@@ -35,30 +35,49 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-
+let chats = new Array()
 let acctPts = new Map()
-acctPts.set('Jessie123', {stock: "Google", post:[ "I think Google stock will go up", "Def will go up", "High key will go up"]})
-acctPts.set('Hilary321', {stock: "Google", post: ["I think Google stock will go down", "I love Google stock"]})
-acctPts.set('GGG', {stock: "Google", post: ["I think Google stock will go up", " I make so much mmoney"]})
-acctPts.set('AAA', {stock: "Google", post: ["I think Google stock will go down"]})
-acctPts.set('Gund', {stock: "Google", post: ["I think Google stock will go up"]})
-acctPts.set('jodml', {stock: "Google", post:[ "I think Google stock will go down"]})
-acctPts.set('pearbear', {stock: "Google", post: ["I think Google stock will go up"]})
-acctPts.set('jimfod', {stock: "Google", post: ["I think Google stock will go down"]})
+//acctPts.set('Jessie123', {stock: "Google", post:[ "I think Google stock will go up", "Def will go up", "High key will go up"]})
+//acctPts.set('Hilary321', {stock: "Google", post: ["I think Google stock will go down", "I love Google stock"]})
+//acctPts.set('GGG', {stock: "Google", post: ["I think Google stock will go up", " I make so much mmoney"]})
+//acctPts.set('AAA', {stock: "Google", post: ["I think Google stock will go down"]})
+//acctPts.set('Gund', {stock: "Google", post: ["I think Google stock will go up"]})
+//acctPts.set('jodml', {stock: "Google", post:[ "I think Google stock will go down"]})
+//acctPts.set('pearbear', {stock: "Google", post: ["I think Google stock will go up"]})
+//acctPts.set('jimfod', {stock: "Google", post: ["I think Google stock will go down"]})
 // acctPts..get('Jessie') // {phone: "213-555-1234", address: "123 N 1st Ave"}
 // acctPts..delete('Raymond') // false
 
+class ChatList {
+  //const classes = useStyles();
 
+  keys = Array.from( acctPts.keys() );
 
-export default function PinnedSubheaderList() {
-  const classes = useStyles();
+  //const a = [1,2,4];
 
-  let keys = Array.from( acctPts.keys() );
+  newMessage() {
+    fetch('http://104.196.230.228:80/forum/chat', {method: "GET"})
+          .then( (response) => {
+            if ( response.status !== 200) {
+              console.log("Error: " + response.status);
+            } else {
+              console.log(response.status);
+              
+              return response.json();
+            }
+          })
+          .then( (obj) => {
+            chats = obj;
+          });
 
-  const a = [1,2,4];
-
+    var i;
+    for (i = 0; i < obj.length; i++) {
+      acctPts.set(obj[i].username, {stock: "null", post: [obj[i].text]});
+    }
   
+  }
 
+  render() {
   return (
     <List className={classes.root} subheader={<li />}>
 
@@ -100,4 +119,5 @@ export default function PinnedSubheaderList() {
 
     </List>
   );
+            }
 }

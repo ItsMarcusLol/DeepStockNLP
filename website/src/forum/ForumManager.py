@@ -69,3 +69,21 @@ class MessageManager():
             conn.commit()
             cursor.close()
             return True
+
+class ChatManager():
+    def saveChat(self, username, text):
+        cursor = conn.cursor()
+        query = "INSERT INTO chat_data(username, text) VALUES (\"" + username + "\", \"" + text + "\")"
+        cursor.execute(query)
+        conn.commit()
+        cursor.close()
+        return make_response(jsonify({"message": "Chat saved"}), 200)
+
+    def getChat(self):
+        cursor = conn.cursor()
+        query = "SELECT * FROM chat_data"
+        cursor.execute(query)
+        chats = cursor.fetchall()
+        cursor.close()
+        return make_response(jsonify(chats), 200)
+
