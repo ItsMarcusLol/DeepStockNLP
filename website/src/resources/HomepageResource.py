@@ -12,11 +12,16 @@ class Homepage(Resource):
         symbol = request.args.get('symbol')
         return homepageManager.get_headlines(symbol)
 
+class HomepageCurrent(Resource):
+    def get(self):
+        return homepageManager.get_current()
+
 class HomepageMessages(Resource):
     def get(self):
         return homepageManager.get_messages()
 
 api.add_resource(Homepage, '/homepage/headlines')
+api.add_resource(HomepageCurrent, '/homepage/current')
 api.add_resource(HomepageMessages, '/homepage/messages')
 
 if __name__ == '__main__':
