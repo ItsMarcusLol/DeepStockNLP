@@ -24,8 +24,8 @@ export default class HistoricalTable extends React.Component {
     
       const symbol = this.props.symb;
       console.log(symbol);
-      // const key = "f0448bd30a7028e245052fcf3caa0837";
-      const key = "insert key"
+      const key = "f0448bd30a7028e245052fcf3caa0837";
+      // const key = "insert key"
     
       var url = "https://financialmodelingprep.com/api/v3/historical-price-full/"+symbol+"?timeseries=30&apikey=" + key;
       var response = await fetch(url);
@@ -90,16 +90,16 @@ export default class HistoricalTable extends React.Component {
         
       ]}
       
-      // data = {this.state.prices}
+      data = {this.state.prices}
       // fake data
-      data={[
-        { date: '2-12-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-        { date: '2-11-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-        { date: '2-10-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-        { date: '2-9-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-        { date: '2-8-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+      // data={[
+      //   { date: '2-12-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+      //   { date: '2-11-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+      //   { date: '2-10-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+      //   { date: '2-9-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+      //   { date: '2-8-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
        
-      ]}
+      // ]}
       options={{ search: false, paging: true, pageSize: 5, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}
     
     />

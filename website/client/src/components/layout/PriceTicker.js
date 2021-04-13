@@ -5,15 +5,15 @@ import LoadingSymbol from './LoadingSymbol';
   
     class PriceTicker extends React.Component {
         
-        state = {
-            loading: true, 
-            prices: null
-        };
+        // state = {
+        //     loading: true, 
+        //     prices: null
+        // };
         constructor(props) {
           super(props);
           this.state = {
             loading: false, 
-            prices: true,
+            prices: null,
             pageIsVisible: true
           
           };
@@ -21,6 +21,14 @@ import LoadingSymbol from './LoadingSymbol';
          this.setPageIsVisible = this.setPageIsVisible.bind(this);
         }
        
+        async componentDidMount() {
+          const url = "https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=f0448bd30a7028e245052fcf3caa0837";
+          const response = await fetch(url);
+          const data = await response.json();
+          this.setState({ prices: data, loading: false});
+          // this.setState({ prices: null, loading: false});
+
+      }
        
         setPageIsVisible(event) {
           this.setState({
@@ -42,6 +50,7 @@ import LoadingSymbol from './LoadingSymbol';
     
             if (!this.state.prices){
                 return <div style={{fontSize:"35px"}}>Can't get prices, right now. Check in later!</div>
+                
                   
             }
             
@@ -54,7 +63,7 @@ import LoadingSymbol from './LoadingSymbol';
                       <Ticker>
                         {({ index }) => (
                             <>
-                                <h1 style={{fontSize:"35px", color:"green"}}>This is the Headline of element #{index}!</h1>
+                                <h1 style={{fontSize:"35px", color:"white"}}>{  this.state.prices[index].symbol}:{this.state.prices[index].price }<span> &nbsp; </span></h1>
                                 <img src="www.my-image-source.com/" alt=""/>
                             </>
                         )}
