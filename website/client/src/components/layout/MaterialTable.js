@@ -107,7 +107,7 @@ export default class PriceTable extends React.Component {
         // data = {this.state.prices}
         data={[
           { symbol: 'GOOGL', companyName: 'Google', price: '1234', volume: '2313' },
-          { symbol: 'APPL', companyName: 'Apple', price: '5678', volume: '1957' },
+          { symbol: 'AAPL', companyName: 'Apple', price: '5678', volume: '1957' },
           { symbol: 'BA', companyName: 'Boeing', price: '1231', volume: '19217' },
           { symbol: 'WMT', companyName: 'Walmart', price: '1111', volume: '198347'},
           { symbol: 'AMZN', companyName: 'Amazon', price: '2222', volume: '3287'},
