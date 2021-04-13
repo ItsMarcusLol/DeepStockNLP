@@ -5,8 +5,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Divider from '@material-ui/core/Divider';
+import { withStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+// const useStyles = makeStyles((theme) => ({
+  const styles = (theme) => ({
   root: {
     width: '100%',
     // maxWidth: 800,
@@ -33,11 +35,12 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Arial'
         /* To change the font, use the fontFamily rule */
   }
-}));
+});
 
 let chats = new Array()
 let acctPts = new Map()
-//acctPts.set('Jessie123', {stock: "Google", post:[ "I think Google stock will go up", "Def will go up", "High key will go up"]})
+// chats.push("I think google will go up")
+// acctPts.set('Jessie123', {stock: "Google", post:[ "I think Google stock will go up", "Def will go up", "High key will go up"]})
 //acctPts.set('Hilary321', {stock: "Google", post: ["I think Google stock will go down", "I love Google stock"]})
 //acctPts.set('GGG', {stock: "Google", post: ["I think Google stock will go up", " I make so much mmoney"]})
 //acctPts.set('AAA', {stock: "Google", post: ["I think Google stock will go down"]})
@@ -48,12 +51,14 @@ let acctPts = new Map()
 // acctPts..get('Jessie') // {phone: "213-555-1234", address: "123 N 1st Ave"}
 // acctPts..delete('Raymond') // false
 
-class ChatList {
+// class ChatList {
+  class ChatList extends React.Component {
   //const classes = useStyles();
 
   keys = Array.from( acctPts.keys() );
-
+  
   //const a = [1,2,4];
+  
 
   newMessage() {
     fetch('http://104.196.230.228:80/forum/chat', {method: "GET"})
@@ -67,22 +72,27 @@ class ChatList {
             }
           })
           .then( (obj) => {
-            chats = obj;
+            chats = Array.from(obj);
+            // chats.push("I think google will go up")
           });
 
     var i;
-    for (i = 0; i < obj.length; i++) {
-      acctPts.set(obj[i].username, {stock: "null", post: [obj[i].text]});
+    {console.log(chats)}
+    for (i = 0; i < chats.length; i++) {
+      acctPts.set(chats[i].username, {stock: "null", post: [chats[i].text]});
     }
   
   }
 
   render() {
+    const {classes} = this.props;
+    this.newMessage();
+    // var keys = Array.from( acctPts.keys() );
   return (
     <List className={classes.root} subheader={<li />}>
 
       {/* {[0, 1, 2, 3, 4].map((sectionId) => ( */}
-         {keys.map((sectionId) => (
+         {this.keys.map((sectionId) => (
         <li key={`section-${sectionId}`} className={classes.listSection}>
           <ul className={classes.ul}>
             <ListSubheader classes={{root:classes.listSubHeaderRoot}}>{` ${sectionId}`}</ListSubheader >
@@ -121,3 +131,5 @@ class ChatList {
   );
             }
 }
+
+export default withStyles(styles, )(ChatList);

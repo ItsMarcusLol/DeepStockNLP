@@ -82,7 +82,7 @@ class Chat extends React.Component {
         console.log(text);
       });
     
-    ChatList.newMessage();
+    // ChatList.newMessage();
 
     this.render();
 
