@@ -18,6 +18,18 @@ class ForumManager():
             cursor.close()
             return msg
     
+    def get_user_conversation(self, user_id):
+        cursor = conn.cursor()
+        query = "SELECT * FROM forum_data WHERE conversation_id=" + str(user_id)
+        cursor.execute(query)
+        msg = cursor.fetchall()
+        if (not msg):
+            cursor.close()
+            return None
+        else:
+            cursor.close()
+            return msg
+
     # TODO check to see if user_id is valid and if message length is adequate (250 chars)
     def create_conversation(self, user_id, message):
         id = self.create_conversation_id()
