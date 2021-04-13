@@ -24,7 +24,7 @@ export default class PriceTable extends React.Component {
   };
 
   async componentDidMount() {
-    
+    /** 
       //const key = "f0448bd30a7028e245052fcf3caa0837";
      const key = "Insert Key Here";
       const stocks = ["BA", "WMT",  "AMZN", "TSLA", "MSFT", "F", "DELL", "TGT" ];
@@ -58,6 +58,21 @@ export default class PriceTable extends React.Component {
 
     console.log(data)
       this.setState({ prices:data, loading: false});
+      */
+    
+      fetch('http://104.196.230.228:80/homepage/current', {method: "GET"})
+          .then( (response) => {
+            if ( response.status !== 200) {
+              console.log("Error: " + response.status);
+            } else {
+              console.log(response.status);
+              
+              return response.json();
+            }
+          })
+          .then( (obj) => {
+            this.setState({loading: false, prices: obj});
+          });
   }
   
      
@@ -72,6 +87,8 @@ export default class PriceTable extends React.Component {
           
       // }
       
+      var pricesData = this.state.prices;
+
       return (
        
       //  <div style={{"font-size" : "12px", "height" : "90px", "width" : "100%"}}>
@@ -104,8 +121,19 @@ export default class PriceTable extends React.Component {
             { title: 'Volume', field: 'volume', type: 'numeric' },
           ]}
       
-        // data = {this.state.prices}
-        data={[
+        data = {[
+          {symbol: pricesData[0].symbol, companyName: pricesData[0].name, price: pricesData[0].price, volume: pricesData[0].volume}, 
+          {symbol: pricesData[1].symbol, companyName: pricesData[1].name, price: pricesData[1].price, volume: pricesData[1].volume}, 
+          {symbol: pricesData[2].symbol, companyName: pricesData[2].name, price: pricesData[2].price, volume: pricesData[2].volume}, 
+          {symbol: pricesData[3].symbol, companyName: pricesData[3].name, price: pricesData[3].price, volume: pricesData[3].volume}, 
+          {symbol: pricesData[4].symbol, companyName: pricesData[4].name, price: pricesData[4].price, volume: pricesData[4].volume}, 
+          {symbol: pricesData[5].symbol, companyName: pricesData[5].name, price: pricesData[5].price, volume: pricesData[5].volume}, 
+          {symbol: pricesData[6].symbol, companyName: pricesData[6].name, price: pricesData[6].price, volume: pricesData[6].volume}, 
+          {symbol: pricesData[7].symbol, companyName: pricesData[7].name, price: pricesData[7].price, volume: pricesData[7].volume}, 
+          {symbol: pricesData[8].symbol, companyName: pricesData[8].name, price: pricesData[8].price, volume: pricesData[8].volume}, 
+          {symbol: pricesData[9].symbol, companyName: pricesData[9].name, price: pricesData[9].price, volume: pricesData[9].volume} 
+        ]}
+        /**data={[
           { symbol: 'GOOGL', companyName: 'Google', price: '1234', volume: '2313' },
           { symbol: 'AAPL', companyName: 'Apple', price: '5678', volume: '1957' },
           { symbol: 'BA', companyName: 'Boeing', price: '1231', volume: '19217' },
@@ -117,6 +145,7 @@ export default class PriceTable extends React.Component {
           { symbol: 'DELL', companyName: 'Dell', price: '4521', volume: '2321'},
           { symbol: 'TGT', companyName: 'Target', price: '1232', volume: '7391'},
         ]}
+        */
         options={{ search: true, doubleHorizontalScroll: true, paging: true, exportButton: false, pageSize:10}}
         detailPanel={[
           {

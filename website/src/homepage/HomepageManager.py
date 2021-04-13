@@ -15,6 +15,14 @@ class HomepageManager():
         headlines = json.loads(data)
         return make_response(jsonify(headlines), 200)
     
+    def get_current(self):
+        key = "f0448bd30a7028e245052fcf3caa0837"
+        url = "https://financialmodelingprep.com/api/v3/quote/GOOGL,AAPL,BA,WMT,AMZN,TSLA,MSFT,F,DELL,TGT?apikey=" + key
+        response = urlopen(url)
+        data = response.read().decode("utf-8")
+        prices = json.loads(data)
+        return make_response(jsonify(prices), 200)
+    
     def get_messages(self):
         cursor = conn.cursor()
         query = "Select * from forum_data"
@@ -22,3 +30,5 @@ class HomepageManager():
         result = cursor.fetchall()
         cursor.close()
         return make_response(jsonify(result), 200)
+
+    
