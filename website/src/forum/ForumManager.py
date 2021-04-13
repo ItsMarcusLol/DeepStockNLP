@@ -1,6 +1,7 @@
 from random import randint
 import mysql.connector
 import datetime
+from flask import Flask, jsonify, make_response
 
 # TODO test if valid user ID
 conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', database='forum')
