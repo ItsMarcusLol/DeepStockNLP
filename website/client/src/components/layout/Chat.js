@@ -47,24 +47,52 @@ class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isGoing: true,
-      numberOfGuests: 2,
       post: false,
       text : '',
-      username:''
+      username:'',
+      acctPts: {},
+      chats: [],
+      loggedOut: true,
+      v: 'filled'
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.buttonChange = this.buttonChange.bind(this);
   }
   
- 
-    
+//  acctPts = new Map()
+  newMessage() {
+    fetch('http://104.196.230.228:80/forum/chat', {method: "GET"})
+          .then( (response) => {
+            if ( response.status !== 200) {
+              console.log("Error: " + response.status);
+            } else {
+              console.log(response.status);
+              
+              return response.json();
+            }
+          })
+          .then( (obj) => {
+           
+            
+            // this.state.chats = obj;
+            this.setState({chats: obj});
+            
+            // chats.push("I think google will go up")
+          });
+  
+  }
     
     componentDidMount() {
       const u1 = localStorage.getItem('user');
+      this.newMessage();
     
-    console.log(u1)
+    
+    if (u1.length > 0 ){
+      this.setState({ loggedOut:false});
+      this.setState({ v: 'outlined'});
+    }
+    
     this.setState({ username:u1 });
     };
 
@@ -82,7 +110,7 @@ class Chat extends React.Component {
         console.log(text);
       });
     
-    // ChatList.newMessage();
+    this.newMessage();
 
     this.render();
 
@@ -95,8 +123,7 @@ class Chat extends React.Component {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    console.log(name)
-    console.log(target)
+   
     if (name === 'post'){
       console.log("button click")
       this.setState({
@@ -126,7 +153,8 @@ class Chat extends React.Component {
 
         <Grid item xs = {12}>
           <div>
-          <ChatList/>
+          {/* <ChatList cList = {this.state.acctPts}/> */}
+          <ChatList cList = {this.state.chats}/>
           </div>
         </Grid>
         
@@ -142,6 +170,8 @@ class Chat extends React.Component {
               variant="outlined"
               size = 'medium'
               onChange = {this.handleInputChange}
+              disabled = {this.state.loggedOut}
+              variant = {this.state.v}
               />
             </form>
             </div>
