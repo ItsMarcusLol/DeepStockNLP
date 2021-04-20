@@ -7,7 +7,7 @@ conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', dat
 class PredictionsManager():
     def get_predictions(self, ticker):
         cursor = conn.cursor()
-        query = "SELECT * FROM prediction_data WHERE ticker=" + ticker
+        query = "SELECT * FROM prediction_data WHERE ticker=" + "\"" + ticker + "\""
         cursor.execute(query)
         result = cursor.fetchall()
         cursor.close()
@@ -23,7 +23,7 @@ class PredictionsManager():
     
     def delete_predictions(self, ticker):
         cursor = conn.cursor()
-        query = "DELETE FROM prediction_data WHERE ticker=" + ticker
+        query = "DELETE FROM prediction_data WHERE ticker=" + "\"" + ticker + "\""
         cursor.execute(query)
         cursor.close()
         return make_response(204)
