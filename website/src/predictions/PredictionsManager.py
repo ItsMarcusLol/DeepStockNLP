@@ -15,7 +15,7 @@ class PredictionsManager():
 
     def post_predictions(self, ticker, date, prediction, con, acc):
         cursor = conn.cursor()
-        query = "INSERT INTO prediction_data(ticker,date,prediction,con, acc) VALUES(\""+ticker+"\","+str(date)+","+str(prediction)+","+str(con)+","+str(acc)+")"
+        query = "INSERT INTO prediction_data(ticker,date,prediction,con, acc) VALUES(\""+ticker+"\",\""+str(date)+"\","+str(prediction)+","+str(con)+","+str(acc)+")"
         cursor.execute(query)
         conn.commit()
         cursor.close()
