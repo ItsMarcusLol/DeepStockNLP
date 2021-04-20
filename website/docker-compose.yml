@@ -88,7 +88,7 @@ services:
       context: .
       dockerfile: ./src/docker/predictions/Dockerfile.dockerfile
     expose:
-      -80
+      - 80
     depends_on: 
       - db
 
