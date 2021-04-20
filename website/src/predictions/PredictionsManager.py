@@ -15,7 +15,7 @@ class PredictionsManager():
 
     def post_predictions(self, ticker, date, prediction, con, acc):
         cursor = conn.cursor()
-        query = "INSERT INTO prediction_data(ticker,date,prediction,confidence) VALUES(\""+ticker+"\","+date+","+str(prediction)+","+str(con)+","+str(acc)+")"
+        query = "INSERT INTO prediction_data(ticker,date,prediction,con, acc) VALUES(\""+ticker+"\","+date+","+str(prediction)+","+str(con)+","+str(acc)+")"
         cursor.execute(query)
         conn.commit()
         cursor.close()
@@ -26,4 +26,4 @@ class PredictionsManager():
         query = "DELETE FROM prediction_data WHERE ticker=" + "\"" + ticker + "\""
         cursor.execute(query)
         cursor.close()
-        return make_response(204)
+        return make_response(jsonify({"message": "Prediction deleted"}), 204)
