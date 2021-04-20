@@ -10,6 +10,7 @@ services:
       - homepage-service
       - db
       - react
+      - predictions-service
     volumes:
       - ./src/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
@@ -78,6 +79,16 @@ services:
     #  - 5004:5004
     expose: 
       - 80
+    depends_on: 
+      - db
+  
+  predictions-service:
+    container_name: predictions-service
+    build:
+      context: .
+      dockerfile: ./src/docker/predictions/Dockerfile.dockerfile
+    expose:
+      -80
     depends_on: 
       - db
 
