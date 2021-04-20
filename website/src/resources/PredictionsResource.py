@@ -7,7 +7,7 @@ api = Api(app)
 
 predictions_manager = PredictionsManager()
 
-class Predictions():
+class Predictions(Resource):
     def post(self):
         json_data = request.get_json(force=True)
         ticker = json_data['ticker']
