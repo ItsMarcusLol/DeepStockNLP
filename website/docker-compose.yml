@@ -42,11 +42,6 @@ services:
     build: 
       context: .
       dockerfile: ./src/docker/account/Dockerfile.dockerfile
-    #volumes:
-      #- ./src/resources:/code
-      #- ./src/account:/code/account
-    #ports:
-    #  - 5002:5002
     expose:
       - 80
     depends_on: 

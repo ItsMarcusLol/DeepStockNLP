@@ -28,7 +28,6 @@ class Account(Resource):
         else:
             return jsonify(success=False)
     
-    # TODO add error handling to check to see if json is right. Return proper error code
     def post(self):
         json_data = request.get_json(force=True)
         username = json_data['username']
