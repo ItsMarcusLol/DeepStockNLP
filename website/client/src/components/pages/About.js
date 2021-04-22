@@ -24,7 +24,7 @@ function About() {
                 from Twitter that are more business or financially driven headlines. The model we decided to use for
                 this project was XG Boost with Sentiment Analysis (which will be credited to the rightful owners and explained below). Right now we are testing our model with archived 
                 news headlines from New York Times and prices we got from Yahoo Finance. Our current accuracy results
-                for predictions were around a 63%. We haven't added in the tweets we got from Twitter yet. In the future 
+                for predictions were around a range of 62%-67%. We haven't added in the tweets we got from Twitter yet. In the future 
                 we are working towards adding the tweets to our model to try to get a more accurate result.
                 <br/> 
                 <br/>
