@@ -109,7 +109,7 @@ class Login extends React.Component{
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Login
           </Typography>
           <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
             <TextField
