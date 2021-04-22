@@ -2,71 +2,57 @@ import React, { PureComponent } from 'react';
 import {
   Line, LineChart, XAxis, YAxis, Label, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from 'recharts';
-const data = [
-  {
-    name: 'Jan.', Low: 1125, High: 2400, Volume: 2400,
-  },
-  {
-    name: 'Feb.', Low: 1929, High: 3848, Volume: 2939,
-  },
-  {
-    name: 'Mar.', Low: 1400, High: 1398, Volume: 2210,
-  },
-  {
-    name: 'Apr.', Low: 2939, High: 3949, Volume: 2838,
-  },
-  {
-    name: 'May', Low: 1342, High: 9800, Volume: 2290,
-  },
-  {
-    name: 'June', Low: 2883, High: 9393, Volume: 2949,
-  },
-  {
-    name: 'July', Low: 1123, High: 3908, Volume: 2000,
-  },
-  {
-    name: 'Aug.', Low: 1929, High: 3483, Volume: 3929,
-  },
-  {
-    name: 'Sept.', Low: 989, High: 4800, Volume: 2181,
-  },
-  {
-    name: 'Oct.', Low: 1929, High: 4959, Volume: 3848
-  },
-  {
-    name: 'Nov.', Low: 1005, High: 3800, Volume: 2500,
-  },
-  {
-    name: 'Dec.', Low: 848, High: 4858, Volume: 2394,
-  },
-];
-export default class Example extends PureComponent {
+
+// import 'C:\Users\dcard\Cap-Repo\DeepStockNLP\website\client\src\components/App.css';
+import DefaultTooltipContent from 'recharts/lib/component/DefaultTooltipContent';
+
+// import CustomTooltip from './CustomTooltip';
+
+function CustomTooltip({ payload, label, active }) {
+  if (active && payload != null) {
+    return (
+     
+      <div className="custom-tooltip"
+      >
+         {/* {background-color: green,
+  opacity: 0.3} */}
+        <p className="label">{`Date: ${label}`}</p>
+        <p className="label"> {`Change: ${payload[0].payload.change}`}</p>
+        <p className="desc">Open: {payload[0].payload.open}</p>
+        <p className="desc">Close: {payload[0].payload.close}</p>
+      </div>
+      
+      
+     
+    );
+  }
+
+  return null;
+}
+
+export default class HistoricalPriceGraph extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/xqjtetw0/';
   
-  state = {
-    //loading: true, 
-    //prices: null,
-    symbol:  this.props.symb,
-};
-// async componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      prices: this.props.data,
+      symbol:  'Google',
+      ticker: 'GOOGL'
   
-  
+    };
+    this.setState({ symbol: this.props.symb,  data:this.props.data});
     
-  
-//     // const key = "f0448bd30a7028e245052fcf3caa0837";
-//     const key = "insert key"
-//     const sym = this.state.symbol
-//     var url = "https://financialmodelingprep.com/api/v3/historical-price-full/"+sym+"?timeseries=30&apikey=" + key;
-//     var response = await fetch(url);
-//     var data = await response.json();
-   
-//     data = data['historical']
-//    // console.log("here "+symbol);
-//     console.log(this.state.symbol)
-//     this.setState({ prices:data,  loading: false});
-// }
+  }
+
+
+
   render() {
-    console.log("Day Price Graph: " ,this.props.symb)
+    if (!this.props.data) {
+      return <span>Loading...</span>;
+  }
+
+  
     return (
       <div> 
       <h1 style={{color:'white'}}> {this.props.symb}:</h1>
@@ -74,31 +60,52 @@ export default class Example extends PureComponent {
       <LineChart
         width={650}
         height={300}
-        data={data}
+        data={this.props.data}
         margin={{
           top: 5, right: 30, left: 20, bottom: 5,
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" stroke="#FFF"/>
-        <YAxis
+        <XAxis dataKey="date" stroke="#FFF"/>
+        {/* <YAxis
           stroke="#FFF">
             <Label
                 angle={270}
                 position="left"
                 sylte={{ textAnchor: 'middle'}} 
                 stroke="#FFFFFF"
-                fontSize="17"
+                fontSize="14"
                 fontFamily="normal"
                 >
-                    Prices ($)
-                </Label>
-        </YAxis>
-        <Tooltip />
+                    Change ($)
+                </Label> 
+        </YAxis>  */}
+        <YAxis/> 
+        
+        {/* <Tooltip /> */}
         {/* <Legend /> */}
-        <Line type="monotone" dataKey="Volume" stroke="#82ca9d" activeDot={{ r: 8 }} />
-        {/* <Line type="monotone" dataKey="Low" stroke="red" />
-        <Line type="monotone" dataKey="Volume" stroke="#8884d8" /> */}
+        
+        {/* <Tooltip wrapperStyle={{ backgroundColor: "white" }} labelStyle={{ color: "green" }}
+            itemStyle={{ color: "cyan" }}content={<CustomTooltip/>} /> */}
+
+<Tooltip content={<CustomTooltip/>} />
+
+        {/* <Tooltip
+            wrapperStyle={{ backgroundColor: "red" }}
+            labelStyle={{ color: "green" }}
+            itemStyle={{ color: "cyan" }}
+            formatter={function(value, name) {
+              console.log(name)
+              return `${value}, ${name}`;
+            }}
+            labelFormatter={function(value) {
+              return `label: ${value}`;
+            }}
+          /> */}
+        
+        <Line type="monotone" dataKey="change" stroke="#82ca9d" activeDot={{ r: 8 }} />
+        {/* <Line type="monotone" dataKey="Low" stroke="red" />*/}
+         {/* <Line type="monotone" dataKey="close" stroke="#8884d8" />  */}
 
       </LineChart>
       </ResponsiveContainer>

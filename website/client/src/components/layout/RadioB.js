@@ -2,7 +2,6 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import HistoricalPriceGraph from './HistoricalPriceGraph';
-import { green } from '@material-ui/core/colors';
 
 // const BlueRadio = withStyles({
 //   root: {
