@@ -45,24 +45,6 @@ class Search extends React.Component {
   
   };
   
-  async getData(){
-    // console.log("here")
-    // const input = this.props.symb
-    const key = "f0448bd30a7028e245052fcf3caa0837"
-    // const key = 1;
-    // var input = this.props.input;
-    const url = "https://financialmodelingprep.com/api/v3/search?query="+ this.state.text +"&limit=15&exchange=NASDAQ&apikey="+key;
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data)
-    
-    // this.setState({ prices: data, loading: false});
-   await this.setState({ output:data});
-  {console.log(this.state.output)}
-  return data
-
-}
- 
   modalStyle = getModalStyle();
   
 
@@ -152,7 +134,6 @@ class Search extends React.Component {
        alignItems="center">
       <Button type="button" 
       onClick={() => {
-        // this.getData()
         this.handleOpen()
         this.setText("")
       }}

@@ -14,15 +14,23 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import LoadingSymbol from './LoadingSymbol';
 
 export default class SearchTable extends React.Component {
-  
+  cols1=[
+    { title: 'Currency', field: 'currency' },
+    { title: 'Short Name', field: 'exchangeShortName' },
+    { title: 'Name', field: 'name' },
+    { title: 'Name', field: 'stockExchange' },
+    { title: 'Name', field: 'symbol' }, 
+    { title: 'Price', field: 'price' }, 
+  ]
 
-  constructor(props) {
+    constructor(props) {
     console.log(props)
     super(props);
     this.state = {
       loading: true, 
       output: null,
       symbol: null,
+      columns: null
   
     };
     {console.log(this.props.data)}
@@ -31,26 +39,46 @@ export default class SearchTable extends React.Component {
     this.setState({ symbol: input, output:data});
   }
 
-  
 
   async componentDidMount() {
-    // console.log("here")
-    // const input = this.props.symb
-    // const data = this.props.data
-    // this.setState({ loading: false, symbol: input, output:data});
-  //   async shouldComponentUpdate(){
-  //   console.log("here")
     const input = this.props.symb
     const key = "f0448bd30a7028e245052fcf3caa0837"
-    // const key = 1;
-    // var input = this.props.input;
     const url = "https://financialmodelingprep.com/api/v3/search?query="+ input +"&limit=15&exchange=NASDAQ&apikey="+key;
     const response = await fetch(url);
-    const data = await response.json();
+    var data = await response.json();
+    var cols=[
+      { title: 'Currency', field: 'currency' },
+      { title: 'Short Name', field: 'exchangeShortName' },
+      { title: 'Name', field: 'name' },
+      { title: 'Name', field: 'stockExchange' },
+      { title: 'Name', field: 'symbol' }, 
+      { title: 'Price', field: 'price' }, 
+    ]
     console.log(data)
+    console.log(data.length)
+    console.log(data[0].symbol)
+    if (data.length == 1){
+      console.log("in if")
+      const sym = data[0].symbol;
+      const url2 = "https://financialmodelingprep.com/api/v3/quote/"+sym+"?apikey="+key;
+      const response2 = await fetch(url2);
+      const d = await response2.json();
+      data = d;
+      cols=[
+        { title: 'Name', field: 'name' },
+        { title: 'Price', field: 'price' },
+        { title: 'Change', field: 'change' }, 
+        { title: 'Day Low', field: 'dayLow' }, 
+        { title: 'Day High', field: 'dayHigh' }, 
+        { title: 'Volume', field: 'volume' }, 
+        { title: 'Open', field: 'open' }, 
+        { title: 'Previous Close', field: 'previousClose' }, 
+      ]
+      
+    }
     
-  //   // this.setState({ prices: data, loading: false});
-  await this.setState({ symbol: input, output:data});
+    
+   await this.setState({ symbol: input, output:data, columns:cols});
   {console.log(this.state.output)}
   this.setState({loading: false, })
 
@@ -101,19 +129,17 @@ export default class SearchTable extends React.Component {
     }  
      
      
-      columns={[
-        { title: 'Currency', field: 'currency' },
-        { title: 'Short Name', field: 'exchangeShortName' },
-        { title: 'Name', field: 'name' },
-        { title: 'Name', field: 'stockExchange' },
-        { title: 'Name', field: 'symbol' },
-        // { title: 'Open', field: 'open', type: 'numeric' },
-        // { title: 'High', field: 'high', type: 'numeric' },
-        // { title: 'Low', field: 'low', type: 'numeric' },
-        // { title: 'Close', field: 'close', type: 'numeric' },
-        // { title: 'Volume', field: 'volume', type: 'numeric'}
-        
-      ]}
+      // columns={[
+      //   { title: 'Currency', field: 'currency' },
+      //   { title: 'Short Name', field: 'exchangeShortName' },
+      //   { title: 'Name', field: 'name' },
+      //   { title: 'Name', field: 'stockExchange' },
+      //   { title: 'Name', field: 'symbol' }  
+      // ]}
+
+      
+
+      columns={this.state.columns}
       
       
        data = {this.state.output}
