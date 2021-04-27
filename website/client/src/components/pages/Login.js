@@ -71,7 +71,9 @@ class Login extends React.Component{
           fetch('http://104.196.230.228:80/login', {method: "POST", body: JSON.stringify({username: this.state.username, password: this.state.password})})
           .then( (response) => {
             if ( response.status !== 200) {
-              console.log("Error: " + response.body + ", Status: " + response.status);
+              let error = "";
+              response.json().then( (data) => { error = data.message;});
+              console.log("Error: " + error + ", Status: " + response.status);
               this.setState({username: "", password: "", redirect: false});
             } else {
               console.log(response.status);
@@ -82,7 +84,6 @@ class Login extends React.Component{
               console.log(u1)
               this.setState({username: "", password: "", redirect: true});
               return response.text();
-              
             }
           })
           .then( (text) => {
