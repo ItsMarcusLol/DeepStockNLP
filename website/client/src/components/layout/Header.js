@@ -157,7 +157,10 @@ const titleStyle = {
  
   componentDidMount() {
     const u1 = localStorage.getItem('user');
-  this.setState({ username:u1 });
+   
+    if (this.state.username != u1){
+      this.setState({ username:u1 });
+    }
   };
 
   handleListKeyDown(event) {
@@ -195,6 +198,7 @@ const titleStyle = {
   
 render(){
   const {classes} = this.props;
+  
  
 return (
 
@@ -244,6 +248,7 @@ return (
           color="inherit"
           >
             {this.state.username}
+            {/* {localStorage.getItem('user')} */}
          </Button> 
         <Popper open={this.state.openU} anchorEl={this.anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
