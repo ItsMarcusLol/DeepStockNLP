@@ -11,47 +11,152 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import LoadingSymbol from './LoadingSymbol';
 
-// export default class HTable extends React.Component {
-function HT(props) {
-  const symbol = props.symb
- 
-  return (
-    <MaterialTable
-    icons={{
-    Check: () => <Check />,
-    Export: () => <SaveAlt />,
-    SortArrow: () => <FilterListIcon />,
-    FirstPage: () => <FirstPage />,
-    LastPage: () => <LastPage />,
-    NextPage: () => <ChevronRight />,
-    PreviousPage: () => <ChevronLeft />,
-    Search: () => <Search />,
-    ThirdStateCheck: () => <Remove />,
-    ViewColumn: () => <ViewColumn />,
-    DetailPanel: () => <ChevronRight />,
-    ResetSearch: () => <Clear />
-  }}
-      title={symbol}
-      columns={[
+export default class SearchTable extends React.Component {
+  cols1=[
+    { title: 'Currency', field: 'currency' },
+    { title: 'Short Name', field: 'exchangeShortName' },
+    { title: 'Name', field: 'name' },
+    { title: 'Name', field: 'stockExchange' },
+    { title: 'Name', field: 'symbol' }, 
+    { title: 'Price', field: 'price' }, 
+  ]
+
+    constructor(props) {
+    console.log(props)
+    super(props);
+    this.state = {
+      loading: true, 
+      output: null,
+      symbol: null,
+      columns: null
+  
+    };
+    {console.log(this.props.data)}
+    const input = this.props.symb
+    const data = this.props.data
+    this.setState({ symbol: input, output:data});
+  }
+
+
+  async componentDidMount() {
+    const input = this.props.symb
+    const key = "f0448bd30a7028e245052fcf3caa0837"
+    const url = "https://financialmodelingprep.com/api/v3/search?query="+ input +"&limit=15&exchange=NASDAQ&apikey="+key;
+    const response = await fetch(url);
+    var data = await response.json();
+    var cols=[
+      { title: 'Currency', field: 'currency' },
+      { title: 'Short Name', field: 'exchangeShortName' },
+      { title: 'Name', field: 'name' },
+      { title: 'Name', field: 'stockExchange' },
+      { title: 'Name', field: 'symbol' }, 
+      { title: 'Price', field: 'price' }, 
+    ]
+    console.log(data)
+    console.log(data.length)
+    console.log(data[0].symbol)
+    if (data.length == 1){
+      console.log("in if")
+      const sym = data[0].symbol;
+      const url2 = "https://financialmodelingprep.com/api/v3/quote/"+sym+"?apikey="+key;
+      const response2 = await fetch(url2);
+      const d = await response2.json();
+      data = d;
+      cols=[
         { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      options={{
-        search: true
-      }}
-    />
-  )
-}
+        { title: 'Price', field: 'price' },
+        { title: 'Change', field: 'change' }, 
+        { title: 'Day Low', field: 'dayLow' }, 
+        { title: 'Day High', field: 'dayHigh' }, 
+        { title: 'Volume', field: 'volume' }, 
+        { title: 'Open', field: 'open' }, 
+        { title: 'Previous Close', field: 'previousClose' }, 
+      ]
+      
+    }
+    
+    
+   await this.setState({ symbol: input, output:data, columns:cols});
+  {console.log(this.state.output)}
+  this.setState({loading: false, })
 
-export default HT;
+}
+  
+ 
+
+  render() {
+    console.log(this.state.loading)
+      if (this.state.loading){
+         return <LoadingSymbol />
+      }
+
+      if (!this.state.output){
+          return <div>Can't get table, right now. Check in later!</div>
+      }
+      {console.log(this.props.output)}
+
+      return (
+
+        
+       
+        <MaterialTable
+        icons={{
+          Check: () => <Check />,
+          Export: () => <SaveAlt />,
+          SortArrow: () => <FilterListIcon />,
+          FirstPage: () => <FirstPage />,
+          LastPage: () => <LastPage />,
+          NextPage: () => <ChevronRight />,
+          PreviousPage: () => <ChevronLeft />,
+          Search: () => <Search />,
+          ThirdStateCheck: () => <Remove />,
+          ViewColumn: () => <ViewColumn />,
+          DetailPanel: () => <ChevronRight />,
+          ResetSearch: () => <Clear />
+        }}
+      title= {
+        <div 
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            display: "flex",
+            fontSize: 33
+          }}>
+              {this.state.symbol}
+          </div>
+    }  
+     
+     
+      // columns={[
+      //   { title: 'Currency', field: 'currency' },
+      //   { title: 'Short Name', field: 'exchangeShortName' },
+      //   { title: 'Name', field: 'name' },
+      //   { title: 'Name', field: 'stockExchange' },
+      //   { title: 'Name', field: 'symbol' }  
+      // ]}
+
+      
+
+      columns={this.state.columns}
+      
+      
+       data = {this.state.output}
+      // fake data
+      // data={[
+      //   { currency: '2-12-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+      //   // { date: '2-12-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+      //   // { date: '2-11-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+      //   // { date: '2-10-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+      //   // { date: '2-9-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+      //   // { date: '2-8-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
+       
+      // ]}
+      options={{ search: false, paging: true, pageSize: 5, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}
+    
+    />
+      );
+  }
+
+}
