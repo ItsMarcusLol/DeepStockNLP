@@ -29,7 +29,7 @@ import { Thickness } from 'igniteui-react-core';
           const url = "https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=f0448bd30a7028e245052fcf3caa0837";
           const response = await fetch(url);
           const data = await response.json();
-          console.log(data)
+          // console.log(data)
           this.setState({ prices: data, loading: false});
           // this.setState({ prices: null, loading: false});
 
