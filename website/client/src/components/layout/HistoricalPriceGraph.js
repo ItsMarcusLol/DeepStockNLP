@@ -12,10 +12,9 @@ function CustomTooltip({ payload, label, active }) {
   if (active && payload != null) {
     return (
      
-      <div className="custom-tooltip"
+      <div style={{backgroundColor: '#71F000', fontSize:"17px", color:"white", width: '100%', padding: '5px' }}
       >
-         {/* {background-color: green,
-  opacity: 0.3} */}
+       
         <p className="label">{`Date: ${label}`}</p>
         <p className="label"> {`Change: ${payload[0].payload.change}`}</p>
         <p className="desc">Open: {payload[0].payload.open}</p>
@@ -86,9 +85,9 @@ export default class HistoricalPriceGraph extends PureComponent {
         {/* <Legend /> */}
         
         {/* <Tooltip wrapperStyle={{ backgroundColor: "white" }} labelStyle={{ color: "green" }}
-            itemStyle={{ color: "cyan" }}content={<CustomTooltip/>} /> */}
+             itemStyle={{ color: "cyan" }}content={<CustomTooltip/>} />  */}
 
-<Tooltip content={<CustomTooltip/>} />
+        <Tooltip content={<CustomTooltip/>} />
 
         {/* <Tooltip
             wrapperStyle={{ backgroundColor: "red" }}
