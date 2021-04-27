@@ -228,7 +228,7 @@ return (
             </div>
             <div   style = {titleStyle}> 
             <Typography   variant="h6" noWrap  style = {titleStyle} component={Link} to="/">
-              DeepStockNLP
+              DeepStock
             </Typography>
 
 
