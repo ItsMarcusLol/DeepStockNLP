@@ -61,8 +61,8 @@ class SignUp extends React.Component{
         fetch('http://104.196.230.228:80/account', {method: "POST", body: JSON.stringify({username: this.state.username, password: this.state.password})})
           .then( (response) => {
             if ( response.status !== 200) {
-              let error = "";
-              response.json().then( (data) => { error = data.message;});
+              var error = "empty";
+              response.text().then( (text) => { error = text;});
               console.log("Error: " + error + ", Status: " + response.status);
             } else {
               console.log(response.status);
