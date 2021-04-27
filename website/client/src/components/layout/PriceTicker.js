@@ -2,6 +2,7 @@ import React from 'react'
 import Ticker from 'react-ticker'
 import PageVisibility from 'react-page-visibility'
 import LoadingSymbol from './LoadingSymbol';
+import { Thickness } from 'igniteui-react-core';
   
     class PriceTicker extends React.Component {
         
@@ -22,9 +23,13 @@ import LoadingSymbol from './LoadingSymbol';
         }
        
         async componentDidMount() {
-          const url = "https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=f0448bd30a7028e245052fcf3caa0837";
+          // const url = "https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=f0448bd30a7028e245052fcf3caa0837";
+          // const url = "https://financialmodelingprep.com/api/v3/actives?apikey=f0448bd30a7028e245052fcf3caa0837"
+          // const url = "https://financialmodelingprep.com/api/v3/stock_news?apikey=f0448bd30a7028e245052fcf3caa0837"
+          const url = "https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=f0448bd30a7028e245052fcf3caa0837";
           const response = await fetch(url);
           const data = await response.json();
+          console.log(data)
           this.setState({ prices: data, loading: false});
           // this.setState({ prices: null, loading: false});
 
@@ -62,10 +67,18 @@ import LoadingSymbol from './LoadingSymbol';
                       
                       <Ticker>
                         {({ index }) => (
+                             
                             <>
-                                <h1 style={{fontSize:"35px", color:"white"}}>{  this.state.prices[index].symbol}:{this.state.prices[index].price }<span> &nbsp; </span></h1>
+                              
+                              
+                                <h1 style={{fontSize:"35px", color:"white"}}> {this.state.prices[index].symbol}:{this.state.prices[index].change } ({this.state.prices[index].changesPercentage}%) <span> &nbsp; </span></h1>
+                                
+                                 
+                        
+                                
                                 <img src="www.my-image-source.com/" alt=""/>
                             </>
+                         
                         )}
                       </Ticker>
                     
