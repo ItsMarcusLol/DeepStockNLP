@@ -98,7 +98,7 @@ class Login extends React.Component{
      const {classes} = this.props;
 
       if (this.state.redirect) {
-                    window.location.href = "http://localhost:3000/"
+                    window.location.href = "http://104.196.230.228:80/"
                 }
     return (
       <div className = {classes.div}>
