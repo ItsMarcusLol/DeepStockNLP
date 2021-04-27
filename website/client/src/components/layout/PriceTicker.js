@@ -71,7 +71,10 @@ import { Thickness } from 'igniteui-react-core';
                             <>
                               
                               
-                                <h1 style={{fontSize:"35px", color:"white"}}> {this.state.prices[index].symbol}:{this.state.prices[index].change } ({this.state.prices[index].changesPercentage}%) <span> &nbsp; </span></h1>
+                                <h1 
+                                style={{fontSize: 35, color: this.state.prices[index].change < 0 ? "#FF0000" : "#00CC00"}}> 
+                                {this.state.prices[index].symbol}:{this.state.prices[index].change } ({this.state.prices[index].changesPercentage}%) 
+                                <span> &nbsp; </span></h1>
                                 
                                  
                         

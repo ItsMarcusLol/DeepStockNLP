@@ -12,7 +12,7 @@ function CustomTooltip({ payload, label, active }) {
   if (active && payload != null) {
     return (
      
-      <div style={{backgroundColor: '#71F000', fontSize:"17px", color:"white", width: '100%', padding: '5px' }}
+      <div style={{backgroundColor: '#228B22', fontSize:"17px", color:"white", width: '100%', padding: '5px' }}
       >
        
         <p className="label">{`Date: ${label}`}</p>
@@ -79,7 +79,7 @@ export default class HistoricalPriceGraph extends PureComponent {
                     Change ($)
                 </Label> 
         </YAxis>  */}
-        <YAxis/> 
+        <YAxis stroke="#FFF"/> 
         
         {/* <Tooltip /> */}
         {/* <Legend /> */}

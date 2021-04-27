@@ -7,19 +7,22 @@ conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', dat
 
 class AccountManager():
     def login(self, username, password):
-        cursor = conn.cursor()
-        pw = password.encode()
-        query = "SELECT * FROM account_data WHERE username=\"" + username + "\""
-        cursor.execute(query)
-        result = cursor.fetchone()
-        hashed_inDB = result[2]
-        hashed_str = hashed_inDB.encode()
-        if bcrypt.checkpw(pw, hashed_str): 
-            cursor.close()
-            return make_response(jsonify({"message": "Login successful"}), 200)
-        else:
-            cursor.close()
-            return make_response(jsonify({"message": "Login failed"}), 400)
+        try: 
+            cursor = conn.cursor()
+            pw = password.encode()
+            query = "SELECT * FROM account_data WHERE username=\"" + username + "\""
+            cursor.execute(query)
+            result = cursor.fetchone()
+            hashed_inDB = result[2]
+            hashed_str = hashed_inDB.encode()
+            if bcrypt.checkpw(pw, hashed_str): 
+                cursor.close()
+                return make_response(jsonify({"message": "Login successful"}), 200)
+            else:
+                cursor.close()
+                return make_response(jsonify({"message": "Login failed"}), 400)
+        except: 
+            return make_response(jsonify({"message": "Login server error"}), 500)
     
     def get_account_id(self, userId):
         cursor = conn.cursor()
@@ -38,29 +41,28 @@ class AccountManager():
         return result
     
     def create_account(self, username, password):
-        if len(username) > 20 or str.isspace(username):
-            return make_response(jsonify({"message": "Username too long or blank"}), 400)
-        elif self.validPassword(password):
-            return make_response(jsonify({"message": "Invalid password"}), 400)
-        elif self.account_exists(username):
-            return make_response(jsonify({"message": "Username already exists"}), 400)
-        else:
-            userId = self.genUserId()
-            cursor = conn.cursor()
-            pw = password.encode()
-            pw_hashed = bcrypt.hashpw(pw, bcrypt.gensalt(rounds=15))
-            pw_hashed_str = pw_hashed.decode()
-            query = "INSERT INTO account_data(username, user_id, password) VALUES(\"" + username +"\","+str(userId)+",\""+pw_hashed_str+"\")"
-            #try: 
-            cursor.execute(query)
-            conn.commit()
-            '''except:
-                print("Query failed")
-                print(query)
+        try: 
+            if not (username.isascii() and password.isascii()): 
+                return make_response(jsonify({"message": "ASCII characters only"}), 400)
+            if len(username) > 20 or str.isspace(username):
+                return make_response(jsonify({"message": "Username too long or blank"}), 400)
+            elif self.validPassword(password):
+                return make_response(jsonify({"message": "Invalid password"}), 400)
+            elif self.account_exists(username):
+                return make_response(jsonify({"message": "Username already exists"}), 400)
+            else:
+                userId = self.genUserId()
+                cursor = conn.cursor()
+                pw = password.encode()
+                pw_hashed = bcrypt.hashpw(pw, bcrypt.gensalt(rounds=15))
+                pw_hashed_str = pw_hashed.decode()
+                query = "INSERT INTO account_data(username, user_id, password) VALUES(\"" + username +"\","+str(userId)+",\""+pw_hashed_str+"\")"
+                cursor.execute(query)
+                conn.commit()
                 cursor.close()
-                return -1'''
-            cursor.close()
-            return make_response(jsonify({"message": "Account created successfully"}), 200)
+                return make_response(jsonify({"message": "Account created successfully"}), 200)
+        except: 
+            return make_response(jsonify({"message": "Create Account server error"}), 500)
 
     def account_exists(self, username):
         cursor = conn.cursor()
