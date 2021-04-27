@@ -55,9 +55,9 @@ class SignUp extends React.Component{
         onSubmit = (e) => {
         e.preventDefault();
         this.props.login(this.state.username, this.state.password);
-        if (this.state.password === this.state.rePassword) {
-            this.setState({ username: '', password: '',rePassword: '', redirect: true });
-        }
+        // if (this.state.password === this.state.rePassword) {
+        //     this.setState({ username: '', password: '',rePassword: '', redirect: true });
+        // }
         fetch('http://104.196.230.228:80/account', {method: "POST", body: JSON.stringify({username: this.state.username, password: this.state.password})})
           .then( (response) => {
             if ( response.status !== 200) {
@@ -66,6 +66,9 @@ class SignUp extends React.Component{
               console.log("Error: " + error + ", Status: " + response.status);
             } else {
               console.log(response.status);
+              const user = this.state.username;
+              localStorage.setItem('user', user);
+              this.setState({username: "", password: "", redirect: true});
               return response.text();
             }
           })
