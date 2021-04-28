@@ -224,7 +224,7 @@ n = (count - count0 )
 #     scale_weight = 0;
 scale_weight = count0/count
 
-print(scale_weight)
+# print(scale_weight)
 
 scale_weight = getPW[ticker.lower()]
 
@@ -242,8 +242,8 @@ y_pred_weight1 = weighted_XGB1.predict(test_sentiment_weight)
 # In[17]:
 
 
-print("Weighted Accuracy", accuracy_score(test_news['Label'], y_pred_weight1))
-print("F1 weighted", f1_score(test_news['Label'], y_pred_weight1, average='weighted'))
+# print("Weighted Accuracy", accuracy_score(test_news['Label'], y_pred_weight1))
+# print("F1 weighted", f1_score(test_news['Label'], y_pred_weight1, average='weighted'))
 
 
 # ##### All scores are printed out for comparison
@@ -344,7 +344,6 @@ def get_jsonparsed_data(url):
 
 def get_FM(ticker):
     key2 = "f0448bd30a7028e245052fcf3caa0837"
-    # ticker = ['AAPL','AMZN','MSFT','TSLA','TGT','WMT','DELL','F','BA']
     f_output = []
 
  
@@ -373,10 +372,10 @@ df_final = pd.concat([df_1, df_2], ignore_index=True, sort=False)
 
 today = date.today()
 i = 0
-for x in df_final['Date']:
-    if today == x:
-        print(df_final['Date'][i], df_final['Headline'][i])
-    i = i +1
+# for x in df_final['Date']:
+#     if today == x:
+#         print(df_final['Date'][i], df_final['Headline'][i])
+#     i = i +1
 
 
 # In[ ]:
@@ -428,15 +427,15 @@ for x in range(col_num):
 last = []
 last.append(today_H)
 df_d = pd.DataFrame(last, columns = col2)
-print(df_d)
+# print(df_d)
 
 
 # In[29]:
 
 
-for x in df_d:
-    for y in df_d[x]:
-        print(y)
+# for x in df_d:
+#     for y in df_d[x]:
+#         print(y)
 
 
 # In[30]:
