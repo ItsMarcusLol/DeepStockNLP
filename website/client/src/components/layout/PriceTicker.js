@@ -2,7 +2,6 @@ import React from 'react'
 import Ticker from 'react-ticker'
 import PageVisibility from 'react-page-visibility'
 import LoadingSymbol from './LoadingSymbol';
-import { Thickness } from 'igniteui-react-core';
   
     class PriceTicker extends React.Component {
         

@@ -57,7 +57,7 @@ export default class SearchTable extends React.Component {
     console.log(data)
     console.log(data.length)
     console.log(data[0].symbol)
-    if (data.length == 1){
+    if (data.length === 1){
       console.log("in if")
       const sym = data[0].symbol;
       const url2 = "https://financialmodelingprep.com/api/v3/quote/"+sym+"?apikey="+key;

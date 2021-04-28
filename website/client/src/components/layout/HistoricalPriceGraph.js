@@ -1,12 +1,7 @@
 import React, { PureComponent } from 'react';
 import {
-  Line, LineChart, XAxis, YAxis, Label, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  Line, LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
-
-// import 'C:\Users\dcard\Cap-Repo\DeepStockNLP\website\client\src\components/App.css';
-import DefaultTooltipContent from 'recharts/lib/component/DefaultTooltipContent';
-
-// import CustomTooltip from './CustomTooltip';
 
 function CustomTooltip({ payload, label, active }) {
   if (active && payload != null) {
