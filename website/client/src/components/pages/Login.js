@@ -148,7 +148,7 @@ class Login extends React.Component{
               className={classes.submit}
               disabled={!this.validateForm()}
             >
-              Sign In
+              Login
             </Button>
             <Grid container>
               <Grid item>
