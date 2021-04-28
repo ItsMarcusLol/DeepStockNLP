@@ -128,7 +128,8 @@ const headerStyleBlack = {
     color: 'black',
     fontFamily: '-moz-initial',
     textAlign: 'center',
-    fontSize: '37px'
+    fontSize: '37px',
+    textDecorationLine: 'underline'
 }
 
 const paragraphStyleBlack = {
@@ -141,8 +142,7 @@ const title = {
     color: 'white',
     fontFamily: '-moz-initial',
     textAlign: 'center',
-    fontSize: '52px',
-    textDecorationLine: 'underline'
+    fontSize: '52px'
 }
 
 export default About;
