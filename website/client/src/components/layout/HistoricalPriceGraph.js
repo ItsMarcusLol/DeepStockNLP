@@ -12,16 +12,13 @@ function CustomTooltip({ payload, label, active }) {
   if (active && payload != null) {
     return (
      
-      <div style={{backgroundColor: '#228B22', fontSize:"17px", color:"white", width: '100%', padding: '5px' }}
-      >
+      <div style={{backgroundColor: '#228B22', fontSize:"17px", color:"white", width: '100%', padding: '5px' }}>
        
         <p className="label">{`Date: ${label}`}</p>
         <p className="label"> {`Change: ${payload[0].payload.change}`}</p>
         <p className="desc">Open: {payload[0].payload.open}</p>
         <p className="desc">Close: {payload[0].payload.close}</p>
       </div>
-      
-      
      
     );
   }
@@ -44,8 +41,6 @@ export default class HistoricalPriceGraph extends PureComponent {
     
   }
 
-
-
   render() {
     if (!this.props.data) {
       return <span>Loading...</span>;
@@ -66,19 +61,6 @@ export default class HistoricalPriceGraph extends PureComponent {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" stroke="#FFF"/>
-        {/* <YAxis
-          stroke="#FFF">
-            <Label
-                angle={270}
-                position="left"
-                sylte={{ textAnchor: 'middle'}} 
-                stroke="#FFFFFF"
-                fontSize="14"
-                fontFamily="normal"
-                >
-                    Change ($)
-                </Label> 
-        </YAxis>  */}
         <YAxis stroke="#FFF"/> 
         
         {/* <Tooltip /> */}
@@ -102,10 +84,7 @@ export default class HistoricalPriceGraph extends PureComponent {
             }}
           /> */}
         
-        <Line type="monotone" dataKey="change" stroke="#82ca9d" activeDot={{ r: 8 }} />
-        {/* <Line type="monotone" dataKey="Low" stroke="red" />*/}
-         {/* <Line type="monotone" dataKey="close" stroke="#8884d8" />  */}
-
+        <Line type="monotone" strokeWidth="3" dataKey="change" stroke="#82ca9d" activeDot={{ r: 8 }} />
       </LineChart>
       </ResponsiveContainer>
       </div> 
