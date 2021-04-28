@@ -1,4 +1,3 @@
-// import React, { Component } from 'react';
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.css';
@@ -12,10 +11,6 @@ import Grid from '@material-ui/core/Grid';
 import Chat from './components/layout/Chat';
 import RadioB from './components/layout/RadioB';
 import Search from './components/layout/Search';
-
-
-
-
 
 class App extends Component {
  
@@ -56,7 +51,6 @@ class App extends Component {
                   </Grid>
 
                   <Grid item xs={6}>
-                    {/* <DayPriceGraph /> */}
                     <RadioB />
                   </Grid>
 
