@@ -2,40 +2,20 @@
 # coding: utf-8
 
 # ### Get the packages
-
-# In[1]:
-
-
 import pandas as pd
 import copy
-# import datetime
-# from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-# from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
-# from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-# from sklearn.naive_bayes import MultinomialNB
 from textblob import TextBlob
 from xgboost import XGBClassifier
-# import xgboost as xgb
 import requests
 import json
-# import numpy as np
-# import json
 from datetime import datetime
 from datetime import date
 import requests
 
 
 # ## Want to Train and Test on last 270 days put true
-
-# In[2]:
-
-
 train_270 = True
-
-
-# In[3]:
-
 
 def analize_sentiment(tweet):
     if str(tweet) == "nan":
@@ -50,27 +30,14 @@ def analize_sentiment(tweet):
 
 # ### Get the path for the CSV and put it in here 
 
-# In[4]:
-
 
 saved_H = pd.read_csv(r'C:/Users/dcard/Cap-Repo/DeepStockNLP/Data/20-21-csv/GOOGL-2021-input-4-26-21.csv')
 ticker = "GOOGL"
 stock = "google"
 
 
-# In[5]:
-
-
 getPW = {'googl':60, 'tsla':20, 'aapl':0.75, 'amzn':50, 'ba':0, 'msft':7, 'dell':3, 'wmt':0, 'tgt': 0.948, 'F': 1.22}
 
-
-# In[ ]:
-
-
-
-
-
-# In[6]:
 
 
 col = []
@@ -78,9 +45,6 @@ for x in saved_H:
     col.append(x)
     
     
-
-
-# In[7]:
 
 
 if train_270 == True: 
@@ -107,8 +71,6 @@ else:
 
 # ### Get the train news and test news datasets
 
-# In[8]:
-
 
 def get_train_news(day, month, year, data):
     index = 0
@@ -122,8 +84,6 @@ def get_train_news(day, month, year, data):
         df = pd.DataFrame(dataset)
     return df
 
-
-# In[9]:
 
 
 def get_test_news(day, month, year,data):
@@ -139,9 +99,7 @@ def get_test_news(day, month, year,data):
     return df
 
 
-# ## Split Data into Train and Test:
-
-# In[10]:
+# ## Splits Data into Train and Test:
 
 
 num_column = (len(news.columns))
@@ -163,8 +121,6 @@ train_news = get_train_news(int(day), int(month), int(year), news)
 test_news = get_test_news(int(tst_day), int(tst_month), int(tst_year), news)
 
 
-# In[11]:
-
 
 train_news_list = []
 for row in range (0, len(train_news.index)):
@@ -175,21 +131,18 @@ for row in range (0, len(train_news.index)):
 
 # ### Model- scaling positive weight:
 
-# In[14]:
-
 
 train_sentiment_weight = train_news
 test_sentiment_weight = test_news
 weighted_data=[]
 empty_data=[]
 
-# train_sentiment_weight = train_sentiment_weight.drop(['Date', 'Label','1', '2', '3', '4', '5', '6', '7', '8', '9','10'], axis=1)
 train_sentiment_weight = train_sentiment_weight.drop(['Date', 'Label'], axis=1)
 for column in train_sentiment_weight:
     train_sentiment_weight[column] = train_sentiment_weight[column].apply(analize_sentiment)
 train_sentiment_weight = train_sentiment_weight 
 
-# test_sentiment_weight = test_sentiment_weight.drop(['Date', 'Label','1', '2', '3', '4', '5', '6', '7', '8', '9','10'], axis=1)
+
 test_sentiment_weight = test_sentiment_weight.drop(['Date', 'Label'], axis=1)
 for column in test_sentiment_weight:
     test_sentiment_weight[column] = test_sentiment_weight[column].apply(analize_sentiment)
@@ -202,8 +155,6 @@ for column in train_news:
         weighted_data = train_news[column]
 
 
-
-# In[15]:
 
 
 scale_weight = 0
@@ -224,48 +175,24 @@ n = (count - count0 )
 #     scale_weight = 0;
 scale_weight = count0/count
 
-# print(scale_weight)
+
 
 scale_weight = getPW[ticker.lower()]
 
 
-# In[16]:
-
 
 weighted_XGB1 = XGBClassifier(scale_pos_weight = scale_weight)
 weighted_XGB1.fit(train_sentiment_weight, train_news['Label'], sample_weight = weighted_data)
-# print(train_sentiment_weight)
 y_pred_weight1 = weighted_XGB1.predict(test_sentiment_weight)
-# print(train_sentiment_weight)
 
-
-# In[17]:
-
-
-# print("Weighted Accuracy", accuracy_score(test_news['Label'], y_pred_weight1))
-# print("F1 weighted", f1_score(test_news['Label'], y_pred_weight1, average='weighted'))
 
 
 # ##### All scores are printed out for comparison
-
-# In[18]:
-
-
-# print("Sentiment Accuracy", accuracy_score(test_news['Label'], y_pred))
 print("Weighted Accuracy", accuracy_score(test_news['Label'], y_pred_weight1))
 print("F1 weighted", f1_score(test_news['Label'], y_pred_weight1, average='weighted'))
 
 
 # ## Get Headlines for the Day
-
-# In[ ]:
-
-
-
-
-
-# In[19]:
-
 
 def get_NYT():
     your_key = 'XrEpgzLniLeuVv9Rwai6PZfol6OhEN91'
@@ -279,7 +206,6 @@ def get_NYT():
     NYT_Headlines = []
 
     for x in jdata:
-#         for st in stocks:
         if stock in x['title'].lower(): 
             oldformat = x['published_date']
             date = oldformat.partition("T")[0]
@@ -291,7 +217,6 @@ def get_NYT():
             
 
 
-# In[20]:
 
 
 def parse_data(data):
@@ -302,7 +227,6 @@ def parse_data(data):
     return output
 
 
-# In[21]:
 
 
 try:
@@ -313,7 +237,6 @@ except ImportError:
     from urllib2 import urlopen
 
 
-# In[22]:
 
 
 def get_jsonparsed_data(url):
@@ -333,14 +256,6 @@ def get_jsonparsed_data(url):
     return json.loads(data)
 
 
-# In[ ]:
-
-
-
-
-
-# In[23]:
-
 
 def get_FM(ticker):
     key2 = "f0448bd30a7028e245052fcf3caa0837"
@@ -354,37 +269,21 @@ def get_FM(ticker):
     output = parse_data(data)
     df_1 = pd.DataFrame(output, columns = ["Ticker", "Date", "Headline"])
     return df_1
-# df_2 = pd.DataFrame(NYT_Headlines, columns = ["Ticker", "Date", "Headline"])
 
 
-# In[24]:
+
+
 
 
 df_2=get_NYT()
 df_1 = get_FM(ticker)
-# df_final = pd.append((df_1, df_2))
 df_final = pd.concat([df_1, df_2], ignore_index=True, sort=False)
-# df_final = df_1.append(df_2)
 
 
-# In[25]:
+
 
 
 today = date.today()
-i = 0
-# for x in df_final['Date']:
-#     if today == x:
-#         print(df_final['Date'][i], df_final['Headline'][i])
-#     i = i +1
-
-
-# In[ ]:
-
-
-
-
-
-# In[26]:
 
 
 today_H = []
@@ -400,16 +299,12 @@ for x in df_final['Date']:
     
 
 
-# In[27]:
-
 
 col_num = 0
 for x in news:
     col_num = col_num + 1
 col_num = col_num -2
 
-
-# In[28]:
 
 
 
@@ -427,28 +322,13 @@ for x in range(col_num):
 last = []
 last.append(today_H)
 df_d = pd.DataFrame(last, columns = col2)
-# print(df_d)
-
-
-# In[29]:
-
-
-# for x in df_d:
-#     for y in df_d[x]:
-#         print(y)
-
-
-# In[30]:
 
 
 all_train = copy.deepcopy(news)
-
-
-# all_train = all_train.drop(['Date', 'Label','1', '2', '3', '4', '5', '6', '7', '8', '9','10'], axis=1)
 all_train = all_train.drop(['Date', 'Label'], axis=1)
 for column in all_train:
     all_train[column] = all_train[column].apply(analize_sentiment)
-# train_sentiment_weight = train_sentiment_weight 
+
 
 
 weighted_All = XGBClassifier(scale_pos_weight = 60)
@@ -459,13 +339,8 @@ y_d2 = weighted_XGB1.predict(df_d)
 
 # ## Prediction for the day:
 
-# In[31]:
-
-
-
-y_d = weighted_XGB1.predict(df_d)
 print(y_d2)
-print(y_d)
+
 
 
 
