@@ -75,6 +75,22 @@ Before you can run the model, you will need to get the data (you can skip this a
      - Run, this ouputs a csv with ( date, (close - open), (last ten days of (close - open), ( column for each headline for that date ))  
 
 ### Running The Model
-   - In the folder "model-w-input" there are two models. One with multiple models that we were testing to find the best one titled "All_Main_Model" and the other with our models with the best output titled "Model-RFC-XGB-Specific" this model would be better to run.
-   - Put the path to the clean csv or the data csv you want to use for the model into the "news" varible in "Model-RFC-XGB-Specific"
-   - Run all cells - The accuracies of the models will be printed out at the bottom of the code labeled with the model and its corresponding accuracy.
+   - Daily-Prediction.py: This script trains the XGBoost XGBClassifier (binary logistic rergressive model) on the last 270 days of headlines, that are related to a particular stock. This script then makes an API request to the NYT API and Finacial Modeling Prep API for recent headlines. These headlines are then filtered through and checked that they were published for the current day and that the headline is relevant to the particular stock. These are then used to make the prediction for the current day.
+    Markup : 1. sudo apt install python3-venv python3-pip
+             2. Create a python enviornment 
+                  1.pip3 install virtualenv 
+                  2. python3 -m venv virtual-env
+                  3. source virtual-env/bin/activate
+             3. Install Anaconda
+             4. List of other installs:
+                  1. conda install pandas
+                  2. conda install -c intel scikit-learn
+                  3. conda install -c conda-forge textblob
+                  4. conda install -c conda-forge xgboost
+                  5. conda install -c anaconda requests
+             5. Download a input for the model. Right now in our Data/20-21-csv are our most recent inputs and are named after the stocks ticker and the date they were updated
+             6. Change path of saved_H to where the csv input is saved
+             7. Change the variables "ticker" and "stock" to the corresponding ticker and stock of your input
+             8. Run by: python3 Daily-Predictions.py
+                   1. You will see the Accuracy and the F1 score and the prediction at the bottom (1: increase, 0: decrease) 
+
