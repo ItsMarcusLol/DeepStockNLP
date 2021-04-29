@@ -8,10 +8,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import React from "react";
-import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-
-
 
 const styles = (theme) => ({
   paper: {
@@ -148,7 +145,7 @@ class Login extends React.Component{
               className={classes.submit}
               disabled={!this.validateForm()}
             >
-              Sign In
+              Login
             </Button>
             <Grid container>
               <Grid item>

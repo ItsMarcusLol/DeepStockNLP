@@ -57,7 +57,7 @@ export default class SearchTable extends React.Component {
     console.log(data)
     console.log(data.length)
     console.log(data[0].symbol)
-    if (data.length == 1){
+    if (data.length === 1){
       console.log("in if")
       const sym = data[0].symbol;
       const url2 = "https://financialmodelingprep.com/api/v3/quote/"+sym+"?apikey="+key;
@@ -128,31 +128,8 @@ export default class SearchTable extends React.Component {
           </div>
     }  
      
-     
-      // columns={[
-      //   { title: 'Currency', field: 'currency' },
-      //   { title: 'Short Name', field: 'exchangeShortName' },
-      //   { title: 'Name', field: 'name' },
-      //   { title: 'Name', field: 'stockExchange' },
-      //   { title: 'Name', field: 'symbol' }  
-      // ]}
-
-      
-
       columns={this.state.columns}
-      
-      
-       data = {this.state.output}
-      // fake data
-      // data={[
-      //   { currency: '2-12-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-      //   // { date: '2-12-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-      //   // { date: '2-11-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-      //   // { date: '2-10-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-      //   // { date: '2-9-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-      //   // { date: '2-8-2021', open: '1234', close: '2313', high: '100', low: '0', volume: '300' },
-       
-      // ]}
+      data = {this.state.output}
       options={{ search: false, paging: true, pageSize: 5, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}
     
     />

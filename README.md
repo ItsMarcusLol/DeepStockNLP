@@ -1,12 +1,17 @@
 # DeepStockNLP
 
 ### About the Project:
-For our capstone project we are creating a stock prediction tool website. On the website, a user will the current prices of stocks, our prediction for the day of the stock. We also, will have a chat feature where users can chat about their own predictions or thoughts, this is for the users benefeit and ours, because we can also use this information for our model. We are predicting whether a stock price will go up or down based off of headlines and the last ten days of prices from that stock. We are doing this with headlines from the NYTimes archived headlines, and from Twitter we are collecting tweets from users that have tweeted about stocks. Also from twitter we are collecting headlines, from the more news networks that are more business or finacially driven headlines. 
+For our capstone project we are creating a stock prediction tool website that uses machine learning to create the predictions. On our website, the user will have access to features that will help them on their decsion on stock making. Depending on whether or not the user has created an account with us, their access to some features might be limited. The features that both registered and unregistered users have are that they can view the daily price of the stock, historical prices, our predictions, the headlines we used to make our predicitons, and a search feature. As a registered user, you will be able to have access to our forum where you will be able to interact with other users and share your opinions on how a stock will move. 
 
-### Current Progress and Results:
-Right now we're focusing on using XGBoost as our model and testing the model with archived news headlines from NYT and prices we got from Yahoo Finance. We tried weighing the model more towards dates that had more headlines and our most recent resutls were around 0.61. Recently we were looking to integrate Twitter headlines as well as headlines we got from twitter to try to test a different model and Dr. Cao helped us with that using Naive Bayes with results around 0.7.
+For our predictions, we are predicting whether a stock price will go up or down based off of the most recent 270 days worth of headlines and the prices from that stock. We are doing this with headlines from the NYTimes archived headlines and prices from Yahoo Finance. We use this data in our model and it will generate either a 1 if it predicts the stock will go up or a 0 if it predicts a stock will go down. We will then share this information on our website for our users to know and use as they wish.
 
+### Progress and Results as of **<strong>April 2021</strong>**:
+We have chosen XGBoost with Sentiment Analysis as our main model to make our predictions. From all the other models we trained, this model had the best accuracy. We're still training our models on archieved headlines and prices, but now we're doing it only on the most recent 270 days worth of data as that gave us the best results, which our results ranged depending on what stock you looked at was 62% - 67%. We also weren't able to get Twitter data to work with our model and now is only focusing on archieved headlines and historical prices.
+
+### Progress and Results as of **<strong>December 2020</strong>**:
+Right now we're focusing on using XGBoost as our model and testing the model with archived news headlines from NYT and prices we got from Yahoo Finance. We tried weighing the model more towards dates that had more headlines and our most recent resutls were around 0.61. Recently we were looking to integrate Twitter headlines as well as headlines we got from twitter to try to test a different model.
 ___
+
 ### Other sources:
 <p>Explore few other github for your reference:<br>
 https://github.com/achillesrasquinha/bulbea<br>
@@ -19,11 +24,10 @@ ___
 ### Project Built With:
 #### Models:
 - XGBoost
-- Random Forest
-- Naive Bayes
+- Sentiment Analysis
 #### Data: 
 - NYTimes API
-- Twitter API
+- Yahoo Finance
 
 ___
 
@@ -73,8 +77,29 @@ Before you can run the model, you will need to get the data (you can skip this a
      - In main put your price csv in to the prices varible
      - In main put your headline csv into the "news" varible 
      - Run, this ouputs a csv with ( date, (close - open), (last ten days of (close - open), ( column for each headline for that date ))  
+___
 
 ### Running The Model
-   - In the folder "model-w-input" there are two models. One with multiple models that we were testing to find the best one titled "All_Main_Model" and the other with our models with the best output titled "Model-RFC-XGB-Specific" this model would be better to run.
-   - Put the path to the clean csv or the data csv you want to use for the model into the "news" varible in "Model-RFC-XGB-Specific"
-   - Run all cells - The accuracies of the models will be printed out at the bottom of the code labeled with the model and its corresponding accuracy.
+   Daily-Prediction.py: This script trains the XGBoost XGBClassifier (binary logistic rergressive model) on the last 270 days of headlines, that are related to a particular stock. This script then makes an API request to the NYT API and Finacial Modeling Prep API for recent headlines. These headlines are then filtered through and checked that they were published for the current day and that the headline is relevant to the particular stock. These are then used to make the prediction for the current day.
+   
+   1. sudo apt install python3-venv python3-pip
+   2. Create a python enviornment 
+      1. pip3 install virtualenv 
+      2. python3 -m venv virtual-env
+      3. source virtual-env/bin/activate
+  3. Install Anaconda (if you already installed Anaconda from above, you can skip this step)
+  4. List of other installs:
+      - conda install pandas
+      - conda install -c intel scikit-learn
+      - conda install -c conda-forge textblob
+      - conda install -c conda-forge xgboost
+      - conda install -c anaconda requests
+  5. Download an input for the model. Right now in our Data/20-21-csv are our most recent inputs and are named after the stocks ticker and the date they were updated
+  6. Change path of saved_H to where the csv input is saved
+  7. Change the variables "ticker" and "stock" to the corresponding ticker and stock of your input
+  8. Run by: **python3 Daily-Predictions.py**
+      - You will see the Accuracy and the F1 score and the prediction at the bottom (1: increase, 0: decrease) 
+___
+
+### Running The Website
+
