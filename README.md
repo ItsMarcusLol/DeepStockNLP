@@ -5,12 +5,13 @@ For our capstone project we are creating a stock prediction tool website that us
 
 For our predictions, we are predicting whether a stock price will go up or down based off of the most recent 270 days worth of headlines and the prices from that stock. We are doing this with headlines from the NYTimes archived headlines and prices from Yahoo Finance. We use this data in our model and it will generate either a 1 if it predicts the stock will go up or a 0 if it predicts a stock will go down. We will then share this information on our website for our users to know and use as they wish.
 
-### Progress and Results as of **<strong>December 2020</strong>**:
-Right now we're focusing on using XGBoost as our model and testing the model with archived news headlines from NYT and prices we got from Yahoo Finance. We tried weighing the model more towards dates that had more headlines and our most recent resutls were around 0.61. Recently we were looking to integrate Twitter headlines as well as headlines we got from twitter to try to test a different model.
-
 ### Progress and Results as of **<strong>April 2021</strong>**:
 We have chosen XGBoost with Sentiment Analysis as our main model to make our predictions. From all the other models we trained, this model had the best accuracy. We're still training our models on archieved headlines and prices, but now we're doing it only on the most recent 270 days worth of data as that gave us the best results, which our results ranged depending on what stock you looked at was 62% - 67%. We also weren't able to get Twitter data to work with our model and now is only focusing on archieved headlines and historical prices.
+
+### Progress and Results as of **<strong>December 2020</strong>**:
+Right now we're focusing on using XGBoost as our model and testing the model with archived news headlines from NYT and prices we got from Yahoo Finance. We tried weighing the model more towards dates that had more headlines and our most recent resutls were around 0.61. Recently we were looking to integrate Twitter headlines as well as headlines we got from twitter to try to test a different model.
 ___
+
 ### Other sources:
 <p>Explore few other github for your reference:<br>
 https://github.com/achillesrasquinha/bulbea<br>
