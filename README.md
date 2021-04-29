@@ -5,10 +5,10 @@ For our capstone project we are creating a stock prediction tool website that us
 
 For our predictions, we are predicting whether a stock price will go up or down based off of the most recent 270 days worth of headlines and the prices from that stock. We are doing this with headlines from the NYTimes archived headlines and prices from Yahoo Finance. We use this data in our model and it will generate either a 1 if it predicts the stock will go up or a 0 if it predicts a stock will go down. We will then share this information on our website for our users to know and use as they wish.
 
-### Progress and Results as of <b>December 2020</b>:
+### Progress and Results as of **<strong>December 2020</strong>**:
 Right now we're focusing on using XGBoost as our model and testing the model with archived news headlines from NYT and prices we got from Yahoo Finance. We tried weighing the model more towards dates that had more headlines and our most recent resutls were around 0.61. Recently we were looking to integrate Twitter headlines as well as headlines we got from twitter to try to test a different model.
 
-### Progress and Results as of <b>April 2021</b>:
+### Progress and Results as of **<strong>April 2021</strong>**:
 We have chosen XGBoost with Sentiment Analysis as our main model to make our predictions. From all the other models we trained, this model had the best accuracy. We're still training our models on archieved headlines and prices, but now we're doing it only on the most recent 270 days worth of data as that gave us the best results, which our results ranged depending on what stock you looked at was 62% - 67%. We also weren't able to get Twitter data to work with our model and now is only focusing on archieved headlines and historical prices.
 ___
 ### Other sources:
@@ -80,24 +80,24 @@ ___
 
 ### Running The Model
    Daily-Prediction.py: This script trains the XGBoost XGBClassifier (binary logistic rergressive model) on the last 270 days of headlines, that are related to a particular stock. This script then makes an API request to the NYT API and Finacial Modeling Prep API for recent headlines. These headlines are then filtered through and checked that they were published for the current day and that the headline is relevant to the particular stock. These are then used to make the prediction for the current day.
-
-         1. sudo apt install python3-venv python3-pip
-         2. Create a python enviornment 
-                  - pip3 install virtualenv 
-                  - python3 -m venv virtual-env
-                  - source virtual-env/bin/activate
-         3. Install Anaconda
-         4. List of other installs:
-                  - conda install pandas
-                  - conda install -c intel scikit-learn
-                  - conda install -c conda-forge textblob
-                  - conda install -c conda-forge xgboost
-                  - conda install -c anaconda requests
-         5. Download a input for the model. Right now in our Data/20-21-csv are our most recent inputs and are named after the stocks ticker and the date they were updated
-         6. Change path of saved_H to where the csv input is saved
-         7. Change the variables "ticker" and "stock" to the corresponding ticker and stock of your input
-         8. Run by: python3 Daily-Predictions.py
-                  - You will see the Accuracy and the F1 score and the prediction at the bottom (1: increase, 0: decrease) 
+   
+   1. sudo apt install python3-venv python3-pip
+   2. Create a python enviornment 
+      1. pip3 install virtualenv 
+      2. python3 -m venv virtual-env
+      3. source virtual-env/bin/activate
+  3. Install Anaconda (if you already installed Anaconda from above, you can skip this step)
+  4. List of other installs:
+      - conda install pandas
+      - conda install -c intel scikit-learn
+      - conda install -c conda-forge textblob
+      - conda install -c conda-forge xgboost
+      - conda install -c anaconda requests
+  5. Download an input for the model. Right now in our Data/20-21-csv are our most recent inputs and are named after the stocks ticker and the date they were updated
+  6. Change path of saved_H to where the csv input is saved
+  7. Change the variables "ticker" and "stock" to the corresponding ticker and stock of your input
+  8. Run by: **python3 Daily-Predictions.py**
+      - You will see the Accuracy and the F1 score and the prediction at the bottom (1: increase, 0: decrease) 
 ___
 
 ### Running The Website
