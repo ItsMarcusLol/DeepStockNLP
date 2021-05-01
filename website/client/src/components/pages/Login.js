@@ -49,10 +49,13 @@ class Login extends React.Component{
     constructor(props) {
       super(props);
       this.state = {
+        userF: "",
+        passF: "",
         username: "", 
         password: "",
         redirect : false,
         disable : true,
+        message: ""
     };
       this.handleSubmit = this.handleSubmit.bind(this);
       this.onChange = this.onChange.bind(this);
@@ -60,26 +63,38 @@ class Login extends React.Component{
 
       validateForm() {
         return this.state.username.length > 0 && this.state.password.length > 0;
+        
       }
 
       handleSubmit(event) { 
-        this.setState({username: "", password: "", redirect: false});
+       const username = this.state.username;
+       const password =  this.state.password;
+      this.setState({username: "", password: "", redirect: false});
+        var m = "";
        
         event.preventDefault();
         
-          fetch('http://104.196.230.228:80/login', {method: "POST", body: JSON.stringify({username: this.state.username, password: this.state.password})})
+          fetch('http://104.196.230.228:80/login', {method: "POST", body: JSON.stringify({username: username, password: password})})
           .then( (response) => {
             if ( response.status !== 200) {
               console.log("Status: " + response.status);
-              this.setState({username: "", password: "", redirect: false});
+              // m = <h1 
+              // style={{fontSize: 35, color: "#FF0000" }}> 
+              // Wrong username or password 
+              // </h1>;
+              this.setState({username: "", password: "", redirect: false, message: m});
+
               return response.text();
             } else {
+              console.log(username);
+              console.log(password);
               console.log("Status: " + response.status);
-              const user = this.state.username;
+              const user = username;
               localStorage.setItem('user', user);
               const u1 = localStorage.getItem('user')
               console.log(u1)
-              this.setState({username: "", password: "", redirect: true});
+              m = "Login succesful!"
+              this.setState({username: "", password: "", redirect: true, message: m});
               return response.text();
             }
           })
@@ -90,7 +105,8 @@ class Login extends React.Component{
 
 
       onChange = (e) =>   this.setState({ 
-        [e.target.name]: e.target.value});
+        [e.target.name]: e.target.value},
+        console.log("hereeee"));
   
     render(){
      const {classes} = this.props;
@@ -109,6 +125,9 @@ class Login extends React.Component{
           <Typography component="h1" variant="h5">
             Login
           </Typography>
+          <div>
+            {this.state.message}
+          </div>
           <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
             <TextField
               variant="outlined"
@@ -144,7 +163,6 @@ class Login extends React.Component{
               color="primary"
               className={classes.submit}
               disabled={!this.validateForm()}
-              // disabled={this.state.disabled}
             >
               Login
             </Button>
