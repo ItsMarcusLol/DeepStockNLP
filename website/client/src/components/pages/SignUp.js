@@ -61,11 +61,11 @@ class SignUp extends React.Component{
         fetch('http://104.196.230.228:80/account', {method: "POST", body: JSON.stringify({username: this.state.username, password: this.state.password})})
           .then( (response) => {
             if ( response.status !== 200) {
-              var error = "empty";
-              response.text().then( (text) => { error = text;});
-              console.log("Error: " + error + ", Status: " + response.status);
+              console.log("Status: " + response.status);
+              this.setState({username: "", password: "", redirect: false});
+              return response.text();
             } else {
-              console.log(response.status);
+              console.log("Status: " + response.status);
               const user = this.state.username;
               localStorage.setItem('user', user);
               this.setState({username: "", password: "", redirect: true});
@@ -73,7 +73,7 @@ class SignUp extends React.Component{
             }
           })
           .then( (text) => {
-            console.log(text);
+            console.log("Message: " + text);
           });
        } 
   
