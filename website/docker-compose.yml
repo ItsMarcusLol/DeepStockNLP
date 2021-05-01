@@ -38,7 +38,7 @@ services:
     restart: always
 
   account-service:
-    container_name: account-service-1
+    container_name: account-service
     build: 
       context: .
       dockerfile: ./src/docker/account/Dockerfile.dockerfile
