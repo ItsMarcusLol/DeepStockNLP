@@ -123,7 +123,7 @@ services:
     depends_on: 
       - db
 
-    homepage-service-3:
+  homepage-service-3:
     container_name: homepage-service-3
     build:
       context: .
