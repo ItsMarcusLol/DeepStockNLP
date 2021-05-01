@@ -133,19 +133,6 @@ export default class PriceTable extends React.Component {
           {symbol: pricesData[8].symbol, companyName: pricesData[8].name, price: pricesData[8].price, volume: pricesData[8].volume}, 
           {symbol: pricesData[9].symbol, companyName: pricesData[9].name, price: pricesData[9].price, volume: pricesData[9].volume} 
         ]}
-        /**data={[
-          { symbol: 'GOOGL', companyName: 'Google', price: '1234', volume: '2313' },
-          { symbol: 'AAPL', companyName: 'Apple', price: '5678', volume: '1957' },
-          { symbol: 'BA', companyName: 'Boeing', price: '1231', volume: '19217' },
-          { symbol: 'WMT', companyName: 'Walmart', price: '1111', volume: '198347'},
-          { symbol: 'AMZN', companyName: 'Amazon', price: '2222', volume: '3287'},
-          { symbol: 'TSLA', companyName: 'Tesla', price: '3434', volume: '4537' },
-          { symbol: 'MSFT', companyName: 'Microsoft', price: '5432', volume: '1212' },
-          { symbol: 'F', companyName: 'Ford', price: '2314', volume: '2321' },
-          { symbol: 'DELL', companyName: 'Dell', price: '4521', volume: '2321'},
-          { symbol: 'TGT', companyName: 'Target', price: '1232', volume: '7391'},
-        ]}
-        */
         options={{ search: true, doubleHorizontalScroll: true, paging: true, exportButton: false, pageSize:10}}
         detailPanel={[
           {

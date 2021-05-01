@@ -13,11 +13,11 @@ function About() {
             </Grid>
 
             <Grid item xs={12}>
-            <h2 style={headerStyle}>
+            <h1 style={title}>
                 About
-            </h2>
+            </h1>
             <p style={paragraphStyle}>
-                DeepStockNLP is a capstone project that was created by four seniors from Pacific Lutheran University with the help of a faculty advisor. 
+                DeepStock is a capstone project that was created by four seniors from Pacific Lutheran University with the help of a faculty advisor. 
                 We use natural language processing techniques to try to make as accurate predictions as we can on the 9 stocks we
                 chose. We are doing this by using headlines from the New York Times as well as tweets from Twitter 
                 to train our model to make the predictions better and more accurate. We are also getting headlines
@@ -31,11 +31,11 @@ function About() {
                 Our website was designed using React and on our website we plan to have many features that we think will prove useful to our users. We will work hard 
                 to implement as many features as we can in the time that we have to work on this project to try to make it the best it can be. Some features will only be 
                 accessible to users with an account. To get started please  
-                <Link to="/signup" style={{color: 'blue'}}>
+                <Link to="/signup" style={{color: '#71FF00'}}>
                   {" create an account "}
                 </Link>
                 or 
-                <Link to="/login" style={{color: 'blue'}}>
+                <Link to="/login" style={{color: '#71FF00'}}>
                     {" login "}
                 </Link>
                 to access more features.
@@ -56,7 +56,7 @@ function About() {
                 XG Boost
             </h2>
             <p style={paragraphStyle}>
-                <a href="https://xgboost.readthedocs.io/en/latest/" style={{color:'blue', fontStyle:"italic"}}>XG Boost</a> is an open-source software that uses a gradient boosting library that's meant to be highly efficient, flexible, and portable.
+                <a href="https://xgboost.readthedocs.io/en/latest/" style={{color:'#71FF00', fontStyle:"italic"}}>XG Boost</a> is an open-source software that uses a gradient boosting library that's meant to be highly efficient, flexible, and portable.
                 It implements machine learning algorithms from the Gradient Boosting framework and provides a parallel tree 
                 boosting that can solve many data science problems in a fast and accurate way. 
             </p>
@@ -67,7 +67,7 @@ function About() {
                 Sentiment Analysis
             </h1>
             <p style={paragraphStyle}>
-                <a href="https://monkeylearn.com/sentiment-analysis/" style={{color:'blue', fontStyle:"italic"}}>Sentiment Analysis</a> is also known as opinion mining and is a natural language processing technique that's used
+                <a href="https://monkeylearn.com/sentiment-analysis/" style={{color:'#71FF00', fontStyle:"italic"}}>Sentiment Analysis</a> is also known as opinion mining and is a natural language processing technique that's used
                 to determine if the data that's inputed is positive, negative, or neutral. It's often used by businesses to determine
                 and analyze whether customer feedback was positive or negative. In our project we used sentiment analysis to see
                 whether or not the headline data we had were positive or negative. 
@@ -79,10 +79,10 @@ function About() {
             </Grid>
 
             <Grid item={12}>
-            <h1 style={headerStyle}>
+            <h1 style={headerStyleBlack}>
                 Disclaimer
             </h1>
-            <p style={paragraphStyle}>
+            <p style={paragraphStyleBlack}>
                 Our predictions are not 100% accurate and we are not responsible for the results of your portfolio and whether it improves or plummets. We try to make our predictions as accurate 
                 as possible, but as of right now our accuracy is only at a 63% and users are free to use our predictions as they best see fit. We hold no responsibilities with how our predictions 
                 affect the users and their choice to invest in the stocks we predict.
@@ -122,6 +122,27 @@ const paragraphStyle = {
     color: 'white',
     fontFamily: 'inherit',
     fontSize: '20px'
+}
+
+const headerStyleBlack = {
+    color: 'black',
+    fontFamily: '-moz-initial',
+    textAlign: 'center',
+    fontSize: '37px',
+    textDecorationLine: 'underline'
+}
+
+const paragraphStyleBlack = {
+    color: 'black',
+    fontFamily: 'inherit',
+    fontSize: '20px'
+}
+
+const title = {
+    color: 'white',
+    fontFamily: '-moz-initial',
+    textAlign: 'center',
+    fontSize: '52px'
 }
 
 export default About;

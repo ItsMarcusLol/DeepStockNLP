@@ -55,20 +55,25 @@ class SignUp extends React.Component{
         onSubmit = (e) => {
         e.preventDefault();
         this.props.login(this.state.username, this.state.password);
-        if (this.state.password === this.state.rePassword) {
-            this.setState({ username: '', password: '',rePassword: '', redirect: true });
-        }
+        // if (this.state.password === this.state.rePassword) {
+        //     this.setState({ username: '', password: '',rePassword: '', redirect: true });
+        // }
         fetch('http://104.196.230.228:80/account', {method: "POST", body: JSON.stringify({username: this.state.username, password: this.state.password})})
           .then( (response) => {
             if ( response.status !== 200) {
-              console.log("Error: " + response.status);
+              console.log("Status: " + response.status);
+              this.setState({username: "", password: "", redirect: false});
+              return response.text();
             } else {
-              console.log(response.status);
+              console.log("Status: " + response.status);
+              const user = this.state.username;
+              localStorage.setItem('user', user);
+              this.setState({username: "", password: "", redirect: true});
               return response.text();
             }
           })
           .then( (text) => {
-            console.log(text);
+            console.log("Message: " + text);
           });
        } 
   
@@ -152,7 +157,7 @@ class SignUp extends React.Component{
               <Grid item>
                 {/* <Link href="#" variant="body2"> */}
                 <Link to="/login" style={{color: 'blue'}}>
-                  {"Already have an account? Sign In"}
+                  {"Already have an account? Login"}
                 </Link>
               </Grid>
             </Grid>

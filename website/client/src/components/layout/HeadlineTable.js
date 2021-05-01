@@ -88,17 +88,6 @@ export default class HeadlineTable extends React.Component {
         { title: headlinesData[2].title, date: headlinesData[2].publishedDate, link: headlinesData[2].url},
         { title: headlinesData[3].title, date: headlinesData[3].publishedDate, link: headlinesData[3].url}
       ]}
-
-      /** fake data 
-      data={[
-        { title: 'Google is Splitting?', author: 'Jane Doe', date: '3-17-2021', link: <a href="http://google.com/" target="_blank" rel="noreferrer" style={{color:'blue'}}>http://google.com/</a> },
-        { title: 'Worker says Amazon hung anti-union signs in bathroom stalls', author: 'Joseph Pisani', date: '3-17-2021', link: <a href="https://www.marketbeat.com/articles/worker-says-amazon-hung-anti-union-signs-in-bathroom-stalls-2021-03-17/?1" target="_blank" rel="noreferrer" style={{color:'blue'}}>https://www.marketbeat.com/</a> },
-        { title: 'Forget Tesla, Ford Motor May be the Best Auto Play', author: 'Marketbeat Staff', date: '3-16-2021', link: <a href="https://www.marketbeat.com/originals/forgot-tesla-ford-motor-may-be-the-best-auto-play/" target="_blank" rel="noreferrer" style={{color:'blue'}}>https://www.marketbeat.com/</a> },
-        { title: 'How Tesla Is Taking Over', author: 'Bob Ross', date: '3-15-2021', link: <a href="http://tesla.com/" target="_blank" rel="noreferrer" style={{color:'blue'}}>http://tesla.com/</a>},
-        { title: 'Will Target Take Over Walmart?', author: 'Alice Tran', date: '3-15-2021', link: <a href="http://target.com/" target="_blank" rel="noreferrer" style={{color:'blue'}}>http://target.com/</a> }
-
-      ]}*/
-
       options={{ search: false, paging: true, pageSize: 5, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}
     
     />

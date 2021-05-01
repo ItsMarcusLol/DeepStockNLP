@@ -1,7 +1,5 @@
-// import React from 'react';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -12,7 +10,6 @@ import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
@@ -25,8 +22,6 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { withStyles } from '@material-ui/core/styles';
-import { render } from '@testing-library/react';
-// import { useEffect } from 'react';
 
 const drawerWidth = 240;
 
@@ -157,7 +152,10 @@ const titleStyle = {
  
   componentDidMount() {
     const u1 = localStorage.getItem('user');
-  this.setState({ username:u1 });
+   
+    if (this.state.username !== u1){
+      this.setState({ username:u1 });
+    }
   };
 
   handleListKeyDown(event) {
@@ -195,6 +193,7 @@ const titleStyle = {
   
 render(){
   const {classes} = this.props;
+  
  
 return (
 
@@ -224,7 +223,7 @@ return (
             </div>
             <div   style = {titleStyle}> 
             <Typography   variant="h6" noWrap  style = {titleStyle} component={Link} to="/">
-              DeepStockNLP
+              DeepStock
             </Typography>
 
 
@@ -244,6 +243,7 @@ return (
           color="inherit"
           >
             {this.state.username}
+            {/* {localStorage.getItem('user')} */}
          </Button> 
         <Popper open={this.state.openU} anchorEl={this.anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (

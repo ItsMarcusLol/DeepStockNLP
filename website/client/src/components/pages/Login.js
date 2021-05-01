@@ -8,10 +8,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import React from "react";
-import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-
-
 
 const styles = (theme) => ({
   paper: {
@@ -71,22 +68,21 @@ class Login extends React.Component{
           fetch('http://104.196.230.228:80/login', {method: "POST", body: JSON.stringify({username: this.state.username, password: this.state.password})})
           .then( (response) => {
             if ( response.status !== 200) {
-              console.log("Error: " + response.status);
+              console.log("Status: " + response.status);
               this.setState({username: "", password: "", redirect: false});
+              return response.text();
             } else {
-              console.log(response.status);
-              
+              console.log("Status: " + response.status);
               const user = this.state.username;
               localStorage.setItem('user', user);
               const u1 = localStorage.getItem('user')
               console.log(u1)
               this.setState({username: "", password: "", redirect: true});
               return response.text();
-              
             }
           })
           .then( (text) => {
-            console.log(text);
+            console.log("Message: " + text);
           });
       }
 
@@ -98,7 +94,7 @@ class Login extends React.Component{
      const {classes} = this.props;
 
       if (this.state.redirect) {
-                    return <Redirect to={"/"} />
+                    window.location.href = "http://104.196.230.228:80/"
                 }
     return (
       <div className = {classes.div}>
@@ -147,7 +143,7 @@ class Login extends React.Component{
               className={classes.submit}
               disabled={!this.validateForm()}
             >
-              Sign In
+              Login
             </Button>
             <Grid container>
               <Grid item>

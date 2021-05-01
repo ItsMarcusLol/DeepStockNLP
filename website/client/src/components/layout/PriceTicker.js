@@ -2,7 +2,6 @@ import React from 'react'
 import Ticker from 'react-ticker'
 import PageVisibility from 'react-page-visibility'
 import LoadingSymbol from './LoadingSymbol';
-import { Thickness } from 'igniteui-react-core';
   
     class PriceTicker extends React.Component {
         
@@ -29,7 +28,7 @@ import { Thickness } from 'igniteui-react-core';
           const url = "https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=f0448bd30a7028e245052fcf3caa0837";
           const response = await fetch(url);
           const data = await response.json();
-          console.log(data)
+          // console.log(data)
           this.setState({ prices: data, loading: false});
           // this.setState({ prices: null, loading: false});
 
@@ -71,7 +70,10 @@ import { Thickness } from 'igniteui-react-core';
                             <>
                               
                               
-                                <h1 style={{fontSize:"35px", color:"white"}}> {this.state.prices[index].symbol}:{this.state.prices[index].change } ({this.state.prices[index].changesPercentage}%) <span> &nbsp; </span></h1>
+                                <h1 
+                                style={{fontSize: 35, color: this.state.prices[index].change < 0 ? "#FF0000" : "#00CC00"}}> 
+                                {this.state.prices[index].symbol}:{this.state.prices[index].change } ({this.state.prices[index].changesPercentage}%) 
+                                <span> &nbsp; </span></h1>
                                 
                                  
                         
