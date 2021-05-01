@@ -23,9 +23,7 @@ const styles = (theme) => ({
         backgroundColor: "#F05"
       },
       div:{
-        // width: '88%',
         height: '900px',
-        // backgroundImage: `url(${imgMyimageexample})`,
         backgroundSize: 'cover' 
       },
       form: {
@@ -57,9 +55,6 @@ class SignUp extends React.Component{
           this.setState({username: "", password: "",  rePassword: ""});
         e.preventDefault();
         this.props.login(this.state.username, this.state.password);
-        // if (this.state.password === this.state.rePassword) {
-        //     this.setState({ username: '', password: '',rePassword: '', redirect: true });
-        // }
         fetch('http://104.196.230.228:80/account', {method: "POST", body: JSON.stringify({username: this.state.username, password: this.state.password})})
           .then( (response) => {
             if ( response.status !== 200) {
@@ -81,8 +76,6 @@ class SignUp extends React.Component{
   
 
       validateForm() {
-        // return this.state.username.length > 0 && this.state.password.length > 0 && this.state.rePassword.length > 0 && this.state.password === this.state.rePassword;
-        
         return this.state.password === this.state.rePassword && this.state.username.length > 0 && this.state.password.length > 0 && this.state.rePassword.length > 0 ;
       
       }
