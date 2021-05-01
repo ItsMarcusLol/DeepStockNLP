@@ -2,11 +2,8 @@
 # coding: utf-8
 
 
-
-
 #!/usr/bin/env python
 import pandas as pd
-import numpy as np
 import json
 from datetime import datetime
 from datetime import date
@@ -20,6 +17,7 @@ except ImportError:
 import requests
 dict = {"google" : "googl", "target" : "tgt" , "walmart" : "wmt", "dell" : "dell", "amazon" : "amzn", 'tesla' : "tsla",
          "boeing" : "ba", "microsoft" : "msft", "ford" : "f", "apple":"aapl"}
+
 
 
 
@@ -62,6 +60,7 @@ def f_modeling(stock):
 
 
 
+
 def get_jsonparsed_data(url):
     """
     Receive the content of ``url``, parse it as JSON and return the object.
@@ -90,6 +89,7 @@ def parse_data(data):
 
 
 
+
 def getPrice(stock):
     key = "f0448bd30a7028e245052fcf3caa0837"
     stocks = ['AAPL','AMZN','MSFT','TSLA','TGT','WMT','DELL','F','BA']
@@ -106,33 +106,46 @@ def getPrice(stock):
 
 
 
-for x in dict:
-    head1 = getNYT(x)
-    head2 = f_modeling(x)
-    head2.extend(head1)
-    print(len(head2))
-    allH = []
-    col = []
-    last = []
-    i = 0
-    col.append("Label")
-    col.append("Date")
-    print("price: " + str(getPrice(x)))
-    if getPrice(x) > 0:
-        allH.append(1)
-    else:
-        allH.append(0)
-    allH.append( date.today())
-    for y in head2:
-        allH.append(str(y).lower())
-        col.append("top" + str(i + 1))
-        i = i + 1
+def main():
+    for x in dict:
+        head1 = getNYT(x)
+        head2 = f_modeling(x)
+        head2.extend(head1)
+        allH = []
+        col = []
+        last = []
+        i = 0
+        col.append("Label")
+        col.append("Date")
+        if getPrice(x) > 0:
+            allH.append(1)
+        else:
+            allH.append(0)
+        allH.append( date.today())
+        for y in head2:
+            allH.append(str(y).lower())
+            col.append("top" + str(i + 1))
+            i = i + 1
 
-    last.append(allH)
-    dfH = pd.DataFrame(last, columns = col)
-    print(dfH)
+        last.append(allH)
+        dfH = pd.DataFrame(last, columns = col)
+        #Insert into DB here
+        print(x)
+        print(dfH)
     
 
+
+
+
+main()
+
+
+
+
+
+
+
+# In[ ]:
 
 
 
