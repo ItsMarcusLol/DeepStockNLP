@@ -8,8 +8,12 @@ services:
       - account-service-1
       - account-service-2
       - account-service-3
-      - forum-service
-      - homepage-service
+      - forum-service-1
+      - forum-service-2
+      - forum-service-3
+      - homepage-service-1
+      - homepage-service-2
+      - homepage-service-3
       - db
       - react
       - predictions-service
@@ -48,7 +52,7 @@ services:
       - 80
     depends_on: 
       - db
-
+  
   account-service-2:
     container_name: account-service-2
     build: 
@@ -69,8 +73,18 @@ services:
     depends_on: 
       - db
   
-  forum-service:
-    container_name: forum-service
+  forum-service-1:
+    container_name: forum-service-1
+    build:
+      context: .
+      dockerfile: ./src/docker/forum/Dockerfile.dockerfile
+    expose: 
+      - 80
+    depends_on: 
+      - db
+  
+  forum-service-2:
+    container_name: forum-service-2
     build:
       context: .
       dockerfile: ./src/docker/forum/Dockerfile.dockerfile
@@ -79,8 +93,38 @@ services:
     depends_on: 
       - db
 
-  homepage-service:
-    container_name: homepage-service
+  forum-service-3:
+    container_name: forum-service-3
+    build:
+      context: .
+      dockerfile: ./src/docker/forum/Dockerfile.dockerfile
+    expose: 
+      - 80
+    depends_on: 
+      - db
+
+  homepage-service-1:
+    container_name: homepage-service-1
+    build:
+      context: .
+      dockerfile: ./src/docker/homepage/Dockerfile.dockerfile
+    expose: 
+      - 80
+    depends_on: 
+      - db
+
+  homepage-service-2:
+    container_name: homepage-service-2
+    build:
+      context: .
+      dockerfile: ./src/docker/homepage/Dockerfile.dockerfile
+    expose: 
+      - 80
+    depends_on: 
+      - db
+
+    homepage-service-3:
+    container_name: homepage-service-3
     build:
       context: .
       dockerfile: ./src/docker/homepage/Dockerfile.dockerfile

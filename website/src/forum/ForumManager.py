@@ -85,18 +85,24 @@ class MessageManager():
 
 class ChatManager():
     def saveChat(self, username, text):
-        cursor = conn.cursor()
-        query = "INSERT INTO chat_data(username, text) VALUES (\"" + username + "\", \"" + text + "\")"
-        cursor.execute(query)
-        conn.commit()
-        cursor.close()
-        return make_response(jsonify({"message": "Chat saved"}), 200)
+        try: 
+            cursor = conn.cursor()
+            query = "INSERT INTO chat_data(username, text) VALUES (\"" + username + "\", \"" + text + "\")"
+            cursor.execute(query)
+            conn.commit()
+            cursor.close()
+            return make_response(jsonify({"message": "Chat saved"}), 200)
+        except: 
+            return make_response(jsonify({"message": "Save Chat server error"}), 500)
 
     def getChat(self):
-        cursor = conn.cursor()
-        query = "SELECT * FROM chat_data"
-        cursor.execute(query)
-        chats = cursor.fetchall()
-        cursor.close()
-        return make_response(jsonify(chats), 200)
+        try: 
+            cursor = conn.cursor()
+            query = "SELECT * FROM chat_data"
+            cursor.execute(query)
+            chats = cursor.fetchall()
+            cursor.close()
+            return make_response(jsonify(chats), 200)
+        except: 
+            return make_response(jsonify({"message": "Get Chat server error"}), 500)
 
