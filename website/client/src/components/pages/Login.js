@@ -52,6 +52,7 @@ class Login extends React.Component{
         username: "", 
         password: "",
         redirect : false,
+        disable : true,
     };
       this.handleSubmit = this.handleSubmit.bind(this);
       this.onChange = this.onChange.bind(this);
@@ -61,7 +62,8 @@ class Login extends React.Component{
         return this.state.username.length > 0 && this.state.password.length > 0;
       }
 
-      handleSubmit(event) {
+      handleSubmit(event) { 
+        this.setState({username: "", password: "", redirect: false});
        
         event.preventDefault();
         
@@ -144,6 +146,7 @@ class Login extends React.Component{
               color="primary"
               className={classes.submit}
               disabled={!this.validateForm()}
+              // disabled={this.state.disabled}
             >
               Login
             </Button>
