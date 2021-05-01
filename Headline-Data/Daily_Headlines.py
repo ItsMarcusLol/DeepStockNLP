@@ -15,6 +15,13 @@ except ImportError:
     from urllib2 import urlopen
 
 import requests
+import mysql.connector
+
+
+#ADD USERNAME
+#Database connection
+conn=mysql.connector.connect(user= )
+
 dict = {"google" : "googl", "target" : "tgt" , "walmart" : "wmt", "dell" : "dell", "amazon" : "amzn", 'tesla' : "tsla",
          "boeing" : "ba", "microsoft" : "msft", "ford" : "f", "apple":"aapl"}
 
@@ -103,7 +110,16 @@ def getPrice(stock):
     change = close - open
     return change
     
-
+def insertH(stock, df):
+    cursor = conn.cursor()
+    query = "insert into " + str(stock) + " values("
+    for x in df:
+        query = query + str(df[x]) + ", "
+    query = query[:-1]    
+    query = query + ")" 
+    cursor.execute(query)
+    conn.commit()
+    cursor.close()
 
 
 def main():
@@ -130,12 +146,10 @@ def main():
         last.append(allH)
         dfH = pd.DataFrame(last, columns = col)
         #Insert into DB here
-        print(x)
-        print(dfH)
-    
-
-
-
+        insertH(x, dfH)
+        
+        
+        
 
 main()
 
@@ -143,9 +157,6 @@ main()
 
 
 
-
-
-# In[ ]:
 
 
 

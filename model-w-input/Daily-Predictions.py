@@ -14,6 +14,7 @@ from datetime import date
 import requests
 
 
+
 # ## Want to Train and Test on last 270 days put true
 train_270 = True
 
@@ -331,17 +332,20 @@ for column in all_train:
 
 
 
-weighted_All = XGBClassifier(scale_pos_weight = 60)
+weighted_All = XGBClassifier(scale_pos_weight =scale_weight )
 weighted_All.fit(all_train, news['Label'])
 
+# ## Prediction for the day:
 y_d2 = weighted_XGB1.predict(df_d)
 
 
-# ## Prediction for the day:
+def insertP():
+    utc = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    r = requests.post('http://104.196.230.228:80/post', json={"ticker": ticker, "date":utc,"prediction":y_d2,"confidence":0, "accuracy":accuracy_score(test_news['Label'], y_pred_weight1)})
+    r.status_code
 
-print(y_d2)
 
-
+insertP()
 
 
 
