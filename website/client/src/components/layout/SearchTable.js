@@ -30,10 +30,11 @@ export default class SearchTable extends React.Component {
       loading: true, 
       output: null,
       symbol: null,
-      columns: null
+      columns: null, 
+      header: null, 
+      title: null
   
     };
-    {console.log(this.props.data)}
     const input = this.props.symb
     const data = this.props.data
     this.setState({ symbol: input, output:data});
@@ -41,45 +42,57 @@ export default class SearchTable extends React.Component {
 
 
   async componentDidMount() {
-    const input = this.props.symb
+    const input = this.props.symb 
     const key = "f0448bd30a7028e245052fcf3caa0837"
-    const url = "https://financialmodelingprep.com/api/v3/search?query="+ input +"&limit=15&exchange=NASDAQ&apikey="+key;
-    const response = await fetch(url);
+    var url = "https://financialmodelingprep.com/api/v3/search?query="+ input +"&limit=15&exchange=NASDAQ,NYSE&apikey="+key;
+    var response = await fetch(url);
     var data = await response.json();
+    
+    if(data.length > 0){
+    var t = data[0]['name'];
     var cols=[
       { title: 'Currency', field: 'currency' },
       { title: 'Short Name', field: 'exchangeShortName' },
       { title: 'Name', field: 'name' },
-      { title: 'Name', field: 'stockExchange' },
-      { title: 'Name', field: 'symbol' }, 
-      { title: 'Price', field: 'price' }, 
+      { title: 'Exchange', field: 'stockExchange' },
+      { title: 'Symbol', field: 'symbol' },  
     ]
-    console.log(data)
-    console.log(data.length)
-    console.log(data[0].symbol)
+    
+  }
+  
+    
     if (data.length === 1){
       console.log("in if")
       const sym = data[0].symbol;
-      const url2 = "https://financialmodelingprep.com/api/v3/quote/"+sym+"?apikey="+key;
+      const url2 = "https://financialmodelingprep.com/api/v4/company-outlook?symbol="+sym+"&apikey="+key;
       const response2 = await fetch(url2);
       const d = await response2.json();
-      data = d;
+      data = d['stockNews'];
+      var d1 = d['profile'];
+
+      var h =  <div >Price : {d1['price']} <br/>
+      Volume Avg : {d1['volAvg']} <br/>
+      Website : {d1['website']} <br/>
+      </div>;
+      
       cols=[
-        { title: 'Name', field: 'name' },
-        { title: 'Price', field: 'price' },
-        { title: 'Change', field: 'change' }, 
-        { title: 'Day Low', field: 'dayLow' }, 
-        { title: 'Day High', field: 'dayHigh' }, 
-        { title: 'Volume', field: 'volume' }, 
-        { title: 'Open', field: 'open' }, 
-        { title: 'Previous Close', field: 'previousClose' }, 
+        { title: 'Date', field: 'publishedDate' },
+        { title: 'Website', field: 'site' },
+        { title: 'Title', field: 'title' }, 
+        { title: 'URL', field: 'url' }, 
       ]
       
     }
+    else{
+      t = "Were you searching for one of these: ";
+    }
+    if (data.length === 0){
+   
+        t = "Could not find your stock, make sure the stock is a part of NYSE or NASDAQ"
+    }
     
     
-   await this.setState({ symbol: input, output:data, columns:cols});
-  {console.log(this.state.output)}
+   await this.setState({ symbol: input, output:data, header: h, columns:cols, title : t});
   this.setState({loading: false, })
 
 }
@@ -98,9 +111,10 @@ export default class SearchTable extends React.Component {
       {console.log(this.props.output)}
 
       return (
+        <div>
+          
+        {this.state.header}
 
-        
-       
         <MaterialTable
         icons={{
           Check: () => <Check />,
@@ -122,17 +136,18 @@ export default class SearchTable extends React.Component {
             alignItems: "center",
             justifyContent: "center",
             display: "flex",
-            fontSize: 33
+            fontSize: 24 
           }}>
-              {this.state.symbol}
+               {this.state.title}
           </div>
     }  
      
       columns={this.state.columns}
       data = {this.state.output}
-      options={{ search: false, paging: true, pageSize: 5, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}
+      options={{ search: false, paging: true, pageSizeOptions: [1,2] , pageSize: 2, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}
     
     />
+    </div>
       );
   }
 
