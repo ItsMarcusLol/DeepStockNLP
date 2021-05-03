@@ -55,7 +55,7 @@ class Login extends React.Component{
         password: "",
         redirect : false,
         disable : true,
-        message: ""
+        message: null
     };
       this.handleSubmit = this.handleSubmit.bind(this);
       this.onChange = this.onChange.bind(this);
@@ -78,22 +78,21 @@ class Login extends React.Component{
           .then( (response) => {
             if ( response.status !== 200) {
               console.log("Status: " + response.status);
-              // m = <h1 
-              // style={{fontSize: 35, color: "#FF0000" }}> 
-              // Wrong username or password 
-              // </h1>;
+              m = <h1 
+              style={{fontSize: 35, color: "#FF0000" }}> 
+              Wrong username or password 
+              </h1>;
               this.setState({username: "", password: "", redirect: false, message: m});
 
               return response.text();
             } else {
-              console.log(username);
-              console.log(password);
               console.log("Status: " + response.status);
               const user = username;
               localStorage.setItem('user', user);
-              const u1 = localStorage.getItem('user')
-              console.log(u1)
-              m = "Login succesful!"
+              m = <h1 
+              style={{fontSize: 35, color: "#00CC00" }}> 
+              Login succesful! 
+              </h1>;
               this.setState({username: "", password: "", redirect: true, message: m});
               return response.text();
             }
@@ -105,8 +104,7 @@ class Login extends React.Component{
 
 
       onChange = (e) =>   this.setState({ 
-        [e.target.name]: e.target.value},
-        console.log("hereeee"));
+        [e.target.name]: e.target.value});
   
     render(){
      const {classes} = this.props;
@@ -125,9 +123,11 @@ class Login extends React.Component{
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <div>
+
+            <div>
             {this.state.message}
-          </div>
+            </div>
+
           <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
             <TextField
               variant="outlined"
