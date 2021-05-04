@@ -7,8 +7,8 @@ conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', dat
 
 class AccountManager():
     def login(self, username, password):
+        cursor = conn.cursor()
         try: 
-            cursor = conn.cursor()
             pw = password.encode()
             query = "SELECT * FROM account_data WHERE username=\"" + username + "\""
             cursor.execute(query)
