@@ -7,22 +7,20 @@ conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', dat
 
 class AccountManager():
     def login(self, username, password):
-        cursor = conn.cursor()
         try: 
+            cursor = conn.cursor()
             pw = password.encode()
             query = "SELECT * FROM account_data WHERE username=\"" + username + "\""
             cursor.execute(query)
             result = cursor.fetchone()
             hashed_inDB = result[2]
             hashed_str = hashed_inDB.encode()
+            cursor.close()
             if bcrypt.checkpw(pw, hashed_str): 
-                cursor.close()
                 return make_response(jsonify({"message": "Login successful"}), 200)
             else:
-                cursor.close()
                 return make_response(jsonify({"message": "Login failed"}), 400)
         except: 
-            cursor.close()
             return make_response(jsonify({"message": "Login server error"}), 500)
     
     def get_account_id(self, userId):
