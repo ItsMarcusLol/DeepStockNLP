@@ -3,7 +3,7 @@ import mysql.connector
 import bcrypt
 from random import randint
 
-conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', database='accounts')
+conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', database='accounts', buffered=True)
 
 class AccountManager():
     def login(self, username, password):
