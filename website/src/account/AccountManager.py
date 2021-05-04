@@ -13,6 +13,9 @@ class AccountManager():
             query = "SELECT * FROM account_data WHERE username=\"" + username + "\""
             cursor.execute(query)
             result = cursor.fetchone()
+            if (result is None):
+                cursor.close()
+                return make_response(jsonify({"message": "Username does not exist"}), 400)
             hashed_inDB = result[2]
             hashed_str = hashed_inDB.encode()
             cursor.close()
@@ -62,6 +65,7 @@ class AccountManager():
                 cursor.close()
                 return make_response(jsonify({"message": "Account created successfully"}), 200)
         except: 
+            cursor.close()
             return make_response(jsonify({"message": "Create Account server error"}), 500)
 
     def account_exists(self, username):
