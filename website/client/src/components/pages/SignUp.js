@@ -8,7 +8,6 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
@@ -44,28 +43,39 @@ class SignUp extends React.Component{
           email: '',
           password: '',
           rePassword: '',
-          redirect: false
+          message: ""
       };
       this.onSubmit = this.onSubmit.bind(this);
       this.onChange = this.onChange.bind(this);
     }
    
-        onSubmit = (e) => {
-          console.log(this.state.rePassword);
+        onSubmit = (e) => { 
+          var m ="";
+          const username = this.state.username;
+          const password = this.state.password;
+          console.log(username, password)
           this.setState({username: "", password: "",  rePassword: ""});
         e.preventDefault();
         this.props.login(this.state.username, this.state.password);
-        fetch('http://104.196.230.228:80/account', {method: "POST", body: JSON.stringify({username: this.state.username, password: this.state.password})})
+        fetch('http://104.196.230.228:80/account', {method: "POST", body: JSON.stringify({username: username, password: password})})
           .then( (response) => {
             if ( response.status !== 200) {
               console.log("Status: " + response.status);
-              this.setState({username: "", password: "", redirect: false});
+              m = <h1 
+              style={{fontSize: 24, color: "#FF0000" }}> 
+              Username or password is invalid
+              </h1>;
+              this.setState({username: "", password: "", redirect: false, message: m});
               return response.text();
             } else {
               console.log("Status: " + response.status);
-              const user = this.state.username;
+              const user = username;
               localStorage.setItem('user', user);
-              this.setState({username: "", password: "", redirect: true});
+              m = <h1 
+              style={{fontSize: 24, color: "#FF0000" }}> 
+              Sign up Succesful!
+              </h1>;
+              this.setState({username: "", password: "", redirect: true, message: m});
               return response.text();
             }
           })
@@ -88,8 +98,8 @@ class SignUp extends React.Component{
       const {classes} = this.props;
 
       if (this.state.redirect) {
-                    return <Redirect to={"/"} />
-                }
+        window.location.href = "http://104.196.230.228:80/"
+    }
     return (
       <div className = {classes.div}>
       <Container component="main" maxWidth="xs">
@@ -101,6 +111,7 @@ class SignUp extends React.Component{
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
+          <div>{this.state.message}</div>
           <form className={classes.form} noValidate onSubmit={this.onSubmit}>
             <TextField
               variant="outlined"

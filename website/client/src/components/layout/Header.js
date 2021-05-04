@@ -100,11 +100,7 @@ const titleStyle = {
   }
   
   const headerStyle = {
-    // background: '#8ED1FC',
-    // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    // background: 'linear-gradient(45deg, #64654F 30%,   #C5BC99 90%)',
     background: 'linear-gradient(45deg, #000023 30%,   #000053 90%)',
-    // height: "100px",
     direction: 'row', 
 
 }
@@ -230,7 +226,6 @@ return (
           </div>
 
           <div className={classes.grow} />
-               {/* <div className={classes.sectionDesktop}> */}
                <div style={titleStyle} >
            
                
@@ -243,7 +238,6 @@ return (
           color="inherit"
           >
             {this.state.username}
-            {/* {localStorage.getItem('user')} */}
          </Button> 
         <Popper open={this.state.openU} anchorEl={this.anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (

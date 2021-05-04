@@ -4,11 +4,7 @@ import PageVisibility from 'react-page-visibility'
 import LoadingSymbol from './LoadingSymbol';
   
     class PriceTicker extends React.Component {
-        
-        // state = {
-        //     loading: true, 
-        //     prices: null
-        // };
+
         constructor(props) {
           super(props);
           this.state = {
@@ -22,15 +18,11 @@ import LoadingSymbol from './LoadingSymbol';
         }
        
         async componentDidMount() {
-          // const url = "https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=f0448bd30a7028e245052fcf3caa0837";
-          // const url = "https://financialmodelingprep.com/api/v3/actives?apikey=f0448bd30a7028e245052fcf3caa0837"
-          // const url = "https://financialmodelingprep.com/api/v3/stock_news?apikey=f0448bd30a7028e245052fcf3caa0837"
+
           const url = "https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=f0448bd30a7028e245052fcf3caa0837";
           const response = await fetch(url);
           const data = await response.json();
-          // console.log(data)
           this.setState({ prices: data, loading: false});
-          // this.setState({ prices: null, loading: false});
 
       }
        

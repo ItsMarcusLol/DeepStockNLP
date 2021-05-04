@@ -88,16 +88,19 @@ ___
       2. python3 -m venv virtual-env
       3. source virtual-env/bin/activate
   3. Install Anaconda (if you already installed Anaconda from above, you can skip this step)
-  4. List of other installs:
+  4. Create an anaconda enviornment 
+      - conda create --name my_env python=3
+      - conda activate my_env
+  6. List of other installs:
       - conda install pandas
       - conda install -c intel scikit-learn
       - conda install -c conda-forge textblob
       - conda install -c conda-forge xgboost
       - conda install -c anaconda requests
-  5. Download an input for the model. Right now in our Data/20-21-csv are our most recent inputs and are named after the stocks ticker and the date they were updated
-  6. Change path of saved_H to where the csv input is saved
-  7. Change the variables "ticker" and "stock" to the corresponding ticker and stock of your input
-  8. Run by: **python3 Daily-Predictions.py**
+  7. Download an input for the model. Right now in our Data/20-21-csv are our most recent inputs and are named after the stocks ticker and the date they were updated
+  8. Change path of saved_H to where the csv input is saved
+  9. Change the variables "ticker" and "stock" to the corresponding ticker and stock of your input
+  10. Run by: **python3 Daily-Predictions.py**
       - You will see the Accuracy and the F1 score and the prediction at the bottom (1: increase, 0: decrease) 
 ___
 

@@ -18,7 +18,6 @@ function getModalStyle() {
   };
 }
 
-// const useStyles = makeStyles((theme) => ({
   const styles = (theme) => ({
   paper: {
     position: 'absolute',
@@ -31,7 +30,6 @@ function getModalStyle() {
 });
 
 
-//  export default function Search() {
 class Search extends React.Component {
 
   state = {
@@ -48,8 +46,6 @@ class Search extends React.Component {
   
 
   handleOpen = () => {
-    console.log("opening")
-    // setOpen(true);
     this.setState({
       open: true
     });
@@ -57,23 +53,18 @@ class Search extends React.Component {
   };
 
   handleClose = () => {
-    console.log("closing")
-    // setOpen(false);
     this.setState({
       open: false
     });
   };
 
   setText = (e) => {
-    // setOpen(false);
-    console.log("reset text")
     this.setState({
       text: e
     });
   };
 
   setTitle = (e) => {
-    // setOpen(false);
     this.setState({
       title: e
     });
@@ -89,10 +80,9 @@ class Search extends React.Component {
 
     const body = (
       <div style={this.modalStyle} className={classes.paper}>
-        <h2 id="simple-modal-title">{this.state.title}</h2>
+        <h2 id="simple-modal-title">You searched: {this.state.title}</h2>
         <p id="simple-modal-description">
            <SearchTable symb = {this.state.title}
-          //  data = {this.state.ouput}
            />
         </p>
       </div>
@@ -114,7 +104,7 @@ class Search extends React.Component {
           id="standard-search"
           label="Search"
           style={{ margin: 4 }}
-          placeholder="Search"
+          placeholder="Search NYSE or NASDAQ"
           // helperText="Stock Search"
           fullWidth="true"
           margin="normal"
@@ -138,7 +128,6 @@ class Search extends React.Component {
       }}
       variant="contained"
                 color="primary"
-      //         //   className={classes.button}
                 endIcon={<Icon>send</Icon>}
       >
         Search

@@ -58,25 +58,9 @@ export default class HistoricalPriceGraph extends PureComponent {
         <XAxis dataKey="date" stroke="#FFF"/>
         <YAxis stroke="#FFF"/> 
         
-        {/* <Tooltip /> */}
-        
-        {/* <Tooltip wrapperStyle={{ backgroundColor: "white" }} labelStyle={{ color: "green" }}
-             itemStyle={{ color: "cyan" }}content={<CustomTooltip/>} />  */}
 
         <Tooltip content={<CustomTooltip/>} />
 
-        {/* <Tooltip
-            wrapperStyle={{ backgroundColor: "red" }}
-            labelStyle={{ color: "green" }}
-            itemStyle={{ color: "cyan" }}
-            formatter={function(value, name) {
-              console.log(name)
-              return `${value}, ${name}`;
-            }}
-            labelFormatter={function(value) {
-              return `label: ${value}`;
-            }}
-          /> */}
         
         <Line type="monotone" strokeWidth="3" dataKey="change" stroke="#82ca9d" activeDot={{ r: 8 }} />
       </LineChart>

@@ -25,7 +25,7 @@ export default class HistoricalTable extends React.Component {
       const symbol = this.props.symb;
       console.log(symbol);
       const key = "f0448bd30a7028e245052fcf3caa0837";
-      // const key = "insert key"
+
     
       var url = "https://financialmodelingprep.com/api/v3/historical-price-full/"+symbol+"?timeseries=30&apikey=" + key;
       var response = await fetch(url);
