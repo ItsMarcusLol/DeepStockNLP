@@ -2,7 +2,7 @@ import json
 import mysql.connector
 from flask import Flask, jsonify, make_response
 
-conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', database='predictions')
+conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', database='predictions', buffered=True)
 
 class PredictionsManager():
     def get_predictions(self, ticker):
