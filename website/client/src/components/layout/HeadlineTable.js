@@ -24,7 +24,8 @@ export default class HeadlineTable extends React.Component {
     
       const symbol = this.props.symb;
       console.log(symbol);
-      fetch('http://104.196.230.228:80/homepage/headlines?symbol='+symbol, {method: "GET"})
+      // fetch('http://104.196.230.228:80/homepage/headlines?symbol='+symbol, {method: "GET"})
+      fetch('http://35.247.73.118/DeepStock/homepage/headlines?symbol='+symbol, {method: "GET"})
           .then( (response) => {
             if ( response.status !== 200) {
               console.log("Error: " + response.status);

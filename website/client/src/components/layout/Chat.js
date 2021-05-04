@@ -18,8 +18,6 @@ const styles = (theme) => ({
   formControl: {
     margin: theme.spacing(2),
     minWidth: 200,
-    
-    
   },
   selectEmpty: {
     marginTop: theme.spacing(0),
@@ -39,7 +37,6 @@ const styles = (theme) => ({
   },
 });
 
-
 class Chat extends React.Component {
   constructor(props) {
     super(props);
@@ -57,9 +54,9 @@ class Chat extends React.Component {
     this.buttonChange = this.buttonChange.bind(this);
   }
   
-
   newMessage() {
-    fetch('http://104.196.230.228:80/forum/chat', {method: "GET"})
+    // fetch('http://104.196.230.228:80/forum/chat', {method: "GET"})
+    fetch ('http://35.247.73.118/DeepStock/forum/chat', {method: "GET"})
           .then( (response) => {
             if ( response.status !== 200) {
               console.log("Error: " + response.status);
@@ -92,7 +89,8 @@ class Chat extends React.Component {
     };
 
   buttonChange(event){
-    fetch('http://104.196.230.228:80/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
+    // fetch('http://104.196.230.228:80/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
+    fetch ('http://35.247.73.118/DeepStock/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
       .then( (response) => {
         if ( response.status !== 200) {
           console.log("Error: " + response.status);
