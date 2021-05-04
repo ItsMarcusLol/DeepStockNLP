@@ -15,11 +15,10 @@ class AccountManager():
             result = cursor.fetchone()
             hashed_inDB = result[2]
             hashed_str = hashed_inDB.encode()
+            cursor.close()
             if bcrypt.checkpw(pw, hashed_str): 
-                cursor.close()
                 return make_response(jsonify({"message": "Login successful"}), 200)
             else:
-                cursor.close()
                 return make_response(jsonify({"message": "Login failed"}), 400)
         except: 
             return make_response(jsonify({"message": "Login server error"}), 500)
