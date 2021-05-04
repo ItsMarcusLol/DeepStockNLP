@@ -53,6 +53,7 @@ class SignUp extends React.Component{
           var m ="";
           const username = this.state.username;
           const password = this.state.password;
+          console.log(username, password)
           this.setState({username: "", password: "",  rePassword: ""});
         e.preventDefault();
         this.props.login(this.state.username, this.state.password);
@@ -61,8 +62,8 @@ class SignUp extends React.Component{
             if ( response.status !== 200) {
               console.log("Status: " + response.status);
               m = <h1 
-              style={{fontSize: 35, color: "#FF0000" }}> 
-              Passwords do not match
+              style={{fontSize: 24, color: "#FF0000" }}> 
+              Username or password is invalid
               </h1>;
               this.setState({username: "", password: "", redirect: false, message: m});
               return response.text();
@@ -71,7 +72,7 @@ class SignUp extends React.Component{
               const user = username;
               localStorage.setItem('user', user);
               m = <h1 
-              style={{fontSize: 35, color: "#FF0000" }}> 
+              style={{fontSize: 24, color: "#FF0000" }}> 
               Sign up Succesful!
               </h1>;
               this.setState({username: "", password: "", redirect: true, message: m});

@@ -79,7 +79,7 @@ class Login extends React.Component{
             if ( response.status !== 200) {
               console.log("Status: " + response.status);
               m = <h1 
-              style={{fontSize: 35, color: "#FF0000" }}> 
+              style={{fontSize: 24, color: "#FF0000" }}> 
               Wrong username or password 
               </h1>;
               this.setState({username: "", password: "", redirect: false, message: m});
@@ -90,7 +90,7 @@ class Login extends React.Component{
               const user = username;
               localStorage.setItem('user', user);
               m = <h1 
-              style={{fontSize: 35, color: "#00CC00" }}> 
+              style={{fontSize: 24, color: "#00CC00" }}> 
               Login succesful! 
               </h1>;
               this.setState({username: "", password: "", redirect: true, message: m});
