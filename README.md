@@ -102,4 +102,36 @@ ___
 ___
 
 ### Running The Website
+  Model
+  
+  1. 
+  
+  Docker Compose Backend
 
+  1. Make sure docker is installed properly
+  2. Clone/pull latest version of the repository for github
+  3. docker-compose build
+    - Should take a second
+    - There should be a few warnings
+  4. docker-compose up
+    - To test if it's working
+  5. docker-compose down
+    - Wait for containers to be taken
+  6. docker-compose up -d
+  7. docker ps
+  8. docker exec -it container_id sh
+  9. mysql -u root -p
+    - MarLee21!
+  10. create the databases
+    - create database accounts;
+    - create database forum;
+    - create database predictions;
+  11. Add account data table
+    - use account;
+    - create table account_data(username varchar(20), user_id int, password varchar(60));
+  12. Add forum data table
+    - use forum;
+    - create table chat_data(username varchar(20), text varchar(250));
+  13. Add prediction table
+    - use predictions;
+    - create table prediction_data(ticker varchar(6), date datetime, prediction int, con int, acc int);
