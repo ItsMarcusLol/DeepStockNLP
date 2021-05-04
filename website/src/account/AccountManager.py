@@ -22,7 +22,7 @@ class AccountManager():
                 cursor.close()
                 return make_response(jsonify({"message": "Login failed"}), 400)
         except: 
-            return make_response(jsonify({"message": "Login server error"}), 500)
+            return make_response(jsonify({"message": "Login server error"}), 400)
     
     def get_account_id(self, userId):
         cursor = conn.cursor()
