@@ -3,12 +3,12 @@ import mysql.connector
 import bcrypt
 from random import randint
 
-conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', database='accounts')
+conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', database='accounts', buffered=True)
 
 class AccountManager():
     def login(self, username, password):
+        cursor = conn.cursor()
         try: 
-            cursor = conn.cursor()
             pw = password.encode()
             query = "SELECT * FROM account_data WHERE username=\"" + username + "\""
             cursor.execute(query)
@@ -21,6 +21,7 @@ class AccountManager():
             else:
                 return make_response(jsonify({"message": "Login failed"}), 400)
         except: 
+            cursor.close()
             return make_response(jsonify({"message": "Login server error"}), 500)
     
     def get_account_id(self, userId):
