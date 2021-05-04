@@ -6,15 +6,12 @@
 }
 
 .App {
-  /* background-color:#000000; */
   /* background-color:#42424460; */
   /* background-image: linear-gradient(to bottom right, red , blue);  */
   
    /* background-image: linear-gradient(to bottom right, rgb(0, 0, 0) , rgb(44, 6, 105));  */
   
    background-image: linear-gradient(180deg, rgb(4, 30, 117), rgb(0, 255, 234));
-  
-   /* background-size:cover; */
 }
 
 body {
