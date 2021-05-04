@@ -96,8 +96,6 @@ export default class SearchTable extends React.Component {
   this.setState({loading: false, })
 
 }
-  
- 
 
   render() {
     console.log(this.state.loading)

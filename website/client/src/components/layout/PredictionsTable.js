@@ -26,11 +26,6 @@ export default class PredictionsTable extends React.Component {
          return <LoadingSymbol />
       }
 
-      // if (!this.state.prices){
-      //     return <div>Can't get table, right now. Check in later!</div>
-      // }
-      
-
       return (
        
         <MaterialTable

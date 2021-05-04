@@ -5,7 +5,6 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import Divider from '@material-ui/core/Divider';
 import { withStyles } from '@material-ui/core/styles';
 
-
   const styles = (theme) => ({
   root: {
     width: '100%',
@@ -30,18 +29,10 @@ import { withStyles } from '@material-ui/core/styles';
     color: '#252525',
     fontSize: 18,
     fontFamily: 'Arial'
-        /* To change the font, use the fontFamily rule */
   }
 });
 
-
   class ChatList extends React.Component {
-
-
-    
-
-
-  
 
   render() {
     const {classes} = this.props;

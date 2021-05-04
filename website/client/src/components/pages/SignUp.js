@@ -161,14 +161,11 @@ class SignUp extends React.Component{
               color="primary"
               className={classes.submit}
               disabled={!this.validateForm()}
-            
-             
             >
               Sign Up
             </Button>
             <Grid container>
               <Grid item>
-                {/* <Link href="#" variant="body2"> */}
                 <Link to="/login" style={{color: 'blue'}}>
                   {"Already have an account? Login"}
                 </Link>

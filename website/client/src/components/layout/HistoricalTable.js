@@ -44,10 +44,6 @@ export default class HistoricalTable extends React.Component {
       if (this.state.loading){
          return <LoadingSymbol />
       }
-
-      // if (!this.state.prices){
-      //     return <div>Can't get table, right now. Check in later!</div>
-      // }
       
 
       return (

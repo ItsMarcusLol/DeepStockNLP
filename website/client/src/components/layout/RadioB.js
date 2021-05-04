@@ -62,10 +62,10 @@ async componentDidMount() {
       />
 
       <div
-   style={{
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
 }}>
       <GreenRadio
         checked={this.state.selectedValue === 'Google'}
