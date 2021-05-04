@@ -29,14 +29,11 @@ class App extends Component {
 
   render() {
     
-    // console.log(this.state);
     return (
       <div className="App">
       <Router >
       
           <div className="container" >
-            {/* <div style={{padding: 0}}> */}
-            {/* <div className={useStyles.root}> */}
               <Header />
               <Route exact path="/" render={props => (
                 <React.Fragment>
@@ -46,7 +43,6 @@ class App extends Component {
                   </Grid>
 
                   <Grid item xs={6}>
-                    {/* <SearchTextBox /> */}
                     <Search />
                   </Grid>
 
@@ -58,9 +54,6 @@ class App extends Component {
                     <MaterialTable /> 
                   </Grid>
 
-                  {/* <Grid item xs={6}>
-                      <ChatList />
-                   </Grid> */}
 
                   <Grid item xs={6}>
                       <Chat />
@@ -82,7 +75,6 @@ class App extends Component {
               <Route path="/signup">
                 <SignUp login={this.login} />
               </Route>
-              {/* </div> */}
           </div>
      
       </Router>

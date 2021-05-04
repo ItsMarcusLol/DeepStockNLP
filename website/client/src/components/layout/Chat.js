@@ -1,4 +1,3 @@
-// import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import ChatList from './ChatList';
 import Button from '@material-ui/core/Button';
@@ -28,9 +27,7 @@ const styles = (theme) => ({
   textF: {
     '& .MuiTextField-root': {
       margin: theme.spacing(2),
-      // width: '50ch',
        minWidth: 400,
-    // wifth: '25ch'
     },
   },
   button: {
@@ -60,7 +57,7 @@ class Chat extends React.Component {
     this.buttonChange = this.buttonChange.bind(this);
   }
   
-//  acctPts = new Map()
+
   newMessage() {
     fetch('http://104.196.230.228:80/forum/chat', {method: "GET"})
           .then( (response) => {
@@ -75,10 +72,8 @@ class Chat extends React.Component {
           .then( (obj) => {
            
             
-            // this.state.chats = obj;
             this.setState({chats: obj});
             
-            // chats.push("I think google will go up")
           });
   
   }
@@ -153,7 +148,6 @@ class Chat extends React.Component {
 
         <Grid item xs = {12}>
           <div>
-          {/* <ChatList cList = {this.state.acctPts}/> */}
           <ChatList cList = {this.state.chats}/>
           </div>
         </Grid>
@@ -177,31 +171,6 @@ class Chat extends React.Component {
             </div>
             </ResponsiveContainer>
           </Grid>
-
-          {/* <Grid item xs = {6} sm = {6} md = {3}>
-           <div>
-            <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">Stock</InputLabel>
-              <Select
-                name="stock"
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={this.state.stock}
-                onChange={this.handleInputChange}
-                label="Age"
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={'GOOGL'}>Google </MenuItem>
-                <MenuItem value={'AMZN'}>Amazon</MenuItem>
-                <MenuItem value={'F'}>Ford</MenuItem>
-                <MenuItem value={'WMT'}>Walmart</MenuItem>
-                
-              </Select>
-            </FormControl>
-            </div>
-          </Grid> */}
           
           <Grid item xs = {12} sm = {12} md = {3}>
            <div>

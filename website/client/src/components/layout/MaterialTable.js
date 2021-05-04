@@ -24,42 +24,7 @@ export default class PriceTable extends React.Component {
   };
 
   async componentDidMount() {
-    /** 
-      //const key = "f0448bd30a7028e245052fcf3caa0837";
-     const key = "Insert Key Here";
-      const stocks = ["BA", "WMT",  "AMZN", "TSLA", "MSFT", "F", "DELL", "TGT" ];
-    
-      var url = "https://financialmodelingprep.com/api/v3/quote-short/GOOGL?apikey=" + key;
-      var response = await fetch(url);
-      var data = await response.json();
-      console.log(typeof(data))
-
-      if (typeof(data) != JSON ){
-          data = null
-      }
-
-      else{
-      
-      data = JSON.stringify(data)
-      data = JSON.parse(data)
-      
-      
-       
-      var i = 0;
-      for (i = 0; i < stocks.length; i++) {
-        url = "https://financialmodelingprep.com/api/v3/quote-short/"+stocks[i]+"?apikey=" + key;
-        response = await fetch(url);
-        var data1 = await response.json();
-        data1 = JSON.stringify(data1)
-        var d1 = data1.substring(1,data1.length- 1);
-        data.push(JSON.parse(d1))
-      }
-      }
-
-    console.log(data)
-      this.setState({ prices:data, loading: false});
-      */
-    
+  
       fetch('http://104.196.230.228:80/homepage/current', {method: "GET"})
           .then( (response) => {
             if ( response.status !== 200) {
@@ -91,8 +56,7 @@ export default class PriceTable extends React.Component {
 
       return (
        
-      //  <div style={{"font-size" : "12px", "height" : "90px", "width" : "100%"}}>
-      // <div>
+   
        <div style={{fontSize: "12px", width : "100%", left:"left"}}> 
         
         <MaterialTable style={{ width: '100%' }}
@@ -114,7 +78,6 @@ export default class PriceTable extends React.Component {
           title="Our Stocks"
         
           columns={[
-            // { title: 'Name', field: 'name' },
             { title: 'Symbol', field: 'symbol' },
             { title: 'Company', field: 'companyName'},
             { title: 'Price', field: 'price' },
@@ -140,15 +103,8 @@ export default class PriceTable extends React.Component {
             render: rowData => {
               return (
                 <div
-                  // style={{
-                  //   fontSize: 14,
-                  //   textAlign: 'center',
-                  //   color: 'white',
-                  //   backgroundColor: '#43A047',
-                  // }}
                 >
 
-                  {/* <Title>Our Predictions</Title> */}
 
                   <PredictionsTable />
                 </div>
@@ -162,7 +118,6 @@ export default class PriceTable extends React.Component {
               return (
                 <div>
                 
-                {/* <Title>Historical Prices</Title> */}
 
                 <HistoricalTable symb ={rowData.symbol} />
                 
@@ -180,14 +135,9 @@ export default class PriceTable extends React.Component {
                 render: rowData => {
                   return (
                     <div
-                      // style={{
-                      //   fontSize: 100,
-                      //   textAlign: 'center',
-                      //   color: 'white',
-                      //   backgroundColor: '#FDD835',
-                      // }}
+                      
                     >
-                      {/* <Title>Headlines</Title> */}
+                     
 
                       <HeadlineTable symb ={rowData.symbol} />
                     </div>
