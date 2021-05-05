@@ -111,4 +111,4 @@ class ChatManager():
         query = "DELETE FROM chat_data"
         cursor.execute(query)
         cursor.close()
-        return make_response(jsonify(chats), 200)
+        return make_response(jsonify("Chat cleared"), 200)
