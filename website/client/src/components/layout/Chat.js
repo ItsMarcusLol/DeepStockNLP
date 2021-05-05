@@ -69,8 +69,8 @@ class Chat extends React.Component {
           .then( (obj) => {
            
             
-            this.setState({chats: obj});
-            
+            await this.setState({chats: obj});
+            this.render();
           });
   
   }
@@ -104,8 +104,8 @@ class Chat extends React.Component {
       });
     
     this.newMessage();
-
-    this.render();
+    
+    // this.render();
 
     this.setState({
         text: '',
