@@ -102,7 +102,7 @@ export default class PredictionsTable extends React.Component {
         { title: 'Accuracy', field: 'accuracy' }
       ]}
       
-      data={predictions}
+      data={this.state.predictions}
       options={{ search: false, paging: true, pageSize: 5, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}
     
     />
