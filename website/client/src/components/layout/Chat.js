@@ -102,18 +102,13 @@ class Chat extends React.Component {
     this.setState({ username:u1 });
     };
 
-<<<<<<< HEAD
-  buttonChange(event){
-    // fetch('http://104.196.230.228:80/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
-    fetch ('http://35.247.73.118/DeepStock/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
-=======
   async buttonChange(event){
     
     var d = new Date();
     console.log("Start of buttonChange: " + d.getTime());
     
-    await fetch('http://104.196.230.228:80/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
->>>>>>> c55b898d97c610346a006320424be9e5557fc11d
+    // await fetch('http://104.196.230.228:80/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
+    await fetch ('http://35.247.73.118/DeepStock/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
       .then( (response) => {
         if ( response.status !== 200) {
           console.log("Error: " + response.status);
