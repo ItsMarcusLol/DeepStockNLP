@@ -47,6 +47,9 @@ class Chat(Resource):
 
     def get(self): 
         return chatManager.getChat()
+    
+    def delete(self):
+        return chatManager.clear()
 
 
 api.add_resource(Conversation, '/forum')

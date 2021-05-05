@@ -106,3 +106,9 @@ class ChatManager():
         except: 
             return make_response(jsonify({"message": "Get Chat server error"}), 500)
 
+    def clear(self):
+        cursor = conn.cursor()
+        query = "DELETE FROM chat_data"
+        cursor.execute(query)
+        cursor.close()
+        return make_response(jsonify(chats), 200)
