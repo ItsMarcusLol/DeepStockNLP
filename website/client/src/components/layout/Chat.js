@@ -54,9 +54,14 @@ class Chat extends React.Component {
     this.buttonChange = this.buttonChange.bind(this);
   }
   
-  newMessage() {
-    // fetch('http://104.196.230.228:80/forum/chat', {method: "GET"})
-    fetch ('http://35.247.73.118/DeepStock/forum/chat', {method: "GET"})
+
+  async newMessage() {
+    
+    var d = new Date();
+    console.log("Before newMessage fetch: " + d.getTime());
+
+    // await fetch('http://104.196.230.228:80/forum/chat', {method: "GET"})
+    await fetch ('http://35.247.73.118/DeepStock/forum/chat', {method: "GET"})
           .then( (response) => {
             if ( response.status !== 200) {
               console.log("Error: " + response.status);
@@ -69,10 +74,17 @@ class Chat extends React.Component {
           .then( (obj) => {
            
             
-            await this.setState({chats: obj});
-            this.render();
+            this.setState({chats: obj});
+            
           });
-  
+
+
+
+    console.log("After newMessage fetch, before render: " + d.getTime());
+
+    this.render();
+
+    console.log("After render: " + d.getTime());
   }
     
     componentDidMount() {
@@ -88,9 +100,18 @@ class Chat extends React.Component {
     this.setState({ username:u1 });
     };
 
+<<<<<<< HEAD
   buttonChange(event){
     // fetch('http://104.196.230.228:80/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
     fetch ('http://35.247.73.118/DeepStock/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
+=======
+  async buttonChange(event){
+    
+    var d = new Date();
+    console.log("Before buttonChange fetch: " + d.getTime());
+    
+    await fetch('http://104.196.230.228:80/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
+>>>>>>> c55b898d97c610346a006320424be9e5557fc11d
       .then( (response) => {
         if ( response.status !== 200) {
           console.log("Error: " + response.status);
@@ -103,8 +124,12 @@ class Chat extends React.Component {
         console.log(text);
       });
     
+    
+    console.log("Before calling newMessage: " + d.getTime());
+
     this.newMessage();
     
+    console.log("After newMessage: " + d.getTime());
     // this.render();
 
     this.setState({
