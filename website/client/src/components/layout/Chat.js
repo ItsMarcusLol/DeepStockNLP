@@ -61,7 +61,7 @@ class Chat extends React.Component {
   async newMessage() {
     
     var d = new Date();
-    console.log("Before newMessage fetch: " + d.getTime());
+    console.log("Start of newMessage: " + d.getTime());
 
     await fetch('http://104.196.230.228:80/forum/chat', {method: "GET"})
           .then( (response) => {
@@ -75,18 +75,20 @@ class Chat extends React.Component {
           })
           .then( (obj) => {
            
-            
+            console.log("Before chats state: " + d.getTime());
             this.setState({chats: obj});
             
+            console.log("Before text state: " + d.getTime());
+            this.setState({text: ''});
+
+            console.log("End of obj: " + d.getTime());
           });
 
 
 
-    console.log("After newMessage fetch, before render: " + d.getTime());
+    console.log("End of newMessage: " + d.getTime());
 
-    this.render();
-
-    console.log("After render: " + d.getTime());
+    //this.render();
   }
     
     componentDidMount() {
@@ -105,7 +107,7 @@ class Chat extends React.Component {
   async buttonChange(event){
     
     var d = new Date();
-    console.log("Before buttonChange fetch: " + d.getTime());
+    console.log("Start of buttonChange: " + d.getTime());
     
     await fetch('http://104.196.230.228:80/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
       .then( (response) => {
@@ -118,7 +120,7 @@ class Chat extends React.Component {
       })
       .then( (text) => {
         console.log(text);
-      });
+    });
     
     
     console.log("Before calling newMessage: " + d.getTime());
@@ -128,9 +130,7 @@ class Chat extends React.Component {
     console.log("After newMessage: " + d.getTime());
     // this.render();
 
-    this.setState({
-        text: '',
-    });
+    //this.setState({text: ''});
   }
 
   handleInputChange(event) {
