@@ -72,7 +72,7 @@ class Chat extends React.Component {
           .then( (obj) => {
            
             
-            await this.setState({chats: obj});
+            this.setState({chats: obj});
             this.render();
           });
   
