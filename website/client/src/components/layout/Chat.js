@@ -58,8 +58,8 @@ class Chat extends React.Component {
   }
   
 
-  newMessage() {
-    fetch('http://104.196.230.228:80/forum/chat', {method: "GET"})
+  async newMessage() {
+    await fetch('http://104.196.230.228:80/forum/chat', {method: "GET"})
           .then( (response) => {
             if ( response.status !== 200) {
               console.log("Error: " + response.status);
@@ -73,9 +73,9 @@ class Chat extends React.Component {
            
             
             this.setState({chats: obj});
-            this.render();
+            
           });
-  
+          this.render();
   }
     
     componentDidMount() {
@@ -91,8 +91,8 @@ class Chat extends React.Component {
     this.setState({ username:u1 });
     };
 
-  buttonChange(event){
-    fetch('http://104.196.230.228:80/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
+  async buttonChange(event){
+    await fetch('http://104.196.230.228:80/forum/chat', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
       .then( (response) => {
         if ( response.status !== 200) {
           console.log("Error: " + response.status);
