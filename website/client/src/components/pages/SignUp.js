@@ -59,7 +59,8 @@ class SignUp extends React.Component{
         this.props.login(this.state.username, this.state.password);
 
         console.log(JSON.stringify({username: username, password: password}));
-        fetch('http://104.196.230.228:80/account', {method: "POST", body: JSON.stringify({username: username, password: password})})
+        // fetch('http://104.196.230.228:80/account', {method: "POST", body: JSON.stringify({username: username, password: password})})
+        fetch('http://35.247.73.118/DeepStock/account', {method: "POST", body: JSON.stringify({username: username, password: password})})
           .then( (response) => {
             if ( response.status !== 200) {
               console.log("Status: " + response.status);
@@ -100,7 +101,8 @@ class SignUp extends React.Component{
       const {classes} = this.props;
 
       if (this.state.redirect) {
-        window.location.href = "http://104.196.230.228:80/"
+        // window.location.href = "http://104.196.230.228:80/"
+        window.location.href = "http://35.247.73.118/DeepStock/"
     }
     return (
       <div className = {classes.div}>
@@ -161,14 +163,11 @@ class SignUp extends React.Component{
               color="primary"
               className={classes.submit}
               disabled={!this.validateForm()}
-            
-             
             >
               Sign Up
             </Button>
             <Grid container>
               <Grid item>
-                {/* <Link href="#" variant="body2"> */}
                 <Link to="/login" style={{color: 'blue'}}>
                   {"Already have an account? Login"}
                 </Link>

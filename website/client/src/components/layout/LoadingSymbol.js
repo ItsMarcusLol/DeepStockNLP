@@ -17,7 +17,6 @@ export default function LoadingSymbol() {
   return (
     <div className={classes.root}>
       <CircularProgress />
-      {/* <CircularProgress color="secondary" /> */}
     </div>
   );
 }

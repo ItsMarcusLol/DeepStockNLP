@@ -102,7 +102,6 @@ const titleStyle = {
   const headerStyle = {
     background: 'linear-gradient(45deg, #000023 30%,   #000053 90%)',
     direction: 'row', 
-
 }
 
 
@@ -124,8 +123,6 @@ const titleStyle = {
     this.setUsername = this.setUsername.bind(this);
   }
 
-
-  
   setOpen(e){
     this.setState({
       open: e,
@@ -227,8 +224,6 @@ return (
 
           <div className={classes.grow} />
                <div style={titleStyle} >
-           
-               
 
           <Button
           ref={this.anchorRef}
@@ -260,7 +255,6 @@ return (
                   edge="end"
                   aria-label="account of current user"
                   aria-haspopup="true"
-                  // onClick={handleProfileMenuOpen}
                   color="inherit"
                 >
                 <AccountCircle />

@@ -25,7 +25,8 @@ export default class PriceTable extends React.Component {
 
   async componentDidMount() {
   
-      fetch('http://104.196.230.228:80/homepage/current', {method: "GET"})
+      // fetch('http://104.196.230.228:80/homepage/current', {method: "GET"})
+      fetch ('http://35.247.73.118/DeepStock/homepage/current', {method: "GET"})
           .then( (response) => {
             if ( response.status !== 200) {
               console.log("Error: " + response.status);
@@ -47,16 +48,10 @@ export default class PriceTable extends React.Component {
           return <LoadingSymbol />
       }
 
-      // if (!this.state.prices){
-      //     return <div>Can't get table, right now. Check in later!</div>
-          
-      // }
-      
       var pricesData = this.state.prices;
 
       return (
        
-   
        <div style={{fontSize: "12px", width : "100%", left:"left"}}> 
         
         <MaterialTable style={{ width: '100%' }}
@@ -118,7 +113,6 @@ export default class PriceTable extends React.Component {
               return (
                 <div>
                 
-
                 <HistoricalTable symb ={rowData.symbol} />
                 
                 </div>
@@ -126,19 +120,13 @@ export default class PriceTable extends React.Component {
             },
 
             },
-            
-           
               {
                 icon: ViewColumn,
                 openIcon: Remove,
                 tooltip: 'Headlines',
                 render: rowData => {
                   return (
-                    <div
-                      
-                    >
-                     
-
+                    <div>
                       <HeadlineTable symb ={rowData.symbol} />
                     </div>
                   )
