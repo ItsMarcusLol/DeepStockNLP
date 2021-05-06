@@ -77,8 +77,8 @@ export default class HeadlineTable extends React.Component {
       }
       columns={[
         { title: 'Title', field: 'title' },
-        { title: 'Date', field: 'date'},
-        { title: 'Link', field: 'link' }
+        { title: 'Date', field: 'publishedDate'},
+        { title: 'Link', field: 'url' }
       ]}
       
       // data={[
