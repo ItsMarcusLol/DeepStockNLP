@@ -23,7 +23,6 @@ export default class HeadlineTable extends React.Component {
   async componentDidMount() {
     
       const symbol = this.props.symb;
-      console.log(symbol);
       fetch('http://104.196.230.228:80/homepage/headlines?symbol='+symbol, {method: "GET"})
           .then( (response) => {
             if ( response.status !== 200) {
@@ -46,7 +45,7 @@ export default class HeadlineTable extends React.Component {
          return <LoadingSymbol />
       }
 
-      var headlinesData = this.state.headlines;
+      // var headlinesData = this.state.headlines;
 
       return (
        
@@ -82,12 +81,13 @@ export default class HeadlineTable extends React.Component {
         { title: 'Link', field: 'link' }
       ]}
       
-      data={[
-        { title: headlinesData[0].title, date: headlinesData[0].publishedDate, link: headlinesData[0].url},
-        { title: headlinesData[1].title, date: headlinesData[1].publishedDate, link: headlinesData[1].url},
-        { title: headlinesData[2].title, date: headlinesData[2].publishedDate, link: headlinesData[2].url},
-        { title: headlinesData[3].title, date: headlinesData[3].publishedDate, link: headlinesData[3].url}
-      ]}
+      // data={[
+      //   { title: headlinesData[0].title, date: headlinesData[0].publishedDate, link: headlinesData[0].url},
+      //   { title: headlinesData[1].title, date: headlinesData[1].publishedDate, link: headlinesData[1].url},
+      //   { title: headlinesData[2].title, date: headlinesData[2].publishedDate, link: headlinesData[2].url},
+      //   { title: headlinesData[3].title, date: headlinesData[3].publishedDate, link: headlinesData[3].url}
+      // ]}
+      data = {this.state.headlines}
       options={{ search: false, paging: true, pageSize: 5, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}
     
     />

@@ -5,15 +5,9 @@ services:
     image: nginx:latest
     container_name: nginx_gateway
     depends_on: 
-      - account-service-1
-      - account-service-2
-      - account-service-3
-      - forum-service-1
-      - forum-service-2
-      - forum-service-3
-      - homepage-service-1
-      - homepage-service-2
-      - homepage-service-3
+      - account-service
+      - forum-service
+      - homepage-service
       - db
       - react
       - predictions-service
@@ -43,18 +37,8 @@ services:
       - mysql-data:/var/lib/mysql
     restart: always
 
-  account-service-1:
-    container_name: account-service-1
-    build: 
-      context: .
-      dockerfile: ./src/docker/account/Dockerfile.dockerfile
-    expose:
-      - 80
-    depends_on: 
-      - db
-  
-  account-service-2:
-    container_name: account-service-2
+  account-service:
+    container_name: account-service
     build: 
       context: .
       dockerfile: ./src/docker/account/Dockerfile.dockerfile
@@ -63,28 +47,8 @@ services:
     depends_on: 
       - db
 
-  account-service-3:
-    container_name: account-service-3
-    build: 
-      context: .
-      dockerfile: ./src/docker/account/Dockerfile.dockerfile
-    expose:
-      - 80
-    depends_on: 
-      - db
-  
-  forum-service-1:
-    container_name: forum-service-1
-    build:
-      context: .
-      dockerfile: ./src/docker/forum/Dockerfile.dockerfile
-    expose: 
-      - 80
-    depends_on: 
-      - db
-  
-  forum-service-2:
-    container_name: forum-service-2
+  forum-service:
+    container_name: forum-service
     build:
       context: .
       dockerfile: ./src/docker/forum/Dockerfile.dockerfile
@@ -93,38 +57,8 @@ services:
     depends_on: 
       - db
 
-  forum-service-3:
-    container_name: forum-service-3
-    build:
-      context: .
-      dockerfile: ./src/docker/forum/Dockerfile.dockerfile
-    expose: 
-      - 80
-    depends_on: 
-      - db
-
-  homepage-service-1:
-    container_name: homepage-service-1
-    build:
-      context: .
-      dockerfile: ./src/docker/homepage/Dockerfile.dockerfile
-    expose: 
-      - 80
-    depends_on: 
-      - db
-
-  homepage-service-2:
-    container_name: homepage-service-2
-    build:
-      context: .
-      dockerfile: ./src/docker/homepage/Dockerfile.dockerfile
-    expose: 
-      - 80
-    depends_on: 
-      - db
-
-  homepage-service-3:
-    container_name: homepage-service-3
+  homepage-service:
+    container_name: homepage-service
     build:
       context: .
       dockerfile: ./src/docker/homepage/Dockerfile.dockerfile
