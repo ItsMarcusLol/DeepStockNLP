@@ -142,15 +142,15 @@ ___
       - Run command :  source createTables.sql;
 
 
-  # command used for website:
-  #apt get update
-  #apt install docker
-  #apt  install docker-compose
-  #docker-compose build
-  #apt upgrade docker    # ??? 
+  ### command used for website:
+  #apt get update </br>
+  #apt install docker </br>
+  #apt  install docker-compose </br>
+  #docker-compose build </br>
+  #apt upgrade docker    # ??? </br>
  
-  # Step 1, follow this to install docker! https://linuxize.com/post/how-to-install-and-use-docker-on-ubuntu-20-04/
-  # Step 2, docker-compose build, docker-compose up, docker-compose down, docker-compose up -d, docker ps, sudo docker exec -it 5f50399ea93e sh, and then follow the command instructions above
+  **Step 1:** follow this to install docker! https://linuxize.com/post/how-to-install-and-use-docker-on-ubuntu-20-04/
+  **Step 2** docker-compose build, docker-compose up, docker-compose down, docker-compose up -d, docker ps, sudo docker exec -it 5f50399ea93e sh, and then follow the command instructions above
   
   
   
