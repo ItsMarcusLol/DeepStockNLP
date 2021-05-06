@@ -21,7 +21,8 @@ import mysql.connector
 #ADD USERNAME
 #Database connection
 conn=mysql.connector.connect(user= )
-
+max =  {"google" : 35, "target" : 29 , "walmart" : 57, "dell" : 24, "amazon" : 56, 'tesla' : 61,
+         "boeing" : 54, "microsoft" : 46, "ford" : 25, "apple":70}
 dict = {"google" : "googl", "target" : "tgt" , "walmart" : "wmt", "dell" : "dell", "amazon" : "amzn", 'tesla' : "tsla",
          "boeing" : "ba", "microsoft" : "msft", "ford" : "f", "apple":"aapl"}
 
@@ -114,13 +115,23 @@ def insertH(stock, df):
     cursor = conn.cursor()
     query = "insert into " + str(stock) + " values("
     for x in df:
-        query = query + str(df[x]) + ", "
-    query = query[:-1]    
+       if x == 'Label':
+            query = query + str(df['Label'][0]) + ", "
+        elif x == 'Date':
+             query = query + str(df['Date'][0]) + ", '"
+        else:
+            query = query + str(df[x][0]) + "', '"
+    query = query[:-3]    
     query = query + ")" 
     cursor.execute(query)
     conn.commit()
     cursor.close()
-
+    
+def reachedMax(max, allH):
+    new = []
+    for x in range(max):
+        new.append(allH[x])
+    return new
 
 def main():
     for x in dict:
@@ -130,6 +141,8 @@ def main():
         allH = []
         col = []
         last = []
+        if len(head2) > max[x]:
+            head2 = reachedMax(max[x],head2)
         i = 0
         col.append("Label")
         col.append("Date")
