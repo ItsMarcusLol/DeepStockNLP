@@ -19,6 +19,25 @@ export default class PredictionsTable extends React.Component {
       predictions: null,
       symbol: null
   };
+
+
+  async componentDidMount() {
+    const symbol = this.props.symb;
+    fetch('http://104.196.230.228:80/predictions?symbol='+symbol, {method: "GET" })
+        .then( (response) => {
+          if ( response.status !== 200) {
+            console.log("Error: " + response.status);
+          } else {
+            console.log(response.status);
+            
+            return response.json();
+          }
+        })
+        .then( (obj) => {
+          this.setState({loading: false, predictions: obj});
+        });
+}
+
  
 
   render() {
@@ -55,26 +74,33 @@ export default class PredictionsTable extends React.Component {
               </div>
         }  
 
-      columns={[
-        { title: 'Date', field: 'date' },
-        { title: 'Time', field: 'time', type: 'numeric' },
-        { title: 'Prediction ', field: 'prediction', type: 'numeric' },
-        // { title: 'Low', field: 'low', type: 'numeric' },
-        // { title: 'Close', field: 'close', type: 'numeric' },
-        // { title: 'Volume', field: 'volume', type: 'numeric'}
+      // columns={[
+      //   { title: 'Date', field: 'date' },
+      //   { title: 'Time', field: 'time', type: 'numeric' },
+      //   { title: 'Prediction ', field: 'prediction', type: 'numeric' },
+      //   // { title: 'Low', field: 'low', type: 'numeric' },
+      //   // { title: 'Close', field: 'close', type: 'numeric' },
+      //   // { title: 'Volume', field: 'volume', type: 'numeric'}
         
+      // ]}
+      
+      // data={[
+      //   { date: '3-24-2021', time: '1234', prediction: '1', high: '9393', low: '102', volume: '300' },
+      //   // { date: '3-23-2021', open: '1234', close: '2313', high: '5840', low: '302', volume: '300' },
+      //   // { date: '3-22-2021', open: '1234', close: '2313', high: '5943', low: '583', volume: '300' },
+      //   // { date: '3-21-2021', open: '1234', close: '2313', high: '8382', low: '452', volume: '300' },
+      //   // { date: '3-20-2021', open: '1234', close: '2313', high: '2048', low: '852', volume: '300' },
+       
+      // ]}
+
+      columns={[
+        { title: 'Ticker', field: 'ticker' },
+        { title: 'Date', field: 'date'},
+        { title: 'Prediction', field: 'prediction' },
+        { title: 'Accuracy', field: 'accuracy' }
       ]}
       
-      // data = {this.state.prices}
-      // fake data
-      data={[
-        { date: '3-24-2021', time: '1234', prediction: '1', high: '9393', low: '102', volume: '300' },
-        // { date: '3-23-2021', open: '1234', close: '2313', high: '5840', low: '302', volume: '300' },
-        // { date: '3-22-2021', open: '1234', close: '2313', high: '5943', low: '583', volume: '300' },
-        // { date: '3-21-2021', open: '1234', close: '2313', high: '8382', low: '452', volume: '300' },
-        // { date: '3-20-2021', open: '1234', close: '2313', high: '2048', low: '852', volume: '300' },
-       
-      ]}
+      data={this.state.predictions}
       options={{ search: false, paging: true, pageSize: 5, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}
     
     />
