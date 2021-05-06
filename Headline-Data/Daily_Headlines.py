@@ -40,7 +40,13 @@ def getNYT(stock):
 
     for x in jdata:
         if stock in x['title'].lower() :
-            daily_Headlines.append(x['title'].lower())
+            H = x['title'].lower()
+                if "'" in x['title'].lower():
+                    c = H.index("'")
+                    c2 = H.find("'",c+1, len(H))
+                    H =  H[:c] + "'" +H[c:]
+                    H = H[:(c2+1)] + "'" + H[c2+1:]
+                daily_Headlines.append(H)
     df1 = pd.DataFrame(daily_Headlines, columns = ["Ticker", "Date", "Headline"])
     return daily_Headlines
 
@@ -60,8 +66,14 @@ def f_modeling(stock):
     i = 0;
     for x in df['Date']:
         if x == today:
-             if stock in df['Headline'][i].lower() or dict[stock] in df['Headline'][i].lower() or (stock == "google" and "alphabet" in df['Headline'][i].lower()):
-                f_output.append( df['Headline'][i].lower())                
+              if stock in df['Headline'][i].lower() or dict[stock] in df['Headline'][i].lower() or (stock == "google" and "alphabet" in df['Headline'][i].lower()):
+                H = df['Headline'][i].lower()
+                if "'" in df['Headline'][i].lower():
+                    c = H.index("'")
+                    c2 = H.find("'",c+1, len(H))
+                    H =  H[:c] + "'" +H[c:]
+                    H = H[:(c2+1)] + "'" + H[c2+1:]
+                f_output.append( H)                
         i = i +1
 
     return f_output;
