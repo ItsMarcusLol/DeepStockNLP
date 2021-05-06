@@ -129,6 +129,7 @@ ___
     - create database accounts;
     - create database forum;
     - create database predictions;
+    - create headlines;
   11. Add account data table
     - use account;
     - create table account_data(username varchar(20), user_id int, password varchar(60));
@@ -138,3 +139,7 @@ ___
   13. Add prediction table
     - use predictions;
     - create table prediction_data(ticker varchar(6), date datetime, prediction int, con int, acc int);
+  14. Add all the headline tables
+      - use headlines;
+      - Then use the script called createTables.sql inside of Data/Headlines-DB/createTables.sql
+      - Run command :  source createTables.sql;
