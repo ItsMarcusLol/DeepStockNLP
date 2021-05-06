@@ -99,7 +99,8 @@ export default class PredictionsTable extends React.Component {
         { title: 'Ticker', field: 'ticker' },
         { title: 'Date', field: 'date'},
         { title: 'Prediction', field: 'prediction' },
-        { title: 'Accuracy', field: 'accuracy' }
+        { title: 'Confidence', field: 'con'},
+        { title: 'Accuracy', field: 'acc' }
       ]}
       
       data={this.state.predictions}
