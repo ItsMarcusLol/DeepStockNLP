@@ -40,7 +40,7 @@ def getNYT(stock):
 
     for x in jdata:
         if stock in x['title'].lower() :
-            H = x['title'].lower()
+                H = x['title'].lower()
                 if "'" in x['title'].lower():
                     c = H.index("'")
                     c2 = H.find("'",c+1, len(H))
