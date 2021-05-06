@@ -106,7 +106,7 @@ export default class PriceTable extends React.Component {
                 >
 
 
-                  <PredictionsTable />
+                  <PredictionsTable symb ={rowData.symbol} />
                 </div>
               )
             },
