@@ -105,11 +105,8 @@ ___
 ___
 
 ### Running The Website
-  Model
   
-  1. 
-  
-  Docker Compose Backend
+  #### Docker Compose Backend
 
   1. Make sure docker is installed properly
   2. Clone/pull latest version of the repository for github

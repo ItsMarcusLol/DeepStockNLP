@@ -70,13 +70,8 @@ class Search extends React.Component {
     });
   };
 
-  
-  
-  
   render(){
     const {classes} = this.props;
-  
-
 
     const body = (
       <div style={this.modalStyle} className={classes.paper}>
@@ -105,7 +100,6 @@ class Search extends React.Component {
           label="Search"
           style={{ margin: 4 }}
           placeholder="Search NYSE or NASDAQ"
-          // helperText="Stock Search"
           fullWidth="true"
           margin="normal"
           type="search"

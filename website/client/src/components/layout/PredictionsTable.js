@@ -23,7 +23,8 @@ export default class PredictionsTable extends React.Component {
 
   async componentDidMount() {
     const symbol = this.props.symb;
-    fetch('http://104.196.230.228:80/predictions?symbol='+symbol, {method: "GET" })
+    // fetch('http://104.196.230.228:80/predictions?symbol='+symbol, {method: "GET" })
+    fetch ('http://35.247.73.118/DeepStock/predictions?symbol='+symbol, {method: "GET"})
         .then( (response) => {
           if ( response.status !== 200) {
             console.log("Error: " + response.status);
@@ -44,8 +45,6 @@ export default class PredictionsTable extends React.Component {
       if (this.state.loading){
          return <LoadingSymbol />
       }
-
-      
 
       return (
        
@@ -99,7 +98,8 @@ export default class PredictionsTable extends React.Component {
         { title: 'Ticker', field: 'ticker' },
         { title: 'Date', field: 'date'},
         { title: 'Prediction', field: 'prediction' },
-        { title: 'Accuracy', field: 'accuracy' }
+        { title: 'Confidence', field: 'con'},
+        { title: 'Accuracy', field: 'acc' }
       ]}
       
       data={this.state.predictions}
