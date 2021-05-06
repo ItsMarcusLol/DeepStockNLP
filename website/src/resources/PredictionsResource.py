@@ -23,9 +23,8 @@ class Predictions(Resource):
         return predictions_manager.delete_predictions(ticker)
 
     def get(self):
-        json_data = request.get_json(force=True)
-        ticker = json_data['ticker']
-        return predictions_manager.get_predictions(ticker)
+        symbol = request.args.get('symbol')
+        return predictions_manager.get_predictions(symbol)
 
 
 api.add_resource(Predictions, '/predictions')
