@@ -115,8 +115,13 @@ def insertH(stock, df):
     cursor = conn.cursor()
     query = "insert into " + str(stock) + " values("
     for x in df:
-        query = query + str(df[x]) + ", "
-    query = query[:-1]    
+       if x == 'Label':
+            query = query + str(df['Label'][0]) + ", "
+        elif x == 'Date':
+             query = query + str(df['Date'][0]) + ", '"
+        else:
+            query = query + str(df[x][0]) + "', '"
+    query = query[:-3]    
     query = query + ")" 
     cursor.execute(query)
     conn.commit()
