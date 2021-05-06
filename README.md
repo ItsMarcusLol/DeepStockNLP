@@ -140,6 +140,6 @@ ___
     - use predictions;
     - create table prediction_data(ticker varchar(6), date datetime, prediction int, con int, acc int);
   14. Add all the headline tables
-    - use headlines;
-    - Then use the scrpt called createTables.sql inside of Data/Headlines-DB/createTables.sql
-    - Run command :  source createTables.sql;
+      - use headlines;
+      - Then use the script called createTables.sql inside of Data/Headlines-DB/createTables.sql
+      - Run command :  source createTables.sql;
