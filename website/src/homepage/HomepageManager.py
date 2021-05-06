@@ -16,7 +16,7 @@ class HomepageManager():
             headlines = json.loads(data)
             return make_response(jsonify(headlines), 200)
         except: 
-            return make_response(jsonify({"message": "Server error"}), 500)
+            return make_response(jsonify({"message": "Get headlines server error"}), 500)
     
     def get_current(self):
         try: 
@@ -27,17 +27,7 @@ class HomepageManager():
             prices = json.loads(data)
             return make_response(jsonify(prices), 200)
         except:
-            return make_response(jsonify({"message": "Server error"}), 500)
+            return make_response(jsonify({"message": "Get prices server error"}), 500)
     
-    def get_messages(self):
-        try: 
-            cursor = conn.cursor()
-            query = "Select * from forum_data"
-            cursor.execute(query)
-            result = cursor.fetchall()
-            cursor.close()
-            return make_response(jsonify(result), 200)
-        except: 
-            return make_response(jsonify({"message": "Server error"}), 500)
 
     

@@ -27,30 +27,12 @@ class AccountManager():
             cursor.close()
             return make_response(jsonify({"message": "Login server error"}), 500)
     
-    def get_account_id(self, userId):
-        cursor = conn.cursor()
-        query = "SELECT username,user_id FROM account_data WHERE user_id=" + userId
-        cursor.execute(query)
-        result = cursor.fetchone()
-        cursor.close()
-        return result
-
-    def get_account_name(self, username):
-        cursor = conn.cursor()
-        query = "SELECT username,user_id FROM account_data WHERE username=\"" + username + "\""
-        cursor.execute(query)
-        result = cursor.fetchone()
-        cursor.close()
-        return result
-    
     def create_account(self, username, password):
         try: 
             if not (username.isascii() and password.isascii()): 
                 return make_response(jsonify({"message": "ASCII characters only"}), 400)
             if len(username) < 2 or len(username) > 20:
                 return make_response(jsonify({"message": "Username too short or too long"}), 400)
-            elif self.validPassword(password):
-                return make_response(jsonify({"message": "Invalid password"}), 400)
             elif self.account_exists(username):
                 return make_response(jsonify({"message": "Username already exists"}), 400)
             else:
@@ -79,10 +61,6 @@ class AccountManager():
         else:
             return False
     
-    # TODO fill function
-    def validPassword(self, password):
-        return False
-    
     def genUserId(self):
         cursor = conn.cursor()
         while(True):
@@ -93,7 +71,3 @@ class AccountManager():
             if not msg:
                 cursor.close()
                 return userId
-            '''result = cursor.fetchone()
-            if (result is None):
-                cursor.close()
-                return userId'''
