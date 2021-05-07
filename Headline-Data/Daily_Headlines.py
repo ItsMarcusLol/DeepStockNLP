@@ -3,6 +3,8 @@
 
 
 #!/usr/bin/env python
+from pytz import timezone
+import pytz
 import pandas as pd
 import json
 from datetime import datetime
@@ -20,7 +22,7 @@ import mysql.connector
 
 #ADD USERNAME
 #Database connection
-conn=mysql.connector.connect(user= )
+conn=mysql.connector.connect(user="admin", password= "password", database="headlines" )
 max =  {"google" : 35, "target" : 29 , "walmart" : 57, "dell" : 24, "amazon" : 56, 'tesla' : 61,
          "boeing" : 54, "microsoft" : 46, "ford" : 25, "apple":70}
 dict = {"google" : "googl", "target" : "tgt" , "walmart" : "wmt", "dell" : "dell", "amazon" : "amzn", 'tesla' : "tsla",
@@ -123,18 +125,26 @@ def getPrice(stock):
     change = close - open
     return change
     
-def insertH(stock, df):
+def insertH(stock, df, col):
     cursor = conn.cursor()
-    query = "insert into " + str(stock) + " values("
+    colS = "("
+    for x in df:
+        print(x)
+        colS = colS + str(x) + ", "
+    colS= colS[:-2]
+    colS = colS + ") "
+    print(colS)
+    query = "insert into " + str(stock) + colS+  " values("
     for x in df:
        if x == 'Label':
-            query = query + str(df['Label'][0]) + ", "
-        elif x == 'Date':
-             query = query + str(df['Date'][0]) + ", '"
-        else:
+            query = query + str(df['Label'][0]) + ", '"
+       elif x == 'Date':
+            query = query + str(df['Date'][0]) + "', '"
+       else:
             query = query + str(df[x][0]) + "', '"
     query = query[:-3]    
-    query = query + ")" 
+    query = query + ")"
+    print(query)
     cursor.execute(query)
     conn.commit()
     cursor.close()
@@ -144,6 +154,13 @@ def reachedMax(max, allH):
     for x in range(max):
         new.append(allH[x])
     return new
+
+def get_pst_time():
+    date_format="%Y-%m-%d"
+    date = datetime.now(tz=pytz.utc)
+    date = date.astimezone(timezone('US/Pacific'))
+    pstDateTime=date.strftime(date_format)
+    return pstDateTime
 
 def main():
     for x in dict:
@@ -162,7 +179,7 @@ def main():
             allH.append(1)
         else:
             allH.append(0)
-        allH.append( date.today())
+        allH.append( get_pst_time())
         for y in head2:
             allH.append(str(y).lower())
             col.append("top" + str(i + 1))
@@ -171,7 +188,7 @@ def main():
         last.append(allH)
         dfH = pd.DataFrame(last, columns = col)
         #Insert into DB here
-        insertH(x, dfH)
+        insertH(x, dfH, col)
         
         
         

@@ -9,10 +9,14 @@ from datetime import datetime
 from datetime import date
 import requests
 from urllib.request import urlopen
+import mysql.connector
+from pytz import timezone
+import pytz
 
 
 # ## Stocks 
 
+conn=mysql.connector.connect(user="admin" ,password="password", database = "headlines")
 
 allS = {'GOOGL': 'google', 'TSLA':'tesla', 'AAPL':'apple', 'AMZN':'amazon', 'BA':'boeing', 'MSFT':'microsoft', 'DELL':'dell', 'WMT':'walmart', 'TGT': 'target', 'F': 'ford'}
 getPW = {'googl':60, 'tsla':20, 'aapl':0.75, 'amzn':50, 'ba':0, 'msft':7, 'dell':3, 'wmt':0, 'tgt': 0.948, 'f': 1.22}
@@ -50,6 +54,22 @@ def get270(saved_H):
     news = pd.DataFrame(new_news, columns=col)
     return news;
 
+
+def makeDF(db):
+    col = getCol(db)
+    length = len(db)
+    col = []
+    col.append('Date')
+    col.append('Label')
+    i = -1
+    for y in db[0]:
+        if i > 0:
+            col.append(str("top"+str(i)))
+        i = i +  1
+    df = pd.DataFrame(db, columns=col)
+    return df;
+
+    
 
 # ## Gets all the Column names
 
@@ -272,6 +292,12 @@ def insertP(ticker, utc, y_d2, accuracy):
     r.status_code
 
 
+def get_pst_time():
+    date_format="%Y-%m-%d %H:%M:%S"
+    date = datetime.now(tz=pytz.utc)
+    date = date.astimezone(timezone('US/Pacific'))
+    pstDateTime=date.strftime(date_format)
+    return pstDateTime
 # ## Run to get predictions:
 
 def main():
@@ -279,7 +305,8 @@ def main():
         ticker = x
         stock = allS[x]
         train_270 = True
-        savedH = getInput(stock)
+        saved_H = getInput(stock)
+        saved_H = makeDF(saved_H)
         if train_270 == True:
             news = get270(saved_H)
         else:
@@ -306,9 +333,12 @@ def main():
         df = formatHead(stock, ticker, news)
         prediction = predictD(df, news,  ticker)
     
-        now = datetime.now()
-        
-        insertP(ticker, now, prediction, accuracy )
+        now = get_pst_time()
+        print(ticker)
+        print(now)
+        print(accuracy)
+        print(prediction)
+        #insertP(ticker, now, prediction, accuracy )
 
 
 
