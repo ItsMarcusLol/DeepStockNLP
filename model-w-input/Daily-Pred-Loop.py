@@ -334,11 +334,7 @@ def main():
         prediction = predictD(df, news,  ticker)
     
         now = get_pst_time()
-        print(ticker)
-        print(now)
-        print(accuracy)
-        print(prediction)
-        #insertP(ticker, now, prediction, accuracy )
+        insertP(ticker, now, prediction, accuracy )
 
 
 
