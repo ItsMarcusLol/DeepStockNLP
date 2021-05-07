@@ -14,7 +14,7 @@ services:
     volumes:
       - ./src/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - 80:80
+      - 6023:80
     
   react:
     container_name: react-client

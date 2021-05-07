@@ -108,35 +108,41 @@ ___
   
   #### Docker Compose Backend
 
-  1. Make sure docker is installed properly
+  1. Make sure docker is installed properly 
+     - Instructions are below, after this list
   2. Clone/pull latest version of the repository for github
-  3. docker-compose build
-    - Should take a second
-    - There should be a few warnings
+  3. docker-compose build 
+      - Should take a second
+      - There should be a few warnings
   4. docker-compose up
-    - To test if it's working
+      - To test if it's working
   5. docker-compose down
-    - Wait for containers to be taken
+      - Wait for containers to be taken
   6. docker-compose up -d
   7. docker ps
-  8. docker exec -it container_id sh
+  8. docker exec -it container_id sh  (the container_id is copied from the previous step's output next to TCPIP)
   9. mysql -u root -p
-    - MarLee21!
+     - MarLee21!
   10. create the databases
-    - create database accounts;
-    - create database forum;
-    - create database predictions;
-    - create headlines;
+      - create database accounts;
+      - create database forum;
+      - create database predictions;
   11. Add account data table
-    - use account;
-    - create table account_data(username varchar(20), user_id int, password varchar(60));
+      - use accounts;
+      - create table account_data(username varchar(20), user_id int, password varchar(60));
   12. Add forum data table
-    - use forum;
-    - create table chat_data(username varchar(20), text varchar(250));
+      - use forum;
+      - create table chat_data(username varchar(20), text varchar(250));
   13. Add prediction table
-    - use predictions;
-    - create table prediction_data(ticker varchar(6), date datetime, prediction int, con int, acc int);
-  14. Add all the headline tables
-      - use headlines;
-      - Then use the script called createTables.sql inside of Data/Headlines-DB/createTables.sql
-      - Run command :  source createTables.sql;
+      - use predictions;
+      - create table prediction_data(ticker varchar(6), date datetime, prediction int, con int, acc int);
+
+  ### command used for website:
+  #apt get update </br>
+  #apt install docker </br>
+  #apt install docker-compose </br>
+  #docker-compose build </br>
+  #apt upgrade docker    # ??? </br>
+ 
+  **Step 1:** follow this to install docker! https://linuxize.com/post/how-to-install-and-use-docker-on-ubuntu-20-04/
+  **Step 2** docker-compose build, docker-compose up, docker-compose down, docker-compose up -d, docker ps, sudo docker exec -it 5f50399ea93e sh, and then follow the command instructions above
