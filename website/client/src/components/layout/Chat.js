@@ -58,8 +58,8 @@ class Chat extends React.Component {
   async newMessage() {
     
 
-    // await fetch('http://104.196.230.228:80/forum', {method: "GET"})
-    await fetch ('http://35.247.73.118/DeepStock/forum', {method: "GET"})
+    // await fetch('http://104.196.230.228:6023/forum', {method: "GET"})
+    await fetch ('http://35.247.73.118:6023/forum', {method: "GET"})
           .then( (response) => {
             if ( response.status !== 200) {
               console.log("Error: " + response.status);
@@ -96,8 +96,8 @@ class Chat extends React.Component {
   async buttonChange(event){
     
     
-    // await fetch('http://104.196.230.228:80/forum', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
-    await fetch ('http://35.247.73.118/DeepStock/forum', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
+    // await fetch('http://104.196.230.228:6023/forum', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
+    await fetch ('http://35.247.73.118:6023/forum', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
       .then( (response) => {
         if ( response.status !== 200) {
           console.log("Error: " + response.status);

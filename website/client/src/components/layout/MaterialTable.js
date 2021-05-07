@@ -25,8 +25,8 @@ export default class PriceTable extends React.Component {
 
   async componentDidMount() {
   
-      // fetch('http://104.196.230.228:80/homepage/current', {method: "GET"})
-      fetch ('http://35.247.73.118/DeepStock/homepage/current', {method: "GET"})
+      // fetch('http://104.196.230.228:6023/homepage/current', {method: "GET"})
+      fetch ('http://35.247.73.118:6023/homepage/current', {method: "GET"})
           .then( (response) => {
             if ( response.status !== 200) {
               console.log("Error: " + response.status);
