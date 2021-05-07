@@ -286,9 +286,9 @@ def predictD(df_d,  news, ticker):
 
 # ### Insert's Prediction into DB
 
-def insertP(ticker, utc, y_d2, accuracy):
+def insertP(ticker, pred, accuracy):
     utc = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
-    r = requests.post('http://35.247.73.118:6023/post', json={"ticker": ticker, "date":utc,"prediction":y_d2,"confidence":0, "accuracy":accuracy})
+    r = requests.post('http://localhost:6023/', json={"ticker": ticker, "date":utc,"prediction":pred,"confidence":0, "accuracy":accuracy})
     r.status_code
 
 
@@ -333,8 +333,7 @@ def main():
         df = formatHead(stock, ticker, news)
         prediction = predictD(df, news,  ticker)
     
-        now = get_pst_time()
-        insertP(ticker, now, prediction, accuracy )
+        insertP(ticker, prediction[0], accuracy )
 
 
 
