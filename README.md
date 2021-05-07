@@ -82,26 +82,26 @@ ___
 ### Running The Model
    Daily-Prediction.py: This script trains the XGBoost XGBClassifier (binary logistic rergressive model) on the last 270 days of headlines, that are related to a particular stock. This script then makes an API request to the NYT API and Finacial Modeling Prep API for recent headlines. These headlines are then filtered through and checked that they were published for the current day and that the headline is relevant to the particular stock. These are then used to make the prediction for the current day.
    
-   1. sudo apt install python3-venv python3-pip
-   2. Create a python enviornment 
-      1. pip3 install virtualenv 
-      2. python3 -m venv virtual-env
-      3. source virtual-env/bin/activate
-  3. Install Anaconda (if you already installed Anaconda from above, you can skip this step)
-  4. Create an anaconda enviornment 
-      - conda create --name my_env python=3
-      - conda activate my_env
-  6. List of other installs:
+  1. sudo apt install python3-venv python-pip
+  2. Install Anaconda (if you already installed Anaconda from above, you can skip this step)
+  3. List of other installs:
       - conda install pandas
       - conda install -c intel scikit-learn
       - conda install -c conda-forge textblob
       - conda install -c conda-forge xgboost
       - conda install -c anaconda requests
-  7. Download an input for the model. Right now in our Data/20-21-csv are our most recent inputs and are named after the stocks ticker and the date they were updated
-  8. Change path of saved_H to where the csv input is saved
-  9. Change the variables "ticker" and "stock" to the corresponding ticker and stock of your input
-  10. Run by: **python3 Daily-Predictions.py**
+      - pip install mysql-connector-python-rf
+  4. Create the headline tables and immport the data
+      - create database headlines;
+      - source DeepStockNLP/Data/Headlines-DB/createAndPop; (this will create all the headlines and populate them with the csv data)
+  5. May need to change credentials at top of script for MariaDB
+  6. Run by: **python Daily-Pred-Loop.py**
       - You will see the Accuracy and the F1 score and the prediction at the bottom (1: increase, 0: decrease) 
+  7. Set Up with ChronTab so that it runs every week day at (8:00, 12:00, 4:00)
+### Adding Headlines Daily to DB:
+1. Change credentials to Maria DB connection at top of Daily-Headlines.py 
+2.  Run by: **python Daily-Headlines.py**
+3.  Set Up with ChronTab so that it runs every week day at 5:30
 ___
 
 ### Running The Website
