@@ -19,7 +19,7 @@ import pytz
 conn=mysql.connector.connect(user="admin" ,password="password", database = "headlines")
 
 allS = {'GOOGL': 'google', 'TSLA':'tesla', 'AAPL':'apple', 'AMZN':'amazon', 'BA':'boeing', 'MSFT':'microsoft', 'DELL':'dell', 'WMT':'walmart', 'TGT': 'target', 'F': 'ford'}
-getPW = {'googl':0.5, 'tsla':20, 'aapl':0.75, 'amzn':50, 'ba':1.39, 'msft':7, 'dell':3, 'wmt':1.3, 'tgt': 0.948, 'f': 1.22}
+getPW = {'googl':0.5, 'tsla':20, 'aapl':0.75, 'amzn':50, 'ba':1.39, 'msft':7, 'dell':3, 'wmt':1.3, 'tgt': 0.948, 'f': 1.14}
 
 
 # ## Goes through headlines and returns sentiment value
