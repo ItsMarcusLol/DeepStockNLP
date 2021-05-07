@@ -19,7 +19,7 @@ import pytz
 conn=mysql.connector.connect(user="admin" ,password="password", database = "headlines")
 
 allS = {'GOOGL': 'google', 'TSLA':'tesla', 'AAPL':'apple', 'AMZN':'amazon', 'BA':'boeing', 'MSFT':'microsoft', 'DELL':'dell', 'WMT':'walmart', 'TGT': 'target', 'F': 'ford'}
-getPW = {'googl':60, 'tsla':20, 'aapl':0.75, 'amzn':50, 'ba':0, 'msft':7, 'dell':3, 'wmt':0, 'tgt': 0.948, 'f': 1.22}
+getPW = {'googl':0.5, 'tsla':20, 'aapl':0.75, 'amzn':50, 'ba':1.39, 'msft':7, 'dell':3, 'wmt':1.3, 'tgt': 0.948, 'f': 1.22}
 
 
 # ## Goes through headlines and returns sentiment value
@@ -288,7 +288,7 @@ def predictD(df_d,  news, ticker):
 
 def insertP(ticker, utc, y_d2, accuracy):
     utc = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
-    r = requests.post('http://104.196.230.228:80/post', json={"ticker": ticker, "date":utc,"prediction":y_d2,"confidence":0, "accuracy":accuracy})
+    r = requests.post('http://35.247.73.118:6023/post', json={"ticker": ticker, "date":utc,"prediction":y_d2,"confidence":0, "accuracy":accuracy})
     r.status_code
 
 
