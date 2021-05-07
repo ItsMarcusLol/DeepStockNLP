@@ -613,11 +613,3 @@ IGNORE 1 ROWS (Date,	Label,	top1,	top2,	top3,	top4,	top5,	top6,	top7,	top8,	top9
 
 
 
-
-
-
-
-
-following apple''s launch of privacy labels, google to add a ‘safet
-y' section in google play
-
