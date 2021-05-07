@@ -7,7 +7,7 @@ conn = mysql.connector.connect(user='root', password='MarLee21!', host='db', dat
 class PredictionsManager():
     def get_predictions(self, ticker):
         cursor = conn.cursor()
-        query = "SELECT * FROM prediction_data WHERE ticker=" + "\"" + ticker + "\""
+        query = "SELECT * FROM prediction_data WHERE ticker=" + "\"" + str(ticker) + "\""
         cursor.execute(query)
         result = cursor.fetchall()
         cursor.close()
