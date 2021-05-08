@@ -55,7 +55,7 @@ export default class HistoricalPriceGraph extends PureComponent {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" stroke="#FFF"/>
+        <XAxis dataKey="date" stroke="#FFF" reversed="true"/>
         <YAxis stroke="#FFF"/> 
         
 
