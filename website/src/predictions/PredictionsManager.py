@@ -11,8 +11,7 @@ class PredictionsManager():
         cursor.execute(query)
         result = cursor.fetchall()
         cursor.close()
-        predictions = json.loads(result)
-        return make_response(jsonify(predictions), 200)
+        return make_response(jsonify(result), 200)
 
     def post_predictions(self, ticker, date, prediction, con, acc):
         cursor = conn.cursor()
