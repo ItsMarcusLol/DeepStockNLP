@@ -288,7 +288,8 @@ def predictD(df_d,  news, ticker):
 
 def insertP(ticker, pred, accuracy):
     utc = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
-    r = requests.post('http://localhost:6023/', json={"ticker": ticker, "date":utc,"prediction":pred,"confidence":0, "accuracy":accuracy})
+    roundA = (round(accuracy, 2)) * 100
+    r = requests.post('http://localhost:6023/predictions', json={"ticker": ticker, "date":utc,"prediction":pred,"confidence":0, "accuracy":roundA})
     r.status_code
 
 
