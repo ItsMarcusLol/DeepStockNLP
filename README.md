@@ -80,11 +80,21 @@ Before you can run the model, you will need to get the data (you can skip this a
 ___
 
 ### Running The Model
-   Daily-Prediction.py: This script trains the XGBoost XGBClassifier (binary logistic rergressive model) on the last 270 days of headlines, that are related to a particular stock. This script then makes an API request to the NYT API and Finacial Modeling Prep API for recent headlines. These headlines are then filtered through and checked that they were published for the current day and that the headline is relevant to the particular stock. These are then used to make the prediction for the current day.
+   Daily-Prediction.py: This script trains the XGBoost XGBClassifier (binary logistic rergressive model) on the last 270 days of headlines, that are related to a particular stock. This script then makes an API request to the NYT API and Finacial Modeling Prep API for recent headlines. These headlines are then filtered through and checked that they were published for the current day and that the headline is relevant to the particular stock. These are then used to make the prediction for the current day. </br>
+
+To get set up, make sure you're in the correct folder: </br>
+ Like /home/caora </br>
+ Then use mysql -u root, no password to enter mariaDB: </br>
+ source /home/caora/DeepStockNLP/Data/Headlines-DB/createAndPop.sql; </br>
+ In mariaDB: </br>
+ GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION; </br>
+ FLUSH PRIVILEGES; </br>
+
+ Then you can start on these steps:
    
   1. sudo apt install python3-venv python-pip
   2. Install Anaconda (if you already installed Anaconda from above, you can skip this step)
-  3. List of other installs:
+  3. List of other installs (need to do this before trying to run anything):
       - conda install pandas
       - conda install -c intel scikit-learn
       - conda install -c conda-forge textblob
@@ -144,26 +154,8 @@ ___
   #docker-compose build </br>
   #apt upgrade docker    # ??? </br>
  
-  **Step 1:** follow this to install docker! https://linuxize.com/post/how-to-install-and-use-docker-on-ubuntu-20-04/
-  **Step 2** docker-compose build, docker-compose up, docker-compose down, docker-compose up -d, docker ps, sudo docker exec -it 5f50399ea93e sh, and then follow the command instructions above
-  
-  
-  ### command for setting up models:
-  #
- - conda install pandas
-      - conda install -c intel scikit-learn
-      - conda install -c conda-forge textblob
-      - conda install -c conda-forge xgboost
-      - conda install -c anaconda requests
-      - pip install mysql-connector-python-rf
+  **Step 1:** follow this to install docker! https://linuxize.com/post/how-to-install-and-use-docker-on-ubuntu-20-04/ </br>
+  **Step 2** docker-compose build, docker-compose up, docker-compose down, docker-compose up -d, docker ps, sudo docker exec -it 5f50399ea93e sh, and then follow the command instructions above </br>
 
- # make sure you are under the correct folder:
- like /home/caora
- and then use mysql -u root, no password to enter mariaDB:
- source /home/caora/DeepStockNLP/Data/Headlines-DB/createAndPop.sql;
- In mariaDB:
- GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
- FLUSH PRIVILEGES;
- 
- make sure you use: sudo docker-compose up -d to run it on the backend
+ **Note:** make sure you use: sudo docker-compose up -d to run it on the backend
    
