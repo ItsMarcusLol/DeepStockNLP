@@ -9,10 +9,13 @@ class PredictionsManager():
         try: 
             cursor = conn.cursor()
             query = "SELECT * FROM prediction_data WHERE ticker=" + "\"" + str(ticker) + "\""
-            cursor.execute(query)
+            cursor.execute(query) 
             result = cursor.fetchall()
+            predictions = []
+            for i in result:
+                row = {'ticker': i[0], 'date': i[1], 'prediction': i[2], 'con': i[3], 'acc': i[4]}
+                predictions.insert(0, row)
             cursor.close()
-            predictions = json.dumps(result, default=str)
             return make_response(jsonify(predictions), 200)
         except: 
             cursor.close()
