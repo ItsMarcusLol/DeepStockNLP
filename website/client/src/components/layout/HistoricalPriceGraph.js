@@ -64,7 +64,7 @@ export default class HistoricalPriceGraph extends PureComponent {
                 position="left"
                 style={{ textAnchor: 'middle', fontFamily: 'monospace'}} 
                 stroke="#FFF"
-                fontSize="21"
+                fontSize="18"
                 >
                     Change In Price
                 </Label>
