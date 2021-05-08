@@ -74,7 +74,7 @@ class SignUp extends React.Component{
               const user = username;
               localStorage.setItem('user', user);
               m = <h1 
-              style={{fontSize: 24, color: "#FF0000" }}> 
+              style={{fontSize: 24, color: "#00CC00" }}> 
               Sign up Succesful!
               </h1>;
               this.setState({username: "", password: "", redirect: true, message: m});
