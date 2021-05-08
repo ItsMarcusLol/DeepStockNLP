@@ -146,3 +146,24 @@ ___
  
   **Step 1:** follow this to install docker! https://linuxize.com/post/how-to-install-and-use-docker-on-ubuntu-20-04/
   **Step 2** docker-compose build, docker-compose up, docker-compose down, docker-compose up -d, docker ps, sudo docker exec -it 5f50399ea93e sh, and then follow the command instructions above
+  
+  
+  ### command for setting up models:
+  #
+ - conda install pandas
+      - conda install -c intel scikit-learn
+      - conda install -c conda-forge textblob
+      - conda install -c conda-forge xgboost
+      - conda install -c anaconda requests
+      - pip install mysql-connector-python-rf
+
+ # make sure you are under the correct folder:
+ like /home/caora
+ and then use mysql -u root, no password to enter mariaDB:
+ source /home/caora/DeepStockNLP/Data/Headlines-DB/createAndPop.sql;
+ In mariaDB:
+ GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
+ FLUSH PRIVILEGES;
+ 
+ make sure you use: sudo docker-compose up -d to run it on the backend
+   
