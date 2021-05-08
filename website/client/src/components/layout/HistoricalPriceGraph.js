@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
-  Line, LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  Line, LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Label
 } from 'recharts';
 
 function CustomTooltip({ payload, label, active }) {
@@ -56,7 +56,19 @@ export default class HistoricalPriceGraph extends PureComponent {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" stroke="#FFF" reversed="true"/>
-        <YAxis stroke="#FFF"/> 
+        {/* <YAxis stroke="#FFF"/>  */}
+        <YAxis
+          stroke="#FFF">
+            <Label
+                angle={270}
+                position="left"
+                style={{ textAnchor: 'middle', fontFamily: 'monospace'}} 
+                stroke="#FFF"
+                fontSize="21"
+                >
+                    Change In Price
+                </Label>
+        </YAxis>
         
 
         <Tooltip content={<CustomTooltip/>} />
