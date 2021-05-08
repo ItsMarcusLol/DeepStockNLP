@@ -53,12 +53,11 @@ class SignUp extends React.Component{
           var m ="";
           const username = this.state.username;
           const password = this.state.password;
-          console.log(username, password)
           this.setState({username: "", password: "",  rePassword: ""});
         e.preventDefault();
         this.props.login(this.state.username, this.state.password);
 
-        console.log(JSON.stringify({username: username, password: password}));
+
         // fetch('http://104.196.230.228:6023/account', {method: "POST", body: JSON.stringify({username: username, password: password})})
         fetch('http://35.247.73.118:6023/account', {method: "POST", body: JSON.stringify({username: username, password: password})})
           .then( (response) => {
@@ -97,7 +96,7 @@ class SignUp extends React.Component{
         [e.target.name]: e.target.value});
         
     render(){
-      console.log(this.state.rePassword)
+
       const {classes} = this.props;
 
       if (this.state.redirect) {

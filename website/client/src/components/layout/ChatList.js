@@ -38,8 +38,6 @@ import { withStyles } from '@material-ui/core/styles';
     const {classes} = this.props;
     var chats = this.props.cList;
    
-    
-    console.log(chats)
 
   return (
     <List className={classes.root} subheader={<li />}>

@@ -24,7 +24,6 @@ export default class SearchTable extends React.Component {
   ]
 
     constructor(props) {
-    console.log(props)
     super(props);
     this.state = {
       loading: true, 
@@ -42,12 +41,15 @@ export default class SearchTable extends React.Component {
 
 
   async componentDidMount() {
-    const input = this.props.symb 
+    var input = this.props.symb 
+    if (input.toLowerCase() === "google" ){
+        input = "googl";
+    }
+
     const key = "f0448bd30a7028e245052fcf3caa0837"
     var url = "https://financialmodelingprep.com/api/v3/search?query="+ input +"&limit=15&exchange=NASDAQ,NYSE&apikey="+key;
     var response = await fetch(url);
     var data = await response.json();
-    
     if(data.length > 0){
     var t = data[0]['name'];
     var cols=[
@@ -57,22 +59,25 @@ export default class SearchTable extends React.Component {
       { title: 'Exchange', field: 'stockExchange' },
       { title: 'Symbol', field: 'symbol' },  
     ]
+
     
   }
   
     
     if (data.length === 1){
-      console.log("in if")
       const sym = data[0].symbol;
       const url2 = "https://financialmodelingprep.com/api/v4/company-outlook?symbol="+sym+"&apikey="+key;
       const response2 = await fetch(url2);
       const d = await response2.json();
       data = d['stockNews'];
       var d1 = d['profile'];
-
-      var h =  <div >Price : {d1['price']} <br/>
+      var h =  <div >
+        Company Name : {d1['companyName']} <br/>
+        Industry : {d1['industry']} <br/>
+        Price : {d1['price']} <br/>
       Volume Avg : {d1['volAvg']} <br/>
       Website : {d1['website']} <br/>
+      <br/>
       </div>;
       
       cols=[
@@ -88,7 +93,8 @@ export default class SearchTable extends React.Component {
     }
     if (data.length === 0){
    
-        t = "Could not find your stock, make sure the stock is a part of NYSE or NASDAQ"
+      h = "Could not find your stock " +  input +", make sure the stock is a part of NYSE or NASDAQ"
+      t = ""
     }
     
     
@@ -98,7 +104,6 @@ export default class SearchTable extends React.Component {
 }
 
   render() {
-    console.log(this.state.loading)
       if (this.state.loading){
          return <LoadingSymbol />
       }
@@ -106,7 +111,6 @@ export default class SearchTable extends React.Component {
       if (!this.state.output){
           return <div>Can't get table, right now. Check in later!</div>
       }
-      {console.log(this.props.output)}
 
       return (
         <div>
@@ -134,7 +138,7 @@ export default class SearchTable extends React.Component {
             alignItems: "center",
             justifyContent: "center",
             display: "flex",
-            fontSize: 24 
+            fontSize: 18 
           }}>
                {this.state.title}
           </div>
@@ -142,9 +146,9 @@ export default class SearchTable extends React.Component {
      
       columns={this.state.columns}
       data = {this.state.output}
-      options={{ search: false, paging: true, pageSizeOptions: [1,2] , pageSize: 2, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}
+      options={{ search: false, paging: true, pageSizeOptions: [1,2] , pageSize: 2, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false, maxBodyHeight: "10", showTitle:false, toolbar :false}}
     
-    />
+    /> 
     </div>
       );
   }

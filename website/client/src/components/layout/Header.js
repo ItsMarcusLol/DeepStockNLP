@@ -145,7 +145,9 @@ const titleStyle = {
  
   componentDidMount() {
     const u1 = localStorage.getItem('user');
-   
+    if (localStorage.getItem('user') == null){
+      localStorage.setItem('user',"");
+    }
     if (this.state.username !== u1){
       this.setState({ username:u1 });
     }

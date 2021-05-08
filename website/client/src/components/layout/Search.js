@@ -21,7 +21,7 @@ function getModalStyle() {
   const styles = (theme) => ({
   paper: {
     position: 'absolute',
-    width: 800,
+    width: 1200,
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -49,7 +49,6 @@ class Search extends React.Component {
     this.setState({
       open: true
     });
-    console.log(this.state.open)
   };
 
   handleClose = () => {

@@ -77,7 +77,6 @@ class Chat extends React.Component {
           });
 
 
-    //this.render();
   }
     
     componentDidMount() {
@@ -112,9 +111,6 @@ class Chat extends React.Component {
   
     this.newMessage();
   
-    // this.render();
-
-    //this.setState({text: ''});
   }
 
   handleInputChange(event) {
@@ -123,7 +119,6 @@ class Chat extends React.Component {
     const name = target.name;
    
     if (name === 'post'){
-      console.log("button click")
       this.setState({
         text: '',
         post: false

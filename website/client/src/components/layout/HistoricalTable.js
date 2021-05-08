@@ -23,7 +23,6 @@ export default class HistoricalTable extends React.Component {
   async componentDidMount() {
     
       const symbol = this.props.symb;
-      console.log(symbol);
       const key = "f0448bd30a7028e245052fcf3caa0837";
 
     
@@ -33,8 +32,6 @@ export default class HistoricalTable extends React.Component {
      
       data = data['historical']
 
-      console.log("here "+symbol);
-      console.log(data)
       this.setState({ prices:data, symbol:symbol, loading: false});
   }
   
