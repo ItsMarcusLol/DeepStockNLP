@@ -12,6 +12,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import LoadingSymbol from './LoadingSymbol';
+import { Link } from 'react-router-dom';
 
 export default class SearchTable extends React.Component {
   cols1=[
@@ -84,7 +85,8 @@ export default class SearchTable extends React.Component {
         { title: 'Date', field: 'publishedDate' },
         { title: 'Website', field: 'site' },
         { title: 'Title', field: 'title' }, 
-        { title: 'URL', field: 'url' }, 
+        { title: 'URL', field: 'url' ,render: rowData => <Link style={{ color: 'blue', textDecoration: 'inherit'}} target= {"_blank"} to={{ pathname: rowData.url }}>{rowData.url}</Link> }
+ 
       ]
       
     }
@@ -143,12 +145,29 @@ export default class SearchTable extends React.Component {
                {this.state.title}
           </div>
     }  
+    
      
       columns={this.state.columns}
       data = {this.state.output}
       options={{ search: false, paging: true, pageSizeOptions: [1,2] , pageSize: 2, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false, maxBodyHeight: "10", showTitle:false, toolbar :false}}
-    
+      // actions={[
+      //   {
+      //     // icon: 'save',
+      //     icon: {url},
+      //     // tooltip: 'Save User',
+      //     // onClick: (event, rowData) => alert("You saved " + rowData.name)
+      //     onClick: () => 
+      //     <Link to={this.data.url}>{this.data.url}</Link> 
+      //   },
+      //   // rowData => ({
+      //   //   icon: 'delete',
+      //   //   tooltip: 'Delete User',
+      //   //   onClick: (event, rowData) => confirm("You want to delete " + rowData.name),
+      //   //   disabled: rowData.birthYear < 2000
+      //   // })
+      // ]}
     /> 
+    
     </div>
       );
   }

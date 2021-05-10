@@ -12,6 +12,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import LoadingSymbol from './LoadingSymbol';
+import { Link } from 'react-router-dom';
 
 export default class HeadlineTable extends React.Component {
   state = {
@@ -78,7 +79,7 @@ export default class HeadlineTable extends React.Component {
       columns={[
         { title: 'Title', field: 'title' },
         { title: 'Date', field: 'publishedDate'},
-        { title: 'Link', field: 'url' }
+        { title: 'Link', field: 'url', render: rowData => <Link style={{ color: 'blue', textDecoration: 'inherit'}} target= {"_blank"} to={{ pathname: rowData.url }}>{rowData.url}</Link> }
       ]}
       
       
