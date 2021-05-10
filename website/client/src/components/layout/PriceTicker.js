@@ -8,7 +8,7 @@ import LoadingSymbol from './LoadingSymbol';
         constructor(props) {
           super(props);
           this.state = {
-            loading: false, 
+            loading: true, 
             prices: null,
             pageIsVisible: true
           
