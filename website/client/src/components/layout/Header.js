@@ -145,8 +145,9 @@ const titleStyle = {
  
   componentDidMount() {
     const u1 = localStorage.getItem('user');
+
     if (localStorage.getItem('user') == null){
-      localStorage.setItem('user',"");
+      localStorage.setItem('user'," ");
     }
     if (this.state.username !== u1){
       this.setState({ username:u1 });
@@ -161,7 +162,7 @@ const titleStyle = {
   }
 
   handleLogout=()=> {
-    localStorage.setItem('user',"");
+    localStorage.setItem('user'," ");
     window.location.reload(false);
   }
   handleDrawerOpen = () => {

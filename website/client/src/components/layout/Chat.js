@@ -84,7 +84,7 @@ class Chat extends React.Component {
       this.newMessage();
     
     
-    if (u1.length > 0 ){
+    if (u1.length > 1 ){
       this.setState({ loggedOut:false});
       this.setState({ v: 'outlined'});
     }
