@@ -37,7 +37,7 @@ export default class PredictionsTable extends React.Component {
         .then( (obj) => {
           this.setState({loading: false, predictions: obj});
         });
-}
+  }
 
  
 
@@ -45,6 +45,8 @@ export default class PredictionsTable extends React.Component {
       if (this.state.loading){
          return <LoadingSymbol />
       }
+
+      var predictionsData = this.state.predictions;
 
       return (
        
@@ -102,7 +104,12 @@ export default class PredictionsTable extends React.Component {
         { title: 'Accuracy', field: 'acc' }
       ]}
       
-      data={this.state.predictions}
+      //data={this.state.predictions}
+      
+      data={[
+        {ticker: predictionsData[0].ticker, date: predictionsData[0].date, prediction: predictionsData[0].prediction, con: predictionsData[0].con, acc: predictionsData[0].acc}
+      ]}
+
       options={{ search: false, paging: true, pageSize: 5, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}
     
     />
