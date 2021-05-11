@@ -1,3 +1,4 @@
+#!/bin/env/ python
 import pandas as pd
 import copy
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score

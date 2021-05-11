@@ -1,8 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
+#!/bin/env/ python
 
 
-#!/usr/bin/env python
 from pytz import timezone
 import pytz
 import pandas as pd
