@@ -15,7 +15,7 @@ import LoadingSymbol from './LoadingSymbol';
 
 export default class PredictionsTable extends React.Component {
   state = {
-      loading: false, 
+      loading: true, 
       predictions: null,
       symbol: null
   };
@@ -44,12 +44,6 @@ export default class PredictionsTable extends React.Component {
   render() {
       if (this.state.loading){
          return <LoadingSymbol />
-      }
-
-      var predictionsData = this.state.predictions;
-
-      if (this.state.predictions == null){
-        return <div> Can't get predictions right now</div>
       }
 
       return (
@@ -109,11 +103,7 @@ export default class PredictionsTable extends React.Component {
       ]}
       
       data={this.state.predictions}
-      
-      // data={[
-      //   {ticker: predictionsData[0].ticker, date: predictionsData[0].date, prediction: predictionsData[0].prediction, con: predictionsData[0].con, acc: predictionsData[0].acc}
-      // ]}
-
+  
       options={{ search: false, paging: true, pageSize: 5, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false}}
     
     />
