@@ -77,7 +77,6 @@ export default class PredictionsTable extends React.Component {
                   fontSize: 33}}>
                   Our Predictions {'\n'}
 
-                  1 will go up, 0 will go down
                 </pre>
               </div>
         }  
@@ -85,9 +84,9 @@ export default class PredictionsTable extends React.Component {
       columns={[
         { title: 'Ticker', field: 'ticker' },
         { title: 'Date', field: 'date'},
-        { title: 'Prediction', field: 'prediction' },
+        { title: 'Prediction - 1 will go up, 0 will go down', field: 'prediction' },
         // { title: 'Confidence', field: 'con'},
-        { title: 'Accuracy', field: 'acc' }
+        { title: 'Accuracy Of Prediction', field: 'acc' }
       ]}
       
       data={this.state.predictions}
