@@ -71,13 +71,7 @@ export default class PredictionsTable extends React.Component {
                 display: "flex",
                 fontSize: 33
               }}>
-                <pre style={{
-                  display: "flex", 
-                  fontFamily: "inherit",
-                  fontSize: 33}}>
-                  Our Predictions {'\n'}
-
-                </pre>
+                  Our Predictions
               </div>
         }  
 
