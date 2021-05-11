@@ -150,22 +150,6 @@ export default class SearchTable extends React.Component {
       columns={this.state.columns}
       data = {this.state.output}
       options={{ search: false, paging: true, pageSizeOptions: [1,2] , pageSize: 2, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false, maxBodyHeight: "10", showTitle:false, toolbar :false}}
-      // actions={[
-      //   {
-      //     // icon: 'save',
-      //     icon: {url},
-      //     // tooltip: 'Save User',
-      //     // onClick: (event, rowData) => alert("You saved " + rowData.name)
-      //     onClick: () => 
-      //     <Link to={this.data.url}>{this.data.url}</Link> 
-      //   },
-      //   // rowData => ({
-      //   //   icon: 'delete',
-      //   //   tooltip: 'Delete User',
-      //   //   onClick: (event, rowData) => confirm("You want to delete " + rowData.name),
-      //   //   disabled: rowData.birthYear < 2000
-      //   // })
-      // ]}
     /> 
     
     </div>
