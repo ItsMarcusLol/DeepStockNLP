@@ -40,7 +40,7 @@ PRIMARY KEY ( Date )
 );
 
 
-LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/GOOGL-2021-input-5-5-21.csv' 
+LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/GOOGL-2021-input-5-10-21.csv' 
 INTO TABLE google
 FIELDS
   TERMINATED BY ','
@@ -111,7 +111,7 @@ top56   VARCHAR(250) NULL,
 PRIMARY KEY (Date)
 );
 
-LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/AMZN-2021-input-5-5-21.csv' 
+LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/AMZN-2021-input-5-10-21.csv' 
 INTO TABLE amazon
 FIELDS
   TERMINATED BY ','
@@ -198,7 +198,7 @@ PRIMARY KEY (Date)
 );
 
 
-LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/AAPL-2021-input-5-5-21.csv' 
+LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/AAPL-2021-input-5-10-21.csv' 
 INTO TABLE apple
 FIELDS
   TERMINATED BY ','
@@ -268,7 +268,7 @@ top54	VARCHAR(250) NULL,
 );
 
 
-LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/BA-2021-input-5-5-21.csv' 
+LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/BA-2021-input-5-10-21.csv' 
 INTO TABLE boeing
 FIELDS
   TERMINATED BY ','
@@ -307,7 +307,7 @@ top24   VARCHAR(250) NULL,
 PRIMARY KEY (Date)
 );
 
-LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/DELL-2021-input-5-5-21.csv' 
+LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/DELL-2021-input-5-10-21.csv' 
 INTO TABLE dell
 FIELDS
   TERMINATED BY ','
@@ -348,7 +348,7 @@ top25	VARCHAR(250) NULL,
 PRIMARY KEY (Date)
 );
 
-LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/F-2021-input-5-5-21.csv' 
+LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/F-2021-input-5-10-21.csv' 
 INTO TABLE ford
 FIELDS
   TERMINATED BY ','
@@ -409,7 +409,7 @@ top46	VARCHAR(250) NULL,
 PRIMARY KEY (Date)
 );
 
-LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/MSFT-2021-input-5-5-21.csv' 
+LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/MSFT-2021-input-5-10-21.csv' 
 INTO TABLE microsoft
 FIELDS
   TERMINATED BY ','
@@ -486,7 +486,7 @@ top61	VARCHAR(250) NULL,
 );
 
 
-LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/TSLA-2021-input-5-5-21.csv' 
+LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/TSLA-2021-input-5-10-21.csv' 
 INTO TABLE tesla
 FIELDS
   TERMINATED BY ','
@@ -530,7 +530,7 @@ top29	VARCHAR(250) NULL,
 PRIMARY KEY (Date)
 );
 
-LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/TGT-2021-input-5-5-21.csv' 
+LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/TGT-2021-input-5-10-21.csv' 
 INTO TABLE target
 FIELDS
   TERMINATED BY ','
@@ -602,7 +602,7 @@ top57	VARCHAR(250) NULL,
 PRIMARY KEY (Date)
 );
 
-LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/WMT-2021-input-5-5-21.csv' 
+LOAD DATA LOCAL INFILE 'DeepStockNLP/Data/Headlines-DB/WMT-2021-input-5-10-21.csv' 
 INTO TABLE walmart
 FIELDS
   TERMINATED BY ','
