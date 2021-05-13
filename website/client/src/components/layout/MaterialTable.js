@@ -70,7 +70,16 @@ export default class PriceTable extends React.Component {
               ResetSearch: () => <Clear />
             }}
 
-          title="Our Stocks"
+          title={           
+          <div 
+            style={{
+                fontSize: 30,
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex"
+            }}>Our Stocks
+          </div>
+          }
         
           columns={[
             { title: 'Symbol', field: 'symbol' },

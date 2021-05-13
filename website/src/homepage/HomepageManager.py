@@ -10,7 +10,7 @@ class HomepageManager():
     def get_headlines(self, symbol):
         try: 
             key = "f0448bd30a7028e245052fcf3caa0837"
-            url = "https://financialmodelingprep.com/api/v3/stock_news?tickers=" + symbol + "&limit=4&apikey=" + key
+            url = "https://financialmodelingprep.com/api/v3/stock_news?tickers=" + symbol + "&limit=20&apikey=" + key
             response = urlopen(url)
             data = response.read().decode("utf-8")
             headlines = json.loads(data)
