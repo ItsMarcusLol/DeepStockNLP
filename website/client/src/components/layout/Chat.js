@@ -64,8 +64,6 @@ class Chat extends React.Component {
             if ( response.status !== 200) {
               console.log("Error: " + response.status);
             } else {
-              console.log(response.status);
-              
               return response.json();
             }
           })
@@ -101,7 +99,6 @@ class Chat extends React.Component {
         if ( response.status !== 200) {
           console.log("Error: " + response.status);
         } else {
-          console.log(response.status);
           return response.text();
         }
       })
