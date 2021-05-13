@@ -29,9 +29,7 @@ export default class HeadlineTable extends React.Component {
           .then( (response) => {
             if ( response.status !== 200) {
               console.log("Error: " + response.status);
-            } else {
-              console.log(response.status);
-              
+            } else { 
               return response.json();
             }
           })

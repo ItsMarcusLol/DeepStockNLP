@@ -78,7 +78,7 @@ class Login extends React.Component{
           fetch('http://35.247.73.118:6023/login', {method: "POST", body: JSON.stringify({username: username, password: password})})
           .then( (response) => {
             if ( response.status !== 200) {
-              console.log("Status: " + response.status);
+              console.log("Error: " + response.status);
               m = <h1 
               style={{fontSize: 24, color: "#FF0000" }}> 
               Wrong username or password 
@@ -87,7 +87,6 @@ class Login extends React.Component{
 
               return response.text();
             } else {
-              console.log("Status: " + response.status);
               const user = username;
               localStorage.setItem('user', user);
               m = <h1 

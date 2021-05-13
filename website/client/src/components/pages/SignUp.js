@@ -62,7 +62,7 @@ class SignUp extends React.Component{
         fetch('http://35.247.73.118:6023/account', {method: "POST", body: JSON.stringify({username: username, password: password})})
           .then( (response) => {
             if ( response.status !== 200) {
-              console.log("Status: " + response.status);
+              console.log("Error: " + response.status);
               m = <h1 
               style={{fontSize: 24, color: "#FF0000" }}> 
               Username or password is invalid
@@ -70,7 +70,6 @@ class SignUp extends React.Component{
               this.setState({username: "", password: "", redirect: false, message: m});
               return response.text();
             } else {
-              console.log("Status: " + response.status);
               const user = username;
               localStorage.setItem('user', user);
               m = <h1 
