@@ -40,10 +40,20 @@ const styles = (theme) => ({
         width: '100vw',
         height: '100vh'
     }
+  });
 
-    });
-
-
+/**
+ * Creates the login page for the website for
+ * users to login if they have an account with us.
+ * Also contains a link to click to go to signup 
+ * if users don't have an account with us.
+ * Login is checked to see if it's correct by 
+ * using the data in our database to see if the
+ * username and password match, if they do they get
+ * redirected to the home page, if not they get a 
+ * message that says wrong username or password and
+ * they get to try again.
+ */
 class Login extends React.Component{
 
     constructor(props) {
@@ -63,7 +73,6 @@ class Login extends React.Component{
 
       validateForm() {
         return this.state.username.length > 0 && this.state.password.length > 0;
-        
       }
 
       handleSubmit(event) { 
@@ -72,9 +81,7 @@ class Login extends React.Component{
       this.setState({username: "", password: "", redirect: false});
         var m = "";
        
-        event.preventDefault();
-        
-          // fetch('http://104.196.230.228:6023/login', {method: "POST", body: JSON.stringify({username: username, password: password})})
+        event.preventDefault();        
           fetch('http://35.247.73.118:6023/login', {method: "POST", body: JSON.stringify({username: username, password: password})})
           .then( (response) => {
             if ( response.status !== 200) {
@@ -110,9 +117,8 @@ class Login extends React.Component{
      const {classes} = this.props;
 
       if (this.state.redirect) {
-                    // window.location.href = "http://104.196.230.228:6023/"
-                    window.location.href = "http://35.247.73.118:6023/"
-                }
+        window.location.href = "http://35.247.73.118:6023/"
+      }
     return (
       <div className = {classes.div}>
        <Container component="main" maxWidth="xs" minHeight= '100%' >

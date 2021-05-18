@@ -5,6 +5,10 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import Divider from '@material-ui/core/Divider';
 import { withStyles } from '@material-ui/core/styles';
 
+  /**
+   * Creates fontSizes, height, etc. for the chat box
+   * @param {*} theme 
+   */
   const styles = (theme) => ({
   root: {
     width: '100%',
@@ -32,8 +36,10 @@ import { withStyles } from '@material-ui/core/styles';
   }
 });
 
+  /**
+   * Posts the chat onto the chat box for everyone to read
+   */
   class ChatList extends React.Component {
-
   render() {
     const {classes} = this.props;
      var chats = this.props.cList;
@@ -41,12 +47,8 @@ import { withStyles } from '@material-ui/core/styles';
       chats = [];
     }
     
-
-
   return (
     <List className={classes.root} subheader={<li />}>
-
-
          {chats.map((sectionId) => (
         <li key={`section-${sectionId}`} className={classes.listSection}>
           <ul className={classes.ul}>
@@ -58,8 +60,7 @@ import { withStyles } from '@material-ui/core/styles';
       ))}
 
     </List>
-  );
-            }
+  );}
 }
 
 export default withStyles(styles, )(ChatList);

@@ -2,6 +2,12 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 
+/**
+ * Creates the about page for the website.
+ * Contains what the project is about,
+ * the tools we used in our model,
+ * and a disclaimer for the users.
+ */
 function About() {
     return (
             <Grid container spacing = {2}

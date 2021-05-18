@@ -12,6 +12,10 @@ import Chat from './components/layout/Chat';
 import RadioB from './components/layout/RadioB';
 import Search from './components/layout/Search';
 
+/**
+ * Puts all of the layout components on our website in
+ * a way that's appealing to the users eye
+ */
 class App extends Component {
  
   state = {

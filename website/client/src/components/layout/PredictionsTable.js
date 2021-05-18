@@ -13,6 +13,11 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import LoadingSymbol from './LoadingSymbol';
 
+/**
+ * Gets our predictions from the database and puts it into a table
+ * that contains the features ticker, date, prediction, and
+ * accuracy.
+ */
 export default class PredictionsTable extends React.Component {
   state = {
       loading: true, 
@@ -20,10 +25,8 @@ export default class PredictionsTable extends React.Component {
       symbol: null
   };
 
-
   async componentDidMount() {
     const symbol = this.props.symb;
-    // fetch('http://104.196.230.228:6023/predictions?symbol='+symbol, {method: "GET" })
     fetch ('http://35.247.73.118:6023/predictions?symbol='+symbol, {method: "GET"})
         .then( (response) => {
           if ( response.status !== 200) {
@@ -37,15 +40,12 @@ export default class PredictionsTable extends React.Component {
         });
   }
 
- 
-
   render() {
       if (this.state.loading){
          return <LoadingSymbol />
       }
 
       return (
-       
         <MaterialTable
         icons={{
           Check: () => <Check />,
@@ -77,7 +77,6 @@ export default class PredictionsTable extends React.Component {
         { title: 'Ticker', field: 'ticker' },
         { title: 'Date', field: 'date'},
         { title: 'Prediction - 1 will go up, 0 will go down', field: 'prediction' },
-        // { title: 'Confidence', field: 'con'},
         { title: 'Accuracy Of Prediction', field: 'acc' }
       ]}
       

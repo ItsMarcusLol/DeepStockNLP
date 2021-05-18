@@ -3,6 +3,12 @@ import {
   Line, LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Label
 } from 'recharts';
 
+/**
+ * Creates the pop up box contents on the historical price graph
+ * so that it shows the open price, close price, change in price
+ * from the day before, and the date.
+ * @param {*} param0 
+ */
 function CustomTooltip({ payload, label, active }) {
   if (active && payload != null) {
     return (
@@ -17,10 +23,15 @@ function CustomTooltip({ payload, label, active }) {
      
     );
   }
-
   return null;
 }
 
+/**
+ * Gets data using an API call and creates
+ * a graph for each of the 10 stocks we've chosen
+ * showing the most recent months worth of historical data
+ * in a line graph.
+ */
 export default class HistoricalPriceGraph extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/xqjtetw0/';
   
@@ -32,16 +43,13 @@ export default class HistoricalPriceGraph extends PureComponent {
       ticker: 'GOOGL'
   
     };
-    this.setState({ symbol: this.props.symb,  data:this.props.data});
-    
+    this.setState({ symbol: this.props.symb,  data:this.props.data}); 
   }
 
   render() {
     if (!this.props.data) {
       return <span>Loading...</span>;
   }
-
-  
     return (
       <div> 
       <h1 style={{color:'white'}}> {this.props.symb}:</h1>
@@ -53,10 +61,9 @@ export default class HistoricalPriceGraph extends PureComponent {
         margin={{
           top: 5, right: 30, left: 20, bottom: 5,
         }}
-      >
+        >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" stroke="#FFF" reversed="true"/>
-        {/* <YAxis stroke="#FFF"/>  */}
         <YAxis
           stroke="#FFF">
             <Label
@@ -70,10 +77,8 @@ export default class HistoricalPriceGraph extends PureComponent {
                 </Label>
         </YAxis>
         
-
         <Tooltip content={<CustomTooltip/>} />
 
-        
         <Line type="monotone" strokeWidth="3" dataKey="change" stroke="#82ca9d" activeDot={{ r: 8 }} />
       </LineChart>
       </ResponsiveContainer>

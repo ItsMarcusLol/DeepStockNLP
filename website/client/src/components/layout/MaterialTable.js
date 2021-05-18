@@ -17,15 +17,20 @@ import LoadingSymbol from './LoadingSymbol';
 import HeadlineTable from './HeadlineTable';
 import PredictionsTable from './PredictionsTable';
 
+/**
+ * Creates the main table on the website that shows
+ * the daily prices, our predictions, historical prices,
+ * and headlines for the 10 stocks we've chosen.
+ * The data is retrieved from our database for the daily prices.
+ * For the other features, it's shown from the other JS scripts.
+ */
 export default class PriceTable extends React.Component {
   state = {
       loading: true, 
       prices: null,
   };
 
-  async componentDidMount() {
-  
-      // fetch('http://104.196.230.228:6023/homepage/current', {method: "GET"})
+  async componentDidMount() {  
       fetch ('http://35.247.73.118:6023/homepage/current', {method: "GET"})
           .then( (response) => {
             if ( response.status !== 200) {
@@ -39,8 +44,6 @@ export default class PriceTable extends React.Component {
           });
   }
   
-     
-
   render() {
       if (this.state.loading){
           return <LoadingSymbol />
@@ -79,6 +82,7 @@ export default class PriceTable extends React.Component {
           </div>
           }
         
+          //Daily price columns
           columns={[
             { title: 'Symbol', field: 'symbol' },
             { title: 'Company', field: 'companyName'},
@@ -86,6 +90,7 @@ export default class PriceTable extends React.Component {
             { title: 'Volume', field: 'volume', type: 'numeric' },
           ]}
       
+          //Daily price data
         data = {[
           {symbol: pricesData[0].symbol, companyName: pricesData[0].name, price: pricesData[0].price, volume: pricesData[0].volume}, 
           {symbol: pricesData[1].symbol, companyName: pricesData[1].name, price: pricesData[1].price, volume: pricesData[1].volume}, 
@@ -100,33 +105,33 @@ export default class PriceTable extends React.Component {
         ]}
         options={{ search: true, doubleHorizontalScroll: true, paging: true, exportButton: false, pageSize:10}}
         detailPanel={[
+
+          //Shows our predictions on the table
           {
             tooltip: 'Prediction',
             render: rowData => {
               return (
-                <div
-                >
-
-
+                <div>
                   <PredictionsTable symb ={rowData.symbol} />
                 </div>
               )
             },
           },
+
+          //Shows the historical prices on the table
           {
             icon: AddBox,
             tooltip: 'Historical Prices',
             render: rowData => {
               return (
                 <div>
-                
                 <HistoricalTable symb ={rowData.symbol} />
-                
                 </div>
               )
             },
+          },
 
-            },
+          //Shows the headline data on the table
               {
                 icon: ViewColumn,
                 openIcon: Remove,

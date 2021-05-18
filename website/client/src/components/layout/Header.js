@@ -25,6 +25,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
+/**
+ * Creates themes for the header
+ * @param {*} theme 
+ */
 const styles = (theme) => ({
   root: {
     display: 'flex',
@@ -88,10 +92,11 @@ const styles = (theme) => ({
   },
 });
 
+/**
+ * Creates the design style of the title
+ */
 const titleStyle = {
-
     textAlign: 'center',
-  
     alignItems: 'center',
     marginTop: '5px',  
     color: '#fff',
@@ -99,14 +104,19 @@ const titleStyle = {
     align : "right", 
   }
   
+  /**
+   * Creates the design style of the header
+   */
   const headerStyle = {
     background: 'linear-gradient(45deg, #000023 30%,   #000053 90%)',
     direction: 'row', 
 }
 
-
+  /**
+   * Creates the header with title, logout button if user is logged in,
+   * the user icon on the top right, and the menu on the top left.
+   */
   class Header extends React.Component{
-
    constructor(props) {
     super(props);
     this.state = {
@@ -189,10 +199,7 @@ const titleStyle = {
   
 render(){
   const {classes} = this.props;
-  
- 
-return (
-
+  return (
   <div className={classes.grow}>
       
     <AppBar

@@ -14,6 +14,11 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import LoadingSymbol from './LoadingSymbol';
 import { Link } from 'react-router-dom';
 
+/**
+ * Creates the table for the headlines on the website.
+ * Gets the headlines from the database and then posts 
+ * the most recent 20 headlines onto the website
+ */
 export default class HeadlineTable extends React.Component {
   state = {
       loading: true, 
@@ -24,7 +29,6 @@ export default class HeadlineTable extends React.Component {
   async componentDidMount() {
     
       const symbol = this.props.symb;
-      // fetch('http://104.196.230.228:6023/homepage/headlines?symbol='+symbol, {method: "GET"})
       fetch('http://35.247.73.118:6023/homepage/headlines?symbol='+symbol, {method: "GET"})
           .then( (response) => {
             if ( response.status !== 200) {
@@ -37,17 +41,12 @@ export default class HeadlineTable extends React.Component {
             this.setState({loading: false, headlines: obj, symbol: symbol});
           });
   }
-  
- 
 
   render() {
       if (this.state.loading){
          return <LoadingSymbol />
       }
-
-
       return (
-       
         <MaterialTable
         icons={{
           Check: () => <Check />,

@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//Creates the loading circle when the website needs to load
 export default function LoadingSymbol() {
   const classes = useStyles();
 

@@ -29,7 +29,11 @@ function getModalStyle() {
   },
 });
 
-
+/**
+ * Creatse the search feature on the website
+ * so that users can search for specific stocks.
+ * Data is from NYSE or NASDAQ
+ */
 class Search extends React.Component {
 
   state = {
@@ -38,12 +42,9 @@ class Search extends React.Component {
     title: "", 
     text: "", 
     output: null
-    
-  
   };
   
   modalStyle = getModalStyle();
-  
 
   handleOpen = () => {
     this.setState({

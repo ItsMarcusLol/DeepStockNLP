@@ -34,6 +34,16 @@ const styles = (theme) => ({
       },
     });
 
+/**
+ * Creates the sign up page for users to create
+ * an account with us. 
+ * The requirements for users is a username with at least one character
+ * and matching passwords.
+ * If the username or password is invalid a message will pop
+ * up saying just that, if the username and password are valid 
+ * then the user gets redirected to the home page and has created
+ * an account and logged in.
+ */
 class SignUp extends React.Component{
  
     constructor(props) {
@@ -57,8 +67,6 @@ class SignUp extends React.Component{
         e.preventDefault();
         this.props.login(this.state.username, this.state.password);
 
-
-        // fetch('http://104.196.230.228:6023/account', {method: "POST", body: JSON.stringify({username: username, password: password})})
         fetch('http://35.247.73.118:6023/account', {method: "POST", body: JSON.stringify({username: username, password: password})})
           .then( (response) => {
             if ( response.status !== 200) {
@@ -99,7 +107,6 @@ class SignUp extends React.Component{
       const {classes} = this.props;
 
       if (this.state.redirect) {
-        // window.location.href = "http://104.196.230.228:6023/"
         window.location.href = "http://35.247.73.118:6023/"
     }
     return (

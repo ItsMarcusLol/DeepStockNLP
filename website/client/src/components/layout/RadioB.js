@@ -3,6 +3,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import HistoricalPriceGraph from './HistoricalPriceGraph';
 
+/**
+ * Creates the green color the radio buttons are
+ */
 const GreenRadio = withStyles({
   root: {
     color:  '#71FF00',
@@ -13,8 +16,13 @@ const GreenRadio = withStyles({
   checked: {},
 })((props) => <Radio color="default" {...props} />);
 
+/**
+ * Creates the radio buttons for the historical price graph so that
+ * it changes if the user clicks on it to the appropriate stocks out
+ * of the 10 stocks we've chosen. 
+ * It gets the data from an API call
+ */
 export default class RadioButtons extends React.Component {
-
  constructor(props) {
   super(props);
   this.state = {
@@ -22,7 +30,6 @@ export default class RadioButtons extends React.Component {
    ticker: '',
    sData:null,
    loading: true
-
   };
 
   this.handleChange = this.handleChange.bind(this);
@@ -46,7 +53,6 @@ async getData(t){
     this.getData(event.target.name)
 }
 
-
 async componentDidMount() {
   this.setState({ selectedValue:'Google', ticker: 'GOOGL'});
   this.getData('GOOGL')
@@ -57,16 +63,16 @@ async componentDidMount() {
     <div>
       <HistoricalPriceGraph 
       symb={this.state.selectedValue}
-      data = {this.state.sData}
-      
+      data = {this.state.sData} 
       />
 
       <div
       style={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-}}>
+        justifyContent: 'center'
+        }}>
+
       <GreenRadio
         checked={this.state.selectedValue === 'Google'}
         onChange={(e) => this.handleChange(e) }

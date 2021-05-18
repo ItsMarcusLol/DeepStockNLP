@@ -6,14 +6,16 @@ import Icon from '@material-ui/icons/Send';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import {
- ResponsiveContainer,
-} from 'recharts';
+import { ResponsiveContainer } from 'recharts';
 
+/**
+ * Creates the themes for the chat box.
+ * Ex: the width, edit text box, etc.
+ * @param {*} theme 
+ */
 const styles = (theme) => ({
   fC:{
     width: 1000,
-
   },
   formControl: {
     margin: theme.spacing(2),
@@ -25,7 +27,7 @@ const styles = (theme) => ({
   textF: {
     '& .MuiTextField-root': {
       margin: theme.spacing(2),
-       minWidth: 400,
+      minWidth: 400,
     },
   },
   button: {
@@ -37,6 +39,11 @@ const styles = (theme) => ({
   },
 });
 
+/**
+ * Chat class that allows users to enter in their chats
+ * Then puts it into the database and then it's listed 
+ * on the website
+ */
 class Chat extends React.Component {
   constructor(props) {
     super(props);
@@ -54,11 +61,10 @@ class Chat extends React.Component {
     this.buttonChange = this.buttonChange.bind(this);
   }
   
-
+  /*
+  * Gets the message/chat from the database after they post it
+  */
   async newMessage() {
-    
-
-    // await fetch('http://104.196.230.228:6023/forum', {method: "GET"})
     await fetch ('http://35.247.73.118:6023/forum', {method: "GET"})
           .then( (response) => {
             if ( response.status !== 200) {
@@ -73,14 +79,11 @@ class Chat extends React.Component {
 
             this.setState({text: ''});
           });
-
-
   }
     
     componentDidMount() {
       const u1 = localStorage.getItem('user');
       this.newMessage();
-    
     
     if (u1.length > 1 ){
       this.setState({ loggedOut:false});
@@ -90,10 +93,10 @@ class Chat extends React.Component {
     this.setState({ username:u1 });
     };
 
+    /*
+    * Posts the username and chat onto the chat box
+    */
   async buttonChange(event){
-    
-    
-    // await fetch('http://104.196.230.228:6023/forum', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
     await fetch ('http://35.247.73.118:6023/forum', {method: "POST", body: JSON.stringify({username: this.state.username, text: this.state.text})})
       .then( (response) => {
         if ( response.status !== 200) {
@@ -107,7 +110,6 @@ class Chat extends React.Component {
     });
   
     this.newMessage();
-  
   }
 
   handleInputChange(event) {
@@ -132,14 +134,11 @@ class Chat extends React.Component {
     const {classes} = this.props;
     
     return (  
-         <Paper>
-    
+    <Paper>
       <Grid container spacing={2} 
         direction="row"
         justify="space-evenly"
-         alignItems="center"
-         
-         >
+        alignItems="center">
 
         <Grid item xs = {12}>
           <div>

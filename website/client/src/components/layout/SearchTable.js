@@ -14,6 +14,15 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import LoadingSymbol from './LoadingSymbol';
 import { Link } from 'react-router-dom';
 
+/**
+ * Creates the pop up box when users search for stocks using
+ * the search feature.
+ * It shows what the user searched, the comapny name, the industry, 
+ * current price, current volume average, and website.
+ * If the user searches for a stock that isn't specific enough
+ * it gives suggestions for the user to search again.
+ * Data is an API call that gets data from NYSE or NASDAQ
+ */
 export default class SearchTable extends React.Component {
   cols1=[
     { title: 'Currency', field: 'currency' },
@@ -60,11 +69,8 @@ export default class SearchTable extends React.Component {
       { title: 'Exchange', field: 'stockExchange' },
       { title: 'Symbol', field: 'symbol' },  
     ]
-
-    
   }
   
-    
     if (data.length === 1){
       const sym = data[0].symbol;
       const url2 = "https://financialmodelingprep.com/api/v4/company-outlook?symbol="+sym+"&apikey="+key;
@@ -76,8 +82,8 @@ export default class SearchTable extends React.Component {
         Company Name : {d1['companyName']} <br/>
         Industry : {d1['industry']} <br/>
         Price : {d1['price']} <br/>
-      Volume Avg : {d1['volAvg']} <br/>
-      Website : {d1['website']} <br/>
+        Volume Avg : {d1['volAvg']} <br/>
+        Website : {d1['website']} <br/>
       <br/>
       </div>;
       
@@ -86,7 +92,6 @@ export default class SearchTable extends React.Component {
         { title: 'Website', field: 'site' },
         { title: 'Title', field: 'title' }, 
         { title: 'URL', field: 'url' ,render: rowData => <Link style={{ color: 'blue', textDecoration: 'inherit'}} target= {"_blank"} to={{ pathname: rowData.url }}>{rowData.url}</Link> }
- 
       ]
       
     }
@@ -97,12 +102,9 @@ export default class SearchTable extends React.Component {
    
       h = "Could not find your stock " +  input +", make sure the stock is a part of NYSE or NASDAQ"
       t = ""
-    }
-    
-    
+    } 
    await this.setState({ symbol: input, output:data, header: h, columns:cols, title : t});
   this.setState({loading: false, })
-
 }
 
   render() {
@@ -145,8 +147,6 @@ export default class SearchTable extends React.Component {
                {this.state.title}
           </div>
     }  
-    
-     
       columns={this.state.columns}
       data = {this.state.output}
       options={{ search: false, paging: true, pageSizeOptions: [1,2] , pageSize: 2, exportButton: false, doubleHorizontalScroll: true, filtering: false , sorting: false, maxBodyHeight: "10", showTitle:false, toolbar :false}}
